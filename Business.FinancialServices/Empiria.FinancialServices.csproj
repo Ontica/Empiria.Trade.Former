@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4DC06D3E-7442-40F0-9B3A-A87EC3A6CEBB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Empiria.FinancialServices</RootNamespace>
+    <AssemblyName>Empiria.FinancialServices</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>empiria.strong.name.public.key.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>true</DelaySign>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\empiria.assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\AccountBalancesData.cs" />
+    <Compile Include="Data\AnalyticsData.cs" />
+    <Compile Include="Data\AccountTransactionData.cs" />
+    <Compile Include="Data\CollectData.cs" />
+    <Compile Include="Data\CollectEventData.cs" />
+    <Compile Include="Data\FinancialAccountData.cs" />
+    <Compile Include="Empiria.FinancialServices.AssemblyInfo.cs" />
+    <Compile Include="RootTypes\AccountStatement.cs" />
+    <Compile Include="RootTypes\AccountTransaction.cs" />
+    <Compile Include="RootTypes\AccountCreditBalance.cs" />
+    <Compile Include="RootTypes\CollectEvent.cs" />
+    <Compile Include="RootTypes\FinancialProduct.cs" />
+    <Compile Include="RootTypes\FinancialServicesException.cs" />
+    <Compile Include="RootTypes\FinancialAccount.cs" />
+    <Compile Include="RootTypes\CollectTotal.cs" />
+    <Compile Include="RootTypes\FinancialConcept.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="RootTypes\FinancialServicesExceptionMsg.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\empiria.custom\Pineda\Empiria.Customers.Pineda\Empiria.Customers.Pineda.csproj">
+      <Project>{41E9E90E-8F71-4B39-B478-56C0D1D71057}</Project>
+      <Name>Empiria.Customers.Pineda</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Business.Treasury\Empiria.Treasury.csproj">
+      <Project>{B98B6E7E-FD01-4D54-85AF-98FB8BB5F80B}</Project>
+      <Name>Empiria.Treasury</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Empiria.Data.csproj">
+      <Project>{20C01648-86CC-4E9E-AD71-BA7AA8E44DBC}</Project>
+      <Name>Empiria.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation\Empiria.Foundation.csproj">
+      <Project>{73EA993B-576B-4A5B-ACC5-117DAD0254EE}</Project>
+      <Name>Empiria.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kernel\Empiria.Kernel.csproj">
+      <Project>{F518E007-2B16-4804-BA45-695EA098E1C0}</Project>
+      <Name>Empiria.Kernel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Messaging\Empiria.Messaging.csproj">
+      <Project>{C653959D-E6F2-40C6-BF0D-A05BED14DF17}</Project>
+      <Name>Empiria.Messaging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="empiria.strong.name.public.key.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
