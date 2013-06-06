@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -121,6 +121,6 @@
     <value>No se pudo recalcular el saldo que resta por pagar de las facturas de la cuenta {0}.</value>
   </data>
   <data name="PaymentDistributionError" xml:space="preserve">
-    <value>Error de programaciĂ³n en la distribuciĂ³n de pagos por organizaciĂ³n o punto de venta. El registro de dĂ©bitos o pagos no puede ser nulo.</value>
+    <value>Error de programación en la distribución de pagos por organización o punto de venta. El registro de débitos o pagos no puede ser nulo.</value>
   </data>
 </root>

@@ -269,7 +269,6 @@ namespace Empiria.FinancialServices {
       if (this.PostedBy.IsEmptyInstance) {
         this.PostedBy = Contact.Parse(ExecutionServer.CurrentUserId);
       }
-
       AccountTransactionData.WriteAccountTransaction(this);
     }
 
