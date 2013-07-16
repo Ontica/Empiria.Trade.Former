@@ -7,7 +7,7 @@
 *                                                                                                            *
 *  Summary   : Provides data methods for financial services accounts balances.                               *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1994-2013. **/
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
 using System;
 using System.Data;
 
@@ -40,9 +40,8 @@ namespace Empiria.FinancialServices.Data {
     static public DateTime GetFirstUnpaidCreditDate(int accountId) {
       object value = DataReader.GetScalar(DataOperation.Parse("getFSMAccountFirstUnpaidCreditDate", accountId));
 
-      return (value != System.DBNull.Value) ? (DateTime) value : DateTime.Today;
+      return (value != null) ? (DateTime) value : DateTime.Today;
     }
-
 
     static public DataTable GetPaymentDistribution(DateTime fromDate, DateTime toDate) {
       return DataReader.GetDataTable(DataOperation.Parse("qryFSMPaymentDistribution", fromDate, toDate));

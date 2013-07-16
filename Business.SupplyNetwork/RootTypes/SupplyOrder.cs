@@ -7,7 +7,7 @@
 //*                                                                                                            *
 //*  Summary   : Represents a supply order in the Supply Network Management System.                            *
 //*                                                                                                            *
-//**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1994-2013. **/
+//**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -457,8 +457,8 @@ namespace Empiria.SupplyNetwork {
         return;
       }
 
-      DataConverter converter = DataConverter.GetInstance();
-      converter.Initalize("Empiria", "Autopartes.MySQL");
+      DataConvertionEngine engine = DataConvertionEngine.GetInstance();
+      engine.Initalize("Empiria", "Autopartes.MySQL");
 
       DataView view = SupplyOrdersData.GetSupplyOrdersItemsARPCrossed(this);
       if (view.Count == 0) {
@@ -479,7 +479,7 @@ namespace Empiria.SupplyNetwork {
         }
         sqlArray[i] = temp;
       }
-      converter.Execute(sqlArray);
+      engine.Execute(sqlArray);
     }
 
     protected override void ImplementsLoadObjectData(DataRow row) {

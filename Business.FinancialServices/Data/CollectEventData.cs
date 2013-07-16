@@ -7,7 +7,7 @@
 *                                                                                                            *
 *  Summary   : Contains data methods for financial services collect activities.                              *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1994-2013. **/
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
 using System.Data;
 
 using Empiria.Data;

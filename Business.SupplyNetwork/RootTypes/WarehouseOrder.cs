@@ -7,7 +7,7 @@
 //*                                                                                                            *
 //*  Summary   : Represents a warehouse product order in the Supply Management System.                         *
 //*                                                                                                            *
-//**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1994-2013. **/
+//**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
 using System;
 using System.Data;
 
@@ -245,7 +245,7 @@ namespace Empiria.SupplyNetwork {
       if (!LegacyAppInstalled) {
         return;
       }
-      DataConverter converter = DataConverter.GetInstance();
+      DataConvertionEngine converter = DataConvertionEngine.GetInstance();
       converter.Initalize("Autopartes.MySQL", "Empiria");
 
       converter.ReplaceDataSetSync("Productos");
@@ -256,7 +256,7 @@ namespace Empiria.SupplyNetwork {
         return;
       }
 
-      DataConverter converter = DataConverter.GetInstance();
+      DataConvertionEngine converter = DataConvertionEngine.GetInstance();
       converter.Initalize("Empiria", "Autopartes.MySQL");
 
       DataView view = WarehouseData.GetWarehouseOrdersItemsARPCrossed(this);

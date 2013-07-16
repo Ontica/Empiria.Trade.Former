@@ -7,7 +7,7 @@
 *                                                                                                            *
 *  Summary   : Provides database read and write methods for warehousing management data.                     *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1994-2013. **/
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
 using System;
 using System.Data;
 
@@ -28,7 +28,7 @@ namespace Empiria.SupplyNetwork.Data {
 
       object value = DataReader.GetScalar(dataOperation);
       int supplyOrderId = 0;
-      if (value == null || value == System.DBNull.Value) {
+      if (value == null) {
         supplyOrderId = DataWriter.CreateId("SNMSupplyOrders");
       } else {
         supplyOrderId = (int) value;
