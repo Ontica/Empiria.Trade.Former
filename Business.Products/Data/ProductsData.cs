@@ -3,7 +3,7 @@
 *  Solution  : Empiria® Extended Framework 2013                 System   : Document Management Services      *
 *  Namespace : Empiria.Products.Data                            Assembly : Empiria.Documents.dll             *
 *  Type      : ProductsData                                     Pattern  : Data Services Static Class        *
-*  Date      : 25/Jun/2013                                      Version  : 5.1     License: CC BY-NC-SA 3.0  *
+*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
 *                                                                                                            *
 *  Summary   : Provides database read and write methods for product data management.                         *
 *                                                                                                            *

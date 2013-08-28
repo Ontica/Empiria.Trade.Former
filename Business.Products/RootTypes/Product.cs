@@ -3,7 +3,7 @@
 *  Solution  : Empiria® Business Framework                      System   : Product Data Management           *
 *  Namespace : Empiria.Products                                 Assembly : Empiria.Products.dll              *
 *  Type      : Product                                          Pattern  : Storage Item                      *
-*  Date      : 25/Jun/2013                                      Version  : 5.1     License: CC BY-NC-SA 3.0  *
+*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
 *                                                                                                            *
 *  Summary   : Abstract type that represents a physical good or service.                                     *
 *                                                                                                            *

@@ -3,7 +3,7 @@
 *  Solution  : Empiria® Business Framework                      System   : Supply Network Management         *
 *  Namespace : Empiria.SupplyNetwork                            Assembly : Empiria.SupplyNetwork.dll         *
 *  Type      : SupplyNetworkException                           Pattern  : Empiria Exception Class           *
-*  Date      : 25/Jun/2013                                      Version  : 5.1     License: CC BY-NC-SA 3.0  *
+*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
 *                                                                                                            *
 *  Summary   : The exception that is thrown when a problem occurs in the Supply Network Management System.   *
 *                                                                                                            *

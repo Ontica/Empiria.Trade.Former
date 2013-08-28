@@ -3,7 +3,7 @@
 *  Solution  : Empiria® Business Framework                      System   : Supply Network Management         *
 *  Namespace : Empiria.SupplyNetwork.Data                       Assembly : Empiria.SupplyNetwork.dll         *
 *  Type      : WarehouseData                                    Pattern  : Data Services Static Class        *
-*  Date      : 25/Jun/2013                                      Version  : 5.1     License: CC BY-NC-SA 3.0  *
+*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
 *                                                                                                            *
 *  Summary   : Provides database read and write methods for warehousing management data.                     *
 *                                                                                                            *

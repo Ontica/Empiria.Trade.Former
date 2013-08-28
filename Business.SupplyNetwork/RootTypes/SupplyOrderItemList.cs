@@ -3,7 +3,7 @@
 *  Solution  : Empiria® Business Framework                      System   : Supply Network Management         *
 *  Namespace : Empiria.SupplyNetwork                            Assembly : Empiria.SupplyNetwork.dll         *
 *  Type      : SupplyOrderItemList                              Pattern  : Empiria List Class                *
-*  Date      : 25/Jun/2013                                      Version  : 5.1     License: CC BY-NC-SA 3.0  *
+*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
 *                                                                                                            *
 *  Summary   : Represents a list of BaseObject instances.                                                    *
 *                                                                                                            *

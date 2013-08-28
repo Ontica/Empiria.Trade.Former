@@ -3,7 +3,7 @@
 //*  Solution  : Empiria® Business Framework                      System   : Supply Network Management         *
 //*  Namespace : Empiria.SupplyNetwork                            Assembly : Empiria.SupplyNetwork.dll         *
 //*  Type      : SupplyChannel                                    Pattern  : General Object Type               *
-//*  Date      : 25/Jun/2013                                      Version  : 5.1     License: CC BY-NC-SA 3.0  *
+//*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
 //*                                                                                                            *
 //*  Summary   : Describes a supply channel like Internet, telephone, catalogue or store.                      *
 //*                                                                                                            *

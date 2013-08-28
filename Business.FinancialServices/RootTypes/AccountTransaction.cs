@@ -3,7 +3,7 @@
 *  Solution  : Empiria® Business Framework                      System   : Financial Services Management     *
 *  Namespace : Empiria.FinancialServices                        Assembly : Empiria.FinancialServices.dll     *
 *  Type      : AccountTransaction                               Pattern  : Business Services Class           *
-*  Date      : 25/Jun/2013                                      Version  : 5.1     License: CC BY-NC-SA 3.0  *
+*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
 *                                                                                                            *
 *  Summary   : Represents a debit o credit financial services account transaction.                           *
 *                                                                                                            *
