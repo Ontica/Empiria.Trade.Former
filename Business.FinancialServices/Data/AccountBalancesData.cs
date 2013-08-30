@@ -38,9 +38,9 @@ namespace Empiria.FinancialServices.Data {
     }
 
     static public DateTime GetFirstUnpaidCreditDate(int accountId) {
-      object value = DataReader.GetScalar(DataOperation.Parse("getFSMAccountFirstUnpaidCreditDate", accountId));
+      DataOperation op = DataOperation.Parse("getFSMAccountFirstUnpaidCreditDate", accountId);
 
-      return (value != null) ? (DateTime) value : DateTime.Today;
+      return DataReader.GetScalar<DateTime>(op, DateTime.Today);
     }
 
     static public DataTable GetPaymentDistribution(DateTime fromDate, DateTime toDate) {

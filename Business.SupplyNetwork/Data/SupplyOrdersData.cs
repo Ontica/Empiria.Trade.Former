@@ -24,14 +24,12 @@ namespace Empiria.SupplyNetwork.Data {
     static public int CreateSupplyOrderFromColdFusion(int coldFusionOrderId) {
       Empiria.Customers.Pineda.PedidoPineda.Update(coldFusionOrderId);
 
-      DataOperation dataOperation = DataOperation.Parse("SELECT SupplyOrderId FROM SNMSupplyOrders WHERE ExternalOrderId = " + coldFusionOrderId.ToString());
+      DataOperation dataOperation = DataOperation.Parse("SELECT SupplyOrderId FROM SNMSupplyOrders WHERE ExternalOrderId = " + 
+                                                        coldFusionOrderId.ToString());
 
-      object value = DataReader.GetScalar(dataOperation);
-      int supplyOrderId = 0;
-      if (value == null) {
+      int supplyOrderId = DataReader.GetScalar<int>(dataOperation);
+      if (supplyOrderId == 0) {
         supplyOrderId = DataWriter.CreateId("SNMSupplyOrders");
-      } else {
-        supplyOrderId = (int) value;
       }
       dataOperation = DataOperation.Parse("doImportCFSalesOrder", supplyOrderId, coldFusionOrderId);
 
