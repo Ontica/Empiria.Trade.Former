@@ -1,7 +1,7 @@
-﻿/* Empiria® Business Framework 2013 **************************************************************************
+﻿/* Empiria® Trade 2013 ***************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria® Business Framework                      System   : Supply Network Management         *
-*  Namespace : Empiria.SupplyNetwork                            Assembly : Empiria.SupplyNetwork.dll         *
+*  Solution  : Empiria® Trade                                   System   : Ordering System                   *
+*  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : SupplyOrderItemList                              Pattern  : Empiria List Class                *
 *  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
 *                                                                                                            *
@@ -12,8 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 
+using Empiria.Products;
 
-namespace Empiria.SupplyNetwork {
+namespace Empiria.Trade.Ordering {
 
   /// <summary>Represents a list of BaseObject instances.</summary>
   public class SupplyOrderItemList : ObjectList<SupplyOrderItem> {
@@ -207,7 +208,6 @@ namespace Empiria.SupplyNetwork {
 
     #endregion Private methods;
 
-
   } // class SupplyOrderItemList
 
-} // namespace Empiria.SupplyNetwork
+} // namespace Empiria.Trade.Ordering

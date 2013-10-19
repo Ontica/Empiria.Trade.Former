@@ -1,11 +1,11 @@
-﻿/* Empiria® Business Framework 2013 **************************************************************************
+﻿/* Empiria® Trade 2013 ***************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria® Business Framework                      System   : Supply Network Management         *
-*  Namespace : Empiria.SupplyNetwork.Data                       Assembly : Empiria.SupplyNetwork.dll         *
-*  Type      : WarehouseData                                    Pattern  : Data Services Static Class        *
+*  Solution  : Empiria® Trade                                   System   : Ordering System                   *
+*  Namespace : Empiria.Trade.Data                               Assembly : Empiria.Trade.Ordering.dll        *
+*  Type      : SupplyOrderData                                  Pattern  : Data Services Static Class        *
 *  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
 *                                                                                                            *
-*  Summary   : Provides database read and write methods for warehousing management data.                     *
+*  Summary   : Database read and write methods for Empiria Trade® ordering services.                         *
 *                                                                                                            *
 **************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
 using System;
@@ -13,10 +13,11 @@ using System.Data;
 
 using Empiria.Contacts;
 using Empiria.Data;
+using Empiria.Trade.Ordering;
 
-namespace Empiria.SupplyNetwork.Data {
+namespace Empiria.Trade.Data {
 
-  /// <summary>Provides database read and write methods for warehousing management data.</summary>
+  /// <summary>Database read and write methods for warehousing management services.</summary>
   static public class SupplyOrdersData {
 
     #region Public methods
@@ -36,14 +37,6 @@ namespace Empiria.SupplyNetwork.Data {
       DataWriter.Execute(dataOperation);
 
       return supplyOrderId;
-    }
-
-    static internal DataView GetBills(DateTime fromDate, DateTime toDate, string filter) {
-      DataOperation dataOperation = DataOperation.Parse("qryCRMBills", fromDate, toDate);
-
-      dataOperation.ExecutionTimeout = 500;
-
-      return DataReader.GetDataView(dataOperation, filter);
     }
 
     static public DataView GetSupplyOrdersItemsARPCrossed(SupplyOrder order) {
@@ -116,15 +109,6 @@ namespace Empiria.SupplyNetwork.Data {
       }
     }
 
-    static internal int WriteBill(Bill o) {
-      DataOperation dataOperation = DataOperation.Parse("writeCRMBill", o.Id, (char) o.BillType,
-                        o.Order.Id, o.Order.ExternalOrderId, o.IssuedBy.Id, o.IssuedTime, o.CertificateNumber,
-                        o.SerialNumber, o.Number, o.ApprovalYear, o.ApprovalNumber, o.DigitalString,
-                        o.DigitalSign, o.GetXmlString(), o.CanceledBy.Id, o.CancelationTime, (char) o.Status);
-
-      return DataWriter.Execute(dataOperation);
-    }
-
     static internal int WriteSupplyOrder(SupplyOrder o) {
       DataOperation dataOperation = DataOperation.Parse("writeSNMSupplyOrder", o.Id, o.ObjectTypeInfo.Id,
                                           o.Number, o.CustomerOrderNumber, o.DutyEntryTag, o.Concept, o.SupplyChannel.Id,
@@ -147,11 +131,10 @@ namespace Empiria.SupplyNetwork.Data {
       //                                                  o.SupplyOrderItem.Id, o.PostedBy.Id, o.PostingTime, (char) o.Status);
       //return DataWriter.Execute(dataOperation);
       throw new NotImplementedException();
-
     }
 
     #endregion Internal methods
 
   } // class SupplyOrdersData
 
-} // namespace Empiria.Products.Data
+} // namespace Empiria.Trade.Data

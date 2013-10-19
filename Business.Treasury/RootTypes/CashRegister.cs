@@ -26,7 +26,7 @@ namespace Empiria.Treasury {
 
     static public bool IAmCashier {
       get {
-        return ((User) ExecutionServer.CurrentUser).CanExecute("CashRegister");
+        return ((EmpiriaUser) ExecutionServer.CurrentUser).CanExecute("CashRegister");
       }
     }
 

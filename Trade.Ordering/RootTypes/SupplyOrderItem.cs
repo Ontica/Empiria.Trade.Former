@@ -1,13 +1,13 @@
-﻿///* Empiria® Business Framework 2013 **************************************************************************
-//*                                                                                                            *
-//*  Solution  : Empiria® Business Framework                      System   : Supply Network Management         *
-//*  Namespace : Empiria.SupplyNetwork                            Assembly : Empiria.SupplyNetwork.dll         *
-//*  Type      : SupplyOrderItem                                  Pattern  : Empiria Object Type               *
-//*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
-//*                                                                                                            *
-//*  Summary   : Represents a supply product order item in the Supply Management System.                       *
-//*                                                                                                            *
-//**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+﻿/* Empiria® Trade 2013 ***************************************************************************************
+*                                                                                                            *
+*  Solution  : Empiria® Trade                                   System   : Ordering System                   *
+*  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
+*  Type      : SupplyOrderItem                                  Pattern  : Empiria Object Type               *
+*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
+*                                                                                                            *
+*  Summary   : Represents a supply product order item in the Supply Management System.                       *
+*                                                                                                            *
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
 using System;
 using System.Data;
 
@@ -15,9 +15,9 @@ using Empiria.Contacts;
 using Empiria.DataTypes;
 using Empiria.Products;
 
-using Empiria.SupplyNetwork.Data;
+using Empiria.Trade.Data;
 
-namespace Empiria.SupplyNetwork {
+namespace Empiria.Trade.Ordering {
 
   public enum PriceType {
     A = 'A',
@@ -35,7 +35,7 @@ namespace Empiria.SupplyNetwork {
 
     #region Fields
 
-    private const string thisTypeName = "ObjectType.SupplyNetwork.OrderItem.SupplyOrderItem";
+    private const string thisTypeName = "ObjectType.Trade.OrderItem.SupplyOrderItem";
 
     private SupplyOrder order = SupplyOrder.Empty;
     private int orderItemTypeId = -1;
@@ -54,9 +54,9 @@ namespace Empiria.SupplyNetwork {
     private string dutyEntryTag = String.Empty;
     private DateTime expirationDate = ExecutionServer.DateMaxValue;
     private int priceRuleId = -1;
-    private PriceType priceType = Empiria.SupplyNetwork.PriceType.A;
+    private PriceType priceType = PriceType.A;
     private int discountRuleId = -1;
-    private PriceType discountType = Empiria.SupplyNetwork.PriceType.A;
+    private PriceType discountType = PriceType.A;
     private decimal unitRepositionValue = decimal.Zero;
     private decimal productUnitPrice = decimal.Zero;
     private Currency currency = Currency.Default;
@@ -393,4 +393,4 @@ namespace Empiria.SupplyNetwork {
 
   } // class SupplyOrderItem
 
-} // namespace Empiria.SupplyNetwork
+} // namespace Empiria.Trade.Ordering

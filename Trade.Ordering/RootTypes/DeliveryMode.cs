@@ -1,15 +1,16 @@
-﻿///* Empiria® Business Framework 2013 **************************************************************************
-//*                                                                                                            *
-//*  Solution  : Empiria® Business Framework                      System   : Supply Network Management         *
-//*  Namespace : Empiria.SupplyNetwork                            Assembly : Empiria.SupplyNetwork.dll         *
-//*  Type      : DeliveryMode                                     Pattern  : General Object Type               *
-//*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
-//*                                                                                                            *
-//*  Summary   : Represents a delivery type or condition like not delivery, store, pick, air, land.            *
-//*                                                                                                            *
-//**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+﻿/* Empiria® Trade 2013 ***************************************************************************************
+*                                                                                                            *
+*  Solution  : Empiria® Trade                                   System   : Ordering System                   *
+*  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
+*  Type      : DeliveryMode                                     Pattern  : General Object Type               *
+*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
+*                                                                                                            *
+*  Summary   : Represents a delivery type or condition like not delivery, store, pick, air, land.            *
+*                                                                                                            *
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+using System;
 
-namespace Empiria.SupplyNetwork {
+namespace Empiria.Trade.Ordering {
 
   /// <summary>Represents a delivery type or condition like not delivery, store, pick, air, land.</summary>
   public class DeliveryMode : GeneralObject {
@@ -68,4 +69,4 @@ namespace Empiria.SupplyNetwork {
 
   } // class DeliveryMode
 
-} // namespace Empiria.SupplyNetwork
+} // namespace Empiria.Trade.Ordering

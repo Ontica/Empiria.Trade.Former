@@ -5,7 +5,7 @@
 *  Type      : FacturaXmlSAT                                    Pattern  : Storage Item                      *
 *  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
 *                                                                                                            *
-*  Summary   : Describes a customer.                                                                         *
+*  Summary   : Describes a Xml bill.                                                                         *
 *                                                                                                            *
 **************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
 using System;
@@ -13,12 +13,12 @@ using System.Data;
 using System.Xml;
 
 using Empiria.Contacts;
-using Empiria.SupplyNetwork.Data;
 
-namespace Empiria.SupplyNetwork {
+using Empiria.Trade.Data;
 
-  /// <summary>Describes a customer</summary>
+namespace Empiria.Trade.Billing {
 
+  /// <summary>Describes a Xml bill</summary>
   public class XmlBill {
 
     #region Fields
@@ -42,24 +42,24 @@ namespace Empiria.SupplyNetwork {
     }
 
     static public string CreateReportFile(Contact supplier, DateTime fromDate, DateTime toDate) {
-      DataView view = SupplyOrdersData.GetBills(fromDate, toDate, "[BillType] IN('B','G') AND [BillStatus] <> 'X' AND " +
-                                                "[CancelationTime] > '" + toDate.ToString("yyyy-MM-dd HH:mm:ss") + "'");
+      DataView view = BillingData.GetBills(fromDate, toDate, "[BillType] IN('B','G') AND [BillStatus] <> 'X' AND " +
+                                           "[CancelationTime] > '" + toDate.ToString("yyyy-MM-dd HH:mm:ss") + "'");
 
       string fileContents = GetReportFileSection(view, "1", "I");   // Active bills
 
-      view = SupplyOrdersData.GetBills(DateTime.Parse("31/12/2011"), fromDate.AddSeconds(-0.5),
+      view = BillingData.GetBills(DateTime.Parse("31/12/2011"), fromDate.AddSeconds(-0.5),
                                    "[BillType] = 'B' AND [BillStatus] = 'C' AND [CancelationTime] >= '" + fromDate.ToString("yyyy-MM-dd") + "' AND " +
                                    "[CancelationTime] <= '" + toDate.ToString("yyyy-MM-dd HH:mm:ss") + "'");
 
       fileContents += GetReportFileSection(view, "0", "I");         // Canceled bills
 
-      view = SupplyOrdersData.GetBills(fromDate, toDate, "[BillType] IN ('C','L') AND [BillStatus] = 'A'");
+      view = BillingData.GetBills(fromDate, toDate, "[BillType] IN ('C','L') AND [BillStatus] = 'A'");
 
       fileContents += GetReportFileSection(view, "1", "E");         // Active credit notes
 
-      view = SupplyOrdersData.GetBills(DateTime.Parse("31/12/2011"), fromDate.AddSeconds(-0.5),
-                                   "[BillType] IN ('C','L') AND [BillStatus] = 'C' AND [CancelationTime] >= '" + fromDate.ToString("yyyy-MM-dd") + "' AND " +
-                                   "[CancelationTime] <= '" + toDate.ToString("yyyy-MM-dd HH:mm:ss") + "'");
+      view = BillingData.GetBills(DateTime.Parse("31/12/2011"), fromDate.AddSeconds(-0.5),
+                                  "[BillType] IN ('C','L') AND [BillStatus] = 'C' AND [CancelationTime] >= '" + fromDate.ToString("yyyy-MM-dd") + "' AND " +
+                                  "[CancelationTime] <= '" + toDate.ToString("yyyy-MM-dd HH:mm:ss") + "'");
 
       fileContents += GetReportFileSection(view, "0", "E");         // Canceled credit notes
 
@@ -193,9 +193,9 @@ namespace Empiria.SupplyNetwork {
 
         AppendXmlAttribute(xml, itemNode, "cantidad", "1.0");
         AppendXmlAttribute(xml, itemNode, "unidad", "No identificado");
-        if (bill.BillType == SupplyNetwork.BillType.GlobalBill) {
+        if (bill.BillType == BillType.GlobalBill) {
           AppendXmlAttribute(xml, itemNode, "descripcion", "Factura global mensual. Folios: " + bill.NotOrderData.TicketNumbers);
-        } else if (bill.BillType == SupplyNetwork.BillType.GlobalCreditNote) {
+        } else if (bill.BillType == BillType.GlobalCreditNote) {
           AppendXmlAttribute(xml, itemNode, "descripcion", "Factura global mensual. Devoluciones de los folios: " + bill.NotOrderData.TicketNumbers);
         }
         AppendXmlAttribute(xml, itemNode, "valorUnitario", bill.NotOrderData.SubTotal.ToString("0.00"));
@@ -204,8 +204,8 @@ namespace Empiria.SupplyNetwork {
         return;
       }
 
-      SupplyOrderItemList items = bill.Order.Items;
-      foreach (SupplyOrderItem item in items) {
+      var orderItems = bill.Order.Items;
+      foreach (var item in orderItems) {
         XmlNode itemNode = xml.CreateNode(XmlNodeType.Element, "Concepto", String.Empty);
 
         node.AppendChild(itemNode);
@@ -246,8 +246,8 @@ namespace Empiria.SupplyNetwork {
         return;
       }
 
-      SupplyOrderItemList items = bill.Order.Items;
-      foreach (SupplyOrderItem item in items) {
+      var orderItems = bill.Order.Items;
+      foreach (var item in orderItems) {
         XmlNode itemNode = xml.CreateNode(XmlNodeType.Element, "Traslado", String.Empty);
 
         taxes.AppendChild(itemNode);
@@ -322,4 +322,4 @@ namespace Empiria.SupplyNetwork {
 
   } // class XmlBill
 
-} // namespace Empiria.SupplyNetwork
+} // namespace Empiria.Trade.Billing

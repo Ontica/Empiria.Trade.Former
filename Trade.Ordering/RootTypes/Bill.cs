@@ -18,10 +18,11 @@ using System.Text;
 using System.Xml;
 
 using Empiria.Contacts;
-using Empiria.SupplyNetwork.Data;
 
+using Empiria.Trade.Data;
+using Empiria.Trade.Ordering;
 
-namespace Empiria.SupplyNetwork {
+namespace Empiria.Trade.Billing {
 
   public enum BillStatus {
     Active = 'A',
@@ -142,7 +143,7 @@ namespace Empiria.SupplyNetwork {
     }
 
     static public void Review() {
-      DataView view = SupplyOrdersData.GetBills(DateTime.Parse("01/07/2012"), DateTime.Today, "[ApprovalYear] = 2012");
+      DataView view = BillingData.GetBills(DateTime.Parse("01/07/2012"), DateTime.Today, "[ApprovalYear] = 2012");
 
       for (int i = 0; i < view.Count; i++) {
         string ds = (string) view[i]["DigitalString"];
@@ -201,23 +202,14 @@ namespace Empiria.SupplyNetwork {
 
     static public void GenerateDailyBill(Contact supplier, DateTime fromDate, DateTime toDate) {
       if (fromDate.Month != toDate.Month || fromDate.Year != toDate.Year) {
-        throw new SupplyNetworkException(SupplyNetworkException.Msg.InvalidPeriodForDailyBills, fromDate, toDate);
+        throw new TradeOrderingException(TradeOrderingException.Msg.InvalidPeriodForDailyBills, fromDate, toDate);
       }
-      DataView view = SupplyOrdersData.GetBills(fromDate, toDate, "[BillType] IN ('G', 'L')");
+      DataView view = BillingData.GetBills(fromDate, toDate, "[BillType] IN ('G', 'L')");
       if (view.Count != 0) { // Global bills already generated 
         return;
       }
 
       Bill bill = null;
-
-      //string filter = "( (BillId = -1) AND ClosingTime >= '" + fromDate.ToString("yyyy-MM-dd") + "' AND " +
-      //                "ClosingTime <= '" + toDate.ToString("yyyy-MM-dd HH:mm:ss") + "' AND SupplyOrderStatus IN ('D','C') ) OR " + 
-      //                "( (BillId <> -1) AND ClosingTime >= '" + fromDate.ToString("yyyy-MM-dd") + "' AND " +
-      //                "ClosingTime <= '" + toDate.ToString("yyyy-MM-dd HH:mm:ss") + "' AND SupplyOrderStatus IN ('D','C') AND " + 
-      //                "BillIssuedTime > '" + toDate.ToString("yyyy-MM-dd HH:mm:ss") + "' ) OR " +
-      //                "( (BillId = -1) AND ClosingTime >= '" + fromDate.ToString("yyyy-MM-dd") + "' AND " +
-      //                "ClosingTime <= '" + toDate.ToString("yyyy-MM-dd HH:mm:ss") + "' AND SupplyOrderStatus IN ('L','X') AND " +
-      //                "CancelationTime > '" + toDate.ToString("yyyy-MM-dd HH:mm:ss") + "' )";
 
       string filter = "( (BillId = -1 AND SupplyOrderStatus <> 'O') AND ClosingTime >= '" + fromDate.ToString("yyyy-MM-dd") + "' AND " +
                       "ClosingTime <= '" + toDate.ToString("yyyy-MM-dd HH:mm:ss") + "' AND " +
@@ -279,17 +271,17 @@ namespace Empiria.SupplyNetwork {
     public string BillTypeFiscalName {
       get {
         switch (billType) {
-          case SupplyNetwork.BillType.Bill:
-          case SupplyNetwork.BillType.GlobalBill:
-          case SupplyNetwork.BillType.DebitNote:
+          case BillType.Bill:
+          case BillType.GlobalBill:
+          case BillType.DebitNote:
             return "ingreso";
-          case SupplyNetwork.BillType.CreditNote:
-          case SupplyNetwork.BillType.GlobalCreditNote:
+          case BillType.CreditNote:
+          case BillType.GlobalCreditNote:
             return "egreso";
-          case SupplyNetwork.BillType.Transfer:
+          case BillType.Transfer:
             return "traslado";
           default:
-            throw new SupplyNetworkException(SupplyNetworkException.Msg.UnrecognizedBillType, billType);
+            throw new TradeOrderingException(TradeOrderingException.Msg.UnrecognizedBillType, billType);
         }
       }
     }
@@ -558,7 +550,7 @@ namespace Empiria.SupplyNetwork {
         this.digitalSign = CreateDigitalSign();
         CreateXMLFile();
       }
-      SupplyOrdersData.WriteBill(this);
+      BillingData.WriteBill(this);
     }
 
     #endregion Public methods
@@ -643,9 +635,9 @@ namespace Empiria.SupplyNetwork {
       if (this.notOrderData != null) {
         ds = GetDigitalStringItem("1.0");
         ds += GetDigitalStringItem("No identificado");
-        if (billType == SupplyNetwork.BillType.GlobalBill) {
+        if (billType == BillType.GlobalBill) {
           ds += GetDigitalStringItem("Factura global mensual. Folios: " + NotOrderData.TicketNumbers);
-        } else if (billType == SupplyNetwork.BillType.GlobalCreditNote) {
+        } else if (billType == BillType.GlobalCreditNote) {
           ds += GetDigitalStringItem("Factura global mensual. Devoluciones de los folios: " + NotOrderData.TicketNumbers);
         }
         ds += GetDigitalStringItem(NotOrderData.SubTotal.ToString("0.00"));
@@ -772,6 +764,6 @@ namespace Empiria.SupplyNetwork {
 
     #endregion Private methods
 
-  } // class Property
+  } // class Bill
 
-} // namespace Empiria.Customers.Pineda
+} // namespace Empiria.Trade.Billing

@@ -1,19 +1,20 @@
-﻿/* Empiria® Business Framework 2013 **************************************************************************
+﻿/* Empiria® Trade 2013 ***************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria® Business Framework                      System   : Supply Network Management         *
-*  Namespace : Empiria.SupplyNetwork.Data                       Assembly : Empiria.SupplyNetwork.dll         *
+*  Solution  : Empiria® Trade                                   System   : Ordering System                   *
+*  Namespace : Empiria.Trade.Data                               Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : WarehouseData                                    Pattern  : Data Services Static Class        *
 *  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
 *                                                                                                            *
-*  Summary   : Provides database read and write methods for warehousing management data.                     *
+*  Summary   : Database read and write methods for warehousing management services.                          *
 *                                                                                                            *
 **************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
 using System;
 using System.Data;
 
 using Empiria.Data;
+using Empiria.Trade.Ordering;
 
-namespace Empiria.SupplyNetwork.Data {
+namespace Empiria.Trade.Data {
 
   /// <summary>Provides database read and write methods for product data management</summary>
   static public class WarehouseData {
@@ -128,4 +129,4 @@ namespace Empiria.SupplyNetwork.Data {
 
   } // class WarehouseData
 
-} // namespace Empiria.Products.Data
+} // namespace Empiria.Trade.Data

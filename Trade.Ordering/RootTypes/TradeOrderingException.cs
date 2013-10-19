@@ -1,21 +1,21 @@
-﻿/* Empiria® Business Framework 2013 **************************************************************************
+﻿/* Empiria® Trade 2013 ***************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria® Business Framework                      System   : Supply Network Management         *
-*  Namespace : Empiria.SupplyNetwork                            Assembly : Empiria.SupplyNetwork.dll         *
-*  Type      : SupplyNetworkException                           Pattern  : Empiria Exception Class           *
+*  Solution  : Empiria® Trade                                   System   : Ordering System                   *
+*  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
+*  Type      : TradeOrderingException                           Pattern  : Empiria Exception Class           *
 *  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
 *                                                                                                            *
-*  Summary   : The exception that is thrown when a problem occurs in the Supply Network Management System.   *
+*  Summary   : The exception that is thrown when a problem occurs in Empiria Trade ® Ordering System.        *
 *                                                                                                            *
 **************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
 using System;
 using System.Reflection;
 
-namespace Empiria.SupplyNetwork {
+namespace Empiria.Trade.Ordering {
 
-  /// <summary>The exception that is thrown when a problem occurs in the Supply Network Management System.</summary>
+  /// <summary>The exception that is thrown when a problem occurs in Empiria Trade ® Ordering System.</summary>
   [Serializable]
-  public sealed class SupplyNetworkException : EmpiriaException {
+  public sealed class TradeOrderingException : EmpiriaException {
 
     public enum Msg {
       InvalidCategoryRule,
@@ -24,25 +24,25 @@ namespace Empiria.SupplyNetwork {
       UnrecognizedBillType,
     }
 
-    static private string resourceBaseName = "Empiria.SupplyNetwork.RootTypes.SupplyNetworkExceptionMsg";
+    static private string resourceBaseName = "Empiria.Trade.Ordering.RootTypes.TradeOrderingExceptionMsg";
 
     #region Constructors and parsers
 
-    /// <summary>Initializes a new instance of ProductManagementException class with a specified error 
+    /// <summary>Initializes a new instance of OrderingSystemException class with a specified error 
     /// message.</summary>
     /// <param name="message">Used to indicate the description of the exception.</param>
     /// <param name="args">An optional array of items to format into the exception message.</param>
-    public SupplyNetworkException(Msg message, params object[] args)
+    public TradeOrderingException(Msg message, params object[] args)
       : base(message.ToString(), GetMessage(message, args)) {
 
     }
 
-    /// <summary>Initializes a new instance of ProductManagementException class with a specified error
+    /// <summary>Initializes a new instance of OrderingSystemException class with a specified error
     ///  message and a reference to the inner exception that is the cause of this exception.</summary>
     /// <param name="message">Used to indicate the description of the exception.</param>
     /// <param name="innerException">This is the inner exception.</param>
     /// <param name="args">An optional array of items to format into the exception message.</param>
-    public SupplyNetworkException(Msg message, Exception innerException, params object[] args)
+    public TradeOrderingException(Msg message, Exception innerException, params object[] args)
       : base(message.ToString(), GetMessage(message, args), innerException) {
 
     }
@@ -57,6 +57,6 @@ namespace Empiria.SupplyNetwork {
 
     #endregion Private methods
 
-  } // class SupplyNetworkException
+  } // class TradeOrderingException
 
-} // namespace Empiria.SupplyNetwork
+} // namespace Empiria.Trade.Ordering

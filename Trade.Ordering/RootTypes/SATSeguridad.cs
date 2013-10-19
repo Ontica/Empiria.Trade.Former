@@ -14,8 +14,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Cryptography;
 
-
-namespace Empiria.SupplyNetwork {
+namespace Empiria.Trade.Billing {
 
   internal class SATSeguridad {
 
@@ -365,4 +364,4 @@ namespace Empiria.SupplyNetwork {
 
   } // class SATSeguridad
 
-} // namespace Empiria.SupplyNetwork
+} // namespace Empiria.Trade.Billing

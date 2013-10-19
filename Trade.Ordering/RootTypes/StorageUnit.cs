@@ -1,13 +1,13 @@
-﻿///* Empiria® Business Framework 2013 **************************************************************************
-//*                                                                                                            *
-//*  Solution  : Empiria® Business Framework                      System   : Supply Network Management         *
-//*  Namespace : Empiria.SupplyNetwork                            Assembly : Empiria.SupplyNetwork.dll         *
-//*  Type      : StorageUnit                                      Pattern  : Empiria Object Type               *
-//*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
-//*                                                                                                            *
-//*  Summary   : Describes a warehouse storage unit.                                                           *
-//*                                                                                                            *
-//**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+﻿/* Empiria® Trade 2013 ***************************************************************************************
+*                                                                                                            *
+*  Solution  : Empiria® Trade                                   System   : Ordering System                   *
+*  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
+*  Type      : StorageUnit                                      Pattern  : Empiria Object Type               *
+*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
+*                                                                                                            *
+*  Summary   : Describes a warehouse storage unit.                                                           *
+*                                                                                                            *
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
 using System;
 using System.Data;
 
@@ -16,7 +16,7 @@ using Empiria.DataTypes;
 
 using Empiria.Products;
 
-namespace Empiria.SupplyNetwork {
+namespace Empiria.Trade.Ordering {
 
   public enum StorageUnitClass {
     Undefined = 'U',
@@ -36,7 +36,7 @@ namespace Empiria.SupplyNetwork {
 
     #region Fields
 
-    private const string thisTypeName = "ObjectType.SupplyNetwork.StorageUnit";
+    private const string thisTypeName = "ObjectType.Trade.StorageUnit";
 
     private Contact supplyPoint = Person.Empty;
     private StorageUnitKind kind = StorageUnitKind.Empty;
@@ -376,4 +376,4 @@ namespace Empiria.SupplyNetwork {
 
   } // class StorageUnit
 
-} // namespace Empiria.SupplyNetwork
+} // namespace Empiria.Trade.Ordering

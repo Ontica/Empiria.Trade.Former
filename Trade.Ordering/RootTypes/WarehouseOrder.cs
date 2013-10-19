@@ -1,22 +1,22 @@
-﻿///* Empiria® Business Framework 2013 **************************************************************************
-//*                                                                                                            *
-//*  Solution  : Empiria® Business Framework                      System   : Supply Network Management         *
-//*  Namespace : Empiria.SupplyNetwork                            Assembly : Empiria.SupplyNetwork.dll         *
-//*  Type      : WarehouseOrder                                   Pattern  : Empiria Object Type               *
-//*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
-//*                                                                                                            *
-//*  Summary   : Represents a warehouse product order in the Supply Management System.                         *
-//*                                                                                                            *
-//**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+﻿/* Empiria® Trade 2013 ***************************************************************************************
+*                                                                                                            *
+*  Solution  : Empiria® Trade                                   System   : Ordering System                   *
+*  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
+*  Type      : WarehouseOrder                                   Pattern  : Empiria Object Type               *
+*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
+*                                                                                                            *
+*  Summary   : Represents a warehouse product order in the Supply Management System.                         *
+*                                                                                                            *
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
 using System;
 using System.Data;
 
 using Empiria.Contacts;
 using Empiria.Data.Convertion;
 
-using Empiria.SupplyNetwork.Data;
+using Empiria.Trade.Data;
 
-namespace Empiria.SupplyNetwork {
+namespace Empiria.Trade.Ordering {
 
   /// <summary>Represents a warehouse product order in the Supply Management System.</summary>
   public class WarehouseOrder : BaseObject {
@@ -25,7 +25,7 @@ namespace Empiria.SupplyNetwork {
 
     private static readonly bool LegacyAppInstalled = ConfigurationData.GetBoolean("LegacyAppInstalled");
 
-    private const string thisTypeName = "ObjectType.SupplyNetwork.Order.WarehouseOrder";
+    private const string thisTypeName = "ObjectType.Trade.Order.WarehouseOrder";
     private const string newOrderNumber = "Nueva orden";
 
     //WarehouseOrderTypeId
@@ -312,4 +312,4 @@ namespace Empiria.SupplyNetwork {
 
   } // class WarehouseOrder
 
-} // namespace Empiria.SupplyNetwork
+} // namespace Empiria.Trade.Ordering

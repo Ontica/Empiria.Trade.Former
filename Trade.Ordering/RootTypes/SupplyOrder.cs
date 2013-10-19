@@ -1,26 +1,30 @@
-﻿///* Empiria® Business Framework 2013 **************************************************************************
-//*                                                                                                            *
-//*  Solution  : Empiria® Business Framework                      System   : Supply Network Management         *
-//*  Namespace : Empiria.SupplyNetwork                            Assembly : Empiria.SupplyNetwork.dll         *
-//*  Type      : SupplyOrder                                      Pattern  : Empiria Object Type               *
-//*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
-//*                                                                                                            *
-//*  Summary   : Represents a supply order in the Supply Network Management System.                            *
-//*                                                                                                            *
-//**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+﻿/* Empiria® Trade 2013 ***************************************************************************************
+*                                                                                                            *
+*  Solution  : Empiria® Trade                                   System   : Ordering System                   *
+*  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
+*  Type      : SupplyOrder                                      Pattern  : Empiria Object Type               *
+*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
+*                                                                                                            *
+*  Summary   : Represents a supplier-customer order in Empiria® Trade Ordering System.                       *
+*                                                                                                            *
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
 using System;
 using System.Collections.Generic;
 using System.Data;
+
 using Empiria.Contacts;
 using Empiria.Data;
 using Empiria.Data.Convertion;
 using Empiria.DataTypes;
 using Empiria.Documents.Printing;
 using Empiria.FinancialServices;
-using Empiria.SupplyNetwork.Data;
 using Empiria.Treasury;
 
-namespace Empiria.SupplyNetwork {
+using Empiria.Products;
+using Empiria.Trade.Data;
+using Empiria.Trade.Billing;
+
+namespace Empiria.Trade.Ordering {
 
   public enum OrderStatus {
     Opened = 'O',
@@ -31,7 +35,7 @@ namespace Empiria.SupplyNetwork {
     Deleted = 'X'
   }
 
-  /// <summary>Represents a supply order in the Supply Network Management System.</summary>
+  /// <summary>Represents a supplier-customer order in Empiria® Trade Ordering System.</summary>
   public class SupplyOrder : BaseObject {
 
     #region Fields
@@ -43,8 +47,7 @@ namespace Empiria.SupplyNetwork {
     static public int TicketDefaultFontSize = ConfigurationData.GetInteger("Ticket.DefaultFontSize");
     static public string ReportsTemplatesPath = ConfigurationData.GetString("Reports.TemplatesPath");
 
-
-    private const string thisTypeName = "ObjectType.SupplyNetwork.Order.SupplyOrder";
+    private const string thisTypeName = "ObjectType.Trade.Order.SupplyOrder";
     private const string newOrderNumber = "Nuevo pedido";
 
     private string number = newOrderNumber;
@@ -115,6 +118,14 @@ namespace Empiria.SupplyNetwork {
       return BaseObject.ParseFromBelow<SupplyOrder>(thisTypeName, supplyOrderId);
     }
 
+    static public SupplyOrder MyCurrentOrder() {
+      return SupplyOrder.Parse(1001);
+    }
+
+    static public ObjectList<SupplyOrder> MyOrdersList(string filter) {
+      return null;
+    }
+
     internal void Reset() {
       items = null;
     }
@@ -146,6 +157,7 @@ namespace Empiria.SupplyNetwork {
       get { return dutyEntryTag; }
       set { dutyEntryTag = value; }
     }
+
 
     public string Concept {
       get { return concept; }
@@ -326,6 +338,21 @@ namespace Empiria.SupplyNetwork {
 
     #region Public methods
 
+    public SupplyOrderItem AddOrderItem(Product product, decimal quantity) {
+      var orderItem = new SupplyOrderItem(this);
+      orderItem.Product = product;
+      orderItem.Quantity = quantity;
+      orderItem.Save();
+      this.Items.Add(orderItem);
+      
+      return orderItem;
+    }
+
+    public void RemoveOrderItem(SupplyOrderItem orderItem) {
+      orderItem.Status = OrderStatus.Deleted;
+      orderItem.Save();
+    }
+
     public void AppendPayment(CRTransaction crTransaction) {
       this.Payment = crTransaction;
     }
@@ -443,7 +470,8 @@ namespace Empiria.SupplyNetwork {
 
     public void Cancel() {
       if (!this.Payment.IsEmptyInstance) {
-        throw new NotImplementedException("Cannot cancel this supply order with this method because the payment is not empty. Use Cancel(InstrumentType, string) method instead.");
+        throw new NotImplementedException("Cannot cancel this supply order with this method because the payment is not empty. " + 
+                                          "Use Cancel(InstrumentType, string) method instead.");
       }
       UpdateARPStock(false);
       cancelationTime = DateTime.Now;
@@ -535,7 +563,6 @@ namespace Empiria.SupplyNetwork {
 
     #endregion Public methods
 
-
     #region Credit Voucher
 
     private void FillCreditVoucherDocument(Empiria.Documents.Printing.Document document) {
@@ -562,7 +589,8 @@ namespace Empiria.SupplyNetwork {
     }
 
     public void PrintCreditVoucher() {
-      Empiria.Documents.Printing.Document document = new Empiria.Documents.Printing.Document(TicketDefaultFontName, TicketDefaultFontSize);
+      Empiria.Documents.Printing.Document document = new 
+                    Empiria.Documents.Printing.Document(TicketDefaultFontName, TicketDefaultFontSize);
 
       document.LoadTemplate(ReportsTemplatesPath + "credit.voucher.ert");
 
@@ -582,8 +610,9 @@ namespace Empiria.SupplyNetwork {
       ticket.Print(TicketPrinterName);
     }
 
+
     #endregion Credit Voucher
 
   } // class SupplyOrder
 
-} // namespace Empiria.SupplyNetwork
+} // namespace Empiria.Trade.Ordering
