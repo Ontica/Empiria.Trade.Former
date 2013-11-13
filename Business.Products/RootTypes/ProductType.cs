@@ -36,7 +36,7 @@ namespace Empiria.Products {
       return PowerType<Product>.Parse<ProductType>(typeInfo);
     }
 
-    static public ProductType Empty {
+    static public new ProductType Empty {
       get {
         return ProductType.Parse(ObjectTypeInfo.Parse("ObjectType.Product.Empty"));
       }
