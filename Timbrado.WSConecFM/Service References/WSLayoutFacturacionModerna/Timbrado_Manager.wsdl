@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://t1demo.facturacionmoderna.com/timbrado/soap" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="Timbrado_Manager" targetNamespace="https://t1demo.facturacionmoderna.com/timbrado/soap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="https://t1demo.facturacionmoderna.com/timbrado/soap" />
+  </wsdl:types>
+  <wsdl:message name="requestTimbrarCFDIIn">
+    <wsdl:part name="request" type="xsd:anyType" />
+  </wsdl:message>
+  <wsdl:message name="requestTimbrarCFDIOut">
+    <wsdl:part name="return" type="xsd:anyType" />
+  </wsdl:message>
+  <wsdl:message name="requestCancelarCFDIIn">
+    <wsdl:part name="request" type="xsd:anyType" />
+  </wsdl:message>
+  <wsdl:message name="requestCancelarCFDIOut">
+    <wsdl:part name="return" type="xsd:anyType" />
+  </wsdl:message>
+  <wsdl:message name="activarCancelacionIn">
+    <wsdl:part name="request" type="xsd:anyType" />
+  </wsdl:message>
+  <wsdl:message name="activarCancelacionOut">
+    <wsdl:part name="return" type="xsd:anyType" />
+  </wsdl:message>
+  <wsdl:portType name="Timbrado_ManagerPort">
+    <wsdl:operation name="requestTimbrarCFDI">
+      <documentation>Recibe un CFDI en formato Base64 y
+retorna el complemento Timbre Fiscal Digital</documentation>
+      <wsdl:input message="tns:requestTimbrarCFDIIn" />
+      <wsdl:output message="tns:requestTimbrarCFDIOut" />
+    </wsdl:operation>
+    <wsdl:operation name="requestCancelarCFDI">
+      <documentation>Recibe un UUID para cancelar 
+retorna el estatus del UUID</documentation>
+      <wsdl:input message="tns:requestCancelarCFDIIn" />
+      <wsdl:output message="tns:requestCancelarCFDIOut" />
+    </wsdl:operation>
+    <wsdl:operation name="activarCancelacion">
+      <documentation>Activar Cancelacion, recibe un archivo .cer, .key y contrasenia del CSD 
+retorna exito o error</documentation>
+      <wsdl:input message="tns:activarCancelacionIn" />
+      <wsdl:output message="tns:activarCancelacionOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Timbrado_ManagerBinding" type="tns:Timbrado_ManagerPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="requestTimbrarCFDI">
+      <soap:operation soapAction="https://t1demo.facturacionmoderna.com/timbrado/soap#requestTimbrarCFDI" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://t1demo.facturacionmoderna.com/timbrado/soap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://t1demo.facturacionmoderna.com/timbrado/soap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="requestCancelarCFDI">
+      <soap:operation soapAction="https://t1demo.facturacionmoderna.com/timbrado/soap#requestCancelarCFDI" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://t1demo.facturacionmoderna.com/timbrado/soap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://t1demo.facturacionmoderna.com/timbrado/soap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="activarCancelacion">
+      <soap:operation soapAction="https://t1demo.facturacionmoderna.com/timbrado/soap#activarCancelacion" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://t1demo.facturacionmoderna.com/timbrado/soap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://t1demo.facturacionmoderna.com/timbrado/soap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Timbrado_ManagerService">
+    <wsdl:port name="Timbrado_ManagerPort" binding="tns:Timbrado_ManagerBinding">
+      <soap:address location="https://t1demo.facturacionmoderna.com/timbrado/soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

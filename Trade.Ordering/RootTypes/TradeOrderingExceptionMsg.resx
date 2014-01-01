@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CreateBillStamperException" xml:space="preserve">
+    <value>Ocurrió un error al intentar timbrar la factura {0} del cliente {1}. \n\n\Código error WS: {2}\nMensaje:{3}</value>
+  </data>
   <data name="InvalidCategoryRule" xml:space="preserve">
     <value>La regla de asociación de productos con Id {0} no pertenece a la categoría de productos con identificador {1}.</value>
   </data>

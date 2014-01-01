@@ -38,7 +38,8 @@ namespace Empiria.Trade.Data {
       DataOperation dataOperation = DataOperation.Parse("writeCRMBill", o.Id, (char) o.BillType,
                         o.Order.Id, o.Order.ExternalOrderId, o.IssuedBy.Id, o.IssuedTime, o.CertificateNumber,
                         o.SerialNumber, o.Number, o.ApprovalYear, o.ApprovalNumber, o.DigitalString,
-                        o.DigitalSign, o.GetXmlString(), o.CanceledBy.Id, o.CancelationTime, (char) o.Status);
+                        o.DigitalSign, o.GetXmlString(), o.HasStamp ? o.Stamp.ToJson() : String.Empty, 
+                        o.CanceledBy.Id, o.CancelationTime, (char) o.Status);
 
       return DataWriter.Execute(dataOperation);
     }

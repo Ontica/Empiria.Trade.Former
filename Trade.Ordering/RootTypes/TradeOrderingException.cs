@@ -18,6 +18,7 @@ namespace Empiria.Trade.Ordering {
   public sealed class TradeOrderingException : EmpiriaException {
 
     public enum Msg {
+      CreateBillStamperException,
       InvalidCategoryRule,
       InvalidChildCategory,
       InvalidPeriodForDailyBills,

@@ -76,6 +76,17 @@ namespace Empiria.Trade.Billing {
 
     #region Methods
 
+    private void AppendXmlAttribute(XmlDocument xml, XmlNode node, string attributeName, string attributeValue) {
+      attributeValue = Bill.CleanXmlBillItem(attributeValue);
+
+      if (String.IsNullOrWhiteSpace(attributeValue)) {
+        return;
+      }
+      XmlAttribute attribute = xml.CreateAttribute(attributeName);
+      attribute.Value = attributeValue;
+      node.Attributes.Append(attribute);
+    }
+
     public XmlDocument CreateDocument() {
       XmlDocument xml = new XmlDocument();
 
@@ -108,7 +119,7 @@ namespace Empiria.Trade.Billing {
       AppendXmlAttribute(xml, node, "total", bill.Total.ToString("0.00"));
       AppendXmlAttribute(xml, node, "formaDePago", bill.PaymentMode);
       AppendXmlAttribute(xml, node, "metodoDePago", bill.PaymentCondition);
-      AppendXmlAttribute(xml, node, "LugarExpedicion", bill.ExpeditionPlace);
+      AppendXmlAttribute(xml, node, "LugarExpedicion", bill.IssuerData.IssuePlace);
       AppendXmlAttribute(xml, node, "NumCtaPago", bill.PaymentAccount);
       AppendXmlAttribute(xml, node, "tipoDeComprobante", bill.BillTypeFiscalName);
       AppendXmlAttribute(xml, node, "sello", bill.DigitalSign);
@@ -120,64 +131,55 @@ namespace Empiria.Trade.Billing {
       node.Attributes.Append(attribute);
     }
 
-    private void AppendXmlAttribute(XmlDocument xml, XmlNode node, string attributeName, string attributeValue) {
-      attributeValue = Bill.CleanXmlBillItem(attributeValue);
-
-      if (String.IsNullOrWhiteSpace(attributeValue)) {
-        return;
-      }
-      XmlAttribute attribute = xml.CreateAttribute(attributeName);
-      attribute.Value = attributeValue;
-      node.Attributes.Append(attribute);
-    }
-
     private void CreateEmisorNode(XmlDocument xml) {
+      Contact supplier = bill.Order.Supplier;
       XmlNode node = null;
 
       node = xml.CreateNode(XmlNodeType.Element, "Emisor", String.Empty);
       xml.DocumentElement.AppendChild(node);
 
-      AppendXmlAttribute(xml, node, "rfc", "ARP9706105W2");
-      AppendXmlAttribute(xml, node, "nombre", "AUTO REFACCIONES PINEDA, S.A. de C.V.");
+      AppendXmlAttribute(xml, node, "rfc", supplier.FormattedTaxTag);                 //  "ARP9706105W2" "TUMG620310R95"
+      AppendXmlAttribute(xml, node, "nombre", supplier.FullName);                     //  "AUTO REFACCIONES PINEDA, S.A. de C.V."
 
       XmlNode address = xml.CreateNode(XmlNodeType.Element, "DomicilioFiscal", String.Empty);
 
       node.AppendChild(address);
 
-      AppendXmlAttribute(xml, address, "calle", "Avenida Instituto Politécnico Nacional");
-      AppendXmlAttribute(xml, address, "noExterior", "5015");
-      AppendXmlAttribute(xml, address, "colonia", "Capultitlán");
-      AppendXmlAttribute(xml, address, "municipio", "Gustavo A. Madero");
-      AppendXmlAttribute(xml, address, "estado", "D.F.");
+      AppendXmlAttribute(xml, address, "calle", supplier.Address.Street);             //  "Avenida Instituto Politécnico Nacional"
+      AppendXmlAttribute(xml, address, "noExterior", supplier.Address.ExtNumber);     //  "5015"
+      AppendXmlAttribute(xml, address, "colonia", supplier.Address.Borough);          //  "Capultitlán"
+      AppendXmlAttribute(xml, address, "municipio", supplier.Address.Municipality);   //  "Gustavo A. Madero"
+      AppendXmlAttribute(xml, address, "estado", supplier.Address.State);             //  "D.F."
       AppendXmlAttribute(xml, address, "pais", "México");
-      AppendXmlAttribute(xml, address, "codigoPostal", "07370");
+      AppendXmlAttribute(xml, address, "codigoPostal", supplier.Address.ZipCode);     //  "07370"
 
       XmlNode fiscalRegulation = xml.CreateNode(XmlNodeType.Element, "RegimenFiscal", String.Empty);
       node.AppendChild(fiscalRegulation);
-      AppendXmlAttribute(xml, fiscalRegulation, "Regimen", bill.FiscalRegulation);
+      AppendXmlAttribute(xml, fiscalRegulation, "Regimen", bill.IssuerData.FiscalRegimen);
     }
 
     private void CreateReceiverNode(XmlDocument xml) {
+      Contact customer = bill.Order.Customer;
       XmlNode node = null;
 
       node = xml.CreateNode(XmlNodeType.Element, "Receptor", String.Empty);
       xml.DocumentElement.AppendChild(node);
 
-      AppendXmlAttribute(xml, node, "rfc", bill.Order.Customer.FormattedTaxTag);
-      AppendXmlAttribute(xml, node, "nombre", bill.Order.Customer.FullName);
+      AppendXmlAttribute(xml, node, "rfc", customer.FormattedTaxTag);
+      AppendXmlAttribute(xml, node, "nombre", customer.FullName);
 
       XmlNode address = xml.CreateNode(XmlNodeType.Element, "Domicilio", String.Empty);
 
       node.AppendChild(address);
 
-      AppendXmlAttribute(xml, address, "calle", bill.Order.Customer.Address.Street);
-      AppendXmlAttribute(xml, address, "noExterior", bill.Order.Customer.Address.ExtNumber);
-      AppendXmlAttribute(xml, address, "noInterior", bill.Order.Customer.Address.IntNumber);
-      AppendXmlAttribute(xml, address, "colonia", bill.Order.Customer.Address.Borough);
-      AppendXmlAttribute(xml, address, "municipio", bill.Order.Customer.Address.Municipality);
-      AppendXmlAttribute(xml, address, "estado", bill.Order.Customer.Address.State);
+      AppendXmlAttribute(xml, address, "calle", customer.Address.Street);
+      AppendXmlAttribute(xml, address, "noExterior", customer.Address.ExtNumber);
+      AppendXmlAttribute(xml, address, "noInterior", customer.Address.IntNumber);
+      AppendXmlAttribute(xml, address, "colonia", customer.Address.Borough);
+      AppendXmlAttribute(xml, address, "municipio", customer.Address.Municipality);
+      AppendXmlAttribute(xml, address, "estado", customer.Address.State);
       AppendXmlAttribute(xml, address, "pais", "México");
-      AppendXmlAttribute(xml, address, "codigoPostal", bill.Order.Customer.Address.ZipCode);
+      AppendXmlAttribute(xml, address, "codigoPostal", customer.Address.ZipCode);
     }
 
     private void CreateItemsNode(XmlDocument xml) {

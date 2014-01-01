@@ -113,7 +113,7 @@ namespace Empiria.Products {
     }
 
     static public ObjectList<Product> GetList(string keywords) {
-      DataTable table = ProductsData.GetProducts(keywords, String.Empty);
+      DataTable table = ProductsData.GetActiveProducts(keywords, String.Empty);
 
       return new ObjectList<Product>((x) => Product.Parse(x), table);
     }

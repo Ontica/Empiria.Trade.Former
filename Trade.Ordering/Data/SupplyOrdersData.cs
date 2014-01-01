@@ -58,13 +58,15 @@ namespace Empiria.Trade.Data {
     }
 
     static public DataView GetCustomerOrders(Contact customer, DateTime fromDate, DateTime toDate, string filter) {
-      DataOperation dataOperation = DataOperation.Parse("qrySNMCustomerOrders", customer.Id, fromDate, toDate);
+      var dataOperation = DataOperation.Parse("qrySNMCustomerOrders", customer.Id, fromDate, toDate);
 
       return DataReader.GetDataView(dataOperation, filter);
     }
 
-    static public DataView GetSuplierCustomerOrders(Contact supplier, Contact customer, DateTime fromDate, DateTime toDate, string filter) {
-      DataOperation dataOperation = DataOperation.Parse("qrySNMSupplierCustomerOrders", supplier.Id, customer.Id, fromDate, toDate);
+    static public DataView GetSuplierCustomerOrders(Contact supplier, Contact customer, 
+                                                    DateTime fromDate, DateTime toDate, string filter) {
+      var dataOperation = DataOperation.Parse("qrySNMSupplierCustomerOrders", 
+                                              supplier.Id, customer.Id, fromDate, toDate);
 
       return DataReader.GetDataView(dataOperation, filter);
     }
@@ -83,14 +85,19 @@ namespace Empiria.Trade.Data {
       return DataReader.GetDataView(DataOperation.Parse(sql));
     }
 
-    static public DataView GetSupplierOrders(Contact supplier, DateTime fromDate, DateTime toDate, string filter) {
-      DataOperation dataOperation = DataOperation.Parse("qrySNMSupplierOrders", supplier.Id, fromDate, toDate);
+    static public DataView GetSupplierOrders(Contact supplier, DateTime fromDate, 
+                                             DateTime toDate, string filter) {
+      var dataOperation = DataOperation.Parse("qrySNMSupplierOrders", 
+                                              supplier.Id, fromDate, toDate);
 
       return DataReader.GetDataView(dataOperation, filter);
     }
 
     static public DataView GetSalesInventory() {
-      return DataReader.GetDataView(DataOperation.Parse("SELECT * FROM vwARPArticulosConInventarioBajo ORDER BY MarcaArticulo, NomArt, cveArticulo"));
+      string sql = "SELECT * FROM vwARPArticulosConInventarioBajo " + 
+                   "ORDER BY MarcaArticulo, NomArt, cveArticulo";
+
+      return DataReader.GetDataView(DataOperation.Parse(sql));
     }
 
     #endregion Public methods

@@ -19,7 +19,7 @@ namespace Empiria.Trade.Billing {
   internal class SATSeguridad {
 
     //------- Parses binary asn.1 EncryptedPrivateKeyInfo; returns RSACryptoServiceProvider ---
-    public static RSACryptoServiceProvider DecodeEncryptedPrivateKeyInfo(byte[] encpkcs8) {
+    static public RSACryptoServiceProvider DecodeEncryptedPrivateKeyInfo(byte[] encpkcs8, SecureString secpswd) {
       // encoded OID sequence for  PKCS #1 rsaEncryption szOID_RSA_RSA = "1.2.840.113549.1.1.1"
       // this byte[] includes the sequence byte and terminal encoded null 
       byte[] OIDpkcs5PBES2 = { 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0D };
@@ -140,7 +140,8 @@ namespace Empiria.Trade.Billing {
         //  showBytes("Encrypted PKCS8 blob", encryptedpkcs8) ;
 
 
-        SecureString secpswd = GetSecPswd();
+        //SecureString  = GetSecPswd();
+        
         pkcs8 = DecryptPBDK2(encryptedpkcs8, salt, IV, secpswd, iterations);
         if (pkcs8 == null)  // probably a bad pswd entered.
           return null;
@@ -150,7 +151,8 @@ namespace Empiria.Trade.Billing {
         //----- With a decrypted pkcs #8 PrivateKeyInfo blob, decode it to an RSA ---
         RSACryptoServiceProvider rsa = DecodePrivateKeyInfo(pkcs8);
         return rsa;
-      } catch (Exception) {
+      } catch (Exception e) {
+        Empiria.Messaging.Publisher.Publish(e);
         return null;
       } finally { binr.Close(); }
 
@@ -350,16 +352,6 @@ namespace Empiria.Trade.Billing {
       }
       binr.BaseStream.Seek(-1, SeekOrigin.Current);    //last ReadByte wasn't a removed zero, so back up a byte
       return count;
-    }
-
-    private static SecureString GetSecPswd() {
-      SecureString password = new SecureString();
-      string s = ConfigurationData.GetString("Empiria.Security", "§RSACryptoFilePwd");
-
-      for (int i = 0; i < s.Length; i++) {
-        password.AppendChar(s[i]);
-      }
-      return password;
     }
 
   } // class SATSeguridad

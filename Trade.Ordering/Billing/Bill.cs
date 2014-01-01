@@ -56,7 +56,7 @@ namespace Empiria.Trade.Billing {
       o.SubTotal = o.Total - o.Taxes;
       o.TicketNumbers = o.TicketNumbers.Trim(' ');
       o.TicketNumbers = o.TicketNumbers.Trim(',');
-      return o;
+      return o; 
     }
   }
 
@@ -64,7 +64,8 @@ namespace Empiria.Trade.Billing {
   public class Bill : BaseObject {
 
     #region Fields
-
+    
+    private static readonly string BillCertificatesFolder = ConfigurationData.GetString("BillCertificatesFolder");
     public static readonly string BillHtmlFilesFolder = ConfigurationData.GetString("BillHtmlFilesFolder");
     public static readonly string BillPDFFilesFolder = ConfigurationData.GetString("BillPDFFilesFolder");
     public static readonly string BillUrlHtmlFilesFolder = ConfigurationData.GetString("BillUrlHtmlFilesFolder");
@@ -91,7 +92,9 @@ namespace Empiria.Trade.Billing {
     private string paymentAccount = null;
     private string paymentCondition = null;
 
-    XmlDocument xml = null;
+    private XmlDocument xml = null;
+    private BillStamp stamp = null;
+    private bool hasStamp = false;
 
     private BillNoOrderData notOrderData = null;
 
@@ -101,7 +104,6 @@ namespace Empiria.Trade.Billing {
 
     protected Bill()
       : base(thisTypeName) {
-
     }
 
     protected Bill(string typeName)
@@ -198,7 +200,6 @@ namespace Empiria.Trade.Billing {
 
       return CleanDigitalString(temp);
     }
-
 
     static public void GenerateDailyBill(Contact supplier, DateTime fromDate, DateTime toDate) {
       if (fromDate.Month != toDate.Month || fromDate.Year != toDate.Year) {
@@ -365,6 +366,12 @@ namespace Empiria.Trade.Billing {
       set { issuedTime = value; }
     }
 
+    public BillIssuerData IssuerData {
+      get { 
+        return this.Order.Supplier.GetExtensionData<BillIssuerData>();
+      }
+    }
+
     public Contact CanceledBy {
       get { return canceledBy; }
       set { canceledBy = value; }
@@ -429,14 +436,6 @@ namespace Empiria.Trade.Billing {
           return this.Order.Items.Total;
         }
       }
-    }
-
-    public string FiscalRegulation {
-      get { return "Persona Moral con Régimen General de Ley"; }
-    }
-
-    public string ExpeditionPlace {
-      get { return "Gustavo A. Madero, D.F."; }
     }
 
     public BillStatus Status {
@@ -522,6 +521,14 @@ namespace Empiria.Trade.Billing {
       }
     }
 
+    public bool HasStamp {
+      get { return hasStamp && stamp != null; } 
+    }
+
+    public BillStamp Stamp {
+      get { return stamp; }
+    }
+
     protected override void ImplementsLoadObjectData(DataRow row) {
       this.billType = (BillType) Convert.ToChar(row["BillType"]);
       this.supplyOrderId = (int) row["OrderId"];
@@ -537,6 +544,10 @@ namespace Empiria.Trade.Billing {
       if (((string) row["BillXMLVersion"]).Length != 0) {
         xml = new System.Xml.XmlDocument();
         xml.LoadXml((string) row["BillXMLVersion"]);
+      }
+      if (((string) row["BillStamp"]).Length != 0) {
+        this.stamp = BillStamp.Parse((string) row["BillStamp"]);
+        this.hasStamp = true;
       }
       this.canceledBy = Contact.Parse((int) row["CanceledById"]);
       this.cancelationTime = (DateTime) row["CancelationTime"];
@@ -558,11 +569,13 @@ namespace Empiria.Trade.Billing {
     #region Private methods
 
     private void Create() {
-      certificateNumber = GetCertificateSerialNumber();
-      serialNumber = "A";
-      approvalYear = 2012; //2010;
-      approvalNumber = "859413"; //"409777";
-      status = BillStatus.Active;
+      Assertion.AssertObject(this.Order, "Empiria.Trade.Billing.Bill.Order");
+
+      this.certificateNumber = GetCertificateSerialNumber();
+      this.serialNumber = this.IssuerData.BillSerialNo;
+      this.approvalYear = this.IssuerData.BillApprovalYear;
+      this.approvalNumber = this.IssuerData.BillApprovalNo; // "859413" / "409777";
+      this.status = BillStatus.Active;
       this.Save();
     }
 
@@ -586,16 +599,18 @@ namespace Empiria.Trade.Billing {
     }
 
     private string GetEmisorDigitalStringPart() {
-      string temp = GetDigitalStringItem("ARP9706105W2");
-      temp += GetDigitalStringItem("AUTO REFACCIONES PINEDA, S.A. de C.V.");
-      temp += GetDigitalStringItem("Avenida Instituto Politécnico Nacional");
-      temp += GetDigitalStringItem("5015");
-      temp += GetDigitalStringItem("Capultitlán");
-      temp += GetDigitalStringItem("Gustavo A. Madero");
-      temp += GetDigitalStringItem("D.F.");
+      Contact supplier = this.Order.Supplier;
+
+      string temp = GetDigitalStringItem(supplier.FormattedTaxTag); //  "ARP9706105W2" "TUMG620310R95"
+      temp += GetDigitalStringItem(supplier.FullName);              //  "AUTO REFACCIONES PINEDA, S.A. de C.V."
+      temp += GetDigitalStringItem(supplier.Address.Street);        //  "Avenida Instituto Politécnico Nacional")
+      temp += GetDigitalStringItem(supplier.Address.ExtNumber);     //  "5015"
+      temp += GetDigitalStringItem(supplier.Address.Borough);       //  "Capultitlán"
+      temp += GetDigitalStringItem(supplier.Address.Municipality);  //  "Gustavo A. Madero"
+      temp += GetDigitalStringItem(supplier.Address.State);         //  "D.F."
       temp += GetDigitalStringItem("México");
-      temp += GetDigitalStringItem("07370");
-      temp += GetDigitalStringItem(this.FiscalRegulation);
+      temp += GetDigitalStringItem(supplier.Address.ZipCode);       //  "07370"
+      temp += GetDigitalStringItem(this.IssuerData.FiscalRegimen);
 
       return temp;
     }
@@ -608,23 +623,25 @@ namespace Empiria.Trade.Billing {
       //ds += this.Order.Descuento.ToString("0.00") + delimiter;
       temp += GetDigitalStringItem(this.Total.ToString("0.00"));
       temp += GetDigitalStringItem(this.PaymentCondition);
-      temp += GetDigitalStringItem(this.ExpeditionPlace);
+      temp += GetDigitalStringItem(this.IssuerData.IssuePlace);
       temp += GetDigitalStringItem(this.PaymentAccount);
 
       return temp;
     }
 
     private string GetReceptorDigitalStringPart() {
-      string temp = GetDigitalStringItem(this.Order.Customer.FormattedTaxTag);
-      temp += GetDigitalStringItem(this.Order.Customer.FullName);
-      temp += GetDigitalStringItem(this.Order.Customer.Address.Street);
-      temp += GetDigitalStringItem(this.Order.Customer.Address.ExtNumber);
-      temp += GetDigitalStringItem(this.Order.Customer.Address.IntNumber);
-      temp += GetDigitalStringItem(this.Order.Customer.Address.Borough);
-      temp += GetDigitalStringItem(this.Order.Customer.Address.Municipality);
-      temp += GetDigitalStringItem(this.Order.Customer.Address.State);
+      Contact customer = this.Order.Customer;
+
+      string temp = GetDigitalStringItem(customer.FormattedTaxTag);
+      temp += GetDigitalStringItem(customer.FullName);
+      temp += GetDigitalStringItem(customer.Address.Street);
+      temp += GetDigitalStringItem(customer.Address.ExtNumber);
+      temp += GetDigitalStringItem(customer.Address.IntNumber);
+      temp += GetDigitalStringItem(customer.Address.Borough);
+      temp += GetDigitalStringItem(customer.Address.Municipality);
+      temp += GetDigitalStringItem(customer.Address.State);
       temp += GetDigitalStringItem("México");
-      temp += GetDigitalStringItem(this.Order.Customer.Address.ZipCode);
+      temp += GetDigitalStringItem(customer.Address.ZipCode);
 
       return temp;
     }
@@ -690,9 +707,8 @@ namespace Empiria.Trade.Billing {
     }
 
     private string GetCertificateSerialNumber() {
-      string publicKeyFileName = ConfigurationData.GetString("SAT.Certificado");
-      string password = ConfigurationData.GetString("Empiria.Security", "§RSACryptoFilePwd");
-      X509Certificate2 certificate = new X509Certificate2(publicKeyFileName, password);
+      string certificatePath = Bill.BillCertificatesFolder + this.IssuerData.CertificateFileName;
+      X509Certificate2 certificate = new X509Certificate2(certificatePath, this.IssuerData.GetCertificatePassword());
       byte[] array = certificate.GetSerialNumber();
 
       Array.Reverse(array);
@@ -701,11 +717,10 @@ namespace Empiria.Trade.Billing {
     }
 
     private string CreateDigitalSign() {
-      string privateKeyFileName = ConfigurationData.GetString("Empiria.Security", "§RSACryptoFile");
-
+      //string privateKeyFileName = ConfigurationData.GetString("Empiria.Security", "§RSACryptoFile");
+      string privateKeyFileName = Bill.BillCertificatesFolder + this.IssuerData.PrivateKeyFile;
       Byte[] pLlavePrivadaenBytes = System.IO.File.ReadAllBytes(privateKeyFileName);
-
-      RSACryptoServiceProvider rsa = SATSeguridad.DecodeEncryptedPrivateKeyInfo(pLlavePrivadaenBytes);
+      RSACryptoServiceProvider rsa = SATSeguridad.DecodeEncryptedPrivateKeyInfo(pLlavePrivadaenBytes, this.IssuerData.GetCertificatePassword());
       byte[] array = null;
       if (this.issuedTime < DateTime.Parse("01/01/2011")) {
         MD5CryptoServiceProvider hasher = new MD5CryptoServiceProvider();
@@ -719,8 +734,10 @@ namespace Empiria.Trade.Billing {
 
     private void CreateXMLFile() {
       XmlBill facturaXml = XmlBill.Parse(this);
-      this.xml = facturaXml.CreateDocument();
-
+      XmlDocument xml = facturaXml.CreateDocument();
+      this.stamp = BillStamper.Stamp(this);
+      this.hasStamp = true;
+      this.xml = this.stamp.XmlDocument;
       this.xml.Save(this.GetXmlFileNameFull());
     }
 

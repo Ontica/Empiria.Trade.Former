@@ -97,6 +97,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Timbrado.WSConecFM\WSConecFM.csproj">
+      <Project>{274a24fe-64ee-4b9e-9f5a-20a6033298aa}</Project>
+      <Name>WSConecFM</Name>
+    </ProjectReference>
     <Reference Include="Empiria.Messaging, Version=5.0.328.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\empiria.assemblies\Empiria.Messaging.dll</HintPath>
@@ -157,14 +161,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Billing\BillStamp.cs" />
+    <Compile Include="Billing\BillStamper.cs" />
     <Compile Include="Data\BillingData.cs" />
     <Compile Include="Data\SupplyOrdersData.cs" />
     <Compile Include="Data\WarehouseData.cs" />
     <Compile Include="Empiria.Trade.Ordering.AssemblyInfo.cs" />
-    <Compile Include="RootTypes\Bill.cs" />
+    <Compile Include="Billing\Bill.cs" />
+    <Compile Include="Billing\BillIssuerData.cs" />
     <Compile Include="RootTypes\TradeOrderingException.cs" />
-    <Compile Include="RootTypes\XmlBill.cs" />
-    <Compile Include="RootTypes\SATSeguridad.cs" />
+    <Compile Include="Billing\XmlBill.cs" />
+    <Compile Include="Billing\SATSeguridad.cs" />
     <Compile Include="RootTypes\SupplyOrderItemList.cs" />
     <Compile Include="RootTypes\SupplyOrderItem.cs" />
     <Compile Include="RootTypes\DeliveryMode.cs" />

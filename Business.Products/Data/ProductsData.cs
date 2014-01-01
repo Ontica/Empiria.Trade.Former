@@ -8,6 +8,7 @@
 *  Summary   : Provides database read and write methods for product data management.                         *
 *                                                                                                            *
 **************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+using System;
 using System.Data;
 
 using Empiria.Data;
@@ -19,11 +20,14 @@ namespace Empiria.Products.Data {
 
     #region Public methods
 
-    static public DataTable GetProducts(string keywords, string sort) {
-      string sql = "SELECT * FROM PLMProducts WHERE ";
-
-      sql += "(" + SearchExpression.ParseAndLikeWithNoiseWords("ProductKeywords", keywords) + ")";
-
+    static public DataTable GetActiveProducts(string keywords, string sort) {
+      string sql = "SELECT * FROM vwPLMActiveProducts";
+      if (!String.IsNullOrWhiteSpace(keywords)) {
+        sql += " WHERE (" + SearchExpression.ParseAndLikeWithNoiseWords("ProductKeywords", keywords) + ")";
+      }
+      if (!String.IsNullOrWhiteSpace(sort)) {
+        sql += " ORDER BY " + sort;
+      }
       return DataReader.GetDataTable(DataOperation.Parse(sql));
     }
 
