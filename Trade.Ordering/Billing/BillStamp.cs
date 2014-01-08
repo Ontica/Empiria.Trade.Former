@@ -10,50 +10,57 @@ namespace Empiria.Trade.Billing {
 
   public class BillStamp {
 
+    private XmlDocument xmlDocument = new System.Xml.XmlDocument();
+
+    public BillStamp() {
+
+    }
+
     #region Properties
+
 
     public string AuthorityCertificateNumber {
       get;
-      private set;
+      set;
+    }
+
+    public string AuthorityDigitalString {
+      get {
+        return "||1.0|" + this.UUID + "|" + this.Timestamp.ToString(@"yyyy-MM-dd\THH:mm:ss") + "|" +
+              this.AuthorityStamp + "|" + this.AuthorityCertificateNumber + "||";
+      }
     }
 
     public string AuthorityStamp {
       get;
-      private set;
-    }
-
-    public Bill Bill {
-      get;
-      private set;
+      set;
     }
 
     public string IssuerStamp {
       get;
-      private set;
+      set;
     }
 
     public byte[] QRCode { 
       get;
-      private set;
+      set;
     }
 
     public DateTime Timestamp {
       get;
-      private set;
+      set;
     }
 
     public string UUID {
       get;
-      private set;
-    }
-
-    public XmlDocument XmlDocument {
-      get;
-      private set;
+      set;
     }
 
     #endregion Properties
 
+    public XmlDocument GetXmlDocument() {
+      return this.xmlDocument;
+    }
 
     #region Methods
 
@@ -63,10 +70,10 @@ namespace Empiria.Trade.Billing {
                         "Bill stamp external web service call return an error status " + 
                         stampResult.code);
       this.QRCode = System.Convert.FromBase64String(stampResult.cbbBase64);
-      this.XmlDocument = new System.Xml.XmlDocument();
+      this.xmlDocument = new System.Xml.XmlDocument();
       byte[] xmlByteArray = System.Convert.FromBase64String(stampResult.xmlBase64);
-      this.XmlDocument.LoadXml(System.Text.Encoding.UTF8.GetString(xmlByteArray));
-      XmlElement item = (XmlElement) this.XmlDocument.GetElementsByTagName("tfd:TimbreFiscalDigital").Item(0);
+      this.xmlDocument.LoadXml(System.Text.Encoding.UTF8.GetString(xmlByteArray));
+      XmlElement item = (XmlElement) this.xmlDocument.GetElementsByTagName("tfd:TimbreFiscalDigital").Item(0);
       this.UUID = item.GetAttribute("UUID");
       this.AuthorityCertificateNumber = item.GetAttribute("noCertificadoSAT");
       this.AuthorityStamp = item.GetAttribute("selloSAT");
@@ -76,7 +83,7 @@ namespace Empiria.Trade.Billing {
     }
  
     static internal BillStamp Parse(string json) {
-      throw new NotImplementedException();
+      return Empiria.Data.JsonConverter.ToObject<BillStamp>(json);
     }
 
     public string ToJson() {

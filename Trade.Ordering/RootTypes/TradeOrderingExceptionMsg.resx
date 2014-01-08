@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CancelBillStamperException" xml:space="preserve">
+    <value>Ocurrió un error al intentar cancelar el timbre de la factura {0} del cliente {1} con UUID = {2}. \n\n\Código error WS: {3}\nMensaje:{4}</value>
+  </data>
   <data name="CreateBillStamperException" xml:space="preserve">
     <value>Ocurrió un error al intentar timbrar la factura {0} del cliente {1}. \n\n\Código error WS: {2}\nMensaje:{3}</value>
   </data>

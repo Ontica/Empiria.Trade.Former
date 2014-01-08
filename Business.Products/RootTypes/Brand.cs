@@ -1,13 +1,13 @@
-﻿/* Empiria® Business Framework 2013 **************************************************************************
+﻿/* Empiria® Business Framework 2014 **************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria® Business Framework                      System   : Product Data Management           *
 *  Namespace : Empiria.Products                                 Assembly : Empiria.Products.dll              *
 *  Type      : Brand                                            Pattern  : Storage Item                      *
-*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
+*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
 *                                                                                                            *
 *  Summary   : Describes a product brand.                                                                    *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
 
 namespace Empiria.Products {
 

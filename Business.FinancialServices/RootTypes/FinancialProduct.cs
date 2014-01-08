@@ -1,13 +1,13 @@
-﻿/* Empiria® Business Framework 2013 **************************************************************************
+﻿/* Empiria® Business Framework 2014 **************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria® Business Framework                      System   : Financial Services Management     *
 *  Namespace : Empiria.FinancialServices                        Assembly : Empiria.FinancialServices.dll     *
 *  Type      : FinancialConcept                                 Pattern  : Business Services Class           *
-*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
+*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
 *                                                                                                            *
 *  Summary   : Represents a financial product like a credit, debit or check account.                         *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
 
 namespace Empiria.FinancialServices {
 

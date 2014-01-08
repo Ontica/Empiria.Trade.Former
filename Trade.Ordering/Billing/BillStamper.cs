@@ -19,11 +19,20 @@ namespace Empiria.Trade.Billing {
 
     #region Public methods
 
+    static internal void CancelStamp(Bill bill) {
+      var ws = new WSConecFM.Cancelado();
+      var request = BillStamper.GetCancelStampRequest(bill);
+      WSConecFM.Resultados stampResult = ws.Cancelar(request, bill.Stamp.UUID);
+      if (!stampResult.status) {
+        throw CancelBillStamperException(bill, stampResult);
+      }
+    }
+
     static internal BillStamp Stamp(Bill bill) {
       var ws = new WSConecFM.Timbrado();
       var request = BillStamper.GetStampRequest(bill);
-      //var layout = GetLayout();
-      WSConecFM.Resultados stampResult = ws.Timbrar(@"D:\facturas\P0663078.M085484.20131230124712.xml", request); // ws.Timbrar(bill.GetXmlString(), request);
+
+      WSConecFM.Resultados stampResult = ws.Timbrar(bill.GetXmlFileNameFull(), request); // ws.Timbrar(bill.GetXmlString(), request);
       if (stampResult.status) {
         return new BillStamp(stampResult);
       } else {
@@ -31,26 +40,36 @@ namespace Empiria.Trade.Billing {
       }
     }
 
-    private static string GetLayout() {
-      var objReader = new System.IO.StreamReader(@"D:\facturas\P0663078.M085484.20131230124712.xml", Encoding.UTF8);
-      var layout = objReader.ReadToEnd();
-      objReader.Close();
-      Empiria.Messaging.Publisher.Publish("XML:" + layout);
-      return layout; //  bill.GetXmlString();
-    }
-
-    static internal BillStamp CancelStamp(Bill bill) {
-      throw new NotImplementedException();
-    }
-
     #endregion Public methods
 
     #region Private methods
 
+    static private Exception CancelBillStamperException(Bill bill, WSConecFM.Resultados stampResult) {
+      var e = new Empiria.Trade.Ordering.TradeOrderingException(Ordering.TradeOrderingException.Msg.CancelBillStamperException,
+                                                                bill.Order.Number, bill.Order.Customer.FullName,
+                                                                bill.Stamp.UUID, stampResult.code, stampResult.message);
+      e.Publish();
+      return e;
+    }
+
     static private Exception CreateBillStamperException(Bill bill, WSConecFM.Resultados stampResult) {
-      return new Empiria.Trade.Ordering.TradeOrderingException(Ordering.TradeOrderingException.Msg.CreateBillStamperException,
-                                                               bill.Order.Number, bill.Order.Customer.FullName,
-                                                               stampResult.code, stampResult.message);
+      var e = new Empiria.Trade.Ordering.TradeOrderingException(Ordering.TradeOrderingException.Msg.CreateBillStamperException,
+                                                                bill.Order.Number, bill.Order.Customer.FullName,
+                                                                stampResult.code, stampResult.message);
+      e.Publish();
+      return e;
+    }
+
+    static private WSConecFM.requestCancelarCFDI GetCancelStampRequest(Bill bill) {
+      var request = new WSConecFM.requestCancelarCFDI();
+
+      request.emisorRFC = bill.IssuedBy.FormattedTaxTag;
+      request.urlCancelado = BillStamper.WSConnectUrl;
+      request.UserID = BillStamper.WSConnectUserID;
+      request.UserPass = BillStamper.WSConnectUserPass;
+      request.uuid = bill.Stamp.UUID;
+
+      return request;
     }
 
     static private WSConecFM.requestTimbrarCFDI GetStampRequest(Bill bill) {
@@ -59,7 +78,7 @@ namespace Empiria.Trade.Billing {
       request.emisorRFC = bill.IssuedBy.FormattedTaxTag;
       request.generarCBB = true;
       request.generarPDF = false;
-      request.generarTXT = true;
+      request.generarTXT = false;
       request.urlTimbrado = BillStamper.WSConnectUrl;
       request.UserID = BillStamper.WSConnectUserID;
       request.UserPass = BillStamper.WSConnectUserPass;

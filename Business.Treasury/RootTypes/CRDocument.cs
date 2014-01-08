@@ -1,13 +1,13 @@
-﻿/* Empiria® Business Framework 2013 **************************************************************************
+﻿/* Empiria® Business Framework 2014 **************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria® Business Framework                      System   : Treasury Management System        *
 *  Namespace : Empiria.Treasury                                 Assembly : Empiria.Treasury.dll              *
 *  Type      : Document                                         Pattern  : Standard Class                    *
-*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
+*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
 *                                                                                                            *
 *  Summary   : Represents a check, credit note, a prepaid slip or IOU (I Owe You) slips.                     *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
 using System;
 using System.Data;
 

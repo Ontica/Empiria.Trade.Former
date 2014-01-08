@@ -13,7 +13,6 @@ namespace WSConecFM.WSLayoutFacturacionModerna {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="https://t1demo.facturacionmoderna.com/timbrado/soap", ConfigurationName="WSLayoutFacturacionModerna.Timbrado_ManagerPort")]
-    [System.Xml.Serialization.XmlInclude(typeof(WSConecFM.requestTimbrarCFDI))]
     public interface Timbrado_ManagerPort {
         
         [System.ServiceModel.OperationContractAttribute(Action="https://t1demo.facturacionmoderna.com/timbrado/soap#requestTimbrarCFDI", ReplyAction="*")]
@@ -50,7 +49,6 @@ namespace WSConecFM.WSLayoutFacturacionModerna {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.Xml.Serialization.XmlInclude(typeof(WSConecFM.requestTimbrarCFDI))]
     public partial class Timbrado_ManagerPortClient : System.ServiceModel.ClientBase<WSConecFM.WSLayoutFacturacionModerna.Timbrado_ManagerPort>, WSConecFM.WSLayoutFacturacionModerna.Timbrado_ManagerPort {
         
         public Timbrado_ManagerPortClient() {

@@ -1,13 +1,13 @@
-﻿/* Empiria® Trade 2013 ***************************************************************************************
+﻿/* Empiria® Trade 2014 ***************************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria® Trade                                   System   : Ordering System                   *
 *  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : TradeOrderingException                           Pattern  : Empiria Exception Class           *
-*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
+*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
 *                                                                                                            *
 *  Summary   : The exception that is thrown when a problem occurs in Empiria Trade ® Ordering System.        *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
 using System;
 using System.Reflection;
 
@@ -18,6 +18,7 @@ namespace Empiria.Trade.Ordering {
   public sealed class TradeOrderingException : EmpiriaException {
 
     public enum Msg {
+      CancelBillStamperException,
       CreateBillStamperException,
       InvalidCategoryRule,
       InvalidChildCategory,

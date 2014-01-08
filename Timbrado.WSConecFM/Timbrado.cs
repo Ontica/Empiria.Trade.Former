@@ -43,7 +43,7 @@ namespace WSConecFM
                 EndpointAddress endpoint = new EndpointAddress(RequestTimbrarCFDI.urlTimbrado);
 
                 // Crear instancia al servisio SOAP de Timbrado
-                WSLayoutFacturacionModerna.Timbrado_ManagerPort WSFModerna = new WSLayoutFacturacionModerna.Timbrado_ManagerPortClient(binding, endpoint);
+                var WSFModerna = new WSLayoutFacturacionModerna.Timbrado_ManagerPortClient(binding, endpoint);
 
                 Empiria.Messaging.Publisher.Publish("YY Before Request");
 

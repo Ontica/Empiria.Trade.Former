@@ -1,13 +1,13 @@
-﻿/* Empiria® Business Framework 2013 **************************************************************************
+﻿/* Empiria® Business Framework 2014 **************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria® Business Framework                      System   : Treasury Management System        *
 *  Namespace : Empiria.Treasury                                 Assembly : Empiria.Treasury.dll              *
 *  Type      : CRTransactionType                                Pattern  : Ontology Object Type              *
-*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
+*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
 *                                                                                                            *
 *  Summary   : Represents a cash register transaction or operation type.                                     *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
 
 namespace Empiria.Treasury {
 

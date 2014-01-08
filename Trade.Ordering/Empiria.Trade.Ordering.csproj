@@ -26,7 +26,7 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
@@ -97,10 +97,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Timbrado.WSConecFM\WSConecFM.csproj">
-      <Project>{274a24fe-64ee-4b9e-9f5a-20a6033298aa}</Project>
-      <Name>WSConecFM</Name>
-    </ProjectReference>
     <Reference Include="Empiria.Messaging, Version=5.0.328.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\empiria.assemblies\Empiria.Messaging.dll</HintPath>
@@ -159,6 +155,10 @@
       <Project>{73EA993B-576B-4A5B-ACC5-117DAD0254EE}</Project>
       <Name>Empiria.Foundation</Name>
     </ProjectReference>
+    <Reference Include="WSConecFM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\empiria.assemblies\WSConecFM.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Billing\BillStamp.cs" />

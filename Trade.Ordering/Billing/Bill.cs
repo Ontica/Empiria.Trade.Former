@@ -1,13 +1,13 @@
-﻿/* Empiria® Customers Components 2013 ************************************************************************
+﻿/* Empiria® Customers Components 2014 ************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria® Industries Framework                    System   : Automotive Industry Components    *
 *  Namespace : Empiria.Customers.Pineda                         Assembly : Empiria.Customers.Pineda.dll      *
 *  Type      : Recording                                        Pattern  : Empiria Object Type               *
-*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
+*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
 *                                                                                                            *
-*  Summary   : Represents a bill.                                                                             *
+*  Summary   : Represents a bill.                                                                            *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -112,23 +112,25 @@ namespace Empiria.Trade.Billing {
     }
 
     static public Bill Parse(SupplyOrder order) {
+      Assertion.AssertObject(order, "order");
+
       if (order.Bill.IsEmptyInstance) {
-        Bill bill = new Bill();
+        var bill = new Bill();
         bill.supplyOrder = order;
         bill.Create();
         order.Bill = bill;
         order.Save();
         return bill;
       } else {
-        Bill bill = order.Bill;
-        string s = bill.CreateDigitalString();
-        if (bill.DigitalString != s) {
-          bill.DigitalString = s;
-          bill.digitalSign = bill.CreateDigitalSign();
-          bill.CreateXMLFile();
-          bill.Save();
-        }
-        return bill;
+        return order.Bill;
+        //string s = bill.CreateDigitalString();
+        //if (bill.DigitalString != s) {
+        //  bill.DigitalString = s;
+        //  bill.digitalSign = bill.CreateDigitalSign();
+        //  bill.CreateXMLFile();
+        //  bill.Save();
+        //}
+        //return bill;
       }
     }
 
@@ -285,6 +287,16 @@ namespace Empiria.Trade.Billing {
             throw new TradeOrderingException(TradeOrderingException.Msg.UnrecognizedBillType, billType);
         }
       }
+    }
+
+    internal void Cancel() {
+      this.cancelationTime = DateTime.Now;
+      this.canceledBy = Contact.Parse(ExecutionServer.CurrentUserId);
+      this.Status = BillStatus.Canceled;
+      //if (this.HasStamp) {
+      //  BillStamper.CancelStamp(this);
+      //}
+      this.Save();
     }
 
     public string FullNumber {
@@ -557,9 +569,9 @@ namespace Empiria.Trade.Billing {
     protected override void ImplementsSave() {
       if (String.IsNullOrWhiteSpace(this.number)) {
         this.number = this.Id.ToString();
-        this.DigitalString = CreateDigitalString();
-        this.digitalSign = CreateDigitalSign();
-        CreateXMLFile();
+        this.DigitalString = this.CreateDigitalString();
+        this.digitalSign = this.CreateDigitalSign();
+        this.CreateXMLFile();
       }
       BillingData.WriteBill(this);
     }
@@ -570,7 +582,6 @@ namespace Empiria.Trade.Billing {
 
     private void Create() {
       Assertion.AssertObject(this.Order, "Empiria.Trade.Billing.Bill.Order");
-
       this.certificateNumber = GetCertificateSerialNumber();
       this.serialNumber = this.IssuerData.BillSerialNo;
       this.approvalYear = this.IssuerData.BillApprovalYear;
@@ -734,10 +745,12 @@ namespace Empiria.Trade.Billing {
 
     private void CreateXMLFile() {
       XmlBill facturaXml = XmlBill.Parse(this);
-      XmlDocument xml = facturaXml.CreateDocument();
+      this.xml = facturaXml.CreateDocument();
+      this.xml.Save(this.GetXmlFileNameFull());
+
       this.stamp = BillStamper.Stamp(this);
       this.hasStamp = true;
-      this.xml = this.stamp.XmlDocument;
+      this.xml = this.stamp.GetXmlDocument();
       this.xml.Save(this.GetXmlFileNameFull());
     }
 

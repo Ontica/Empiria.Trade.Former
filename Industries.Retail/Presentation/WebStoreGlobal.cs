@@ -1,13 +1,13 @@
-﻿/* Empiria® Industries Framework 2013 ************************************************************************
+﻿/* Empiria® Industries Framework 2014 ************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria® Industries Framework 2013               System   : Retail Industry Components        *
+*  Solution  : Empiria® Industries Framework 2014               System   : Retail Industry Components        *
 *  Namespace : Empiria.Industries.Retail.Presentation           Assembly : Empiria.Industries.Retail.dll     *
 *  Type      : WebStoreGlobal                                   Pattern  : Global ASP .NET Class             *
-*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
+*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
 *                                                                                                            *
 *  Summary   : Global.asax page class handler used in Web Store solutions.                                   *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
 using System;
 
 using Empiria.Presentation.Web;

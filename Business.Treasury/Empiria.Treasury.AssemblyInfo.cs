@@ -1,12 +1,12 @@
-﻿/* Empiria® Business Framework 2013 **************************************************************************
+﻿/* Empiria® Business Framework 2014 **************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria® Business Framework                      System   : Treasury Management System        *
 *  Assembly  : Empiria.Treasury.dll                             Pattern  : Assembly Attributes File          *
-*  Date      : 23/Oct/2013                                      Version  : 5.2     License: CC BY-NC-SA 3.0  *
+*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
 *                                                                                                            *
 *  Summary   : Empiria® Treasury Management System.                                                          *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2013. **/
+**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -15,10 +15,10 @@ using System.Runtime.InteropServices;
 *************************************************************************************************************/
 [assembly: AssemblyTitle("Empiria.Treasury")]
 [assembly: AssemblyDescription("Empiria® Treasury Management System")]
-[assembly: AssemblyVersion("5.2.1023.0")]
-[assembly: AssemblyFileVersion("5.2.1023")]
+[assembly: AssemblyVersion("5.5.0328.0")]
+[assembly: AssemblyFileVersion("5.5.0328")]
 [assembly: AssemblyCompany("Ontica")]
-[assembly: AssemblyProduct("Empiria® Business Framework 2013")]
+[assembly: AssemblyProduct("Empiria® Business Framework 2014")]
 [assembly: AssemblyCopyright("© La Vía Óntica SC + Ontica LLC. All rights reserved.")]
 [assembly: AssemblyTrademark("Empiria and Ontica are either registered trademarks of La Vía Óntica SC or Ontica LLC.")]
 [assembly: AssemblyConfiguration("")]
