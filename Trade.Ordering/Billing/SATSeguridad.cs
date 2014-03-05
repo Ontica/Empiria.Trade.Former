@@ -1,13 +1,13 @@
-﻿/* Empiria® Customers Components 2014 ************************************************************************
+﻿/* Empiria Customers Components 2014 *************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria® Industries Framework                    System   : Automotive Industry Components    *
+*  Solution  : Empiria Industries Framework                     System   : Automotive Industry Components    *
 *  Namespace : Empiria.Customers.Pineda                         Assembly : Empiria.Customers.Pineda.dll      *
 *  Type      : SATSeguridad                                     Pattern  : Storage Item                      *
-*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
+*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Describes an order.                                                                           *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
+********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.IO;
 using System.Runtime.InteropServices;

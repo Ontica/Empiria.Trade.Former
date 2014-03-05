@@ -1,13 +1,13 @@
-﻿/* Empiria® Customers Components 2014 ************************************************************************
+﻿/* Empiria Customers Components 2014 *************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria® Industries Framework                    System   : Automotive Industry Components    *
+*  Solution  : Empiria Industries Framework                     System   : Automotive Industry Components    *
 *  Namespace : Empiria.Customers.Pineda                         Assembly : Empiria.Customers.Pineda.dll      *
 *  Type      : Recording                                        Pattern  : Empiria Object Type               *
-*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
+*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Represents a bill.                                                                            *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
+********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -120,18 +120,8 @@ namespace Empiria.Trade.Billing {
         bill.Create();
         order.Bill = bill;
         order.Save();
-        return bill;
-      } else {
-        return order.Bill;
-        //string s = bill.CreateDigitalString();
-        //if (bill.DigitalString != s) {
-        //  bill.DigitalString = s;
-        //  bill.digitalSign = bill.CreateDigitalSign();
-        //  bill.CreateXMLFile();
-        //  bill.Save();
-        //}
-        //return bill;
       }
+      return order.Bill;
     }
 
     static public Bill Parse(int id) {
@@ -146,18 +136,18 @@ namespace Empiria.Trade.Billing {
       get { return BaseObject.ParseEmpty<Bill>(thisTypeName); }
     }
 
-    static public void Review() {
-      DataView view = BillingData.GetBills(DateTime.Parse("01/07/2012"), DateTime.Today, "[ApprovalYear] = 2012");
+    //static public void Review() {
+    //  DataView view = BillingData.GetBills(DateTime.Parse("01/07/2012"), DateTime.Today, "[ApprovalYear] = 2012");
 
-      for (int i = 0; i < view.Count; i++) {
-        string ds = (string) view[i]["DigitalString"];
-        string temp = CleanDigitalString(ds);
-        if (temp != ds) {
-          string sql = "UPDATE CRMBills SET BillStatus = 'R' WHERE BillId = " + (int) view[i]["BillId"];
-          Empiria.Data.DataWriter.Execute(Empiria.Data.DataOperation.Parse(sql));
-        }
-      }
-    }
+    //  for (int i = 0; i < view.Count; i++) {
+    //    string ds = (string) view[i]["DigitalString"];
+    //    string temp = CleanDigitalString(ds);
+    //    if (temp != ds) {
+    //      string sql = "UPDATE CRMBills SET BillStatus = 'R' WHERE BillId = " + (int) view[i]["BillId"];
+    //      Empiria.Data.DataWriter.Execute(Empiria.Data.DataOperation.Parse(sql));
+    //    }
+    //  }
+    //}
 
     static private string CleanDigitalString(string digitalString) {
       string temp = digitalString;
@@ -208,7 +198,8 @@ namespace Empiria.Trade.Billing {
         throw new TradeOrderingException(TradeOrderingException.Msg.InvalidPeriodForDailyBills, fromDate, toDate);
       }
       DataView view = BillingData.GetBills(fromDate, toDate, "[BillType] IN ('G', 'L')");
-      if (view.Count != 0) { // Global bills already generated 
+      if (view.Count != 0) { // Global bills already generated
+        Empiria.Messaging.Publisher.Publish("Global bills already generated for the selected period");
         return;
       }
 
@@ -226,6 +217,7 @@ namespace Empiria.Trade.Billing {
       if (view.Count != 0) {
         bill = new Bill();
         bill.BillType = BillType.GlobalBill;
+        bill.issuedBy = supplier;
         bill.supplyOrder = SupplyOrder.Empty;
         bill.issuedTime = toDate;
         bill.NotOrderData = BillNoOrderData.Parse(view);
@@ -240,6 +232,7 @@ namespace Empiria.Trade.Billing {
       if (view.Count != 0) {
         bill = new Bill();
         bill.BillType = BillType.GlobalCreditNote;
+        bill.issuedBy = supplier;
         bill.supplyOrder = SupplyOrder.Empty;
         bill.issuedTime = toDate;
         bill.NotOrderData = BillNoOrderData.Parse(view);
@@ -255,6 +248,7 @@ namespace Empiria.Trade.Billing {
       if (view.Count != 0) {
         bill = new Bill();
         bill.BillType = BillType.GlobalCreditNote;
+        bill.issuedBy = supplier;
         bill.supplyOrder = SupplyOrder.Empty;
         bill.issuedTime = toDate;
         bill.NotOrderData = BillNoOrderData.Parse(view);
@@ -293,14 +287,20 @@ namespace Empiria.Trade.Billing {
       this.cancelationTime = DateTime.Now;
       this.canceledBy = Contact.Parse(ExecutionServer.CurrentUserId);
       this.Status = BillStatus.Canceled;
-      //if (this.HasStamp) {
-      //  BillStamper.CancelStamp(this);
-      //}
+      if (this.HasStamp) {
+        BillStamper.CancelStamp(this);
+      }
       this.Save();
     }
 
     public string FullNumber {
-      get { return this.SerialNumber + int.Parse(this.Number).ToString("000000"); }
+      get {
+        if (this.HasStamp) {
+          return this.Stamp.UUID;
+        } else {
+          return this.FullOldNumber;
+        }
+      }
     }
 
     public SupplyOrder Order {
@@ -379,8 +379,12 @@ namespace Empiria.Trade.Billing {
     }
 
     public BillIssuerData IssuerData {
-      get { 
-        return this.Order.Supplier.GetExtensionData<BillIssuerData>();
+      get {
+        if (this.NotOrderData == null) {
+          return this.Order.Supplier.GetExtensionData<BillIssuerData>();
+        } else {
+          return this.IssuedBy.GetExtensionData<BillIssuerData>();
+        }
       }
     }
 
@@ -491,8 +495,27 @@ namespace Empiria.Trade.Billing {
       return fileName + ".xml";
     }
 
+    private string GetXmlFileOldName() {
+      string fileName = "P" + this.Order.ExternalOrderId.ToString("0000000");
+      fileName += "." + this.FullOldNumber;
+      fileName += "." + this.IssuedTime.ToString("yyyyMMddHHmmss");
+
+      return fileName + ".xml";
+    }
+
+    private string FullOldNumber {
+      get { 
+        return this.SerialNumber + int.Parse(this.Number).ToString("000000");
+      }
+    }
+
     public string GetXmlFileNameFull() {
-      return @"D:\facturas\" + GetXmlFileName();
+      string fileName = @"D:\facturas\" + GetXmlFileOldName();
+      if (File.Exists(fileName)) {
+        return fileName;    // Always retrive XML files with old naming convention when them exist
+      } else {
+        return @"D:\facturas\" + GetXmlFileName();
+      }
     }
 
     public string GetXmlString() {
@@ -610,7 +633,13 @@ namespace Empiria.Trade.Billing {
     }
 
     private string GetEmisorDigitalStringPart() {
-      Contact supplier = this.Order.Supplier;
+      Contact supplier = null;
+
+      if (this.NotOrderData == null) {
+        supplier = this.Order.Supplier;
+      } else {
+        supplier = this.IssuedBy;
+      }
 
       string temp = GetDigitalStringItem(supplier.FormattedTaxTag); //  "ARP9706105W2" "TUMG620310R95"
       temp += GetDigitalStringItem(supplier.FullName);              //  "AUTO REFACCIONES PINEDA, S.A. de C.V."
@@ -747,10 +776,12 @@ namespace Empiria.Trade.Billing {
       XmlBill facturaXml = XmlBill.Parse(this);
       this.xml = facturaXml.CreateDocument();
       this.xml.Save(this.GetXmlFileNameFull());
-
-      this.stamp = BillStamper.Stamp(this);
-      this.hasStamp = true;
-      this.xml = this.stamp.GetXmlDocument();
+      
+      if (this.IssuedTime.Year >= 2014) {
+        this.stamp = BillStamper.Stamp(this);
+        this.hasStamp = true;
+        this.xml = this.stamp.GetXmlDocument();
+      }
       this.xml.Save(this.GetXmlFileNameFull());
     }
 
@@ -765,15 +796,15 @@ namespace Empiria.Trade.Billing {
       body += "Razón social: " + this.Order.Customer.FullName + System.Environment.NewLine;
       body += "RFC: " + this.Order.Customer.FormattedTaxTag + System.Environment.NewLine;
       body += System.Environment.NewLine;
-      body += "Factura electrónica: " + this.FullNumber + System.Environment.NewLine;
-      body += "Fecha y hora de expedición: " + this.IssuedTime.ToString("dd/MMM/yyyy HH:mm:ss") + System.Environment.NewLine;
-      body += System.Environment.NewLine;
       body += "Pedido: " + this.Order.ExternalOrderId + System.Environment.NewLine;
       body += "Importe: " + this.Order.Items.Total.ToString("C2") + System.Environment.NewLine;
       body += "Forma de pago: " + this.PaymentCondition + System.Environment.NewLine;
       body += "Forma de entrega: " + this.Order.DeliveryMode.Name + System.Environment.NewLine;
+      body += System.Environment.NewLine;
+      body += "Factura electrónica: " + this.FullNumber + System.Environment.NewLine;
+      body += "Fecha y hora de expedición: " + this.IssuedTime.ToString("dd/MMM/yyyy HH:mm:ss") + System.Environment.NewLine;
+      body += System.Environment.NewLine;
       body += "Lo atendió: " + ((Contact) this.Order.SupplierContact).FullName + System.Environment.NewLine;
-
       body += System.Environment.NewLine;
       body += "Le agradecemos su preferencia y quedamos a sus órdenes para cualquier asunto que requieran.";
       body += System.Environment.NewLine;
@@ -783,7 +814,12 @@ namespace Empiria.Trade.Billing {
       body += System.Environment.NewLine;
       body += "Auto Refacciones Pineda, S.A. de C.V." + System.Environment.NewLine;
       body += "pineda@masautopartes.com.mx" + System.Environment.NewLine;
-      body += "(55) 2973-0249 / 1997-9360" + System.Environment.NewLine;
+      body += "(55) 2973-0249 / 1997-9360" + System.Environment.NewLine + System.Environment.NewLine;
+      body += "A partir de 2014, el número de pedido nos servirá como mecanismo para identificar las ventas a crédito " +
+              "y de contado, ya no el número serie y factura anterior los cuales han sido descontinuados por el SAT.";
+      body += System.Environment.NewLine + System.Environment.NewLine;
+      body += "Le sugerimos no responder o reenviar este correo a la cuenta facturas.pineda@masautopartes.com.mx ya que no " +
+              "tiene un administrador y sólo la utilizamos para enviar sus facturas. Gracias.";
 
       return body;
     }

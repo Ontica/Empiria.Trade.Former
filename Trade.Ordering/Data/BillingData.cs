@@ -1,13 +1,13 @@
-﻿/* Empiria® Trade 2014 ***************************************************************************************
+﻿/* Empiria Trade 2014 ****************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria® Trade                                   System   : Ordering System                   *
+*  Solution  : Empiria Trade                                    System   : Ordering System                   *
 *  Namespace : Empiria.Trade.Data                               Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : BillingData                                      Pattern  : Data Services Static Class        *
-*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
+*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Database read and write methods for billing services data.                                    *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
+********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 
@@ -23,11 +23,14 @@ namespace Empiria.Trade.Data {
     #region Public methods
 
     static internal DataView GetBills(DateTime fromDate, DateTime toDate, string filter) {
-      DataOperation dataOperation = DataOperation.Parse("qryCRMBills", fromDate, toDate);
-
-      dataOperation.ExecutionTimeout = 500;
-
-      return DataReader.GetDataView(dataOperation, filter);
+      try {
+        DataOperation dataOperation = DataOperation.Parse("qryCRMBills", fromDate, toDate);
+        dataOperation.ExecutionTimeout = 500;
+        return DataReader.GetDataView(dataOperation, filter);
+      } catch {
+        Empiria.Messaging.Publisher.Publish("BillingData.GetBills ERROR : filter = " + filter);
+        throw;
+      } 
     }
 
     #endregion Public methods

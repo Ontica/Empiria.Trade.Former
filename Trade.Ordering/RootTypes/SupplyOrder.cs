@@ -1,19 +1,20 @@
-﻿/* Empiria® Trade 2014 ***************************************************************************************
+﻿/* Empiria Trade 2014 ****************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria® Trade                                   System   : Ordering System                   *
+*  Solution  : Empiria Trade                                    System   : Ordering System                   *
 *  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : SupplyOrder                                      Pattern  : Empiria Object Type               *
-*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
+*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
-*  Summary   : Represents a supplier-customer order in Empiria® Trade Ordering System.                       *
+*  Summary   : Represents a supplier-customer order in Empiria Trade Ordering System.                        *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
+********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Collections.Generic;
 using System.Data;
 
 using Empiria.Contacts;
 using Empiria.Data;
+using Empiria.Security;
 using Empiria.Data.Convertion;
 using Empiria.DataTypes;
 using Empiria.Documents.Printing;
@@ -35,7 +36,7 @@ namespace Empiria.Trade.Ordering {
     Deleted = 'X'
   }
 
-  /// <summary>Represents a supplier-customer order in Empiria® Trade Ordering System.</summary>
+  /// <summary>Represents a supplier-customer order in Empiria Trade Ordering System.</summary>
   public class SupplyOrder : BaseObject {
 
     #region Fields
@@ -48,9 +49,9 @@ namespace Empiria.Trade.Ordering {
     static public string ReportsTemplatesPath = ConfigurationData.GetString("Reports.TemplatesPath");
 
     private const string thisTypeName = "ObjectType.Trade.Order.SupplyOrder";
-    private const string newOrderNumber = "Nuevo pedido";
+    private const string myCurrentOrderUserSetting = "Trade.MyCurrentOrder";
 
-    private string number = newOrderNumber;
+    private string number = "Sin número de orden";
     private string customerOrderNumber = String.Empty;
     private string dutyEntryTag = String.Empty;
     private string concept = String.Empty;
@@ -118,16 +119,25 @@ namespace Empiria.Trade.Ordering {
       return BaseObject.ParseFromBelow<SupplyOrder>(thisTypeName, supplyOrderId);
     }
 
+    static public SupplyOrder CreateOrder() {
+      EmpiriaUser.Current.Settings.SetValue<int>(myCurrentOrderUserSetting, -1);
+      
+      return new SupplyOrder();
+    }
+
     static public SupplyOrder MyCurrentOrder() {
-      return SupplyOrder.Parse(1001);
+      int orderId = EmpiriaUser.Current.Settings.GetValue<int>(myCurrentOrderUserSetting, -1);
+
+      if (orderId != -1) {
+        return SupplyOrder.Parse(orderId);
+      } else {
+        return new SupplyOrder();
+      }
     }
 
-    static public ObjectList<SupplyOrder> MyOrdersList(string filter) {
-      return null;
-    }
-
-    internal void Reset() {
-      items = null;
+    static public ObjectList<SupplyOrder> MyOrders(string filter = "", string sort = "") {
+      return SupplyOrdersData.GetMyOrders(EmpiriaUser.Current.Organization, 
+                                          EmpiriaUser.Current.Contact, filter, sort);
     }
 
     #endregion Constructors and parsers
@@ -137,7 +147,7 @@ namespace Empiria.Trade.Ordering {
     public SupplyOrderItemList Items {
       get {
         if (items == null) {
-          items = SupplyOrdersData.GetSupplierOrderItems(this);
+          items = SupplyOrdersData.GetSupplyOrderItems(this);
         }
         return items;
       }
@@ -221,7 +231,8 @@ namespace Empiria.Trade.Ordering {
 
     public AccountStatement CustomerCreditAccountStatement {
       get {
-        return new AccountStatement(this.CustomerFinancialAccount, DateTime.Today.AddDays(-30), DateTime.Now);
+        return new AccountStatement(this.CustomerFinancialAccount, 
+                                    DateTime.Today.AddDays(-30), DateTime.Now);
       }
     }
 
@@ -308,19 +319,6 @@ namespace Empiria.Trade.Ordering {
       get { return externalOrderId; }
     }
 
-    public Contact PostedBy {
-      get { return postedBy; }
-    }
-
-    public DateTime PostingTime {
-      get { return postingTime; }
-      set { postingTime = value; }
-    }
-
-    public OrderStatus Status {
-      get { return status; }
-    }
-
     public SupplyOrder Parent {
       get {
         if (parentSupplyOrder == null) {
@@ -334,71 +332,82 @@ namespace Empiria.Trade.Ordering {
       }
     }
 
+    public Contact PostedBy {
+      get { return postedBy; }
+    }
+
+    public DateTime PostingTime {
+      get { return postingTime; }
+      set { postingTime = value; }
+    }
+
+    public OrderStatus Status {
+      get { return status; }
+    }
+
     #endregion Public properties
 
     #region Public methods
 
-    public SupplyOrderItem AddOrderItem(Product product, decimal quantity) {
-      var orderItem = new SupplyOrderItem(this);
+    public SupplyOrderItem SetOrderItem(Product product, decimal quantity) {
+      if (this.IsNew) {
+        this.Save();
+      }
+      var orderItem = this.Items.Contains(product) ? 
+                      this.Items.Find(product) : new SupplyOrderItem(this);
       orderItem.Product = product;
-      orderItem.Quantity = quantity;
+      orderItem.Quantity += quantity;
       orderItem.Save();
-      this.Items.Add(orderItem);
-      
-      return orderItem;
-    }
 
-    public void RemoveOrderItem(SupplyOrderItem orderItem) {
-      orderItem.Status = OrderStatus.Deleted;
-      orderItem.Save();
+      this.Reset();
+     
+      return orderItem;
     }
 
     public void AppendPayment(CRTransaction crTransaction) {
       this.Payment = crTransaction;
     }
 
-    public CRTransaction CreatePayment(decimal amount, string notes) {
-      CRTransaction crt = new CRTransaction(CRTransactionType.Parse("Input.OrderPayment"), this,
-                                            DateTime.Now, DateTime.Now, amount, 0m,
-                                            "Pedido: " + this.Number, notes);
-
-      //CRPosting posting = crt.CreatePosting();
-      //posting.InstrumentType = instrumentType;
-      //posting.InstrumentAmount = crt.Amount;
-      //posting.InputAmount = crt.Amount;
-
-      //crt.Status = TreasuryItemStatus.Closed;
-
-      return crt;
-    }
-
-    private CRTransaction CreateCancelPayment(string notes) {
-      CRTransaction crt = new CRTransaction(CRTransactionType.Parse("Output.OrderPayment"), this,
-                                            DateTime.Now, DateTime.Now, 0m, this.Items.Total,
-                                            "Cancelación del pedido: " + this.Number, notes);
-
-      //CRPosting posting = crt.CreatePosting();
-      //posting.InstrumentType = instrumentType;
-      //posting.InstrumentAmount = crt.Amount;
-      //posting.InputAmount = crt.Amount;
-
-      //crt.Status = TreasuryItemStatus.Closed;
-
-      return crt;
-    }
-
-    public void DoDelivery(DateTime deliveryTime) {
-      this.deliveryTime = deliveryTime;
-      status = OrderStatus.Closed;
+    public void Cancel() {
+      if (!this.Payment.IsEmptyInstance) {
+        throw new NotImplementedException("I can't cancel this supply order using this method because " + 
+                                          "their payment information is not empty. " +
+                                          "Please use order.Cancel(InstrumentType, string) method instead.");
+      }
+      UpdateARPStock(false);
+      cancelationTime = DateTime.Now;
+      canceledBy = Person.Parse(ExecutionServer.CurrentUserId);
+      status = OrderStatus.Canceled;
       Save();
     }
 
-    public void SetNotDelivery(DeliveryMode deliveryMode) {
-      this.deliveryMode = deliveryMode;
-      this.deliveryTime = ExecutionServer.DateMaxValue;
-      this.deliveryContact = Person.Empty;
-      status = OrderStatus.OnDelivery;
+    public void Cancel(InstrumentType instrumentType, string notes) {
+      if (this.Payment.IsEmptyInstance) {
+        throw new NotImplementedException("I can't cancel this supply order using this method because " + 
+                                          "their payment information is empty. " +
+                                          "Please use order.Cancel() method instead.");
+      }
+      UpdateARPStock(false);
+      cancelationTime = DateTime.Now;
+      canceledBy = Person.Parse(ExecutionServer.CurrentUserId);
+      status = OrderStatus.Canceled;
       Save();
+      CRTransaction tr = this.CreateCancelPayment(notes);
+
+      List<CRPosting> postings = this.Payment.Postings.FindAll((x) => (x.InstrumentId > 0));
+      decimal canceledAmount = decimal.Zero;
+      for (int i = 0; i < postings.Count; i++) {
+        FinancialAccount account = FinancialAccount.Parse(postings[i].InstrumentId);
+        account.CreateConcept(FinancialConcept.Parse("FSD005"), tr.CashRegister, DateTime.Now,
+                              postings[i].InputAmount, "Pedido: " + this.Number, String.Empty, this.Id);
+        tr.AppendPosting(postings[i].InstrumentType, account, postings[i].InputAmount);
+        canceledAmount += postings[i].InputAmount;
+      }
+      if (items.Total != canceledAmount) {
+        tr.AppendPosting(instrumentType, CRDocument.Empty, items.Total - canceledAmount);
+      }
+      tr.Close();
+      bill.Cancel();
     }
 
     public void Close() {
@@ -442,42 +451,56 @@ namespace Empiria.Trade.Ordering {
       }
     }
 
-    public void Cancel(InstrumentType instrumentType, string notes) {
-      if (this.Payment.IsEmptyInstance) {
-        throw new NotImplementedException("Cannot cancel this supply order with this method because the payment is empty. Use Cancel() method instead.");
-      }
-      UpdateARPStock(false);
-      cancelationTime = DateTime.Now;
-      canceledBy = Person.Parse(ExecutionServer.CurrentUserId);
-      status = OrderStatus.Canceled;
-      Save();
-      CRTransaction tr = this.CreateCancelPayment(notes);
+    private CRTransaction CreateCancelPayment(string notes) {
+      CRTransaction crt = new CRTransaction(CRTransactionType.Parse("Output.OrderPayment"), this,
+                                            DateTime.Now, DateTime.Now, 0m, this.Items.Total,
+                                            "Cancelación del pedido: " + this.Number, notes);
 
-      List<CRPosting> postings = this.Payment.Postings.FindAll((x) => (x.InstrumentId > 0));
-      decimal canceledAmount = decimal.Zero;
-      for (int i = 0; i < postings.Count; i++) {
-        FinancialAccount account = FinancialAccount.Parse(postings[i].InstrumentId);
-        account.CreateConcept(FinancialConcept.Parse("FSD005"), tr.CashRegister, DateTime.Now,
-                              postings[i].InputAmount, "Pedido: " + this.Number, String.Empty, this.Id);
-        tr.AppendPosting(postings[i].InstrumentType, account, postings[i].InputAmount);
-        canceledAmount += postings[i].InputAmount;
-      }
-      if (items.Total != canceledAmount) {
-        tr.AppendPosting(instrumentType, CRDocument.Empty, items.Total - canceledAmount);
-      }
-      tr.Close();
-      bill.Cancel();
+      //CRPosting posting = crt.CreatePosting();
+      //posting.InstrumentType = instrumentType;
+      //posting.InstrumentAmount = crt.Amount;
+      //posting.InputAmount = crt.Amount;
+
+      //crt.Status = TreasuryItemStatus.Closed;
+
+      return crt;
     }
 
-    public void Cancel() {
-      if (!this.Payment.IsEmptyInstance) {
-        throw new NotImplementedException("Cannot cancel this supply order with this method because the payment is not empty. " + 
-                                          "Use Cancel(InstrumentType, string) method instead.");
-      }
-      UpdateARPStock(false);
-      cancelationTime = DateTime.Now;
-      canceledBy = Person.Parse(ExecutionServer.CurrentUserId);
-      status = OrderStatus.Canceled;
+    public CRTransaction CreatePayment(decimal amount, string notes) {
+      CRTransaction crt = new CRTransaction(CRTransactionType.Parse("Input.OrderPayment"), this,
+                                            DateTime.Now, DateTime.Now, amount, 0m,
+                                            "Pedido: " + this.Number, notes);
+
+      //CRPosting posting = crt.CreatePosting();
+      //posting.InstrumentType = instrumentType;
+      //posting.InstrumentAmount = crt.Amount;
+      //posting.InputAmount = crt.Amount;
+
+      //crt.Status = TreasuryItemStatus.Closed;
+
+      return crt;
+    }
+
+    public void DoDelivery(DateTime deliveryTime) {
+      this.deliveryTime = deliveryTime;
+      status = OrderStatus.Closed;
+      Save();
+    }
+
+    public void RemoveOrderItem(SupplyOrderItem orderItem) {
+      orderItem.Status = OrderStatus.Deleted;
+      orderItem.Save();
+    }
+
+    internal void Reset() {
+      items = null;
+    }
+
+    public void SetNotDelivery(DeliveryMode deliveryMode) {
+      this.deliveryMode = deliveryMode;
+      this.deliveryTime = ExecutionServer.DateMaxValue;
+      this.deliveryContact = Person.Empty;
+      status = OrderStatus.OnDelivery;
       Save();
     }
 
@@ -552,14 +575,27 @@ namespace Empiria.Trade.Ordering {
     }
 
     protected override void ImplementsSave() {
-      this.keywords = EmpiriaString.BuildKeywords(this.number, this.concept, this.customer.Keywords);
-      if (IsNew) {
-        postedBy = Contact.Parse(ExecutionServer.CurrentUserId);
-        postingTime = DateTime.Now;
-      }
+      PrepareForSave();
       SupplyOrdersData.WriteSupplyOrder(this);
-
       this.Reset();
+      EmpiriaUser.Current.Settings.SetValue<int>(myCurrentOrderUserSetting, this.Id);
+    }
+
+    internal void PrepareForSave() {
+      if (this.PostedBy.IsEmptyInstance) {      // IsNew
+        this.postingTime = DateTime.Now;
+        this.postedBy = EmpiriaUser.Current.Contact;
+        this.number = SupplyOrdersData.GenerateOrderNumber();
+        if (this.CustomerContact.IsEmptyInstance && this.SupplierContact.IsEmptyInstance) {
+          this.Customer = EmpiriaUser.Current.Organization;
+          this.CustomerContact = (Person) EmpiriaUser.Current.Contact;
+        }
+      }
+      //if (String.IsNullOrWhiteSpace(this.documentKey)) {
+      //  
+      //}
+      this.keywords = EmpiriaString.BuildKeywords(this.number, this.concept, this.customer.Keywords);
+
     }
 
     #endregion Public methods
@@ -610,7 +646,6 @@ namespace Empiria.Trade.Ordering {
       ticket.Load(document);
       ticket.Print(TicketPrinterName);
     }
-
 
     #endregion Credit Voucher
 

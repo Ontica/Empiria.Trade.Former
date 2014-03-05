@@ -1,13 +1,13 @@
-﻿/* Empiria® Trade 2014 ***************************************************************************************
+﻿/* Empiria Trade 2014 ****************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria® Trade                                   System   : Ordering System                   *
+*  Solution  : Empiria Trade                                    System   : Ordering System                   *
 *  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : SupplyChannel                                    Pattern  : General Object Type               *
-*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
+*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Describes a supply channel like Internet, telephone, catalogue or store.                      *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
+********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 
 namespace Empiria.Trade.Ordering {

@@ -1,13 +1,13 @@
-﻿/* Empiria® Business Framework 2014 **************************************************************************
+﻿/* Empiria Business Framework 2014 ***************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria® Business Framework                      System   : Financial Services Management     *
+*  Solution  : Empiria Business Framework                       System   : Financial Services Management     *
 *  Namespace : Empiria.FinancialServices                        Assembly : Empiria.FinancialServices.dll     *
 *  Type      : AccountCreditBalance                             Pattern  : Business Services Class           *
-*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
+*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Performs credit by credit balance calculation.                                                *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
+********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 

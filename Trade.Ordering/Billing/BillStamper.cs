@@ -19,7 +19,7 @@ namespace Empiria.Trade.Billing {
 
     #region Public methods
 
-    static internal void CancelStamp(Bill bill) {
+    static public void CancelStamp(Bill bill) {
       var ws = new WSConecFM.Cancelado();
       var request = BillStamper.GetCancelStampRequest(bill);
       WSConecFM.Resultados stampResult = ws.Cancelar(request, bill.Stamp.UUID);
@@ -63,7 +63,11 @@ namespace Empiria.Trade.Billing {
     static private WSConecFM.requestCancelarCFDI GetCancelStampRequest(Bill bill) {
       var request = new WSConecFM.requestCancelarCFDI();
 
-      request.emisorRFC = bill.IssuedBy.FormattedTaxTag;
+      if (bill.NotOrderData == null) {
+        request.emisorRFC = bill.Order.Supplier.FormattedTaxTag;
+      } else {
+        request.emisorRFC = bill.IssuedBy.FormattedTaxTag;
+      }
       request.urlCancelado = BillStamper.WSConnectUrl;
       request.UserID = BillStamper.WSConnectUserID;
       request.UserPass = BillStamper.WSConnectUserPass;
@@ -75,7 +79,11 @@ namespace Empiria.Trade.Billing {
     static private WSConecFM.requestTimbrarCFDI GetStampRequest(Bill bill) {
       var request = new WSConecFM.requestTimbrarCFDI();
 
-      request.emisorRFC = bill.IssuedBy.FormattedTaxTag;
+      if (bill.NotOrderData == null) {
+        request.emisorRFC = bill.Order.Supplier.FormattedTaxTag;
+      } else {
+        request.emisorRFC = bill.IssuedBy.FormattedTaxTag;
+      }
       request.generarCBB = true;
       request.generarPDF = false;
       request.generarTXT = false;

@@ -1,13 +1,13 @@
-﻿/* Empiria® Trade 2014 ***************************************************************************************
+﻿/* Empiria Trade 2014 ****************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria® Trade                                   System   : Ordering System                   *
+*  Solution  : Empiria Trade                                    System   : Ordering System                   *
 *  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : SupplyOrderItemList                              Pattern  : Empiria List Class                *
-*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
+*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Represents a list of BaseObject instances.                                                    *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
+********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -64,10 +64,10 @@ namespace Empiria.Trade.Ordering {
     }
 
     public SupplyOrderItemList(System.Func<DataRow, SupplyOrderItem> parseMethod, DataTable table)
-      : this(table.Rows.Count) {
-      for (int i = 0; i < table.Rows.Count; i++) {
-        this.Add(parseMethod.Invoke(table.Rows[i]));
-      }
+        : this(table.Rows.Count) {
+        for (int i = 0; i < table.Rows.Count; i++) {
+          this.Add(parseMethod.Invoke(table.Rows[i]));
+        }
       this.CalculateTotals();
     }
 
@@ -142,6 +142,10 @@ namespace Empiria.Trade.Ordering {
       }
     }
 
+    public bool Contains(Product product) {
+      return base.Contains((x) => x.Product.Equals(product));
+    }
+
     public new bool Contains(SupplyOrderItem item) {
       return base.Contains(item);
     }
@@ -156,6 +160,9 @@ namespace Empiria.Trade.Ordering {
       for (int i = index, j = Count; i < j; i++) {
         array.SetValue(base[i], i);
       }
+    }
+    public SupplyOrderItem Find(Product product) {
+      return base.Find((x) => x.Product.Equals(product));
     }
 
     public new SupplyOrderItem Find(Predicate<SupplyOrderItem> match) {

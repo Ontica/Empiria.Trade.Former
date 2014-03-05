@@ -1,13 +1,13 @@
-﻿/* Empiria® Trade 2014 ***************************************************************************************
+﻿/* Empiria Trade 2014 ****************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria® Trade                                   System   : Ordering System                   *
+*  Solution  : Empiria Trade                                    System   : Ordering System                   *
 *  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : SupplyOrderItem                                  Pattern  : Empiria Object Type               *
-*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
+*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Represents a supply product order item in the Supply Management System.                       *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
+********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 
@@ -38,7 +38,7 @@ namespace Empiria.Trade.Ordering {
     private const string thisTypeName = "ObjectType.Trade.OrderItem.SupplyOrderItem";
 
     private SupplyOrder order = SupplyOrder.Empty;
-    private int orderItemTypeId = -1;
+    private int orderItemTypeId = 2040;
     private Contact supplyPoint = Organization.Empty;
     private string concept = String.Empty;
     private int applicationItemTypeId = -1;
@@ -381,7 +381,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     protected override void ImplementsSave() {
-      if (IsNew) {
+      if (this.IsNew) {
         postedBy = Contact.Parse(ExecutionServer.CurrentUserId);
         postingTime = DateTime.Now;
       }

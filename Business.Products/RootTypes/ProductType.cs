@@ -1,13 +1,13 @@
-﻿/* Empiria® Business Framework 2014 **************************************************************************
+﻿/* Empiria Business Framework 2014 ***************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria® Business Framework                      System   : Product Data Management           *
+*  Solution  : Empiria Business Framework                       System   : Product Data Management           *
 *  Namespace : Empiria.Products                                 Assembly : Empiria.Products.dll              *
 *  Type      : PhysicalProduct                                  Pattern  : Power type                        *
-*  Date      : 28/Mar/2014                                      Version  : 5.5     License: CC BY-NC-SA 4.0  *
+*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Power type that classifies product types.                                                     *
 *                                                                                                            *
-**************************************************** Copyright © La Vía Óntica SC + Ontica LLC. 1999-2014. **/
+********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using Empiria.Ontology;
 
 namespace Empiria.Products {
