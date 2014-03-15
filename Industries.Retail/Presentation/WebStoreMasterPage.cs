@@ -8,7 +8,7 @@
 *  Summary   : Abstract type that represents a master page that serves as template and container             *
 *              for web store pages.                                                                          *
 *                                                                                                            *
-********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2009-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Collections.Generic;
 using System.Web.UI.HtmlControls;

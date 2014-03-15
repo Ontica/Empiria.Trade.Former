@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("5.5.0328")]
 [assembly: AssemblyCompany("Ontica")]
 [assembly: AssemblyProduct("Empiria Trade 2014")]
-[assembly: AssemblyCopyright("(c) 1999-2004. La Vía Óntica SC, Ontica LLC and contributors.")]
+[assembly: AssemblyCopyright("(c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.")]
 [assembly: AssemblyTrademark("Empiria and Ontica are either registered trademarks of La Vía Óntica SC or Ontica LLC.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCulture("")]

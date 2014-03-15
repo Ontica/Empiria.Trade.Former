@@ -7,7 +7,7 @@
 *                                                                                                            *
 *  Summary   : Provides database read and write methods for product data management.                         *
 *                                                                                                            *
-********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2009-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 

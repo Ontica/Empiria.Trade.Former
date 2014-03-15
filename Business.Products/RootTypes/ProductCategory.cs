@@ -7,7 +7,7 @@
 *                                                                                                            *
 *  Summary   : Represents a category of products used for product multiple classification or grouping.       *
 *                                                                                                            *
-********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2009-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 
 namespace Empiria.Products {
 
