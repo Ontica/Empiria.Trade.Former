@@ -16,14 +16,8 @@ namespace Empiria.Trade.Billing {
     public string FiscalRegimen { get; set; }
     public string IssuePlace { get; set; }
     public string CertificateFileName { get; set; }
-    public string CertificatePwd {
-      get;
-      set;
-    }
-    public string PrivateKeyFile {
-      get;
-      set;
-    } 
+    public string CertificatePwd { get; set; }
+    public string PrivateKeyFile { get; set; }
 
     #endregion Fields
 
