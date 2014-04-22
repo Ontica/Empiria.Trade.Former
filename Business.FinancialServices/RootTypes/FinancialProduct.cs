@@ -3,7 +3,7 @@
 *  Solution  : Empiria Business Framework                       System   : Financial Services Management     *
 *  Namespace : Empiria.FinancialServices                        Assembly : Empiria.FinancialServices.dll     *
 *  Type      : FinancialConcept                                 Pattern  : Business Services Class           *
-*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Represents a financial product like a credit, debit or check account.                         *
 *                                                                                                            *

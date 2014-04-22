@@ -3,7 +3,7 @@
 *  Solution  : Empiria Business Framework                       System   : Treasury Management System        *
 *  Namespace : Empiria.Treasury                                 Assembly : Empiria.Treasury.dll              *
 *  Type      : Document                                         Pattern  : Standard Class                    *
-*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Represents a check, credit note, a prepaid slip or IOU (I Owe You) slips.                     *
 *                                                                                                            *

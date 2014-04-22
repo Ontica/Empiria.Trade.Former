@@ -3,7 +3,7 @@
 *  Solution  : Empiria Industries Framework                     System   : Retail Industry Components        *
 *  Namespace : Empiria.Industries.Retail.Data                   Assembly : Empiria.Industries.Retail.dll     *
 *  Type      : StoreData                                        Pattern  : Data Services Static Class        *
-*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Provides data read methods for retail store data.                                             *
 *                                                                                                            *

@@ -3,7 +3,7 @@
 *  Solution  : Empiria Extended Framework 2014                  System   : Document Management Services      *
 *  Namespace : Empiria.Products.Data                            Assembly : Empiria.Documents.dll             *
 *  Type      : ProductsData                                     Pattern  : Data Services Static Class        *
-*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Provides database read and write methods for product data management.                         *
 *                                                                                                            *
@@ -66,9 +66,11 @@ namespace Empiria.Products.Data {
     }
 
     static public ObjectList<ProductGroupRule> GetProductGroupRules(ProductGroup productGroup) {
-      DataView view = DataReader.GetDataView(DataOperation.Parse("qryPLMProductGroupRules", 1, productGroup.Id));
+      var operation = DataOperation.Parse("qryPLMProductGroupRules", 1, productGroup.Id);
 
-      ObjectList<ProductGroupRule> list = new ObjectList<ProductGroupRule>((x) => ProductGroupRule.Parse(x), view);
+      DataView view = DataReader.GetDataView(operation);
+
+      var list = new ObjectList<ProductGroupRule>((x) => ProductGroupRule.Parse(x), view);
 
       list.Sort((x, y) => x.ProductTerm.Name.CompareTo(y.ProductTerm.Name));
 
@@ -80,17 +82,17 @@ namespace Empiria.Products.Data {
     #region Internal methods
 
     static internal int WriteProduct(Product o) {
-      DataOperation dataOperation = DataOperation.Parse("writePLMProduct", o.Id, o.ObjectTypeInfo.Id,
-                        o.ProductTerm.Id, -1, -1, o.Manager.Id, o.IsService,
-                        o.IsCompound, o.IsCustomizable, o.NeedsReview,
-                        o.Manufacturer.Id, o.Brand.Id, o.OriginCountry.Id, o.Model, o.PartNumber, o.Name,
-                        o.ImageFile, o.SmallImageFile, o.SearchTags, o.Specification, o.Notes, o.Keywords,
-                        o.PresentationUnit.Id, o.ContentsQty, o.ContentsUnit.Id, (char) o.PackagingType,
-                        (char) o.IdentificationLevel, o.BarCodeID, o.RadioFrequenceID, o.LengthSize,
-                        o.WidthSize, o.HeightSize, o.SizeUnit.Id, o.Weight, o.WeightUnit.Id,
-                        o.ReviewedBy.Id, o.PostedBy.Id, o.ReplacedById, (char) o.Status,
-                        o.StartDate, o.EndDate, o.LegacyKey);
-      return DataWriter.Execute(dataOperation);
+      var operation = DataOperation.Parse("writePLMProduct", o.Id, o.ObjectTypeInfo.Id,
+                      o.ProductTerm.Id, -1, -1, o.Manager.Id, o.IsService,
+                      o.IsCompound, o.IsCustomizable, o.NeedsReview,
+                      o.Manufacturer.Id, o.Brand.Id, o.OriginCountry.Id, o.Model, o.PartNumber, o.Name,
+                      o.ImageFile, o.SmallImageFile, o.SearchTags, o.Specification, o.Notes, o.Keywords,
+                      o.PresentationUnit.Id, o.ContentsQty, o.ContentsUnit.Id, (char) o.PackagingType,
+                      (char) o.IdentificationLevel, o.BarCodeID, o.RadioFrequenceID, o.LengthSize,
+                      o.WidthSize, o.HeightSize, o.SizeUnit.Id, o.Weight, o.WeightUnit.Id,
+                      o.ReviewedBy.Id, o.PostedBy.Id, o.ReplacedById, (char) o.Status,
+                      o.StartDate, o.EndDate, o.LegacyKey);
+      return DataWriter.Execute(operation);
     }
 
     static internal int WriteProductGroup(ProductGroup o) {

@@ -2,7 +2,7 @@
 *                                                                                                            *
 *  Solution  : Empiria Business Framework                       System   : Treasury Management System        *
 *  Assembly  : Empiria.Treasury.dll                             Pattern  : Assembly Attributes File          *
-*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Empiria Treasury Management System.                                                           *
 *                                                                                                            *
@@ -15,8 +15,8 @@ using System.Runtime.InteropServices;
 *************************************************************************************************************/
 [assembly: AssemblyTitle("Empiria.Treasury")]
 [assembly: AssemblyDescription("Empiria Treasury Management System")]
-[assembly: AssemblyVersion("5.5.0328.0")]
-[assembly: AssemblyFileVersion("5.5.0328")]
+[assembly: AssemblyVersion("5.5.0725.0")]
+[assembly: AssemblyFileVersion("5.5.0725")]
 [assembly: AssemblyCompany("Ontica")]
 [assembly: AssemblyProduct("Empiria Business Framework 2014")]
 [assembly: AssemblyCopyright("(c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.")]

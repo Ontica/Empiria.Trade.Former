@@ -2,7 +2,7 @@
 *                                                                                                            *
 *  Solution  : Empiria Business Framework                       System   : Product Management                *
 *  Assembly  : Empiria.Products.dll                             Pattern  : Assembly Attributes File          *
-*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Empiria Product Management.                                                                   *
 *                                                                                                            *
@@ -15,8 +15,8 @@ using System.Runtime.InteropServices;
 *************************************************************************************************************/
 [assembly: AssemblyTitle("Empiria.Products")]
 [assembly: AssemblyDescription("Empiria Product Management")]
-[assembly: AssemblyVersion("5.5.0328.0")]
-[assembly: AssemblyFileVersion("5.5.0328")]
+[assembly: AssemblyVersion("5.5.0725.0")]
+[assembly: AssemblyFileVersion("5.5.0725")]
 [assembly: AssemblyCompany("Ontica")]
 [assembly: AssemblyProduct("Empiria Business Framework 2014")]
 [assembly: AssemblyCopyright("(c) 2009-2014. La Vía Óntica SC, Ontica LLC and contributors.")]

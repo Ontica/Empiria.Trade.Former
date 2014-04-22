@@ -3,7 +3,7 @@
 *  Solution  : Empiria Business Framework                       System   : Product Data Management           *
 *  Namespace : Empiria.Products                                 Assembly : Empiria.Products.dll              *
 *  Type      : Manufacturer                                     Pattern  : Storage Item                      *
-*  Version   : 5.5        Date: 28/Mar/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Type that represents a product manufacturer.                                                  *
 *                                                                                                            *
