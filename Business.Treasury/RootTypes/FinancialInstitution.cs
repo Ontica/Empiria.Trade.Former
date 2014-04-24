@@ -48,8 +48,8 @@ namespace Empiria.Treasury {
       return BaseObject.Parse<FinancialInstitution>(thisTypeName, itemNamedKey);
     }
 
-    static public ObjectList<FinancialInstitution> GetList() {
-      ObjectList<FinancialInstitution> list = GeneralObject.ParseList<FinancialInstitution>(thisTypeName);
+    static public FixedList<FinancialInstitution> GetList() {
+      FixedList<FinancialInstitution> list = GeneralObject.ParseList<FinancialInstitution>(thisTypeName);
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

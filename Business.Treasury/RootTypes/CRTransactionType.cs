@@ -48,8 +48,8 @@ namespace Empiria.Treasury {
       return BaseObject.Parse<CRTransactionType>(thisTypeName, itemNamedKey);
     }
 
-    static public ObjectList<CRTransactionType> GetList() {
-      ObjectList<CRTransactionType> list = GeneralObject.ParseList<CRTransactionType>(thisTypeName);
+    static public FixedList<CRTransactionType> GetList() {
+      FixedList<CRTransactionType> list = GeneralObject.ParseList<CRTransactionType>(thisTypeName);
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

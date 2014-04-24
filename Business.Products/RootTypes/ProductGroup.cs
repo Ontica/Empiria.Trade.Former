@@ -65,7 +65,7 @@ namespace Empiria.Products {
       return BaseObject.Parse<ProductGroup>(thisTypeName, dataRow);
     }
 
-    static public ObjectList<ProductGroup> GetRoots() {
+    static public FixedList<ProductGroup> GetRoots() {
       return ProductsData.GetProductGroupChilds(ProductGroup.Empty);
     }
 
@@ -220,15 +220,15 @@ namespace Empiria.Products {
       }
     }
 
-    public ObjectList<ProductGroup> GetChilds() {
+    public FixedList<ProductGroup> GetChilds() {
       return ProductsData.GetProductGroupChilds(this);
     }
 
-    public ObjectList<ProductGroupRule> GetRules() {
+    public FixedList<ProductGroupRule> GetRules() {
       return ProductsData.GetProductGroupRules(this);
     }
 
-    public ObjectList<ProductGroup> GetSiblings() {
+    public FixedList<ProductGroup> GetSiblings() {
       return ProductsData.GetProductGroupChilds(this.Parent);
     }
 

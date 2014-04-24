@@ -17,7 +17,7 @@ using Empiria.Products;
 namespace Empiria.Trade.Ordering {
 
   /// <summary>Represents a list of BaseObject instances.</summary>
-  public class SupplyOrderItemList : ObjectList<SupplyOrderItem> {
+  public class SupplyOrderItemList : FixedList<SupplyOrderItem> {
 
     #region Fields
 

@@ -44,15 +44,15 @@ namespace Empiria.Trade.Data {
       return DataReader.GetDataView(DataOperation.Parse(sql));
     }
 
-    static public ObjectList<WarehouseOrderItem> GetWarehouseOrdersItems(WarehouseOrder order) {
+    static public FixedList<WarehouseOrderItem> GetWarehouseOrdersItems(WarehouseOrder order) {
       DataOperation op = DataOperation.Parse("qrySNMWarehouseOrderItems", order.Id);
 
       DataTable table = DataReader.GetDataTable(op);
 
-      return new ObjectList<WarehouseOrderItem>((x) => WarehouseOrderItem.Parse(x), table);
+      return new FixedList<WarehouseOrderItem>((x) => WarehouseOrderItem.Parse(x), table);
     }
 
-    //static public ObjectList<ProductGroup> GetProductGroups(string keywords) {
+    //static public FixedList<ProductGroup> GetProductGroups(string keywords) {
     //  string sql = "SELECT * FROM PLMProductGroups";
 
     //  string filter = SearchExpression.ParseAndLikeWithNoiseWords("ProductGroupKeywords", keywords);
@@ -65,10 +65,10 @@ namespace Empiria.Trade.Data {
 
     //  DataView view = DataReader.GetDataView(DataOperation.Parse(sql));
 
-    //  return new ObjectList<ProductGroup>((x) => ProductGroup.Parse(x), view);
+    //  return new FixedList<ProductGroup>((x) => ProductGroup.Parse(x), view);
     //}
 
-    //static public ObjectList<ProductGroup> GetProductGroups(ProductClass productTerm) {
+    //static public FixedList<ProductGroup> GetProductGroups(ProductClass productTerm) {
     //  string sql = "SELECT * FROM PLMProductGroups INNER JOIN PLMProductGroupRules ";
     //  sql += "ON PLMProductGroups.ProductGroupId = PLMProductGroupRules.ProductGroupId ";
     //  sql += "WHERE PLMProductGroupRules.ProductTypeId = " + productTerm.Id.ToString() + " AND ";
@@ -77,19 +77,19 @@ namespace Empiria.Trade.Data {
 
     //  DataView view = DataReader.GetDataView(DataOperation.Parse(sql));
 
-    //  return new ObjectList<ProductGroup>((x) => ProductGroup.Parse(x), view);
+    //  return new FixedList<ProductGroup>((x) => ProductGroup.Parse(x), view);
     //}
 
-    //static public ObjectList<ProductGroup> GetProductGroupChilds(ProductGroup parentGroup) {
+    //static public FixedList<ProductGroup> GetProductGroupChilds(ProductGroup parentGroup) {
     //  DataView view = DataReader.GetDataView(DataOperation.Parse("qryPLMProductGroupChilds", 1, parentGroup.Id));
 
-    //  return new ObjectList<ProductGroup>((x) => ProductGroup.Parse(x), view);
+    //  return new FixedList<ProductGroup>((x) => ProductGroup.Parse(x), view);
     //}
 
-    //static public ObjectList<ProductGroupRule> GetProductGroupRules(ProductGroup productGroup) {
+    //static public FixedList<ProductGroupRule> GetProductGroupRules(ProductGroup productGroup) {
     //  DataView view = DataReader.GetDataView(DataOperation.Parse("qryPLMProductGroupRules", 1, productGroup.Id));
 
-    //  ObjectList<ProductGroupRule> list = new ObjectList<ProductGroupRule>((x) => ProductGroupRule.Parse(x), view);
+    //  FixedList<ProductGroupRule> list = new FixedList<ProductGroupRule>((x) => ProductGroupRule.Parse(x), view);
 
     //  list.Sort((x, y) => x.ProductTerm.Name.CompareTo(y.ProductTerm.Name));
 

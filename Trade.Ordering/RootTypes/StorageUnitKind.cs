@@ -41,8 +41,8 @@ namespace Empiria.Trade.Ordering {
       return BaseObject.Parse<StorageUnitKind>(thisTypeName, id);
     }
 
-    static public ObjectList<StorageUnitKind> GetList() {
-      ObjectList<StorageUnitKind> list = GeneralObject.ParseList<StorageUnitKind>(thisTypeName);
+    static public FixedList<StorageUnitKind> GetList() {
+      FixedList<StorageUnitKind> list = GeneralObject.ParseList<StorageUnitKind>(thisTypeName);
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

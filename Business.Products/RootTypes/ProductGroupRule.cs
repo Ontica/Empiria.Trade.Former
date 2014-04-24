@@ -109,7 +109,7 @@ namespace Empiria.Products {
 
     #region Public methods
 
-    public ObjectList<ProductGroup> GetProductGroups() {
+    public FixedList<ProductGroup> GetProductGroups() {
       return ProductsData.GetProductGroups(this.ProductTerm);
     }
 

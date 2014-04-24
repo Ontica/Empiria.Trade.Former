@@ -135,7 +135,7 @@ namespace Empiria.Trade.Ordering {
       }
     }
 
-    static public ObjectList<SupplyOrder> MyOrders(string filter = "", string sort = "") {
+    static public FixedList<SupplyOrder> MyOrders(string filter = "", string sort = "") {
       return SupplyOrdersData.GetMyOrders(EmpiriaUser.Current.Organization, 
                                           EmpiriaUser.Current.Contact, filter, sort);
     }

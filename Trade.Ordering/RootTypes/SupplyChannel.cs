@@ -41,8 +41,8 @@ namespace Empiria.Trade.Ordering {
       return BaseObject.Parse<SupplyChannel>(thisTypeName, id);
     }
 
-    static public ObjectList<SupplyChannel> GetList() {
-      ObjectList<SupplyChannel> list = GeneralObject.ParseList<SupplyChannel>(thisTypeName);
+    static public FixedList<SupplyChannel> GetList() {
+      FixedList<SupplyChannel> list = GeneralObject.ParseList<SupplyChannel>(thisTypeName);
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

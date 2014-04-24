@@ -50,7 +50,7 @@ namespace Empiria.Trade.Ordering {
     private DateTime postingTime = DateTime.Now;
     private GeneralActivityStatus status = GeneralActivityStatus.Inactive;
 
-    private ObjectList<WarehouseOrderItem> items = null;
+    private FixedList<WarehouseOrderItem> items = null;
 
     #endregion Fields
 
@@ -183,7 +183,7 @@ namespace Empiria.Trade.Ordering {
       set { status = value; }
     }
 
-    public ObjectList<WarehouseOrderItem> Items {
+    public FixedList<WarehouseOrderItem> Items {
       get {
         if (items == null) {
           items = WarehouseData.GetWarehouseOrdersItems(this);

@@ -112,10 +112,10 @@ namespace Empiria.Products {
       get { return BaseObject.ParseEmpty<Product>(thisTypeName); }
     }
 
-    static public ObjectList<Product> GetList(string keywords) {
+    static public FixedList<Product> GetList(string keywords) {
       DataTable table = ProductsData.GetActiveProducts(keywords, String.Empty);
 
-      return new ObjectList<Product>((x) => Product.Parse(x), table);
+      return new FixedList<Product>((x) => Product.Parse(x), table);
     }
 
     #endregion Constructors and parsers

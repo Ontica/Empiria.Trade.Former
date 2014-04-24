@@ -15,7 +15,7 @@ using System.Data;
 namespace Empiria.Treasury {
 
   /// <summary>List of CRPosting instances belonging to a cash register trasaction.</summary>
-  public class CRPostingList : ObjectList<CRPosting> {
+  public class CRPostingList : FixedList<CRPosting> {
 
     #region Fields
 

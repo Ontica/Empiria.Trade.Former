@@ -52,8 +52,8 @@ namespace Empiria.Treasury {
       return BaseObject.Parse<InstrumentType>(thisTypeName, itemNamedKey);
     }
 
-    static public ObjectList<InstrumentType> GetList() {
-      ObjectList<InstrumentType> list = GeneralObject.ParseList<InstrumentType>(thisTypeName);
+    static public FixedList<InstrumentType> GetList() {
+      FixedList<InstrumentType> list = GeneralObject.ParseList<InstrumentType>(thisTypeName);
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

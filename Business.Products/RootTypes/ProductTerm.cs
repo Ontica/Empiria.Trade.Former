@@ -44,8 +44,8 @@ namespace Empiria.Products {
       get { return BaseObject.ParseUnknown<ProductTerm>(thisTypeName); }
     }
 
-    static public ObjectList<ProductTerm> GetList() {
-      ObjectList<ProductTerm> list = GeneralObject.ParseList<ProductTerm>(thisTypeName);
+    static public FixedList<ProductTerm> GetList() {
+      FixedList<ProductTerm> list = GeneralObject.ParseList<ProductTerm>(thisTypeName);
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

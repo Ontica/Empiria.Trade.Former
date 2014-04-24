@@ -41,16 +41,16 @@ namespace Empiria.Trade.Ordering {
       return BaseObject.Parse<WarehousingOperation>(thisTypeName, id);
     }
 
-    static public ObjectList<WarehousingOperation> GetList() {
-      ObjectList<WarehousingOperation> list = GeneralObject.ParseList<WarehousingOperation>(thisTypeName);
+    static public FixedList<WarehousingOperation> GetList() {
+      FixedList<WarehousingOperation> list = GeneralObject.ParseList<WarehousingOperation>(thisTypeName);
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 
       return list;
     }
 
-    public ObjectList<WarehousingOperation> GetDocumentTypes() {
-      ObjectList<WarehousingOperation> list = this.GetLinks<WarehousingOperation>("TransactionType_DocumentType");
+    public FixedList<WarehousingOperation> GetDocumentTypes() {
+      FixedList<WarehousingOperation> list = this.GetLinks<WarehousingOperation>("TransactionType_DocumentType");
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

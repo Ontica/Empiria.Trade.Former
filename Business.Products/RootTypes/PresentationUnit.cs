@@ -45,8 +45,8 @@ namespace Empiria.Products {
       get { return BaseObject.ParseEmpty<PresentationUnit>(thisTypeName); }
     }
 
-    static public ObjectList<PresentationUnit> GetList() {
-      ObjectList<PresentationUnit> list = GeneralObject.ParseList<PresentationUnit>(thisTypeName);
+    static public FixedList<PresentationUnit> GetList() {
+      FixedList<PresentationUnit> list = GeneralObject.ParseList<PresentationUnit>(thisTypeName);
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 
@@ -57,8 +57,8 @@ namespace Empiria.Products {
 
     #region Properties
 
-    public ObjectList<Unit> GetContentsUnits() {
-      ObjectList<Unit> list = base.GetLinks<Unit>("PresentationUnit_ContentsUnits");
+    public FixedList<Unit> GetContentsUnits() {
+      FixedList<Unit> list = base.GetLinks<Unit>("PresentationUnit_ContentsUnits");
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

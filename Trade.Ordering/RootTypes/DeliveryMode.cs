@@ -41,8 +41,8 @@ namespace Empiria.Trade.Ordering {
       return BaseObject.Parse<DeliveryMode>(thisTypeName, id);
     }
 
-    static public ObjectList<DeliveryMode> GetList() {
-      ObjectList<DeliveryMode> list = GeneralObject.ParseList<DeliveryMode>(thisTypeName);
+    static public FixedList<DeliveryMode> GetList() {
+      FixedList<DeliveryMode> list = GeneralObject.ParseList<DeliveryMode>(thisTypeName);
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

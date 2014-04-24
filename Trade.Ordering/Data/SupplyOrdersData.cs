@@ -96,13 +96,13 @@ namespace Empiria.Trade.Data {
     #endregion Public methods
 
     #region Internal methods
-    internal static ObjectList<SupplyOrder> GetMyOrders(Organization org, Contact contact, string filter, string sort) {
+    internal static FixedList<SupplyOrder> GetMyOrders(Organization org, Contact contact, string filter, string sort) {
       string sql = String.Format("SELECT * FROM tabSNMMyOrders({0},{1})", org.Id, contact.Id) +
                     GeneralDataOperations.GetFilterSortSqlString(filter, sort);
       Empiria.Messaging.Publisher.Publish(sql);
       var view = DataReader.GetDataView(DataOperation.Parse(sql));
 
-      return new ObjectList<SupplyOrder>((x) => SupplyOrder.Parse(x), view);
+      return new FixedList<SupplyOrder>((x) => SupplyOrder.Parse(x), view);
     }
 
     internal static SupplyOrderItemList GetSupplyOrderItems(SupplyOrder supplyOrder) {
