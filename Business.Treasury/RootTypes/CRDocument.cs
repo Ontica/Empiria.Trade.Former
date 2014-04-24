@@ -7,7 +7,7 @@
 *                                                                                                            *
 *  Summary   : Represents a check, credit note, a prepaid slip or IOU (I Owe You) slips.                     *
 *                                                                                                            *
-********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 

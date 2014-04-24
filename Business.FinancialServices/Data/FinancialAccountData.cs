@@ -7,7 +7,7 @@
 *                                                                                                            *
 *  Summary   : Provides data methods for Financial Services Accounts.                                        *
 *                                                                                                            *
-********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2003-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 

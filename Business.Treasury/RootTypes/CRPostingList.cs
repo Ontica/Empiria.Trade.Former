@@ -7,7 +7,7 @@
 *                                                                                                            *
 *  Summary   : List of CRPosting instances belonging to a cash register trasaction.                          *
 *                                                                                                            *
-********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,35 +31,15 @@ namespace Empiria.Treasury {
       //no-op
     }
 
-    public CRPostingList(int capacity)
-      : base(capacity) {
+    public CRPostingList(int capacity) : base(capacity) {
       // no-op
     }
 
-    public CRPostingList(string name, int capacity)
-      : base(name, capacity) {
-      //no-op
-    }
-
-    public CRPostingList(List<CRPosting> list)
-      : this(list.Count) {
-      this.AddRange(list);
+    public CRPostingList(List<CRPosting> list): base(list) {
       this.CalculateTotals();
     }
 
-    public CRPostingList(System.Func<DataRow, CRPosting> parseMethod, DataView view)
-      : this(view.Count) {
-      for (int i = 0; i < view.Count; i++) {
-        this.Add(parseMethod.Invoke(view[i].Row));
-      }
-      this.CalculateTotals();
-    }
-
-    public CRPostingList(System.Func<DataRow, CRPosting> parseMethod, DataTable table)
-      : this(table.Rows.Count) {
-      for (int i = 0; i < table.Rows.Count; i++) {
-        this.Add(parseMethod.Invoke(table.Rows[i]));
-      }
+    public CRPostingList(Func<DataRow, CRPosting> parser, DataView view): base(parser, view) {
       this.CalculateTotals();
     }
 

@@ -7,7 +7,7 @@
 *                                                                                                            *
 *  Summary   : Provides data read and write methods for cash register transactions.                          *
 *                                                                                                            *
-********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 

@@ -7,7 +7,7 @@
 *                                                                                                            *
 *  Summary   : Represents the total amounts for daily activity of credit collect for a single collector.     *
 *                                                                                                            *
-********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2003-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 using Empiria.Data;

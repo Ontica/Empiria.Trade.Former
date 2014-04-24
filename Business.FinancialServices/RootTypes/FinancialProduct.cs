@@ -7,7 +7,7 @@
 *                                                                                                            *
 *  Summary   : Represents a financial product like a credit, debit or check account.                         *
 *                                                                                                            *
-********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2003-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 
 namespace Empiria.FinancialServices {
 

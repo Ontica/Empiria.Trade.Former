@@ -7,7 +7,7 @@
 *                                                                                                            *
 *  Summary   : Represents a list of BaseObject instances.                                                    *
 *                                                                                                            *
-********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,6 +30,7 @@ namespace Empiria.Trade.Ordering {
     private decimal shippingDiscount = decimal.Zero;
     private decimal shippingTaxes = decimal.Zero;
     private decimal shippingTotal = decimal.Zero;
+
     #endregion Fields
 
     #region Constructors and parsers
@@ -38,36 +39,11 @@ namespace Empiria.Trade.Ordering {
       //no-op
     }
 
-    public SupplyOrderItemList(int capacity)
-      : base(capacity) {
+    public SupplyOrderItemList(int capacity) : base(capacity) {
       // no-op
     }
 
-    public SupplyOrderItemList(string name, int capacity)
-      : base(name, capacity) {
-      //no-op
-    }
-
-
-    public SupplyOrderItemList(List<SupplyOrderItem> list)
-      : this(list.Count) {
-      this.AddRange(list);
-      this.CalculateTotals();
-    }
-
-    public SupplyOrderItemList(System.Func<DataRow, SupplyOrderItem> parseMethod, DataView view)
-      : this(view.Count) {
-      for (int i = 0; i < view.Count; i++) {
-        this.Add(parseMethod.Invoke(view[i].Row));
-      }
-      this.CalculateTotals();
-    }
-
-    public SupplyOrderItemList(System.Func<DataRow, SupplyOrderItem> parseMethod, DataTable table)
-        : this(table.Rows.Count) {
-        for (int i = 0; i < table.Rows.Count; i++) {
-          this.Add(parseMethod.Invoke(table.Rows[i]));
-        }
+    public SupplyOrderItemList(Func<DataRow, SupplyOrderItem> parser, DataView view) : base(parser, view) {
       this.CalculateTotals();
     }
 
@@ -161,6 +137,7 @@ namespace Empiria.Trade.Ordering {
         array.SetValue(base[i], i);
       }
     }
+
     public SupplyOrderItem Find(Product product) {
       return base.Find((x) => x.Product.Equals(product));
     }

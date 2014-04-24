@@ -7,7 +7,7 @@
 *                                                                                                            *
 *  Summary   : Describes an order.                                                                           *
 *                                                                                                            *
-********************************* Copyright (c) 1999-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.IO;
 using System.Runtime.InteropServices;

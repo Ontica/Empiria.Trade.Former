@@ -7,7 +7,7 @@
 *                                                                                                            *
 *  Summary   : Power type that classifies product types.                                                     *
 *                                                                                                            *
-********************************* Copyright (c) 2009-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using Empiria.Ontology;
 
 namespace Empiria.Products {
