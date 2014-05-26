@@ -197,6 +197,8 @@ namespace Empiria.Trade.Billing {
       if (fromDate.Month != toDate.Month || fromDate.Year != toDate.Year) {
         throw new TradeOrderingException(TradeOrderingException.Msg.InvalidPeriodForDailyBills, fromDate, toDate);
       }
+      DateTime dailyBillDate = toDate.AddDays(3) > DateTime.Now ? DateTime.Now : toDate;   // 72 hrs to send to stamp;
+
       DataView view = BillingData.GetBills(fromDate, toDate, "[BillType] IN ('G', 'L')");
       if (view.Count != 0) { // Global bills already generated
         Empiria.Messaging.Publisher.Publish("Global bills already generated for the selected period");
@@ -219,7 +221,7 @@ namespace Empiria.Trade.Billing {
         bill.BillType = BillType.GlobalBill;
         bill.issuedBy = supplier;
         bill.supplyOrder = SupplyOrder.Empty;
-        bill.issuedTime = toDate;
+        bill.issuedTime = dailyBillDate;   // 72 hrs to send to stamp
         bill.NotOrderData = BillNoOrderData.Parse(view);
         bill.Create();
       }
@@ -234,7 +236,7 @@ namespace Empiria.Trade.Billing {
         bill.BillType = BillType.GlobalCreditNote;
         bill.issuedBy = supplier;
         bill.supplyOrder = SupplyOrder.Empty;
-        bill.issuedTime = toDate;
+        bill.issuedTime = dailyBillDate;   // 72 hrs to send to stamp
         bill.NotOrderData = BillNoOrderData.Parse(view);
         bill.Create();
       }
@@ -250,7 +252,7 @@ namespace Empiria.Trade.Billing {
         bill.BillType = BillType.GlobalCreditNote;
         bill.issuedBy = supplier;
         bill.supplyOrder = SupplyOrder.Empty;
-        bill.issuedTime = toDate;
+        bill.issuedTime = dailyBillDate;   // 72 hrs to send to stamp
         bill.NotOrderData = BillNoOrderData.Parse(view);
         bill.Create();
       }
