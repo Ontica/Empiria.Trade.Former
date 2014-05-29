@@ -72,7 +72,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\..\empiria.assemblies\</OutputPath>
+    <OutputPath>..\..\..\empiria.assemblies\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -97,6 +97,30 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Empiria.Data">
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Foundation">
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Kernel">
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Messaging, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Presentation, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Presentation.Web, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Presentation.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Products">
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Products.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -110,33 +134,6 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <ProjectReference Include="..\Business.Products\Empiria.Products.csproj">
-      <Project>{21365AA8-67F7-4418-8EA1-C7FC0D5EEA47}</Project>
-      <Name>Empiria.Products</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Foundation\Empiria.Foundation.csproj">
-      <Name>Empiria.Foundation</Name>
-      <Project>{73EA993B-576B-4A5B-ACC5-117DAD0254EE}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
-    <ProjectReference Include="..\..\empiria\Data\Empiria.Data.csproj">
-      <Name>Empiria.Data</Name>
-      <Project>{20C01648-86CC-4E9E-AD71-BA7AA8E44DBC}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
-    <ProjectReference Include="..\..\empiria\Kernel\Empiria.Kernel.csproj">
-      <Name>Empiria.Kernel</Name>
-      <Project>{F518E007-2B16-4804-BA45-695EA098E1C0}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
-    <ProjectReference Include="..\Presentation.Web\Empiria.Presentation.Web.csproj">
-      <Project>{0AEEA12E-B4F7-4E12-A768-99BB82BD3FC9}</Project>
-      <Name>Empiria.Presentation.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Presentation\Empiria.Presentation.csproj">
-      <Project>{2790AD3E-0AE4-4C94-83BA-96BC53185B19}</Project>
-      <Name>Empiria.Presentation</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\StoreData.cs" />
@@ -178,10 +175,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="empiria.strong.name.public.key.snk" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

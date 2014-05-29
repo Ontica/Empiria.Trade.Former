@@ -97,10 +97,22 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Geography\Empiria.Geography.csproj">
-      <Project>{96267945-DBE1-4B2C-88E2-0ECDC5CA7669}</Project>
-      <Name>Empiria.Geography</Name>
-    </ProjectReference>
+    <Reference Include="Empiria.Data, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Foundation, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Geography, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Geography.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Kernel, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Kernel.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -113,20 +125,6 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <ProjectReference Include="..\..\empiria\Data\Empiria.Data.csproj">
-      <Name>Empiria.Data</Name>
-      <Project>{20C01648-86CC-4E9E-AD71-BA7AA8E44DBC}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
-    <ProjectReference Include="..\..\empiria\Kernel\Empiria.Kernel.csproj">
-      <Name>Empiria.Kernel</Name>
-      <Project>{F518E007-2B16-4804-BA45-695EA098E1C0}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
-    <ProjectReference Include="..\Foundation\Empiria.Foundation.csproj">
-      <Project>{73EA993B-576B-4A5B-ACC5-117DAD0254EE}</Project>
-      <Name>Empiria.Foundation</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\ProductsData.cs" />
@@ -152,9 +150,6 @@
     <Compile Include="RootTypes\PresentationUnit.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="empiria.strong.name.public.key.snk" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="RootTypes\ProductManagementExceptionMsg.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -178,6 +173,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="empiria.strong.name.public.key.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

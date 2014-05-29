@@ -12,7 +12,8 @@
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>Empiria.Trade.Ordering</AssemblyName>
-    <AssemblyOriginatorKeyFile>empiria.strong.name.public.key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -97,9 +98,45 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Empiria.Messaging, Version=5.0.328.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+    <Reference Include="Empiria.Customers.Pineda, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\empiria.assemblies\Empiria.Messaging.dll</HintPath>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Customers.Pineda.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Data, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Data.Convertion, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Data.Convertion.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Documents, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Documents.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.FinancialServices, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.FinancialServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Foundation, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Kernel, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Messaging, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Products, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Products.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Treasury, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Treasury.dll</HintPath>
     </Reference>
     <Reference Include="PDFTechLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -117,44 +154,6 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <ProjectReference Include="..\..\empiria.custom\Pineda\Empiria.Customers.Pineda\Empiria.Customers.Pineda.csproj">
-      <Project>{41E9E90E-8F71-4B39-B478-56C0D1D71057}</Project>
-      <Name>Empiria.Customers.Pineda</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\empiria\Data\Empiria.Data.csproj">
-      <Name>Empiria.Data</Name>
-      <Project>{20C01648-86CC-4E9E-AD71-BA7AA8E44DBC}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
-    <ProjectReference Include="..\..\empiria\Kernel\Empiria.Kernel.csproj">
-      <Name>Empiria.Kernel</Name>
-      <Project>{F518E007-2B16-4804-BA45-695EA098E1C0}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
-    <ProjectReference Include="..\Business.FinancialServices\Empiria.FinancialServices.csproj">
-      <Project>{4DC06D3E-7442-40F0-9B3A-A87EC3A6CEBB}</Project>
-      <Name>Empiria.FinancialServices</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Business.Products\Empiria.Products.csproj">
-      <Project>{21365AA8-67F7-4418-8EA1-C7FC0D5EEA47}</Project>
-      <Name>Empiria.Products</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Business.Treasury\Empiria.Treasury.csproj">
-      <Project>{B98B6E7E-FD01-4D54-85AF-98FB8BB5F80B}</Project>
-      <Name>Empiria.Treasury</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Data.Converter\Empiria.Data.Convertion.csproj">
-      <Project>{72057702-C138-444B-8074-FBF7215A3D3A}</Project>
-      <Name>Empiria.Data.Convertion</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Documents\Empiria.Documents.csproj">
-      <Project>{2BD53D27-BD61-49FE-AFE1-D68E21F58E9A}</Project>
-      <Name>Empiria.Documents</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Foundation\Empiria.Foundation.csproj">
-      <Project>{73EA993B-576B-4A5B-ACC5-117DAD0254EE}</Project>
-      <Name>Empiria.Foundation</Name>
-    </ProjectReference>
     <Reference Include="WSConecFM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\empiria.assemblies\WSConecFM.dll</HintPath>
@@ -203,9 +202,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="empiria.strong.name.public.key.snk" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

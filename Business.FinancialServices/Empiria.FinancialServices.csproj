@@ -50,7 +50,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\empiria.assemblies\</OutputPath>
+    <OutputPath>..\..\..\empiria.assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -59,6 +59,34 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Empiria.Data, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Data.Convertion, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Data.Convertion.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Documents, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Documents.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Foundation, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Kernel, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Messaging, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Treasury, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\empiria.assemblies\Empiria.Treasury.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -91,35 +119,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\empiria.custom\Pineda\Empiria.Customers.Pineda\Empiria.Customers.Pineda.csproj">
-      <Project>{41E9E90E-8F71-4B39-B478-56C0D1D71057}</Project>
-      <Name>Empiria.Customers.Pineda</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Business.Treasury\Empiria.Treasury.csproj">
-      <Project>{B98B6E7E-FD01-4D54-85AF-98FB8BB5F80B}</Project>
-      <Name>Empiria.Treasury</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Data\Empiria.Data.csproj">
-      <Project>{20C01648-86CC-4E9E-AD71-BA7AA8E44DBC}</Project>
-      <Name>Empiria.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Foundation\Empiria.Foundation.csproj">
-      <Project>{73EA993B-576B-4A5B-ACC5-117DAD0254EE}</Project>
-      <Name>Empiria.Foundation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Kernel\Empiria.Kernel.csproj">
-      <Project>{F518E007-2B16-4804-BA45-695EA098E1C0}</Project>
-      <Name>Empiria.Kernel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Messaging\Empiria.Messaging.csproj">
-      <Project>{C653959D-E6F2-40C6-BF0D-A05BED14DF17}</Project>
-      <Name>Empiria.Messaging</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="empiria.strong.name.public.key.snk" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +137,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="empiria.strong.name.public.key.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
