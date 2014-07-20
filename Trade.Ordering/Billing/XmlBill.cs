@@ -305,7 +305,7 @@ namespace Empiria.Trade.Billing {
       return fileContents;
     }
 
-    private static Tuple<decimal, decimal> GetXmlFileBillTotals(string xmlData) {
+    static private Tuple<decimal, decimal> GetXmlFileBillTotals(string xmlData) {
       decimal total = 0m;
       decimal taxes = 0m;
 

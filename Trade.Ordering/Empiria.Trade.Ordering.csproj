@@ -126,18 +126,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\empiria.assemblies\Empiria.Kernel.dll</HintPath>
     </Reference>
-    <Reference Include="Empiria.Messaging, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\Empiria.Messaging.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Products, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\Empiria.Products.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Treasury, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\Empiria.Treasury.dll</HintPath>
-    </Reference>
     <Reference Include="PDFTechLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\empiria.assemblies\PDFTechLib.dll</HintPath>
@@ -208,6 +196,20 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="RootTypes\TradeOrderingExceptionMsg.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\Messaging\Empiria.Messaging.csproj">
+      <Project>{c653959d-e6f2-40c6-bf0d-a05bed14df17}</Project>
+      <Name>Empiria.Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Business.Products\Empiria.Products.csproj">
+      <Project>{21365aa8-67f7-4418-8ea1-c7fc0d5eea47}</Project>
+      <Name>Empiria.Products</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Business.Treasury\Empiria.Treasury.csproj">
+      <Project>{b98b6e7e-fd01-4d54-85af-98fb8bb5f80b}</Project>
+      <Name>Empiria.Treasury</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

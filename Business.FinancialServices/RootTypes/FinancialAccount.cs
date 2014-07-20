@@ -24,11 +24,11 @@ namespace Empiria.FinancialServices {
 
     #region Fields
 
-    public static readonly string HtmlFilesFolder = ConfigurationData.GetString("HtmlFilesFolder");
-    public static readonly string PDFFilesFolder = ConfigurationData.GetString("PDFFilesFolder");
-    public static readonly string UrlHtmlFilesFolder = ConfigurationData.GetString("UrlHtmlFilesFolder");
-    public static readonly bool SendFilesOnlyToDefaultEmail = ConfigurationData.GetBoolean("SendFilesOnlyToDefaultEmail");
-    public static readonly bool UseBalanceCalculation = ConfigurationData.GetBoolean("UsesBalancesCalculation");
+    static public readonly string HtmlFilesFolder = ConfigurationData.GetString("HtmlFilesFolder");
+    static public readonly string PDFFilesFolder = ConfigurationData.GetString("PDFFilesFolder");
+    static public readonly string UrlHtmlFilesFolder = ConfigurationData.GetString("UrlHtmlFilesFolder");
+    static public readonly bool SendFilesOnlyToDefaultEmail = ConfigurationData.GetBoolean("SendFilesOnlyToDefaultEmail");
+    static public readonly bool UseBalanceCalculation = ConfigurationData.GetBoolean("UsesBalancesCalculation");
 
     private const string thisTypeName = "ObjectType.FinancialServicesAccount";
     private FinancialProduct financialProduct = FinancialProduct.Default;

@@ -114,7 +114,7 @@ namespace Empiria.FinancialServices {
     }
 
     public void Save() {
-      if (Id == 0) {
+      if (this.Id == 0) {
         this.Id = CollectData.GetNextCollectTotalId();
       }
       CollectData.WriteCollectTotal(this);

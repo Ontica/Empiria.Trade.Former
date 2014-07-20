@@ -23,7 +23,7 @@ namespace Empiria.Trade.Ordering {
 
     #region Fields
 
-    private static readonly bool LegacyAppInstalled = ConfigurationData.GetBoolean("LegacyAppInstalled");
+    static private readonly bool LegacyAppInstalled = ConfigurationData.GetBoolean("LegacyAppInstalled");
 
     private const string thisTypeName = "ObjectType.Trade.Order.WarehouseOrder";
     private const string newOrderNumber = "Nueva orden";
@@ -303,7 +303,8 @@ namespace Empiria.Trade.Ordering {
     }
 
     protected override void ImplementsSave() {
-      this.keywords = EmpiriaString.BuildKeywords(this.number, this.concept, this.operation.Name, this.storageUnit.FullCode, this.storageUnit.Description);
+      this.keywords = EmpiriaString.BuildKeywords(number, concept, operation.Name, 
+                                                  storageUnit.FullCode, storageUnit.Description);
       WarehouseData.WriteWarehouseOrder(this);
       this.Reset();
     }

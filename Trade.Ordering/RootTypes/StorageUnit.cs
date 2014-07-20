@@ -347,8 +347,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     protected override void ImplementsSave() {
-      //bool isnew = this.postedBy.IsEmpty;
-      //if (isnew) {
+      //if (this.IsNew) {
       //  this.key = TransactionData.GenerateTransactionKey();
       //  this.postingTime = DateTime.Now;
       //  this.postedBy = Contact.Parse(ExecutionServer.CurrentUserId);
@@ -360,7 +359,7 @@ namespace Empiria.Trade.Ordering {
 
       //TransactionData.WriteTransaction(this);
 
-      //if (isnew) {
+      //if (this.IsNew) {
       //  LRSTransactionTrack track = new LRSTransactionTrack(this);
       //  track.From = Contact.Parse(ExecutionServer.CurrentUserId);
       //  track.To = Person.Empty;

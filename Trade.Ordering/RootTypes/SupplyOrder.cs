@@ -41,7 +41,7 @@ namespace Empiria.Trade.Ordering {
 
     #region Fields
 
-    private static readonly bool LegacyAppInstalled = ConfigurationData.GetBoolean("LegacyAppInstalled");
+    static private readonly bool LegacyAppInstalled = ConfigurationData.GetBoolean("LegacyAppInstalled");
 
     static public string TicketPrinterName = ConfigurationData.GetString("Ticket.PrinterName");
     static public string TicketDefaultFontName = ConfigurationData.GetString("Ticket.DefaultFontName");
@@ -120,7 +120,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public SupplyOrder CreateOrder() {
-      EmpiriaUser.Current.Settings.SetValue<int>(myCurrentOrderUserSetting, -1);
+      EmpiriaUser.Current.Settings.SetValue<int>(myCurrentOrderUserSetting, -1);  
       
       return new SupplyOrder();
     }
@@ -578,11 +578,11 @@ namespace Empiria.Trade.Ordering {
       PrepareForSave();
       SupplyOrdersData.WriteSupplyOrder(this);
       this.Reset();
-      EmpiriaUser.Current.Settings.SetValue<int>(myCurrentOrderUserSetting, this.Id);
+      EmpiriaUser.Current.Settings.SetValue<int>(myCurrentOrderUserSetting, this.Id);  //OOJJOO
     }
 
     internal void PrepareForSave() {
-      if (this.PostedBy.IsEmptyInstance) {      // IsNew
+      if (this.IsNew) {      // IsNew
         this.postingTime = DateTime.Now;
         this.postedBy = EmpiriaUser.Current.Contact;
         this.number = SupplyOrdersData.GenerateOrderNumber();
@@ -591,11 +591,7 @@ namespace Empiria.Trade.Ordering {
           this.CustomerContact = (Person) EmpiriaUser.Current.Contact;
         }
       }
-      //if (String.IsNullOrWhiteSpace(this.documentKey)) {
-      //  
-      //}
       this.keywords = EmpiriaString.BuildKeywords(this.number, this.concept, this.customer.Keywords);
-
     }
 
     #endregion Public methods

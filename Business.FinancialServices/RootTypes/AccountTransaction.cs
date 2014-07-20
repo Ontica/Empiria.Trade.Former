@@ -266,7 +266,7 @@ namespace Empiria.FinancialServices {
     }
 
     protected override void ImplementsSave() {
-      if (this.PostedBy.IsEmptyInstance) {
+      if (this.IsNew) {
         this.PostedBy = Contact.Parse(ExecutionServer.CurrentUserId);
       }
       AccountTransactionData.WriteAccountTransaction(this);

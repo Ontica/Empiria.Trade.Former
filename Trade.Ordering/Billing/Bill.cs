@@ -46,7 +46,7 @@ namespace Empiria.Trade.Billing {
     internal string TicketNumbers = String.Empty;
     internal string PaymentCondition = "No identificado";
 
-    internal static BillNoOrderData Parse(DataView view) {
+    static internal BillNoOrderData Parse(DataView view) {
       BillNoOrderData o = new BillNoOrderData();
       for (int i = 0; i < view.Count; i++) {
         o.Total += (decimal) view[i]["SupplyOrderTotal"];
@@ -65,11 +65,11 @@ namespace Empiria.Trade.Billing {
 
     #region Fields
     
-    private static readonly string BillCertificatesFolder = ConfigurationData.GetString("BillCertificatesFolder");
-    public static readonly string BillHtmlFilesFolder = ConfigurationData.GetString("BillHtmlFilesFolder");
-    public static readonly string BillPDFFilesFolder = ConfigurationData.GetString("BillPDFFilesFolder");
-    public static readonly string BillUrlHtmlFilesFolder = ConfigurationData.GetString("BillUrlHtmlFilesFolder");
-    public static readonly bool SendBillOnlyToDefaultEmail = ConfigurationData.GetBoolean("SendBillOnlyToDefaultEmail");
+    static private readonly string BillCertificatesFolder = ConfigurationData.GetString("BillCertificatesFolder");
+    static public readonly string BillHtmlFilesFolder = ConfigurationData.GetString("BillHtmlFilesFolder");
+    static public readonly string BillPDFFilesFolder = ConfigurationData.GetString("BillPDFFilesFolder");
+    static public readonly string BillUrlHtmlFilesFolder = ConfigurationData.GetString("BillUrlHtmlFilesFolder");
+    static public readonly bool SendBillOnlyToDefaultEmail = ConfigurationData.GetBoolean("SendBillOnlyToDefaultEmail");
 
     private const string thisTypeName = "ObjectType.Bill";
 
@@ -197,7 +197,7 @@ namespace Empiria.Trade.Billing {
       if (fromDate.Month != toDate.Month || fromDate.Year != toDate.Year) {
         throw new TradeOrderingException(TradeOrderingException.Msg.InvalidPeriodForDailyBills, fromDate, toDate);
       }
-      DateTime dailyBillDate = toDate.AddDays(3) > DateTime.Now ? DateTime.Now : toDate;   // 72 hrs to send to stamp;
+      DateTime dailyBillDate = toDate.AddDays(3) > DateTime.Now ? toDate : DateTime.Now;   // 72 hrs to send to stamp;
 
       DataView view = BillingData.GetBills(fromDate, toDate, "[BillType] IN ('G', 'L')");
       if (view.Count != 0) { // Global bills already generated
@@ -592,7 +592,7 @@ namespace Empiria.Trade.Billing {
     }
 
     protected override void ImplementsSave() {
-      if (String.IsNullOrWhiteSpace(this.number)) {
+      if (this.IsNew) {
         this.number = this.Id.ToString();
         this.DigitalString = this.CreateDigitalString();
         this.digitalSign = this.CreateDigitalSign();

@@ -96,7 +96,7 @@ namespace Empiria.Trade.Data {
     #endregion Public methods
 
     #region Internal methods
-    internal static FixedList<SupplyOrder> GetMyOrders(Organization org, Contact contact, string filter, string sort) {
+    static internal FixedList<SupplyOrder> GetMyOrders(Organization org, Contact contact, string filter, string sort) {
       string sql = String.Format("SELECT * FROM tabSNMMyOrders({0},{1})", org.Id, contact.Id) +
                     GeneralDataOperations.GetFilterSortSqlString(filter, sort);
       Empiria.Messaging.Publisher.Publish(sql);
@@ -105,7 +105,7 @@ namespace Empiria.Trade.Data {
       return new FixedList<SupplyOrder>((x) => SupplyOrder.Parse(x), view);
     }
 
-    internal static SupplyOrderItemList GetSupplyOrderItems(SupplyOrder supplyOrder) {
+    static internal SupplyOrderItemList GetSupplyOrderItems(SupplyOrder supplyOrder) {
       string sql = "SELECT * FROM SNMSupplyOrderItems WHERE SupplyOrderId = " + supplyOrder.Id;
       DataView view = DataReader.GetDataView(DataOperation.Parse(sql));
 

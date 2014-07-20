@@ -73,7 +73,7 @@ namespace Empiria.Treasury.Data {
       return DataOperation.Parse("doTMSCancelTransaction", transaction.Id, userId, cancelationTime, "X");
     }
 
-    internal static CRPostingList GetCRTransactionPostings(CRTransaction transaction) {
+    static internal CRPostingList GetCRTransactionPostings(CRTransaction transaction) {
       DataOperation dataOperation = DataOperation.Parse("qryTMSCRTransactionPostings", transaction.Id);
 
       DataView view = DataReader.GetDataView(dataOperation);

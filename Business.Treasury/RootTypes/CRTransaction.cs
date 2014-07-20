@@ -334,34 +334,6 @@ namespace Empiria.Treasury {
       this.Save();
     }
 
-    //public void Save(DataWriterContext context) {
-    //  if (postings.Count == 0) {
-    //    throw new NotImplementedException();
-    //  }
-    //  if (Id == 0) {
-    //    this.Id = CRTransactionData.GetNextCRTransactionId();
-    //  }
-    //  context.Add(CRTransactionData.WriteTransaction(this));
-    //  for (int i = 0; i < postings.Count; i++) {
-    //    context.Add(postings[i].SaveOperations());
-    //  }
-    //}
-
-    //public DataOperationList SaveOperations() {
-    //  if (postings.Count == 0) {
-    //    throw new NotImplementedException();
-    //  }
-    //  DataOperationList operations = new DataOperationList("SaveTMSCRTransaction");
-
-    //  operations.Add(CRTransactionData.WriteTransaction(this));
-
-    //  for (int i = 0; i < postings.Count; i++) {
-    //    operations.Add(postings[i].SaveOperations());
-    //  }
-
-    //  return operations;
-    //}
-
   } // class CRTransaction
 
 } // namespace Empiria.Treasury
