@@ -3,7 +3,7 @@
 *  Solution  : Empiria Trade                                    System   : Ordering System                   *
 *  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : StorageUnit                                      Pattern  : Empiria Object Type               *
-*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Describes a warehouse storage unit.                                                           *
 *                                                                                                            *
@@ -347,28 +347,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     protected override void ImplementsSave() {
-      //if (this.IsNew) {
-      //  this.key = TransactionData.GenerateTransactionKey();
-      //  this.postingTime = DateTime.Now;
-      //  this.postedBy = Contact.Parse(ExecutionServer.CurrentUserId);
-      //}
-      //this.keywords = EmpiriaString.BuildKeywords(this.Key, this.ReceiptNumber, this.DocumentNumber, this.ReturnDocumentNumber, 
-      //                                            this.RequestedBy, this.Gestor.FullName, this.receiptTotal.ToString("N2"), this.requestNotes, 
-      //                                            this.TransactionType.Name, this.RecorderOffice.Alias, this.PropertyDescription, 
-      //                                            this.OfficeNotes);
 
-      //TransactionData.WriteTransaction(this);
-
-      //if (this.IsNew) {
-      //  LRSTransactionTrack track = new LRSTransactionTrack(this);
-      //  track.From = Contact.Parse(ExecutionServer.CurrentUserId);
-      //  track.To = Person.Empty;
-      //  track.Notes =  this.OfficeNotes;
-      //  track.OperationTask = "Calificación y creación del trámite";
-      //  track.Status = TrackStatus.Pending;
-
-      //  track.Save();
-      //}
     }
 
     #endregion Public methods

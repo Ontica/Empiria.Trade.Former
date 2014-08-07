@@ -3,7 +3,7 @@
 *  Solution  : Empiria Business Framework                       System   : Treasury Management System        *
 *  Namespace : Empiria.Treasury                                 Assembly : Empiria.Treasury.dll              *
 *  Type      : CRTransaction                                    Pattern  : Standard Class                    *
-*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Represents a Cash Register Transaction.                                                       *
 *                                                                                                            *

@@ -3,7 +3,7 @@
 *  Solution  : Empiria Industries Framework                     System   : Retail Industry Components        *
 *  Namespace : Empiria.Industries.Retail.Presentation           Assembly : Empiria.Industries.Retail.dll     *
 *  Type      : WebStoreGlobal                                   Pattern  : Global ASP .NET Class             *
-*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Global.asax page class handler used in Web Store solutions.                                   *
 *                                                                                                            *

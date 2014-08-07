@@ -3,7 +3,7 @@
 *  Solution  : Empiria Trade                                    System   : Ordering System                   *
 *  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : WarehouseOrderItem                               Pattern  : Empiria Object Type               *
-*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Represents a warehouse product order item in the Supply Management System.                    *
 *                                                                                                            *

@@ -3,7 +3,7 @@
 *  Solution  : Empiria Business Framework                       System   : Product Data Management           *
 *  Namespace : Empiria.Products                                 Assembly : Empiria.Products.dll              *
 *  Type      : ProductCategory                                  Pattern  : Storage Item                      *
-*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Represents a category of products used for product multiple classification or grouping.       *
 *                                                                                                            *

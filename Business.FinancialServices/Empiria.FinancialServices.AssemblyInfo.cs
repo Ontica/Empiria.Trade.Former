@@ -2,7 +2,7 @@
 *                                                                                                            *
 *  Solution  : Empiria Business Framework                       System   : Financial Services Management     *
 *  Assembly  : Empiria.FinancialServices.dll                    Pattern  : Assembly Attributes File          *
-*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Empiria Financial Services Management.                                                        *
 *                                                                                                            *
@@ -15,8 +15,8 @@ using System.Runtime.InteropServices;
 *************************************************************************************************************/
 [assembly: AssemblyTitle("Empiria.FinancialServices")]
 [assembly: AssemblyDescription("Empiria Financial Services Management")]
-[assembly: AssemblyVersion("5.5.0725.0")]
-[assembly: AssemblyFileVersion("5.5.0725")]
+[assembly: AssemblyVersion("6.0.2310.0")]
+[assembly: AssemblyFileVersion("6.0.2310")]
 [assembly: AssemblyCompany("Ontica")]
 [assembly: AssemblyProduct("Empiria Business Framework 2014")]
 [assembly: AssemblyCopyright("(c) 2003-2014. La Vía Óntica SC, Ontica LLC and contributors.")]

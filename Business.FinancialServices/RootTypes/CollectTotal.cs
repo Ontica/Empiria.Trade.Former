@@ -3,7 +3,7 @@
 *  Solution  : Empiria Business Framework                       System   : Financial Services Management     *
 *  Namespace : Empiria.FinancialServices                        Assembly : Empiria.FinancialServices.dll     *
 *  Type      : CollectTotal                                     Pattern  : Business Services Class           *
-*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Represents the total amounts for daily activity of credit collect for a single collector.     *
 *                                                                                                            *

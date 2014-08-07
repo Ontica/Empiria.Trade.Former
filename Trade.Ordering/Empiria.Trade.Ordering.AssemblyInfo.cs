@@ -2,7 +2,7 @@
 *                                                                                                            *
 *  Solution  : Empiria Trade                                    System   : Ordering System                   *
 *  Assembly  : Empiria.Trade.Ordering.dll                       Pattern  : Assembly Attributes File          *
-*  Version   : 5.5        Date: 25/Jun/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
 *  Summary   : Empiria Trade Ordering System.                                                                *
 *                                                                                                            *
@@ -15,8 +15,8 @@ using System.Runtime.InteropServices;
 *************************************************************************************************************/
 [assembly: AssemblyTitle("Empiria.Trade.Ordering")]
 [assembly: AssemblyDescription("Empiria Trade Ordering System")]
-[assembly: AssemblyVersion("5.5.0725.0")]
-[assembly: AssemblyFileVersion("5.5.0725")]
+[assembly: AssemblyVersion("6.0.2310.0")]
+[assembly: AssemblyFileVersion("6.0.2310")]
 [assembly: AssemblyCompany("Ontica")]
 [assembly: AssemblyProduct("Empiria Trade 2014")]
 [assembly: AssemblyCopyright("(c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.")]
