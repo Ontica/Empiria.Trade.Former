@@ -97,22 +97,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Empiria.Data, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\Empiria.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Foundation, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\Empiria.Foundation.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Geography, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\Empiria.Geography.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Kernel, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\Empiria.Kernel.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -176,6 +160,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="empiria.strong.name.public.key.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\Data\Empiria.Data.csproj">
+      <Project>{20c01648-86cc-4e9e-ad71-ba7aa8e44dbc}</Project>
+      <Name>Empiria.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\core\Foundation\Empiria.Foundation.csproj">
+      <Project>{73ea993b-576b-4a5b-acc5-117dad0254ee}</Project>
+      <Name>Empiria.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\core\Kernel\Empiria.Kernel.csproj">
+      <Project>{f518e007-2b16-4804-ba45-695ea098e1c0}</Project>
+      <Name>Empiria.Kernel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\extended\Geography\Empiria.Geography.csproj">
+      <Project>{96267945-dbe1-4b2c-88e2-0ecdc5ca7669}</Project>
+      <Name>Empiria.Geography</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -36,8 +36,8 @@ namespace Empiria.Treasury {
     }
 
     static internal CashRegister Parse(Organization organization, Contact cashier) {
-      Assertion.RequireObject(organization, "organization");
-      Assertion.RequireObject(cashier, "cashier");
+      Assertion.AssertObject(organization, "organization");
+      Assertion.AssertObject(cashier, "cashier");
 
       return new CashRegister(organization, cashier);
     }
