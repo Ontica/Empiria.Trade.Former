@@ -8,6 +8,7 @@
 *  Summary   : Represents a cash register transaction or operation type.                                     *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+using System;
 
 namespace Empiria.Treasury {
 
@@ -60,7 +61,7 @@ namespace Empiria.Treasury {
 
     #region Properties
 
-    public new string NamedKey {
+    public string UniqueCode {
       get { return base.NamedKey; }
     }
 

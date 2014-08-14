@@ -53,7 +53,7 @@ namespace Empiria.Treasury {
       this.instrumentId = -1;
       this.document = document;
       this.instrumentAmount = amount;
-      if (this.transaction.TransactionType.NamedKey.StartsWith("Input.")) {
+      if (this.transaction.TransactionType.UniqueCode.StartsWith("Input.")) {
         this.inputAmount = amount;
       } else {
         this.outputAmount = amount;
@@ -67,7 +67,7 @@ namespace Empiria.Treasury {
       this.instrumentType = instrumentType;
       this.instrumentId = account.Id;
       this.instrumentAmount = amount;
-      if (this.transaction.TransactionType.NamedKey.StartsWith("Input.")) {
+      if (this.transaction.TransactionType.UniqueCode.StartsWith("Input.")) {
         this.inputAmount = amount;
       } else {
         this.outputAmount = amount;

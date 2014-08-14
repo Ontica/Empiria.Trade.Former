@@ -61,7 +61,7 @@ namespace Empiria.Trade.Ordering {
       get { return (base.NamedKey == "E"); }
     }
 
-    public new string NamedKey {
+    public string UniqueCode {
       get { return base.NamedKey; }
     }
 

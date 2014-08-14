@@ -8,6 +8,7 @@
 *  Summary   : Describes a product brand.                                                                    *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+using System;
 
 namespace Empiria.Products {
 
@@ -60,7 +61,7 @@ namespace Empiria.Products {
       get { return int.Parse(base.Description); }
     }
 
-    public new string NamedKey {
+    public string UniqueCode {
       get { return base.NamedKey; }
     }
 

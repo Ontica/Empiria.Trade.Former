@@ -8,6 +8,7 @@
 *  Summary   : Represents a financial account concept.                                                       *
 *                                                                                                            *
 ********************************* Copyright (c) 2003-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+using System;
 
 namespace Empiria.FinancialServices {
 
@@ -64,7 +65,7 @@ namespace Empiria.FinancialServices {
       get { return (base.NamedKey.StartsWith("FSD") || base.NamedKey.StartsWith("FSP")); }
     }
 
-    public new string NamedKey {
+    public string UniqueCode {
       get { return base.NamedKey; }
     }
 

@@ -8,6 +8,7 @@
 *  Summary   : Represents an financial instrument type.                                                      *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+using System;
 
 namespace Empiria.Treasury {
 
@@ -64,12 +65,12 @@ namespace Empiria.Treasury {
 
     #region Properties
 
-    public new string NamedKey {
-      get { return base.NamedKey; }
-    }
-
     public string TaxFormName {
       get { return base.Description; }
+    }
+
+    public string UniqueCode {
+      get { return base.NamedKey; }
     }
 
     #endregion Properties
