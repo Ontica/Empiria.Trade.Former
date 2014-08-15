@@ -534,7 +534,7 @@ namespace Empiria.Trade.Ordering {
       engine.Execute(sqlArray);
     }
 
-    protected override void ImplementsLoadObjectData(DataRow row) {
+    protected override void OnLoadObjectData(DataRow row) {
       this.number = (string) row["SupplierOrderNumber"];
       this.customerOrderNumber = (string) row["CustomerOrderNumber"];
       this.dutyEntryTag = (string) row["OrderDutyEntryTag"];
@@ -574,7 +574,7 @@ namespace Empiria.Trade.Ordering {
       }
     }
 
-    protected override void ImplementsSave() {
+    protected override void OnSave() {
       PrepareForSave();
       SupplyOrdersData.WriteSupplyOrder(this);
       this.Reset();

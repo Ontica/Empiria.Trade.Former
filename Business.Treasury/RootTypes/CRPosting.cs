@@ -138,7 +138,7 @@ namespace Empiria.Treasury {
       return this.Document;
     }
 
-    protected override void ImplementsLoadObjectData(DataRow row) {
+    protected override void OnLoadObjectData(DataRow row) {
       this.transaction = CRTransaction.Parse((int) row["TransactionId"]);
       this.instrumentType = InstrumentType.Parse((int) row["InstrumentTypeId"]);
       this.instrumentId = (int) row["InstrumentId"];
@@ -150,7 +150,7 @@ namespace Empiria.Treasury {
       this.status = (TreasuryItemStatus) Convert.ToChar(row["PostingStatus"]);
     }
 
-    protected override void ImplementsSave() {
+    protected override void OnSave() {
       if (!document.IsEmptyInstance) {
         document.Save();
       }

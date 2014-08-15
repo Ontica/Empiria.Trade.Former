@@ -254,7 +254,7 @@ namespace Empiria.Trade.Ordering {
 
     #region Public methods
 
-    protected override void ImplementsLoadObjectData(DataRow row) {
+    protected override void OnLoadObjectData(DataRow row) {
       this.order = WarehouseOrder.Parse((int) row["WarehouseOrderId"]);
       this.orderItemTypeId = (int) row["WarehouseOrderItemTypeId"];
       this.concept = (string) row["WarehouseOrderItemConcept"];
@@ -287,7 +287,7 @@ namespace Empiria.Trade.Ordering {
       this.status = (GeneralObjectStatus) Convert.ToChar(row["WarehouseOrderItemStatus"]);
     }
 
-    protected override void ImplementsSave() {
+    protected override void OnSave() {
       postedBy = Contact.Parse(ExecutionServer.CurrentUserId);
       postingTime = DateTime.Now;
 

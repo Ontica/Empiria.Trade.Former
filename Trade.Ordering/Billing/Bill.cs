@@ -566,7 +566,7 @@ namespace Empiria.Trade.Billing {
       get { return stamp; }
     }
 
-    protected override void ImplementsLoadObjectData(DataRow row) {
+    protected override void OnLoadObjectData(DataRow row) {
       this.billType = (BillType) Convert.ToChar(row["BillType"]);
       this.supplyOrderId = (int) row["OrderId"];
       this.issuedBy = Contact.Parse((int) row["IssuedById"]);
@@ -591,7 +591,7 @@ namespace Empiria.Trade.Billing {
       this.status = (BillStatus) Convert.ToChar(row["BillStatus"]);
     }
 
-    protected override void ImplementsSave() {
+    protected override void OnSave() {
       if (this.IsNew) {
         this.number = this.Id.ToString();
         this.DigitalString = this.CreateDigitalString();

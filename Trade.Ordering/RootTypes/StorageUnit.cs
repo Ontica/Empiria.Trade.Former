@@ -316,7 +316,7 @@ namespace Empiria.Trade.Ordering {
 
     #region Public methods
 
-    protected override void ImplementsLoadObjectData(DataRow row) {
+    protected override void OnLoadObjectData(DataRow row) {
       supplyPoint = Contact.Parse((int) row["SupplyPointId"]);
       kind = StorageUnitKind.Parse((int) row["StorageUnitKindId"]);
       storageUnitClass = (StorageUnitClass) Convert.ToChar(row["StorageUnitClass"]);
@@ -344,10 +344,6 @@ namespace Empiria.Trade.Ordering {
       postedBy = Contact.Parse((int) row["PostedById"]);
       postingTime = (DateTime) row["PostingTime"];
       status = (GeneralObjectStatus) Convert.ToChar(row["StorageUnitStatus"]);
-    }
-
-    protected override void ImplementsSave() {
-
     }
 
     #endregion Public methods

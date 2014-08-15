@@ -240,7 +240,7 @@ namespace Empiria.FinancialServices {
       return CRTransaction.Parse(this.CRTransactionId);
     }
 
-    protected override void ImplementsLoadObjectData(DataRow row) {
+    protected override void OnLoadObjectData(DataRow row) {
       this.financialAccount = FinancialAccount.Parse((int) row["FinancialAccountId"]);
       this.financialConcept = FinancialConcept.Parse((int) row["FinancialConceptId"]);
       this.organization = Organization.Parse((int) row["OrganizationId"]);
@@ -265,7 +265,7 @@ namespace Empiria.FinancialServices {
       this.status = (string) row["TransactionStatus"];
     }
 
-    protected override void ImplementsSave() {
+    protected override void OnSave() {
       if (this.IsNew) {
         this.PostedBy = Contact.Parse(ExecutionServer.CurrentUserId);
       }

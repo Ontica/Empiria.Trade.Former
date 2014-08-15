@@ -335,7 +335,7 @@ namespace Empiria.Trade.Ordering {
 
     #region Public methods
 
-    protected override void ImplementsLoadObjectData(DataRow row) {
+    protected override void OnLoadObjectData(DataRow row) {
       this.order = SupplyOrder.Parse((int) row["SupplyOrderId"]);
       this.orderItemTypeId = (int) row["SupplyOrderItemTypeId"];
       this.supplyPoint = Contact.Parse((int) row["ItemSupplyPointId"]);
@@ -380,7 +380,7 @@ namespace Empiria.Trade.Ordering {
       this.status = (OrderStatus) Convert.ToChar(row["SupplyOrderItemStatus"]);
     }
 
-    protected override void ImplementsSave() {
+    protected override void OnSave() {
       if (this.IsNew) {
         postedBy = Contact.Parse(ExecutionServer.CurrentUserId);
         postingTime = DateTime.Now;

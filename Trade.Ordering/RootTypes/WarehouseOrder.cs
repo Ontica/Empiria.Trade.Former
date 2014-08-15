@@ -282,7 +282,7 @@ namespace Empiria.Trade.Ordering {
       return new WarehouseOrder();
     }
 
-    protected override void ImplementsLoadObjectData(DataRow row) {
+    protected override void OnLoadObjectData(DataRow row) {
       this.operation = WarehousingOperation.Parse((int) row["WarehousingOperationId"]);
       this.number = (string) row["WarehouseOrderNumber"];
       this.concept = (string) row["WarehouseOrderConcept"];
@@ -302,7 +302,7 @@ namespace Empiria.Trade.Ordering {
       this.status = (GeneralActivityStatus) Convert.ToChar(row["WarehouseOrderStatus"]);
     }
 
-    protected override void ImplementsSave() {
+    protected override void OnSave() {
       this.keywords = EmpiriaString.BuildKeywords(number, concept, operation.Name, 
                                                   storageUnit.FullCode, storageUnit.Description);
       WarehouseData.WriteWarehouseOrder(this);

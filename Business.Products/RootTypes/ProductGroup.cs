@@ -232,7 +232,7 @@ namespace Empiria.Products {
       return ProductsData.GetProductGroupChilds(this.Parent);
     }
 
-    protected override void ImplementsLoadObjectData(DataRow row) {
+    protected override void OnLoadObjectData(DataRow row) {
       this.number = (string) row["ProductGroupNumber"];
       this.name = (string) row["ProductGroupName"];
       this.englishName = (string) row["ProductGroupEnglishName"];
@@ -245,7 +245,7 @@ namespace Empiria.Products {
       this.status = (GeneralObjectStatus) Convert.ToChar(row["ProductGroupStatus"]);
     }
 
-    protected override void ImplementsSave() {
+    protected override void OnSave() {
       this.keywords = EmpiriaString.BuildKeywords(this.Tags, this.Number, this.Name, this.EnglishName);
       this.modifiedBy = Contact.Parse(ExecutionServer.CurrentUserId);
 

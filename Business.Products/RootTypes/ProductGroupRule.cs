@@ -113,7 +113,7 @@ namespace Empiria.Products {
       return ProductsData.GetProductGroups(this.ProductTerm);
     }
 
-    protected override void ImplementsLoadObjectData(DataRow row) {
+    protected override void OnLoadObjectData(DataRow row) {
       this.group = ProductGroup.Parse((int) row["ProductGroupId"]);
       this.productTerm = ProductClass.Parse((int) row["ProductTypeId"]);
       this.productPosition = ProductClass.Parse((int) row["ProductPositionId"]);
@@ -121,7 +121,7 @@ namespace Empiria.Products {
       this.status = (GeneralObjectStatus) Convert.ToChar(row["ProductGroupRuleStatus"]);
     }
 
-    protected override void ImplementsSave() {
+    protected override void OnSave() {
       this.postedBy = Contact.Parse(ExecutionServer.CurrentUserId);
 
       ProductsData.WriteProductGroupRule(this);

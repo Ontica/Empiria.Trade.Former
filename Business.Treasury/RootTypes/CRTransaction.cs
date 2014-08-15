@@ -228,7 +228,7 @@ namespace Empiria.Treasury {
 
     #region Public methods
 
-    protected override void ImplementsLoadObjectData(DataRow row) {
+    protected override void OnLoadObjectData(DataRow row) {
       this.cashRegister = CashRegister.Parse(Organization.Parse((int) row["OrganizationId"]),
                                              Contact.Parse((int) row["CashierId"]));
       this.transactionType = CRTransactionType.Parse((int) row["TransactionTypeId"]);
@@ -254,9 +254,9 @@ namespace Empiria.Treasury {
       this.status = (TreasuryItemStatus) Convert.ToChar(row["TransactionStatus"]);
     }
 
-    protected override void ImplementsSave() {
+    protected override void OnSave() {
       if (postings.Count == 0) {
-        throw new NotImplementedException();
+        Assertion.AssertNoReachThisCode();
       }
       using (DataWriterContext context = DataWriter.CreateContext("SaveCRTransaction")) {
         ITransaction transaction = context.BeginTransaction();

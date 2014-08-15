@@ -306,7 +306,7 @@ namespace Empiria.FinancialServices {
     //  return crt;
     //}
 
-    protected override void ImplementsLoadObjectData(DataRow row) {
+    protected override void OnLoadObjectData(DataRow row) {
       this.financialProduct = FinancialProduct.Parse((int) row["FinancialProductId"]);
       this.institution = FinancialInstitution.Parse((int) row["InstitutionId"]);
       this.customer = Contact.Parse((int) row["CustomerId"]);
@@ -346,7 +346,7 @@ namespace Empiria.FinancialServices {
       this.EndDate = (DateTime) row["EndDate"];
     }
 
-    protected override void ImplementsSave() {
+    protected override void OnSave() {
       this.Keywords = Customer.Keywords;
       FinancialAccountData.WriteFinancialAccount(this);
     }

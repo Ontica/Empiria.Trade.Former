@@ -324,7 +324,7 @@ namespace Empiria.Products {
 
     #region Public methods
 
-    protected override void ImplementsLoadObjectData(DataRow row) {
+    protected override void OnLoadObjectData(DataRow row) {
       productTerm = ProductTerm.Parse((int) row["ProductTermId"]);
       manager = Contact.Parse((int) row["ProductManagerId"]);
       isService = (bool) row["IsService"];
@@ -365,7 +365,7 @@ namespace Empiria.Products {
       legacyKey = (string) row["LegacyKey"];
     }
 
-    protected override void ImplementsSave() {
+    protected override void OnSave() {
       keywords = "@" + this.PartNumber + "@ " + ((this.BarCodeID.Length != 0) ? "@" + this.BarCodeID + "@ " : String.Empty) +
                  EmpiriaString.BuildKeywords(this.Name, this.Brand.Name, this.Manufacturer.Name, this.Specification);
       ProductsData.WriteProduct(this);

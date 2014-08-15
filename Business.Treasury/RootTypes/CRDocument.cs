@@ -215,7 +215,7 @@ namespace Empiria.Treasury {
 
     #region Public methods
 
-    protected override void ImplementsLoadObjectData(DataRow row) {
+    protected override void OnLoadObjectData(DataRow row) {
       this.instrumentType = InstrumentType.Parse((int) row["InstrumentTypeId"]);
       this.institution = FinancialInstitution.Parse((int) row["InstitutionId"]);
       this.accountId = (int) row["FinancialAccountId"];
@@ -233,10 +233,6 @@ namespace Empiria.Treasury {
       this.postedBy = Contact.Parse((int) row["PostedById"]);
       this.canceledBy = Contact.Parse((int) row["CanceledById"]);
       this.status = (TreasuryItemStatus) Convert.ToChar(row["DocumentStatus"]);
-    }
-
-    protected override void ImplementsSave() {
-
     }
 
     #endregion Public methods
