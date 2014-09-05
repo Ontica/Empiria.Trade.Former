@@ -34,15 +34,15 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public DeliveryMode Empty {
-      get { return BaseObject.ParseEmpty<DeliveryMode>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<DeliveryMode>(); }
     }
 
     static public DeliveryMode Parse(int id) {
-      return BaseObject.Parse<DeliveryMode>(thisTypeName, id);
+      return BaseObject.ParseId<DeliveryMode>(id);
     }
 
     static public FixedList<DeliveryMode> GetList() {
-      FixedList<DeliveryMode> list = GeneralObject.ParseList<DeliveryMode>(thisTypeName);
+      FixedList<DeliveryMode> list = GeneralObject.ParseList<DeliveryMode>();
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

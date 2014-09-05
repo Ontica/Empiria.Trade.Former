@@ -63,10 +63,10 @@ namespace Empiria.Industries.Retail.Presentation {
         return;
       }
       foreach (KeyValuePair<string, Empiria.Products.IProductAppliance> kvp in this.WebStoreSession.ProductAppliances) {
-        ListItem item = new ListItem(kvp.Value.Name, kvp.Value.Id.ToString());
+        var item = new System.Web.UI.WebControls.ListItem(kvp.Value.Name, kvp.Value.Id.ToString());
         comboControl.Items.Add(item);
       }
-      comboControl.Items.Insert(0, new ListItem(firstListItemName, String.Empty));
+      comboControl.Items.Insert(0, new System.Web.UI.WebControls.ListItem(firstListItemName, String.Empty));
       if (this.WebStoreSession.SelectedProductAppliance != null) {
         comboControl.Value = this.WebStoreSession.SelectedProductAppliance.Id.ToString();
       }

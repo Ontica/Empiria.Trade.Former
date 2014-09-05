@@ -90,15 +90,15 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public StorageUnit Parse(int id) {
-      return BaseObject.Parse<StorageUnit>(thisTypeName, id);
+      return BaseObject.ParseId<StorageUnit>(id);
     }
 
     static internal StorageUnit Parse(DataRow dataRow) {
-      return BaseObject.Parse<StorageUnit>(thisTypeName, dataRow);
+      return BaseObject.Parse<StorageUnit>(dataRow);
     }
 
     static public StorageUnit Empty {
-      get { return BaseObject.ParseEmpty<StorageUnit>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<StorageUnit>(); }
     }
 
     #endregion Constructors and parsers

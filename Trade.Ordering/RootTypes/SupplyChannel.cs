@@ -34,15 +34,15 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public SupplyChannel Empty {
-      get { return BaseObject.ParseEmpty<SupplyChannel>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<SupplyChannel>(); }
     }
 
     static public SupplyChannel Parse(int id) {
-      return BaseObject.Parse<SupplyChannel>(thisTypeName, id);
+      return BaseObject.ParseId<SupplyChannel>(id);
     }
 
     static public FixedList<SupplyChannel> GetList() {
-      FixedList<SupplyChannel> list = GeneralObject.ParseList<SupplyChannel>(thisTypeName);
+      FixedList<SupplyChannel> list = GeneralObject.ParseList<SupplyChannel>();
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

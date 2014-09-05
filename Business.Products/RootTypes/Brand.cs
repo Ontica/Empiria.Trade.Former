@@ -34,19 +34,19 @@ namespace Empiria.Products {
     }
 
     static public Brand Parse(int id) {
-      return BaseObject.Parse<Brand>(thisTypeName, id);
+      return BaseObject.ParseId<Brand>(id);
     }
 
     static public Brand Empty {
-      get { return BaseObject.ParseEmpty<Brand>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<Brand>(); }
     }
 
     static public Brand Unknown {
-      get { return BaseObject.ParseUnknown<Brand>(thisTypeName); }
+      get { return BaseObject.ParseUnknown<Brand>(); }
     }
 
     static public FixedList<Brand> GetList() {
-      FixedList<Brand> list = GeneralObject.ParseList<Brand>(thisTypeName);
+      FixedList<Brand> list = GeneralObject.ParseList<Brand>();
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

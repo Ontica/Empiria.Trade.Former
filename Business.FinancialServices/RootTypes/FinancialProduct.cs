@@ -38,15 +38,15 @@ namespace Empiria.FinancialServices {
     }
 
     static public FinancialProduct Parse(int id) {
-      return BaseObject.Parse<FinancialProduct>(thisTypeName, id);
+      return BaseObject.ParseId<FinancialProduct>(id);
     }
 
     static public FinancialProduct Parse(string itemNamedKey) {
-      return BaseObject.Parse<FinancialProduct>(thisTypeName, itemNamedKey);
+      return BaseObject.ParseKey<FinancialProduct>(itemNamedKey);
     }
 
     static public FixedList<FinancialProduct> GetList() {
-      FixedList<FinancialProduct> list = GeneralObject.ParseList<FinancialProduct>(thisTypeName);
+      FixedList<FinancialProduct> list = GeneralObject.ParseList<FinancialProduct>();
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

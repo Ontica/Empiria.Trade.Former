@@ -102,15 +102,15 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public SupplyOrder Parse(int id) {
-      return BaseObject.Parse<SupplyOrder>(thisTypeName, id);
+      return BaseObject.ParseId<SupplyOrder>(id);
     }
 
     static internal SupplyOrder Parse(DataRow dataRow) {
-      return BaseObject.Parse<SupplyOrder>(thisTypeName, dataRow);
+      return BaseObject.Parse<SupplyOrder>(dataRow);
     }
 
     static public SupplyOrder Empty {
-      get { return BaseObject.ParseEmpty<SupplyOrder>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<SupplyOrder>(); }
     }
 
     static public SupplyOrder CreateFromCF(int cfOrderID) {

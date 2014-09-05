@@ -60,15 +60,15 @@ namespace Empiria.Treasury {
     }
 
     static public CRDocument Parse(int id) {
-      return BaseObject.Parse<CRDocument>(thisTypeName, id);
+      return BaseObject.ParseId<CRDocument>(id);
     }
 
     static internal CRDocument Parse(DataRow dataRow) {
-      return BaseObject.Parse<CRDocument>(thisTypeName, dataRow);
+      return BaseObject.Parse<CRDocument>(dataRow);
     }
 
     static public CRDocument Empty {
-      get { return BaseObject.ParseEmpty<CRDocument>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<CRDocument>(); }
     }
 
     static public CRDocument CreateCheck(FinancialInstitution institution, string checksAccount, string checkNumber,

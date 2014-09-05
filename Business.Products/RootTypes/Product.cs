@@ -51,7 +51,7 @@ namespace Empiria.Products {
     private bool needsReview = false;
     private Manufacturer manufacturer = Manufacturer.Empty;
     private Brand brand = Brand.Empty;
-    private GeographicRegionItem originCountry = GeographicRegionItem.Empty;
+    private GeographicRegion originCountry = GeographicRegion.Empty;
     private string model = String.Empty;
     private string partNumber = String.Empty;
     private string name = String.Empty;
@@ -97,7 +97,7 @@ namespace Empiria.Products {
     }
 
     static public Product Parse(int id) {
-      return BaseObject.Parse<Product>(thisTypeName, id);
+      return BaseObject.ParseId<Product>(id);
     }
 
     static public Product ParseFromBelow(int id) {
@@ -105,11 +105,11 @@ namespace Empiria.Products {
     }
 
     static internal Product Parse(DataRow dataRow) {
-      return BaseObject.Parse<Product>(thisTypeName, dataRow);
+      return BaseObject.Parse<Product>(dataRow);
     }
 
     static public Product Empty {
-      get { return BaseObject.ParseEmpty<Product>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<Product>(); }
     }
 
     static public FixedList<Product> GetList(string keywords) {
@@ -167,7 +167,7 @@ namespace Empiria.Products {
       }
     }
 
-    public GeographicRegionItem OriginCountry {
+    public GeographicRegion OriginCountry {
       get { return originCountry; }
       set { originCountry = value; }
     }
@@ -333,7 +333,7 @@ namespace Empiria.Products {
       needsReview = (bool) row["IsDirty"];
       manufacturer = Manufacturer.Parse((int) row["ManufacturerId"]);
       brand = Brand.Parse((int) row["BrandId"]);
-      originCountry = GeographicRegionItem.Parse((int) row["OriginCountryId"]);
+      originCountry = GeographicRegion.Parse((int) row["OriginCountryId"]);
       model = (string) row["Model"];
       partNumber = (string) row["PartNumber"];
       name = (string) row["ProductName"];

@@ -84,15 +84,15 @@ namespace Empiria.FinancialServices {
     }
 
     static public FinancialAccount Parse(int id) {
-      return BaseObject.Parse<FinancialAccount>(thisTypeName, id);
+      return BaseObject.ParseId<FinancialAccount>(id);
     }
 
     static internal FinancialAccount Parse(DataRow dataRow) {
-      return BaseObject.Parse<FinancialAccount>(thisTypeName, dataRow);
+      return BaseObject.Parse<FinancialAccount>(dataRow);
     }
 
     static public FinancialAccount Empty {
-      get { return BaseObject.ParseEmpty<FinancialAccount>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<FinancialAccount>(); }
     }
 
     static public FinancialAccount GetForCustomer(Contact contact) {

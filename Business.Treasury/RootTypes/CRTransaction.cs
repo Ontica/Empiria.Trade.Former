@@ -95,15 +95,15 @@ namespace Empiria.Treasury {
     }
 
     static public CRTransaction Parse(int id) {
-      return BaseObject.Parse<CRTransaction>(thisTypeName, id);
+      return BaseObject.ParseId<CRTransaction>(id);
     }
 
     static internal CRTransaction Parse(DataRow dataRow) {
-      return BaseObject.Parse<CRTransaction>(thisTypeName, dataRow);
+      return BaseObject.Parse<CRTransaction>(dataRow);
     }
 
     static public CRTransaction Empty {
-      get { return BaseObject.ParseEmpty<CRTransaction>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<CRTransaction>(); }
     }
 
     #endregion Constructors and parsers

@@ -67,15 +67,15 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public WarehouseOrder Parse(int id) {
-      return BaseObject.Parse<WarehouseOrder>(thisTypeName, id);
+      return BaseObject.ParseId<WarehouseOrder>(id);
     }
 
     static internal WarehouseOrder Parse(DataRow dataRow) {
-      return BaseObject.Parse<WarehouseOrder>(thisTypeName, dataRow);
+      return BaseObject.Parse<WarehouseOrder>(dataRow);
     }
 
     static public WarehouseOrder Empty {
-      get { return BaseObject.ParseEmpty<WarehouseOrder>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<WarehouseOrder>(); }
     }
 
     #endregion Constructors and parsers

@@ -56,7 +56,7 @@ namespace Empiria.Trade.Ordering {
     private WarehouseOrderItem supplyOrderItem = null;
     private Contact postedBy = Person.Empty;
     private DateTime postingTime = DateTime.Now;
-    private GeneralObjectStatus status = GeneralObjectStatus.Inactive;
+    private GeneralObjectStatus status = GeneralObjectStatus.Pending;
 
     #endregion Fields
 
@@ -78,15 +78,15 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public WarehouseOrderItem Parse(int id) {
-      return BaseObject.Parse<WarehouseOrderItem>(thisTypeName, id);
+      return BaseObject.ParseId<WarehouseOrderItem>(id);
     }
 
     static internal WarehouseOrderItem Parse(DataRow dataRow) {
-      return BaseObject.Parse<WarehouseOrderItem>(thisTypeName, dataRow);
+      return BaseObject.Parse<WarehouseOrderItem>(dataRow);
     }
 
     static public WarehouseOrderItem Empty {
-      get { return BaseObject.ParseEmpty<WarehouseOrderItem>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<WarehouseOrderItem>(); }
     }
 
     #endregion Constructors and parsers

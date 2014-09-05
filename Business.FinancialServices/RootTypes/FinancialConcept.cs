@@ -34,19 +34,19 @@ namespace Empiria.FinancialServices {
     }
 
     static public FinancialConcept Empty {
-      get { return BaseObject.ParseEmpty<FinancialConcept>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<FinancialConcept>(); }
     }
 
     static public FinancialConcept Parse(int id) {
-      return BaseObject.Parse<FinancialConcept>(thisTypeName, id);
+      return BaseObject.ParseId<FinancialConcept>(id);
     }
 
     static public FinancialConcept Parse(string itemNamedKey) {
-      return BaseObject.Parse<FinancialConcept>(thisTypeName, itemNamedKey);
+      return BaseObject.ParseKey<FinancialConcept>(itemNamedKey);
     }
 
     static public FixedList<FinancialConcept> GetList() {
-      FixedList<FinancialConcept> list = GeneralObject.ParseList<FinancialConcept>(thisTypeName);
+      FixedList<FinancialConcept> list = GeneralObject.ParseList<FinancialConcept>();
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

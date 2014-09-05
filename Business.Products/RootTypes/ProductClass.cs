@@ -45,15 +45,15 @@ namespace Empiria.Products {
     }
 
     static public ProductClass Parse(int id) {
-      return BaseObject.Parse<ProductClass>(thisTypeName, id);
+      return BaseObject.ParseId<ProductClass>(id);
     }
 
     static internal ProductClass Parse(DataRow dataRow) {
-      return BaseObject.Parse<ProductClass>(thisTypeName, dataRow);
+      return BaseObject.Parse<ProductClass>(dataRow);
     }
 
     static internal ProductClass Empty {
-      get { return BaseObject.ParseEmpty<ProductClass>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<ProductClass>(); }
     }
 
     #endregion Constructors and parsers

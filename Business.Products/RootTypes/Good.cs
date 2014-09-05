@@ -32,7 +32,7 @@ namespace Empiria.Products {
     }
 
     static public new Good Parse(int id) {
-      return BaseObject.Parse<Good>(thisTypeName, id);
+      return BaseObject.ParseId<Good>(id);
     }
 
     #endregion Constructors and parsers

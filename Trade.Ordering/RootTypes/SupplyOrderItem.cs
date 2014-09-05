@@ -98,11 +98,11 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public SupplyOrderItem Parse(int id) {
-      return BaseObject.Parse<SupplyOrderItem>(thisTypeName, id);
+      return BaseObject.ParseId<SupplyOrderItem>(id);
     }
 
     static internal SupplyOrderItem Parse(DataRow dataRow) {
-      return BaseObject.Parse<SupplyOrderItem>(thisTypeName, dataRow);
+      return BaseObject.Parse<SupplyOrderItem>(dataRow);
     }
 
     static internal SupplyOrderItem ParseFromBelow(DataRow dataRow) {
@@ -110,7 +110,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public SupplyOrderItem Empty {
-      get { return BaseObject.ParseEmpty<SupplyOrderItem>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<SupplyOrderItem>(); }
     }
 
     #endregion Constructors and parsers

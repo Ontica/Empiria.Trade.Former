@@ -34,19 +34,19 @@ namespace Empiria.Products {
     }
 
     static public new PresentationUnit Parse(int id) {
-      return BaseObject.Parse<PresentationUnit>(thisTypeName, id);
+      return BaseObject.ParseId<PresentationUnit>(id);
     }
 
     static public new PresentationUnit Parse(string presentationUnitNamedKey) {
-      return BaseObject.Parse<PresentationUnit>(thisTypeName, presentationUnitNamedKey);
+      return BaseObject.ParseKey<PresentationUnit>(presentationUnitNamedKey);
     }
 
     static public new PresentationUnit Empty {
-      get { return BaseObject.ParseEmpty<PresentationUnit>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<PresentationUnit>(); }
     }
 
     static public FixedList<PresentationUnit> GetList() {
-      FixedList<PresentationUnit> list = GeneralObject.ParseList<PresentationUnit>(thisTypeName);
+      FixedList<PresentationUnit> list = GeneralObject.ParseList<PresentationUnit>();
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

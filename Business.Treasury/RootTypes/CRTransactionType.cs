@@ -34,23 +34,23 @@ namespace Empiria.Treasury {
     }
 
     static public CRTransactionType Empty {
-      get { return BaseObject.ParseEmpty<CRTransactionType>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<CRTransactionType>(); }
     }
 
     static public CRTransactionType Unknown {
-      get { return BaseObject.ParseUnknown<CRTransactionType>(thisTypeName); }
+      get { return BaseObject.ParseUnknown<CRTransactionType>(); }
     }
 
     static public CRTransactionType Parse(int id) {
-      return BaseObject.Parse<CRTransactionType>(thisTypeName, id);
+      return BaseObject.ParseId<CRTransactionType>(id);
     }
 
     static public CRTransactionType Parse(string itemNamedKey) {
-      return BaseObject.Parse<CRTransactionType>(thisTypeName, itemNamedKey);
+      return BaseObject.ParseKey<CRTransactionType>(itemNamedKey);
     }
 
     static public FixedList<CRTransactionType> GetList() {
-      FixedList<CRTransactionType> list = GeneralObject.ParseList<CRTransactionType>(thisTypeName);
+      FixedList<CRTransactionType> list = GeneralObject.ParseList<CRTransactionType>();
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

@@ -63,15 +63,15 @@ namespace Empiria.FinancialServices {
     }
 
     static public AccountTransaction Parse(int id) {
-      return BaseObject.Parse<AccountTransaction>(thisTypeName, id);
+      return BaseObject.ParseId<AccountTransaction>(id);
     }
 
     static internal AccountTransaction Parse(DataRow dataRow) {
-      return BaseObject.Parse<AccountTransaction>(thisTypeName, dataRow);
+      return BaseObject.Parse<AccountTransaction>(dataRow);
     }
 
     static public AccountTransaction Empty {
-      get { return BaseObject.ParseEmpty<AccountTransaction>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<AccountTransaction>(); }
     }
 
     static internal AccountTransaction CreateCredit(FinancialAccount account, FinancialConcept financialConcept, Organization organization,

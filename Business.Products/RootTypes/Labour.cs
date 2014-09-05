@@ -32,15 +32,15 @@ namespace Empiria.Products {
     }
 
     static public Labour Parse(int id) {
-      return BaseObject.Parse<Labour>(thisTypeName, id);
+      return BaseObject.ParseId<Labour>(id);
     }
 
     static public Labour Empty {
-      get { return BaseObject.ParseEmpty<Labour>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<Labour>(); }
     }
 
     static public Labour Unknown {
-      get { return BaseObject.ParseUnknown<Labour>(thisTypeName); }
+      get { return BaseObject.ParseUnknown<Labour>(); }
     }
 
     #endregion Constructors and parsers

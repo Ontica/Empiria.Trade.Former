@@ -37,19 +37,19 @@ namespace Empiria.Treasury {
     }
 
     static public FinancialInstitution Empty {
-      get { return BaseObject.ParseEmpty<FinancialInstitution>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<FinancialInstitution>(); }
     }
 
     static public FinancialInstitution Parse(int id) {
-      return BaseObject.Parse<FinancialInstitution>(thisTypeName, id);
+      return BaseObject.ParseId<FinancialInstitution>(id);
     }
 
     static public FinancialInstitution Parse(string itemNamedKey) {
-      return BaseObject.Parse<FinancialInstitution>(thisTypeName, itemNamedKey);
+      return BaseObject.ParseKey<FinancialInstitution>(itemNamedKey);
     }
 
     static public FixedList<FinancialInstitution> GetList() {
-      FixedList<FinancialInstitution> list = GeneralObject.ParseList<FinancialInstitution>(thisTypeName);
+      FixedList<FinancialInstitution> list = GeneralObject.ParseList<FinancialInstitution>();
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

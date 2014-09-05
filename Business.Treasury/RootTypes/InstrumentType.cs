@@ -23,38 +23,36 @@ namespace Empiria.Treasury {
 
     #region Constructors and parsers
 
-    public InstrumentType()
-      : base(thisTypeName) {
+    public InstrumentType() : base(thisTypeName) {
 
     }
 
-    protected InstrumentType(string typeName)
-      : base(typeName) {
+    protected InstrumentType(string typeName) : base(typeName) {
       // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
     }
 
     static public InstrumentType Empty {
-      get { return BaseObject.ParseEmpty<InstrumentType>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<InstrumentType>(); }
     }
 
     static public InstrumentType Unknown {
-      get { return BaseObject.ParseUnknown<InstrumentType>(thisTypeName); }
+      get { return BaseObject.ParseUnknown<InstrumentType>(); }
     }
 
     static public InstrumentType Multiple {
-      get { return BaseObject.Parse<InstrumentType>(thisTypeName, "multiple"); }
+      get { return BaseObject.ParseKey<InstrumentType>("multiple"); }
     }
 
     static public InstrumentType Parse(int id) {
-      return BaseObject.Parse<InstrumentType>(thisTypeName, id);
+      return BaseObject.ParseId<InstrumentType>(id);
     }
 
     static public InstrumentType Parse(string itemNamedKey) {
-      return BaseObject.Parse<InstrumentType>(thisTypeName, itemNamedKey);
+      return BaseObject.ParseKey<InstrumentType>(itemNamedKey);
     }
 
     static public FixedList<InstrumentType> GetList() {
-      FixedList<InstrumentType> list = GeneralObject.ParseList<InstrumentType>(thisTypeName);
+      FixedList<InstrumentType> list = GeneralObject.ParseList<InstrumentType>();
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

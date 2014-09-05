@@ -33,15 +33,15 @@ namespace Empiria.Products {
     }
 
     static public ProductCategory Parse(int id) {
-      return BaseObject.Parse<ProductCategory>(thisTypeName, id);
+      return BaseObject.ParseId<ProductCategory>(id);
     }
 
     static public ProductCategory Empty {
-      get { return BaseObject.ParseEmpty<ProductCategory>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<ProductCategory>(); }
     }
 
     static public ProductCategory Unknown {
-      get { return BaseObject.ParseUnknown<ProductCategory>(thisTypeName); }
+      get { return BaseObject.ParseUnknown<ProductCategory>(); }
     }
 
     #endregion Constructors and parsers

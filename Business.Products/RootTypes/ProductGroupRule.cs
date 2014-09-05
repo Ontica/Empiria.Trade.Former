@@ -49,15 +49,15 @@ namespace Empiria.Products {
     }
 
     static public ProductGroupRule Empty {
-      get { return BaseObject.ParseEmpty<ProductGroupRule>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<ProductGroupRule>(); }
     }
 
     static public ProductGroupRule Parse(int id) {
-      return BaseObject.Parse<ProductGroupRule>(thisTypeName, id);
+      return BaseObject.ParseId<ProductGroupRule>(id);
     }
 
     static internal ProductGroupRule Parse(DataRow dataRow) {
-      return BaseObject.Parse<ProductGroupRule>(thisTypeName, dataRow);
+      return BaseObject.Parse<ProductGroupRule>(dataRow);
     }
 
     #endregion Constructors and parsers

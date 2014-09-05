@@ -34,15 +34,15 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public StorageUnitKind Empty {
-      get { return BaseObject.ParseEmpty<StorageUnitKind>(thisTypeName); }
+      get { return BaseObject.ParseEmpty<StorageUnitKind>(); }
     }
 
     static public StorageUnitKind Parse(int id) {
-      return BaseObject.Parse<StorageUnitKind>(thisTypeName, id);
+      return BaseObject.ParseId<StorageUnitKind>(id);
     }
 
     static public FixedList<StorageUnitKind> GetList() {
-      FixedList<StorageUnitKind> list = GeneralObject.ParseList<StorageUnitKind>(thisTypeName);
+      FixedList<StorageUnitKind> list = GeneralObject.ParseList<StorageUnitKind>();
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 
