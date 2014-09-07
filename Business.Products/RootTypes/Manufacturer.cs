@@ -8,28 +8,17 @@
 *  Summary   : Type that represents a product manufacturer.                                                  *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+using System;
 
 namespace Empiria.Products {
 
   /// <summary> Type that represents a product manufacturer.</summary>
   public class Manufacturer : GeneralObject {
 
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.GeneralObject.ProductManufacturer";
-
-    #endregion Fields
-
     #region Constructors and parsers
 
-    public Manufacturer()
-      : base(thisTypeName) {
-
-    }
-
-    protected Manufacturer(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private Manufacturer() {
+      // Required by Empiria Framework.
     }
 
     static public Manufacturer Parse(int id) {

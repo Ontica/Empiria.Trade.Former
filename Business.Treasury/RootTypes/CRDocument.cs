@@ -20,8 +20,6 @@ namespace Empiria.Treasury {
 
     #region Fields
 
-    private const string thisTypeName = "ObjectType.CashRegisterDocument";
-
     private InstrumentType instrumentType = InstrumentType.Empty;
     private FinancialInstitution institution = FinancialInstitution.Empty;
     private int accountId = -1;
@@ -44,18 +42,11 @@ namespace Empiria.Treasury {
 
     #region Constructors and parsers
 
-    protected CRDocument()
-      : base(thisTypeName) {
-
+    private CRDocument() {
+      // Required by Empiria Framework.
     }
 
-    protected CRDocument(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
-    }
-
-    internal CRDocument(InstrumentType type)
-      : base(thisTypeName) {
+    internal CRDocument(InstrumentType type) {
       this.instrumentType = type;
     }
 
@@ -64,7 +55,7 @@ namespace Empiria.Treasury {
     }
 
     static internal CRDocument Parse(DataRow dataRow) {
-      return BaseObject.Parse<CRDocument>(dataRow);
+      return BaseObject.ParseDataRow<CRDocument>(dataRow);
     }
 
     static public CRDocument Empty {

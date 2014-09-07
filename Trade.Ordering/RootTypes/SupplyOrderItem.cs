@@ -14,7 +14,6 @@ using System.Data;
 using Empiria.Contacts;
 using Empiria.DataTypes;
 using Empiria.Products;
-
 using Empiria.Trade.Data;
 
 namespace Empiria.Trade.Ordering {
@@ -34,8 +33,6 @@ namespace Empiria.Trade.Ordering {
   public class SupplyOrderItem : BaseObject {
 
     #region Fields
-
-    private const string thisTypeName = "ObjectType.Trade.OrderItem.SupplyOrderItem";
 
     private SupplyOrder order = SupplyOrder.Empty;
     private int orderItemTypeId = 2040;
@@ -82,18 +79,11 @@ namespace Empiria.Trade.Ordering {
 
     #region Constuctors and parsers
 
-    protected SupplyOrderItem()
-      : base(thisTypeName) {
-
+    private SupplyOrderItem() {
+      // Required by Empiria Framework.
     }
 
-    protected SupplyOrderItem(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
-    }
-
-    internal SupplyOrderItem(SupplyOrder order)
-      : base(thisTypeName) {
+    internal SupplyOrderItem(SupplyOrder order) {
       this.order = order;
     }
 
@@ -102,11 +92,11 @@ namespace Empiria.Trade.Ordering {
     }
 
     static internal SupplyOrderItem Parse(DataRow dataRow) {
-      return BaseObject.Parse<SupplyOrderItem>(dataRow);
+      return BaseObject.ParseDataRow<SupplyOrderItem>(dataRow);
     }
 
     static internal SupplyOrderItem ParseFromBelow(DataRow dataRow) {
-      return BaseObject.ParseFromBelow<SupplyOrderItem>(thisTypeName, dataRow);
+      return BaseObject.ParseFromBelow<SupplyOrderItem>(dataRow);
     }
 
     static public SupplyOrderItem Empty {

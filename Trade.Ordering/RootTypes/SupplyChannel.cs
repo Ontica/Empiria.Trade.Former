@@ -15,22 +15,10 @@ namespace Empiria.Trade.Ordering {
   /// <summary>Describes a supply channel like Internet, telephone, catalogue or store.</summary>
   public class SupplyChannel : GeneralObject {
 
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.GeneralObject.SupplyChannel";
-
-    #endregion Fields
-
     #region Constructors and parsers
 
-    public SupplyChannel()
-      : base(thisTypeName) {
-
-    }
-
-    protected SupplyChannel(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private SupplyChannel() {
+      // Required by Empiria Framework.
     }
 
     static public SupplyChannel Empty {

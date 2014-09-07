@@ -8,27 +8,16 @@
 *  Summary   : Represents a physical good.                                                                   *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+using System;
 
 namespace Empiria.Products {
 
   public sealed class Good : Product {
 
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.Product.Good";
-
-    #endregion Fields
-
     #region Constructors and parsers
 
-    public Good()
-      : base(thisTypeName) {
-
-    }
-
-    private Good(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private Good(ProductType powertype) : base(powertype) {
+      // Required by Empiria Framework for all partitioned types.
     }
 
     static public new Good Parse(int id) {

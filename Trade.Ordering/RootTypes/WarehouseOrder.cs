@@ -25,10 +25,7 @@ namespace Empiria.Trade.Ordering {
 
     static private readonly bool LegacyAppInstalled = ConfigurationData.GetBoolean("LegacyAppInstalled");
 
-    private const string thisTypeName = "ObjectType.Trade.Order.WarehouseOrder";
     private const string newOrderNumber = "Nueva orden";
-
-    //WarehouseOrderTypeId
 
     private WarehousingOperation operation = WarehousingOperation.Empty;
     private string number = newOrderNumber;
@@ -56,14 +53,8 @@ namespace Empiria.Trade.Ordering {
 
     #region Constuctors and parsers
 
-    protected WarehouseOrder()
-      : base(thisTypeName) {
-
-    }
-
-    protected WarehouseOrder(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private WarehouseOrder() {
+      // Required by Empiria Framework.
     }
 
     static public WarehouseOrder Parse(int id) {
@@ -71,7 +62,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     static internal WarehouseOrder Parse(DataRow dataRow) {
-      return BaseObject.Parse<WarehouseOrder>(dataRow);
+      return BaseObject.ParseDataRow<WarehouseOrder>(dataRow);
     }
 
     static public WarehouseOrder Empty {

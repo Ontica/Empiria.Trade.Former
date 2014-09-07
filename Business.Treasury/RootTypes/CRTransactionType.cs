@@ -15,22 +15,10 @@ namespace Empiria.Treasury {
   /// <summary>Represents a cash register transaction or operation type.</summary>
   public class CRTransactionType : GeneralObject {
 
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.GeneralObject.CashRegisterTransactionType";
-
-    #endregion Fields
-
     #region Constructors and parsers
 
-    public CRTransactionType()
-      : base(thisTypeName) {
-
-    }
-
-    protected CRTransactionType(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private CRTransactionType() {
+      // Required by Empiria Framework.
     }
 
     static public CRTransactionType Empty {

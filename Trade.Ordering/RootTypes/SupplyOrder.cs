@@ -48,7 +48,6 @@ namespace Empiria.Trade.Ordering {
     static public int TicketDefaultFontSize = ConfigurationData.GetInteger("Ticket.DefaultFontSize");
     static public string ReportsTemplatesPath = ConfigurationData.GetString("Reports.TemplatesPath");
 
-    private const string thisTypeName = "ObjectType.Trade.Order.SupplyOrder";
     private const string myCurrentOrderUserSetting = "Trade.MyCurrentOrder";
 
     private string number = "Sin número de orden";
@@ -91,14 +90,8 @@ namespace Empiria.Trade.Ordering {
 
     #region Constuctors and parsers
 
-    protected SupplyOrder()
-      : base(thisTypeName) {
-
-    }
-
-    protected SupplyOrder(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private SupplyOrder() {
+      // Required by Empiria Framework.
     }
 
     static public SupplyOrder Parse(int id) {
@@ -106,7 +99,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     static internal SupplyOrder Parse(DataRow dataRow) {
-      return BaseObject.Parse<SupplyOrder>(dataRow);
+      return BaseObject.ParseDataRow<SupplyOrder>(dataRow);
     }
 
     static public SupplyOrder Empty {
@@ -116,7 +109,7 @@ namespace Empiria.Trade.Ordering {
     static public SupplyOrder CreateFromCF(int cfOrderID) {
       int supplyOrderId = SupplyOrdersData.CreateSupplyOrderFromColdFusion(cfOrderID);
 
-      return BaseObject.ParseFromBelow<SupplyOrder>(thisTypeName, supplyOrderId);
+      return BaseObject.ParseFromBelow<SupplyOrder>(supplyOrderId);
     }
 
     static public SupplyOrder CreateOrder() {

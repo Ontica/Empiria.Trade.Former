@@ -41,8 +41,6 @@ namespace Empiria.Products {
 
     #region Fields
 
-    private const string thisTypeName = "ObjectType.Product";
-
     private ProductTerm productTerm = ProductTerm.Empty;
     private Contact manager = Person.Empty;
     private bool isService = false;
@@ -86,14 +84,8 @@ namespace Empiria.Products {
 
     #region Constructors and parsers
 
-    public Product()
-      : base(thisTypeName) {
-      // Abstract class. Object creation of this type not allowed.
-    }
-
-    protected Product(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    protected Product(ProductType powertype) : base(powertype) {
+      // Required by Empiria Framework for all partitioned types.
     }
 
     static public Product Parse(int id) {
@@ -101,11 +93,11 @@ namespace Empiria.Products {
     }
 
     static public Product ParseFromBelow(int id) {
-      return BaseObject.ParseFromBelow<Product>(thisTypeName, id);
+      return BaseObject.ParseFromBelow<Product>(id);
     }
 
     static internal Product Parse(DataRow dataRow) {
-      return BaseObject.Parse<Product>(dataRow);
+      return BaseObject.ParseDataRow<Product>(dataRow);
     }
 
     static public Product Empty {
@@ -121,6 +113,12 @@ namespace Empiria.Products {
     #endregion Constructors and parsers
 
     #region Properties
+
+    public ProductType ProductType {
+      get {
+        return (ProductType) base.ObjectTypeInfo;
+      }
+    }
 
     public ProductTerm ProductTerm {
       get { return productTerm; }

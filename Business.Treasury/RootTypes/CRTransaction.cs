@@ -29,8 +29,6 @@ namespace Empiria.Treasury {
 
     #region Fields
 
-    private const string thisTypeName = "ObjectType.CashRegisterTransaction";
-
     private CashRegister cashRegister = null;
     private CRTransactionType transactionType = null;
     private Contact collector = Person.Empty;
@@ -60,27 +58,19 @@ namespace Empiria.Treasury {
 
     #region Constructors and parsers
 
-    protected CRTransaction()
-      : base(thisTypeName) {
-
+    private CRTransaction() {
+      // Required by Empiria Framework.
     }
 
-    protected CRTransaction(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
-    }
-
-    public CRTransaction(CRTransactionType transactionType, CashRegister cashier)
-      : base(thisTypeName) {
+    public CRTransaction(CRTransactionType transactionType, CashRegister cashier) {
       this.transactionType = transactionType;
       this.cashRegister = cashier;
     }
 
     public CRTransaction(CRTransactionType transactionType,
                          BaseObject reference, DateTime transactionDate,
-                         DateTime dueDate, decimal inputAmount, decimal outputAmount, string summary,
-                         string notes)
-      : base(thisTypeName) {
+                         DateTime dueDate, decimal inputAmount, decimal outputAmount, 
+                         string summary, string notes) {
       this.transactionType = transactionType;
       this.baseInstrumentType = InstrumentType.Empty;
       this.cashRegister = CashRegister.MyCashRegister();
@@ -99,7 +89,7 @@ namespace Empiria.Treasury {
     }
 
     static internal CRTransaction Parse(DataRow dataRow) {
-      return BaseObject.Parse<CRTransaction>(dataRow);
+      return BaseObject.ParseDataRow<CRTransaction>(dataRow);
     }
 
     static public CRTransaction Empty {

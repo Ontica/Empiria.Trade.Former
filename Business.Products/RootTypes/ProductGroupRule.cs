@@ -21,8 +21,6 @@ namespace Empiria.Products {
 
     #region Fields
 
-    private const string thisTypeName = "ObjectType.ProductGroupRule";
-
     private ProductGroup group = ProductGroup.Empty;
     private ProductClass productTerm = ProductClass.Empty;
     private ProductClass productPosition = ProductClass.Empty;
@@ -33,19 +31,12 @@ namespace Empiria.Products {
 
     #region Constructors and parsers
 
-    private ProductGroupRule()
-      : base(thisTypeName) {
-      // For create instances use the public constructor ProductGroupRule(ProductGroup) instead
+    private ProductGroupRule() {
+      // Required by Empiria Framework.
     }
 
-    public ProductGroupRule(ProductGroup group)
-      : base(thisTypeName) {
+    public ProductGroupRule(ProductGroup group) {
       this.group = group;
-    }
-
-    protected ProductGroupRule(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
     }
 
     static public ProductGroupRule Empty {
@@ -57,7 +48,7 @@ namespace Empiria.Products {
     }
 
     static internal ProductGroupRule Parse(DataRow dataRow) {
-      return BaseObject.Parse<ProductGroupRule>(dataRow);
+      return BaseObject.ParseDataRow<ProductGroupRule>(dataRow);
     }
 
     #endregion Constructors and parsers

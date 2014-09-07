@@ -8,28 +8,17 @@
 *  Summary   : Represents a category of products used for product multiple classification or grouping.       *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+using System;
 
 namespace Empiria.Products {
 
   /// <summary>Represents a category of products used for product multiple classification or grouping.</summary>
   public class ProductCategory : GeneralObject {
 
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.GeneralObject.ProductCategory";
-
-    #endregion Fields
-
     #region Constructors and parsers
 
-    public ProductCategory()
-      : base(thisTypeName) {
-
-    }
-
-    protected ProductCategory(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private ProductCategory() {
+      // Required by Empiria Framework.
     }
 
     static public ProductCategory Parse(int id) {

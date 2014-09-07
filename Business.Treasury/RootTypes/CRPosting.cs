@@ -19,8 +19,6 @@ namespace Empiria.Treasury {
 
     #region Fields
 
-    private const string thisTypeName = "ObjectType.CashRegisterPosting";
-
     private CRTransaction transaction = CRTransaction.Empty;
     private InstrumentType instrumentType = InstrumentType.Empty;
     private int instrumentId = -1;
@@ -35,19 +33,12 @@ namespace Empiria.Treasury {
 
     #region Constructors and parsers
 
-    protected CRPosting()
-      : base(thisTypeName) {
-
-    }
-
-    protected CRPosting(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private CRPosting() {
+      // Required by Empiria Framework.
     }
 
     internal CRPosting(CRTransaction transaction, InstrumentType instrumentType,
-                       CRDocument document, decimal amount)
-      : base(thisTypeName) {
+                       CRDocument document, decimal amount) {
       this.transaction = transaction;
       this.instrumentType = instrumentType;
       this.instrumentId = -1;
@@ -61,8 +52,7 @@ namespace Empiria.Treasury {
     }
 
     internal CRPosting(CRTransaction transaction, InstrumentType instrumentType,
-                       IFinancialAccount account, decimal amount)
-      : base(thisTypeName) {
+                       IFinancialAccount account, decimal amount) {
       this.transaction = transaction;
       this.instrumentType = instrumentType;
       this.instrumentId = account.Id;
@@ -79,7 +69,7 @@ namespace Empiria.Treasury {
     }
 
     static internal CRPosting Parse(DataRow dataRow) {
-      return BaseObject.Parse<CRPosting>(dataRow);
+      return BaseObject.ParseDataRow<CRPosting>(dataRow);
     }
 
     static public CRPosting Empty {

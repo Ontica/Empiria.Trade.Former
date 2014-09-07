@@ -71,8 +71,6 @@ namespace Empiria.Trade.Billing {
     static public readonly string BillUrlHtmlFilesFolder = ConfigurationData.GetString("BillUrlHtmlFilesFolder");
     static public readonly bool SendBillOnlyToDefaultEmail = ConfigurationData.GetBoolean("SendBillOnlyToDefaultEmail");
 
-    private const string thisTypeName = "ObjectType.Bill";
-
     private BillType billType = BillType.Bill;
     private int supplyOrderId = -1;
     private SupplyOrder supplyOrder = null;
@@ -102,13 +100,8 @@ namespace Empiria.Trade.Billing {
 
     #region Constructors and parsers
 
-    protected Bill()
-      : base(thisTypeName) {
-    }
-
-    protected Bill(string typeName)
-      : base(typeName) {
-      // Empiria Object Type pattern classes always has this constructor. Don't delete
+    private Bill() {
+      // Required by Empiria Framework.
     }
 
     static public Bill Parse(SupplyOrder order) {
@@ -129,7 +122,7 @@ namespace Empiria.Trade.Billing {
     }
 
     static internal Bill Parse(DataRow dataRow) {
-      return BaseObject.Parse<Bill>(dataRow);
+      return BaseObject.ParseDataRow<Bill>(dataRow);
     }
 
     static public Bill Empty {

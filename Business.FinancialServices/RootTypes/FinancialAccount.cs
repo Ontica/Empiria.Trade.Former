@@ -30,7 +30,6 @@ namespace Empiria.FinancialServices {
     static public readonly bool SendFilesOnlyToDefaultEmail = ConfigurationData.GetBoolean("SendFilesOnlyToDefaultEmail");
     static public readonly bool UseBalanceCalculation = ConfigurationData.GetBoolean("UsesBalancesCalculation");
 
-    private const string thisTypeName = "ObjectType.FinancialServicesAccount";
     private FinancialProduct financialProduct = FinancialProduct.Default;
     private FinancialInstitution institution = FinancialInstitution.Default;
     private Contact customer = Person.Empty;
@@ -73,14 +72,12 @@ namespace Empiria.FinancialServices {
 
     #region Constructors and parsers
 
-    public FinancialAccount(Contact customer)
-      : base(thisTypeName) {
-      this.customer = customer;
+    private FinancialAccount() {
+      // Required by Empiria Framework.
     }
 
-    protected FinancialAccount(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    public FinancialAccount(Contact customer) {
+      this.customer = customer;
     }
 
     static public FinancialAccount Parse(int id) {
@@ -88,7 +85,7 @@ namespace Empiria.FinancialServices {
     }
 
     static internal FinancialAccount Parse(DataRow dataRow) {
-      return BaseObject.Parse<FinancialAccount>(dataRow);
+      return BaseObject.ParseDataRow<FinancialAccount>(dataRow);
     }
 
     static public FinancialAccount Empty {

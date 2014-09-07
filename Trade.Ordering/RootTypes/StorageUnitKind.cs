@@ -15,22 +15,10 @@ namespace Empiria.Trade.Ordering {
   /// <summary>Describes a warehousing operation.</summary>
   public class StorageUnitKind : GeneralObject {
 
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.Trade.StorageUnitKind";
-
-    #endregion Fields
-
     #region Constructors and parsers
 
-    public StorageUnitKind()
-      : base(thisTypeName) {
-
-    }
-
-    protected StorageUnitKind(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private StorageUnitKind() {
+      // Required by Empiria Framework.
     }
 
     static public StorageUnitKind Empty {

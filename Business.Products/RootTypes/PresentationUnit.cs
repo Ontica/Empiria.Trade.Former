@@ -8,29 +8,17 @@
 *  Summary   : Type that represents a product presentation or packaging unit.                                *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
-
+using System;
 using Empiria.DataTypes;
 
 namespace Empiria.Products {
 
   public class PresentationUnit : Unit {
 
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.GeneralObject.Unit.ProductPresentationUnit";
-
-    #endregion Fields
-
     #region Constructors and parsers
 
-    public PresentationUnit()
-      : base(thisTypeName) {
-
-    }
-
-    protected PresentationUnit(string typeName)
-      : base(typeName) {
-
+    private PresentationUnit() {
+      // Required by Empiria Framework.
     }
 
     static public new PresentationUnit Parse(int id) {

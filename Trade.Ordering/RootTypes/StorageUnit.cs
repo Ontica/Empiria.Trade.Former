@@ -13,7 +13,6 @@ using System.Data;
 
 using Empiria.Contacts;
 using Empiria.DataTypes;
-
 using Empiria.Products;
 
 namespace Empiria.Trade.Ordering {
@@ -35,8 +34,6 @@ namespace Empiria.Trade.Ordering {
   public class StorageUnit : BaseObject {
 
     #region Fields
-
-    private const string thisTypeName = "ObjectType.Trade.StorageUnit";
 
     private Contact supplyPoint = Person.Empty;
     private StorageUnitKind kind = StorageUnitKind.Empty;
@@ -79,14 +76,8 @@ namespace Empiria.Trade.Ordering {
 
     #region Constuctors and parsers
 
-    protected StorageUnit()
-      : base(thisTypeName) {
-
-    }
-
-    protected StorageUnit(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private StorageUnit() {
+      // Required by Empiria Framework.
     }
 
     static public StorageUnit Parse(int id) {
@@ -94,7 +85,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     static internal StorageUnit Parse(DataRow dataRow) {
-      return BaseObject.Parse<StorageUnit>(dataRow);
+      return BaseObject.ParseDataRow<StorageUnit>(dataRow);
     }
 
     static public StorageUnit Empty {

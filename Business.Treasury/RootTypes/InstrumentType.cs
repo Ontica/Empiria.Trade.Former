@@ -5,30 +5,20 @@
 *  Type      : InstrumentType                                   Pattern  : Ontology Object Type              *
 *  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
 *                                                                                                            *
-*  Summary   : Represents an financial instrument type.                                                      *
+*  Summary   : Represents a financial instrument type.                                                       *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 
 namespace Empiria.Treasury {
 
-  /// <summary>Represents an financial instrument type.</summary>
+  /// <summary>Represents a financial instrument type.</summary>
   public class InstrumentType : GeneralObject {
-
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.GeneralObject.FinancialInstrumentType";
-
-    #endregion Fields
 
     #region Constructors and parsers
 
-    public InstrumentType() : base(thisTypeName) {
-
-    }
-
-    protected InstrumentType(string typeName) : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private InstrumentType() {
+      // Required by Empiria Framework.
     }
 
     static public InstrumentType Empty {

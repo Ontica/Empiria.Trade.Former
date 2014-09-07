@@ -8,27 +8,17 @@
 *  Summary   : Represents a labour.                                                                          *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+using System;
 
 namespace Empiria.Products {
 
+  /// <summary> Represents a labour.</summary>
   public class Labour : GeneralObject {
-
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.GeneralObject.Labour";
-
-    #endregion Fields
 
     #region Constructors and parsers
 
-    public Labour()
-      : base(thisTypeName) {
-
-    }
-
-    protected Labour(string typeName)
-      : base(typeName) {
-
+    private Labour() {
+      // Required by Empiria Framework.
     }
 
     static public Labour Parse(int id) {

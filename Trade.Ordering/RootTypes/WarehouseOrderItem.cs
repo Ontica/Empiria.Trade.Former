@@ -23,8 +23,6 @@ namespace Empiria.Trade.Ordering {
 
     #region Fields
 
-    private const string thisTypeName = "ObjectType.Trade.OrderItem.WarehouseOrderItem";
-
     private WarehouseOrder order = WarehouseOrder.Empty;
     private int orderItemTypeId = -1;
     private string concept = String.Empty;
@@ -62,18 +60,11 @@ namespace Empiria.Trade.Ordering {
 
     #region Constuctors and parsers
 
-    protected WarehouseOrderItem()
-      : base(thisTypeName) {
-
+    private WarehouseOrderItem() {
+      // Required by Empiria Framework.
     }
 
-    protected WarehouseOrderItem(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
-    }
-
-    internal WarehouseOrderItem(WarehouseOrder order)
-      : base(thisTypeName) {
+    internal WarehouseOrderItem(WarehouseOrder order) {
       this.order = order;
     }
 
@@ -82,7 +73,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     static internal WarehouseOrderItem Parse(DataRow dataRow) {
-      return BaseObject.Parse<WarehouseOrderItem>(dataRow);
+      return BaseObject.ParseDataRow<WarehouseOrderItem>(dataRow);
     }
 
     static public WarehouseOrderItem Empty {

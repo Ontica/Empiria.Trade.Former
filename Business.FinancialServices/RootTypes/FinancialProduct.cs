@@ -15,22 +15,10 @@ namespace Empiria.FinancialServices {
   /// <summary>Represents a financial product like a credit, debit or check account.</summary>
   public class FinancialProduct : GeneralObject {
 
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.GeneralObject.FinancialProduct";
-
-    #endregion Fields
-
     #region Constructors and parsers
 
-    public FinancialProduct()
-      : base(thisTypeName) {
-
-    }
-
-    protected FinancialProduct(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private FinancialProduct() {
+      // Required by Empiria Framework.
     }
 
     static public FinancialProduct Default {

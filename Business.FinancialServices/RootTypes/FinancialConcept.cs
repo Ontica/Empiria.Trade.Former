@@ -15,22 +15,10 @@ namespace Empiria.FinancialServices {
   /// <summary>Represents a financial account concept.</summary>
   public class FinancialConcept : GeneralObject {
 
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.GeneralObject.FinancialConcept";
-
-    #endregion Fields
-
     #region Constructors and parsers
 
-    public FinancialConcept()
-      : base(thisTypeName) {
-
-    }
-
-    protected FinancialConcept(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private FinancialConcept() {
+      // Required by Empiria Framework.
     }
 
     static public FinancialConcept Empty {

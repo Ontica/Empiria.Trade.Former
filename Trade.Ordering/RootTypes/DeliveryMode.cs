@@ -15,22 +15,10 @@ namespace Empiria.Trade.Ordering {
   /// <summary>Represents a delivery type or condition like not delivery, store, pick, air, land.</summary>
   public class DeliveryMode : GeneralObject {
 
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.GeneralObject.DeliveryMode";
-
-    #endregion Fields
-
     #region Constructors and parsers
 
-    public DeliveryMode()
-      : base(thisTypeName) {
-
-    }
-
-    protected DeliveryMode(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private DeliveryMode() {
+      // Required by Empiria Framework.
     }
 
     static public DeliveryMode Empty {

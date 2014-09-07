@@ -20,8 +20,6 @@ namespace Empiria.Products {
 
     #region Fields
 
-    private const string thisTypeName = "ObjectType.ProductClass";
-
     private string name = String.Empty;
     private string commonName = String.Empty;
     private string englishName = String.Empty;
@@ -39,9 +37,8 @@ namespace Empiria.Products {
 
     #region Constructors and parsers
 
-    protected ProductClass(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    protected ProductClass() {
+      // Required by Empiria Framework.
     }
 
     static public ProductClass Parse(int id) {
@@ -49,7 +46,7 @@ namespace Empiria.Products {
     }
 
     static internal ProductClass Parse(DataRow dataRow) {
-      return BaseObject.Parse<ProductClass>(dataRow);
+      return BaseObject.ParseDataRow<ProductClass>(dataRow);
     }
 
     static internal ProductClass Empty {

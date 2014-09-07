@@ -8,27 +8,16 @@
 *  Summary   : Represents a service.                                                                         *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+using System;
 
 namespace Empiria.Products {
 
   public sealed class Service : Product {
 
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.Product.Service";
-
-    #endregion Fields
-
     #region Constructors and parsers
 
-    public Service()
-      : base(thisTypeName) {
-
-    }
-
-    private Service(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private Service(ProductType powertype) : base(powertype) {
+      // Required by Empiria Framework for all partitioned types.
     }
 
     static public new Service Parse(int id) {

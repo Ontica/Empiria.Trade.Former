@@ -8,28 +8,17 @@
 *  Summary   : Represents a financial institution like a bank or credit agency.                              *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+using System;
 
 namespace Empiria.Treasury {
 
   /// <summary>Represents a financial institution like a bank or credit agency.</summary>
   public class FinancialInstitution : GeneralObject {
 
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.GeneralObject.FinancialInstitution";
-
-    #endregion Fields
-
     #region Constructors and parsers
 
-    public FinancialInstitution()
-      : base(thisTypeName) {
-
-    }
-
-    protected FinancialInstitution(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private FinancialInstitution(){
+      // Required by Empiria Framework.
     }
 
     static public FinancialInstitution Default {

@@ -15,22 +15,10 @@ namespace Empiria.Products {
   /// <summary>Describes a product brand.</summary>
   public class Brand : GeneralObject {
 
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.GeneralObject.ProductBrand";
-
-    #endregion Fields
-
     #region Constructors and parsers
 
-    public Brand()
-      : base(thisTypeName) {
-
-    }
-
-    protected Brand(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private Brand() {
+      // Required by Empiria Framework.
     }
 
     static public Brand Parse(int id) {

@@ -21,8 +21,6 @@ namespace Empiria.Products {
 
     #region Fields
 
-    private const string thisTypeName = "ObjectType.ProductGroup";
-
     private string number = String.Empty;
     private string name = String.Empty;
     private string englishName = String.Empty;
@@ -43,14 +41,8 @@ namespace Empiria.Products {
 
     #region Constructors and parsers
 
-    private ProductGroup()
-      : base(thisTypeName) {
-      // For create instances use Create static method instead
-    }
-
-    protected ProductGroup(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private ProductGroup() {
+      // Required by Empiria Framework.
     }
 
     static public ProductGroup Empty {
@@ -62,7 +54,7 @@ namespace Empiria.Products {
     }
 
     static internal ProductGroup Parse(DataRow dataRow) {
-      return BaseObject.Parse<ProductGroup>(dataRow);
+      return BaseObject.ParseDataRow<ProductGroup>(dataRow);
     }
 
     static public FixedList<ProductGroup> GetRoots() {

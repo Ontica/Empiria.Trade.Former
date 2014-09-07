@@ -15,22 +15,10 @@ namespace Empiria.Trade.Ordering {
   /// <summary>Describes a warehousing operation.</summary>
   public class WarehousingOperation : GeneralObject {
 
-    #region Fields
-
-    private const string thisTypeName = "ObjectType.GeneralObject.WarehousingOperation";
-
-    #endregion Fields
-
     #region Constructors and parsers
 
-    public WarehousingOperation()
-      : base(thisTypeName) {
-
-    }
-
-    protected WarehousingOperation(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    private WarehousingOperation() {
+      // Required by Empiria Framework.
     }
 
     static public WarehousingOperation Empty {

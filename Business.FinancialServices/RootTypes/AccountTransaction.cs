@@ -22,8 +22,6 @@ namespace Empiria.FinancialServices {
 
     #region Fields
 
-    private const string thisTypeName = "ObjectType.FinancialServicesAccountTransaction";
-
     private FinancialAccount financialAccount = FinancialAccount.Empty;
     private FinancialConcept financialConcept = FinancialConcept.Empty;
     private Organization organization = Organization.Empty;
@@ -51,15 +49,13 @@ namespace Empiria.FinancialServices {
 
     #region Constructors and parsers
 
-    protected AccountTransaction(FinancialAccount account, FinancialConcept concept)
-      : base(thisTypeName) {
-      this.financialAccount = account;
-      this.financialConcept = concept;
+    private AccountTransaction() {
+      // Required by Empiria Framework.
     }
 
-    protected AccountTransaction(string typeName)
-      : base(typeName) {
-      // Required by Empiria Framework. Do not delete. Protected in not sealed classes, private otherwise
+    protected AccountTransaction(FinancialAccount account, FinancialConcept concept) {
+      this.financialAccount = account;
+      this.financialConcept = concept;
     }
 
     static public AccountTransaction Parse(int id) {
@@ -67,7 +63,7 @@ namespace Empiria.FinancialServices {
     }
 
     static internal AccountTransaction Parse(DataRow dataRow) {
-      return BaseObject.Parse<AccountTransaction>(dataRow);
+      return BaseObject.ParseDataRow<AccountTransaction>(dataRow);
     }
 
     static public AccountTransaction Empty {
