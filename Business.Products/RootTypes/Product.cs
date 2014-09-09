@@ -1,11 +1,11 @@
 ﻿/* Empiria Business Framework 2014 ***************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria Business Framework                       System   : Product Data Management           *
-*  Namespace : Empiria.Products                                 Assembly : Empiria.Products.dll              *
-*  Type      : Product                                          Pattern  : Storage Item                      *
-*  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Solution  : Empiria Business Framework                     System   : Product Data Management             *
+*  Namespace : Empiria.Products                               Assembly : Empiria.Products.dll                *
+*  Type      : Product                                        Pattern  : Partitioned type                    *
+*  Version   : 6.0        Date: 23/Oct/2014                   License  : GNU AGPLv3  (See license.txt)       *
 *                                                                                                            *
-*  Summary   : Abstract type that represents a physical good or service.                                     *
+*  Summary   : Abstract partitioned type that represents a physical good or service.                         *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
@@ -14,7 +14,7 @@ using System.Data;
 using Empiria.Contacts;
 using Empiria.DataTypes;
 using Empiria.Geography;
-
+using Empiria.Ontology;
 using Empiria.Products.Data;
 
 namespace Empiria.Products {
@@ -36,7 +36,8 @@ namespace Empiria.Products {
     NotHandled = 'N',       // N = Not handled product (e.g., services, e-deliveried)
   }
 
-  /// <summary>Abstract type that represents a physical good or service.</summary>
+  /// <summary>Abstract partitioned type that represents a physical good or service.</summary>
+  [PartitionedType(typeof(ProductType))]
   public class Product : BaseObject {
 
     #region Fields
