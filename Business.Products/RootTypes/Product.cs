@@ -93,22 +93,12 @@ namespace Empiria.Products {
       return BaseObject.ParseId<Product>(id);
     }
 
-    static public Product ParseFromBelow(int id) {
-      return BaseObject.ParseFromBelow<Product>(id);
-    }
-
-    static internal Product Parse(DataRow dataRow) {
-      return BaseObject.ParseDataRow<Product>(dataRow);
-    }
-
     static public Product Empty {
       get { return BaseObject.ParseEmpty<Product>(); }
     }
 
     static public FixedList<Product> GetList(string keywords) {
-      DataTable table = ProductsData.GetActiveProducts(keywords, String.Empty);
-
-      return new FixedList<Product>((x) => Product.Parse(x), table);
+      return ProductsData.GetActiveProducts(keywords, String.Empty);
     }
 
     #endregion Constructors and parsers

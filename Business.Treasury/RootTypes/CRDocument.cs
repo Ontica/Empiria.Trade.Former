@@ -54,10 +54,6 @@ namespace Empiria.Treasury {
       return BaseObject.ParseId<CRDocument>(id);
     }
 
-    static internal CRDocument Parse(DataRow dataRow) {
-      return BaseObject.ParseDataRow<CRDocument>(dataRow);
-    }
-
     static public CRDocument Empty {
       get { return BaseObject.ParseEmpty<CRDocument>(); }
     }

@@ -121,10 +121,6 @@ namespace Empiria.Trade.Billing {
       return BaseObject.ParseId<Bill>(id);
     }
 
-    static internal Bill Parse(DataRow dataRow) {
-      return BaseObject.ParseDataRow<Bill>(dataRow);
-    }
-
     static public Bill Empty {
       get { return BaseObject.ParseEmpty<Bill>(); }
     }

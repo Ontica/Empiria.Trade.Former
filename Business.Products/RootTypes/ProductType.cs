@@ -20,7 +20,7 @@ namespace Empiria.Products {
 
     #region Constructors and parsers
 
-    private ProductType(int typeId) : base(typeId) {
+    private ProductType() {
       // Empiria powertype types always have this constructor.
     }
 

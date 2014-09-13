@@ -154,7 +154,7 @@ namespace Empiria.FinancialServices {
 
       AccountTransaction[] transactions = new AccountTransaction[collectTotalItemsTable.Rows.Count];
       for (int i = 0; i < collectTotalItemsTable.Rows.Count; i++) {
-        transactions[i] = AccountTransaction.Parse(collectTotalItemsTable.Rows[i]);
+        transactions[i] = BaseObject.ParseDataRow<AccountTransaction>(collectTotalItemsTable.Rows[i]);
       }
       using (DataWriterContext context = DataWriter.CreateContext("DeleteCollectTotal")) {
         ITransaction transaction = context.BeginTransaction();
@@ -229,15 +229,10 @@ namespace Empiria.FinancialServices {
     //}  
 
     private AccountTransaction[] GetItems(int collectTotalId) {
-      AccountTransaction[] transactions = new AccountTransaction[collectTotalItemsTable.Rows.Count];
+      var list = BaseObject.ParseList<AccountTransaction>(collectTotalItemsTable);
 
-      for (int i = 0; i < collectTotalItemsTable.Rows.Count; i++) {
-        transactions[i] = AccountTransaction.Parse(collectTotalItemsTable.Rows[i]);
-      }
-
-      return transactions;
+      return list.ToArray();
     }
-
 
   } // class CollectTotal
 

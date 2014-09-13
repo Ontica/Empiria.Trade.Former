@@ -98,10 +98,6 @@ namespace Empiria.Trade.Ordering {
       return BaseObject.ParseId<SupplyOrder>(id);
     }
 
-    static internal SupplyOrder Parse(DataRow dataRow) {
-      return BaseObject.ParseDataRow<SupplyOrder>(dataRow);
-    }
-
     static public SupplyOrder Empty {
       get { return BaseObject.ParseEmpty<SupplyOrder>(); }
     }
@@ -195,7 +191,10 @@ namespace Empiria.Trade.Ordering {
     public FinancialAccount CustomerFinancialAccount {
       get {
         if (customerFinancialAccount == null) {
-          customerFinancialAccount = FinancialAccount.GetForCustomer(this.Customer);
+          customerFinancialAccount = FinancialAccount.TryGetForCustomer(this.Customer);
+          if (customerFinancialAccount == null) {
+            customerFinancialAccount = FinancialAccount.Empty;
+          }
         }
         return customerFinancialAccount;
       }
@@ -561,7 +560,7 @@ namespace Empiria.Trade.Ordering {
       this.status = (OrderStatus) Convert.ToChar(row["SupplyOrderStatus"]);
 
       if (this.Status == OrderStatus.Opened) {
-        this.customer = Contact.ParseFromBelow((int) row["CustomerId"]);
+        this.customer = BaseObject.ParseFromBelow<Contact>((int) row["CustomerId"]);
       } else {
         this.customer = Contact.Parse((int) row["CustomerId"]);
       }

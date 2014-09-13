@@ -84,10 +84,6 @@ namespace Empiria.Trade.Ordering {
       return BaseObject.ParseId<StorageUnit>(id);
     }
 
-    static internal StorageUnit Parse(DataRow dataRow) {
-      return BaseObject.ParseDataRow<StorageUnit>(dataRow);
-    }
-
     static public StorageUnit Empty {
       get { return BaseObject.ParseEmpty<StorageUnit>(); }
     }

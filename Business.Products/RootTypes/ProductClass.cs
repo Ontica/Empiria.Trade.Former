@@ -45,10 +45,6 @@ namespace Empiria.Products {
       return BaseObject.ParseId<ProductClass>(id);
     }
 
-    static internal ProductClass Parse(DataRow dataRow) {
-      return BaseObject.ParseDataRow<ProductClass>(dataRow);
-    }
-
     static internal ProductClass Empty {
       get { return BaseObject.ParseEmpty<ProductClass>(); }
     }

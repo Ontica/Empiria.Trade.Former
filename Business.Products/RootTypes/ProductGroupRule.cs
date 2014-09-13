@@ -47,10 +47,6 @@ namespace Empiria.Products {
       return BaseObject.ParseId<ProductGroupRule>(id);
     }
 
-    static internal ProductGroupRule Parse(DataRow dataRow) {
-      return BaseObject.ParseDataRow<ProductGroupRule>(dataRow);
-    }
-
     #endregion Constructors and parsers
 
     #region Public properties

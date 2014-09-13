@@ -88,10 +88,6 @@ namespace Empiria.Treasury {
       return BaseObject.ParseId<CRTransaction>(id);
     }
 
-    static internal CRTransaction Parse(DataRow dataRow) {
-      return BaseObject.ParseDataRow<CRTransaction>(dataRow);
-    }
-
     static public CRTransaction Empty {
       get { return BaseObject.ParseEmpty<CRTransaction>(); }
     }

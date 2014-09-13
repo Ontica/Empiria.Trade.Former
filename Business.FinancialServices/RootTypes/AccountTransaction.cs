@@ -62,10 +62,6 @@ namespace Empiria.FinancialServices {
       return BaseObject.ParseId<AccountTransaction>(id);
     }
 
-    static internal AccountTransaction Parse(DataRow dataRow) {
-      return BaseObject.ParseDataRow<AccountTransaction>(dataRow);
-    }
-
     static public AccountTransaction Empty {
       get { return BaseObject.ParseEmpty<AccountTransaction>(); }
     }

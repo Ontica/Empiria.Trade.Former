@@ -68,10 +68,6 @@ namespace Empiria.Treasury {
       return BaseObject.ParseId<CRPosting>(id);
     }
 
-    static internal CRPosting Parse(DataRow dataRow) {
-      return BaseObject.ParseDataRow<CRPosting>(dataRow);
-    }
-
     static public CRPosting Empty {
       get { return BaseObject.ParseEmpty<CRPosting>(); }
     }

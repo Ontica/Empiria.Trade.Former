@@ -91,14 +91,6 @@ namespace Empiria.Trade.Ordering {
       return BaseObject.ParseId<SupplyOrderItem>(id);
     }
 
-    static internal SupplyOrderItem Parse(DataRow dataRow) {
-      return BaseObject.ParseDataRow<SupplyOrderItem>(dataRow);
-    }
-
-    static internal SupplyOrderItem ParseFromBelow(DataRow dataRow) {
-      return BaseObject.ParseFromBelow<SupplyOrderItem>(dataRow);
-    }
-
     static public SupplyOrderItem Empty {
       get { return BaseObject.ParseEmpty<SupplyOrderItem>(); }
     }
@@ -337,7 +329,7 @@ namespace Empiria.Trade.Ordering {
       this.promisedDate = (DateTime) row["PromisedDate"];
       this.deliveryTime = (DateTime) row["DeliveryTime"];
       if (this.order.Status == OrderStatus.Opened) {
-        this.product = Product.ParseFromBelow((int) row["ProductId"]);
+        this.product = BaseObject.ParseFromBelow<Product>((int) row["ProductId"]);
       } else {
         this.product = Product.Parse((int) row["ProductId"]);
       }

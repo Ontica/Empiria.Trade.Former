@@ -53,10 +53,6 @@ namespace Empiria.Products {
       return BaseObject.ParseId<ProductGroup>(id);
     }
 
-    static internal ProductGroup Parse(DataRow dataRow) {
-      return BaseObject.ParseDataRow<ProductGroup>(dataRow);
-    }
-
     static public FixedList<ProductGroup> GetRoots() {
       return ProductsData.GetProductGroupChilds(ProductGroup.Empty);
     }

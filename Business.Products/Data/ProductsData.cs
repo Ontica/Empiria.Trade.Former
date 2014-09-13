@@ -20,7 +20,7 @@ namespace Empiria.Products.Data {
 
     #region Public methods
 
-    static public DataTable GetActiveProducts(string keywords, string sort) {
+    static public FixedList<Product> GetActiveProducts(string keywords, string sort) {
       string sql = "SELECT * FROM vwPLMActiveProducts";
       if (!String.IsNullOrWhiteSpace(keywords)) {
         sql += " WHERE (" + SearchExpression.ParseAndLikeWithNoiseWords("ProductKeywords", keywords) + ")";
@@ -28,7 +28,8 @@ namespace Empiria.Products.Data {
       if (!String.IsNullOrWhiteSpace(sort)) {
         sql += " ORDER BY " + sort;
       }
-      return DataReader.GetDataTable(DataOperation.Parse(sql));
+      return DataReader.GetList<Product>(DataOperation.Parse(sql),
+                                              (x) => BaseObject.ParseList<Product>(x)).ToFixedList();
     }
 
     static public FixedList<ProductGroup> GetProductGroups(string keywords) {
@@ -42,9 +43,8 @@ namespace Empiria.Products.Data {
       }
       sql += " ORDER BY ProductGroupName";
 
-      DataView view = DataReader.GetDataView(DataOperation.Parse(sql));
-
-      return new FixedList<ProductGroup>((x) => ProductGroup.Parse(x), view);
+      return DataReader.GetList<ProductGroup>(DataOperation.Parse(sql), 
+                                              (x) => BaseObject.ParseList<ProductGroup>(x)).ToFixedList();
     }
 
     static public FixedList<ProductGroup> GetProductGroups(ProductClass productTerm) {
@@ -54,27 +54,27 @@ namespace Empiria.Products.Data {
       sql += "PLMProductGroupRules.ProductGroupRuleStatus <> 'X' AND PLMProductGroups.ProductGroupStatus <> 'X' ";
       sql += "ORDER BY PLMProductGroups.ProductGroupName";
 
-      DataView view = DataReader.GetDataView(DataOperation.Parse(sql));
+      return DataReader.GetList<ProductGroup>(DataOperation.Parse(sql),
+                                              (x) => BaseObject.ParseList<ProductGroup>(x)).ToFixedList();
 
-      return new FixedList<ProductGroup>((x) => ProductGroup.Parse(x), view);
     }
 
     static public FixedList<ProductGroup> GetProductGroupChilds(ProductGroup parentGroup) {
-      DataView view = DataReader.GetDataView(DataOperation.Parse("qryPLMProductGroupChilds", 1, parentGroup.Id));
+      var operation = DataOperation.Parse("qryPLMProductGroupChilds", 1, parentGroup.Id);
 
-      return new FixedList<ProductGroup>((x) => ProductGroup.Parse(x), view);
+      return DataReader.GetList<ProductGroup>(operation,
+                                              (x) => BaseObject.ParseList<ProductGroup>(x)).ToFixedList();
     }
 
     static public FixedList<ProductGroupRule> GetProductGroupRules(ProductGroup productGroup) {
       var operation = DataOperation.Parse("qryPLMProductGroupRules", 1, productGroup.Id);
 
-      DataView view = DataReader.GetDataView(operation);
-
-      var list = new FixedList<ProductGroupRule>((x) => ProductGroupRule.Parse(x), view);
+      var list = DataReader.GetList<ProductGroupRule>(operation,
+                                                     (x) => BaseObject.ParseList<ProductGroupRule>(x));
 
       list.Sort((x, y) => x.ProductTerm.Name.CompareTo(y.ProductTerm.Name));
 
-      return list;
+      return list.ToFixedList();
     }
 
     #endregion Public methods

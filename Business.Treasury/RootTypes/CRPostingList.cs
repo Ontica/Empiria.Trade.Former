@@ -27,19 +27,7 @@ namespace Empiria.Treasury {
 
     #region Constructors and parsers
 
-    public CRPostingList() {
-      //no-op
-    }
-
-    public CRPostingList(int capacity) : base(capacity) {
-      // no-op
-    }
-
-    public CRPostingList(List<CRPosting> list): base(list) {
-      this.CalculateTotals();
-    }
-
-    public CRPostingList(Func<DataRow, CRPosting> parser, DataView view): base(parser, view) {
+    internal CRPostingList(List<CRPosting> list): base(list) {
       this.CalculateTotals();
     }
 

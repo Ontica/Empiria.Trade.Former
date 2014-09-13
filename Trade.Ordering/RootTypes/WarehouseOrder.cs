@@ -61,10 +61,6 @@ namespace Empiria.Trade.Ordering {
       return BaseObject.ParseId<WarehouseOrder>(id);
     }
 
-    static internal WarehouseOrder Parse(DataRow dataRow) {
-      return BaseObject.ParseDataRow<WarehouseOrder>(dataRow);
-    }
-
     static public WarehouseOrder Empty {
       get { return BaseObject.ParseEmpty<WarehouseOrder>(); }
     }

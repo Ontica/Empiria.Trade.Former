@@ -74,11 +74,11 @@ namespace Empiria.Treasury.Data {
     }
 
     static internal CRPostingList GetCRTransactionPostings(CRTransaction transaction) {
-      DataOperation dataOperation = DataOperation.Parse("qryTMSCRTransactionPostings", transaction.Id);
+      var operation = DataOperation.Parse("qryTMSCRTransactionPostings", transaction.Id);
 
-      DataView view = DataReader.GetDataView(dataOperation);
+      var list = DataReader.GetList<CRPosting>(operation, (x) => BaseObject.ParseList<CRPosting>(x));
 
-      return new CRPostingList((x) => CRPosting.Parse(x), view);
+      return new CRPostingList(list);
     }
 
     static internal DataRow GetDocument(int documentId) {

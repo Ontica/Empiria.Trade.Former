@@ -96,50 +96,53 @@ namespace Empiria.Trade.Data {
     #endregion Public methods
 
     #region Internal methods
-    static internal FixedList<SupplyOrder> GetMyOrders(Organization org, Contact contact, string filter, string sort) {
+    static internal FixedList<SupplyOrder> GetMyOrders(Organization org, Contact contact,
+                                                       string filter, string sort) {
       string sql = String.Format("SELECT * FROM tabSNMMyOrders({0},{1})", org.Id, contact.Id) +
                     GeneralDataOperations.GetFilterSortSqlString(filter, sort);
       Empiria.Messaging.Publisher.Publish(sql);
       var view = DataReader.GetDataView(DataOperation.Parse(sql));
 
-      return new FixedList<SupplyOrder>((x) => SupplyOrder.Parse(x), view);
+      return DataReader.GetList<SupplyOrder>(DataOperation.Parse(sql),
+                                             (x) => BaseObject.ParseList<SupplyOrder>(x)).ToFixedList();
+
     }
 
     static internal SupplyOrderItemList GetSupplyOrderItems(SupplyOrder supplyOrder) {
       string sql = "SELECT * FROM SNMSupplyOrderItems WHERE SupplyOrderId = " + supplyOrder.Id;
-      DataView view = DataReader.GetDataView(DataOperation.Parse(sql));
 
+      DataView view = DataReader.GetDataView(DataOperation.Parse(sql));
       if (supplyOrder.Status == OrderStatus.Opened) {
-        return new SupplyOrderItemList((x) => SupplyOrderItem.ParseFromBelow(x), view);
+        return new SupplyOrderItemList((x) => BaseObject.ParseFromBelow<SupplyOrderItem>(x), view);
       } else {
-        return new SupplyOrderItemList((x) => SupplyOrderItem.Parse(x), view);
+        return new SupplyOrderItemList((x) => BaseObject.ParseDataRow<SupplyOrderItem>(x), view);
       }
     }
 
     static internal int WriteSupplyOrder(SupplyOrder o) {
-      DataOperation dataOperation = DataOperation.Parse("writeSNMSupplyOrder", o.Id, o.ObjectTypeInfo.Id,
-                                          o.Number, o.CustomerOrderNumber, o.DutyEntryTag, o.Concept, o.SupplyChannel.Id,
-                                          o.SupplyPoint.Id, o.Supplier.Id, o.SupplierContact.Id, o.Customer.Id, o.CustomerContact.Id,
-                                          o.DeliveryMode.Id, o.DeliveryTo.Id, o.DeliveryPoint.Id, o.DeliveryContact.Id, 
-                                          o.DeliveryTime, o.DeliveryNotes, o.AuthorizationId, o.Currency.Id, o.OrderingTime, 
-                                          o.ClosedBy.Id, o.ClosingTime, o.CanceledBy.Id, o.CancelationTime, o.Keywords, 
-                                          o.Payment.Id, o.Bill.Id, o.ExternalOrderId, o.Parent.Id, 
-                                          o.PostedBy.Id, o.PostingTime, (char) o.Status);
-      return DataWriter.Execute(dataOperation);
+      var op = DataOperation.Parse("writeSNMSupplyOrder", o.Id, o.ObjectTypeInfo.Id,
+                                   o.Number, o.CustomerOrderNumber, o.DutyEntryTag, o.Concept, o.SupplyChannel.Id,
+                                   o.SupplyPoint.Id, o.Supplier.Id, o.SupplierContact.Id, o.Customer.Id, o.CustomerContact.Id,
+                                   o.DeliveryMode.Id, o.DeliveryTo.Id, o.DeliveryPoint.Id, o.DeliveryContact.Id, 
+                                   o.DeliveryTime, o.DeliveryNotes, o.AuthorizationId, o.Currency.Id, o.OrderingTime, 
+                                   o.ClosedBy.Id, o.ClosingTime, o.CanceledBy.Id, o.CancelationTime, o.Keywords, 
+                                   o.Payment.Id, o.Bill.Id, o.ExternalOrderId, o.Parent.Id, 
+                                   o.PostedBy.Id, o.PostingTime, (char) o.Status);
+      return DataWriter.Execute(op);
     }
 
     static internal int WriteSupplyOrderItem(SupplyOrderItem o) {
-      DataOperation dataOperation = DataOperation.Parse("writeSNMSupplyOrderItem", o.Id, o.Order.Id,
-                                                        o.OrderItemTypeId, o.SupplyPoint.Id, o.Concept, o.ApplicationItemTypeId, 
-                                                        o.ApplicationItemId, o.Commissioner.Id, o.RequestedDate, o.PromisedDate,
-                                                        o.DeliveryTime, o.Product.Id, o.Quantity, o.PresentationUnit.Id, o.IdentificationTag,
-                                                        o.DutyEntryTag, o.ExpirationDate, o.PriceRuleId, (char) o.PriceType, 
-                                                        o.DiscountRuleId, (char) o.DiscountType, o.RepositionValue, o.ProductUnitPrice,
-                                                        o.Order.Currency.Id, o.ProductSubTotalInBaseCurrency, o.ProductSubTotal,
-                                                        o.ProductDiscount, o.ProductTaxes, o.ProductTotal, o.ShippingSubTotal,
-                                                        o.ShippingDiscount, o.ShippingTaxes, o.ShippingTotal, o.PriceAuthorizationId,
-                                                        o.Keywords, o.ParentItem.Id, o.PostedBy.Id, o.PostingTime, (char) o.Status);
-      return DataWriter.Execute(dataOperation);
+      var op = DataOperation.Parse("writeSNMSupplyOrderItem", o.Id, o.Order.Id,
+                                   o.OrderItemTypeId, o.SupplyPoint.Id, o.Concept, o.ApplicationItemTypeId, 
+                                   o.ApplicationItemId, o.Commissioner.Id, o.RequestedDate, o.PromisedDate,
+                                   o.DeliveryTime, o.Product.Id, o.Quantity, o.PresentationUnit.Id, o.IdentificationTag,
+                                   o.DutyEntryTag, o.ExpirationDate, o.PriceRuleId, (char) o.PriceType, 
+                                   o.DiscountRuleId, (char) o.DiscountType, o.RepositionValue, o.ProductUnitPrice,
+                                   o.Order.Currency.Id, o.ProductSubTotalInBaseCurrency, o.ProductSubTotal,
+                                   o.ProductDiscount, o.ProductTaxes, o.ProductTotal, o.ShippingSubTotal,
+                                   o.ShippingDiscount, o.ShippingTaxes, o.ShippingTotal, o.PriceAuthorizationId,
+                                  o.Keywords, o.ParentItem.Id, o.PostedBy.Id, o.PostingTime, (char) o.Status);
+      return DataWriter.Execute(op);
     }
 
     #endregion Internal methods
