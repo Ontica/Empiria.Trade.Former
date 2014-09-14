@@ -60,7 +60,7 @@ namespace Empiria.Trade.Data {
     }
 
     static internal int WriteWarehouseOrder(WarehouseOrder o) {
-      var operation = DataOperation.Parse("writeSNMWarehouseOrder", o.Id, o.ObjectTypeInfo.Id,
+      var operation = DataOperation.Parse("writeSNMWarehouseOrder", o.Id, o.GetEmpiriaType().Id,
                                           o.Operation.Id, o.Number, o.Concept, o.SupplyPoint.Id, o.StorageUnit.Id,
                                           o.RequestedBy.Id, o.Responsible.Id, o.Supervisor.Id, o.OrderAuthorizationId,
                                           o.OrderingTime, o.ClosingTime, o.Keywords, o.BaseSupplyOrder.Id, o.ParentWarehouseOrder.Id,

@@ -107,7 +107,7 @@ namespace Empiria.Products {
 
     public ProductType ProductType {
       get {
-        return (ProductType) base.ObjectTypeInfo;
+        return (ProductType) base.GetEmpiriaType();
       }
     }
 

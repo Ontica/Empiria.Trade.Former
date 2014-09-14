@@ -280,7 +280,7 @@ namespace Empiria.Trade.Ordering {
 
       WarehouseData.WriteWarehouseOrderItem(this);
 
-      if (this.IdentificationTag.Length != 0 && this.Order.ObjectTypeInfo.Id == 2061) {
+      if (this.IdentificationTag.Length != 0 && this.Order.GetEmpiriaType().Id == 2061) {
         product.BarCodeID = this.IdentificationTag;
         product.Save();
       }

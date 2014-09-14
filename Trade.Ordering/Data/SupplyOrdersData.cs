@@ -120,7 +120,7 @@ namespace Empiria.Trade.Data {
     }
 
     static internal int WriteSupplyOrder(SupplyOrder o) {
-      var op = DataOperation.Parse("writeSNMSupplyOrder", o.Id, o.ObjectTypeInfo.Id,
+      var op = DataOperation.Parse("writeSNMSupplyOrder", o.Id, o.GetEmpiriaType().Id,
                                    o.Number, o.CustomerOrderNumber, o.DutyEntryTag, o.Concept, o.SupplyChannel.Id,
                                    o.SupplyPoint.Id, o.Supplier.Id, o.SupplierContact.Id, o.Customer.Id, o.CustomerContact.Id,
                                    o.DeliveryMode.Id, o.DeliveryTo.Id, o.DeliveryPoint.Id, o.DeliveryContact.Id, 

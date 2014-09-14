@@ -82,7 +82,7 @@ namespace Empiria.Products.Data {
     #region Internal methods
 
     static internal int WriteProduct(Product o) {
-      var operation = DataOperation.Parse("writePLMProduct", o.Id, o.ObjectTypeInfo.Id,
+      var operation = DataOperation.Parse("writePLMProduct", o.Id, o.GetEmpiriaType().Id,
                       o.ProductTerm.Id, -1, -1, o.Manager.Id, o.IsService,
                       o.IsCompound, o.IsCustomizable, o.NeedsReview,
                       o.Manufacturer.Id, o.Brand.Id, o.OriginCountry.Id, o.Model, o.PartNumber, o.Name,
