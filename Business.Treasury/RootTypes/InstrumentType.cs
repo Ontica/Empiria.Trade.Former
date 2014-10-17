@@ -42,11 +42,7 @@ namespace Empiria.Treasury {
     }
 
     static public FixedList<InstrumentType> GetList() {
-      FixedList<InstrumentType> list = GeneralObject.ParseList<InstrumentType>();
-
-      list.Sort((x, y) => x.Name.CompareTo(y.Name));
-
-      return list;
+      return GeneralObject.ParseList<InstrumentType>();
     }
 
     #endregion Constructors and parsers

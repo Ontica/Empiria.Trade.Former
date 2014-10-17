@@ -51,7 +51,7 @@ namespace Empiria.Trade.Ordering {
 
     #endregion Fields
 
-    #region Constuctors and parsers
+    #region Constructors and parsers
 
     private WarehouseOrder() {
       // Required by Empiria Framework.

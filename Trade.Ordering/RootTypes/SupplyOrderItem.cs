@@ -77,7 +77,7 @@ namespace Empiria.Trade.Ordering {
 
     #endregion Fields
 
-    #region Constuctors and parsers
+    #region Constructors and parsers
 
     private SupplyOrderItem() {
       // Required by Empiria Framework.
@@ -329,7 +329,7 @@ namespace Empiria.Trade.Ordering {
       this.promisedDate = (DateTime) row["PromisedDate"];
       this.deliveryTime = (DateTime) row["DeliveryTime"];
       if (this.order.Status == OrderStatus.Opened) {
-        this.product = BaseObject.ParseFromBelow<Product>((int) row["ProductId"]);
+        this.product = BaseObject.ParseFull<Product>((int) row["ProductId"]);
       } else {
         this.product = Product.Parse((int) row["ProductId"]);
       }

@@ -113,9 +113,9 @@ namespace Empiria.Trade.Data {
 
       DataView view = DataReader.GetDataView(DataOperation.Parse(sql));
       if (supplyOrder.Status == OrderStatus.Opened) {
-        return new SupplyOrderItemList((x) => BaseObject.ParseFromBelow<SupplyOrderItem>(x), view);
+        return new SupplyOrderItemList((x) => BaseObject.ParseDataRowFull<SupplyOrderItem>(x), view);
       } else {
-        return new SupplyOrderItemList((x) => BaseObject.ParseDataRow<SupplyOrderItem>(x), view);
+        return new SupplyOrderItemList((x) => BaseObject.ParseDataRowFull<SupplyOrderItem>(x), view);
       }
     }
 

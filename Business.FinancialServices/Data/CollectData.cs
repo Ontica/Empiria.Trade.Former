@@ -54,11 +54,11 @@ namespace Empiria.FinancialServices.Data {
     }
 
     static internal int WriteCollectTotal(CollectTotal o) {
-      DataOperation operation = DataOperation.Parse("writeFSMCollectTotal", o.Id, o.OrganizationId,
-                                                    o.CollectorId, o.CashierId, o.CollectDate, o.Notes,
-                                                    o.CashTotal, o.ChecksTotal, o.PrePaidCardTotal,
-                                                    o.EPaymentTotal, o.BankDepositTotal, o.CreditsRewardsTotal,
-                                                    o.PostingTime, o.PostedById, o.Status);
+      var operation = DataOperation.Parse("writeFSMCollectTotal", o.Id, o.OrganizationId,
+                                          o.CollectorId, o.CashierId, o.CollectDate, o.Notes,
+                                          o.CashTotal, o.ChecksTotal, o.PrePaidCardTotal,
+                                          o.EPaymentTotal, o.BankDepositTotal, o.CreditsRewardsTotal,
+                                          o.PostingTime, o.PostedById, o.Status);
 
       return DataWriter.Execute(operation);
     }

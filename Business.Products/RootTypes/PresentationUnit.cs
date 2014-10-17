@@ -34,11 +34,7 @@ namespace Empiria.Products {
     }
 
     static public FixedList<PresentationUnit> GetList() {
-      FixedList<PresentationUnit> list = GeneralObject.ParseList<PresentationUnit>();
-
-      list.Sort((x, y) => x.Name.CompareTo(y.Name));
-
-      return list;
+      return GeneralObject.ParseList<PresentationUnit>();
     }
 
     #endregion Constructors and parsers

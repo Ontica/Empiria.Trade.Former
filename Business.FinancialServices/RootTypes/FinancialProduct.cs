@@ -34,11 +34,7 @@ namespace Empiria.FinancialServices {
     }
 
     static public FixedList<FinancialProduct> GetList() {
-      FixedList<FinancialProduct> list = GeneralObject.ParseList<FinancialProduct>();
-
-      list.Sort((x, y) => x.Name.CompareTo(y.Name));
-
-      return list;
+      return GeneralObject.ParseList<FinancialProduct>();
     }
 
     #endregion Constructors and parsers

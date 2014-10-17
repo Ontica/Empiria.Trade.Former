@@ -30,11 +30,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public FixedList<WarehousingOperation> GetList() {
-      var list = GeneralObject.ParseList<WarehousingOperation>();
-
-      list.Sort((x, y) => x.Name.CompareTo(y.Name));
-
-      return list;
+      return GeneralObject.ParseList<WarehousingOperation>();
     }
 
     public FixedList<WarehousingOperation> GetDocumentTypes() {

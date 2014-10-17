@@ -38,11 +38,7 @@ namespace Empiria.Treasury {
     }
 
     static public FixedList<CRTransactionType> GetList() {
-      FixedList<CRTransactionType> list = GeneralObject.ParseList<CRTransactionType>();
-
-      list.Sort((x, y) => x.Name.CompareTo(y.Name));
-
-      return list;
+      return GeneralObject.ParseList<CRTransactionType>();
     }
 
     #endregion Constructors and parsers

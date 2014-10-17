@@ -290,10 +290,6 @@ namespace Empiria.Treasury {
       return posting;
     }
 
-    public bool RemovePosting(CRPosting posting) {
-      return this.Postings.Remove(posting);
-    }
-
     public void Close() {
       foreach (CRPosting posting in this.Postings) {
         if (!posting.Document.IsEmptyInstance) {
@@ -318,6 +314,10 @@ namespace Empiria.Treasury {
       }
       this.Status = TreasuryItemStatus.Deleted;
       this.Save();
+    }
+
+    public bool RemovePosting(CRPosting posting) {
+      return this.Postings.Remove(posting);
     }
 
   } // class CRTransaction

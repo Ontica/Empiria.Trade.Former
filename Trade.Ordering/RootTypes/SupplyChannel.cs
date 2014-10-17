@@ -30,11 +30,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public FixedList<SupplyChannel> GetList() {
-      FixedList<SupplyChannel> list = GeneralObject.ParseList<SupplyChannel>();
-
-      list.Sort((x, y) => x.Name.CompareTo(y.Name));
-
-      return list;
+      return GeneralObject.ParseList<SupplyChannel>();
     }
 
     #endregion Constructors and parsers

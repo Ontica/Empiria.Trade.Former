@@ -88,7 +88,7 @@ namespace Empiria.Trade.Ordering {
 
     #endregion Fields
 
-    #region Constuctors and parsers
+    #region Constructors and parsers
 
     private SupplyOrder() {
       // Required by Empiria Framework.
@@ -105,7 +105,7 @@ namespace Empiria.Trade.Ordering {
     static public SupplyOrder CreateFromCF(int cfOrderID) {
       int supplyOrderId = SupplyOrdersData.CreateSupplyOrderFromColdFusion(cfOrderID);
 
-      return BaseObject.ParseFromBelow<SupplyOrder>(supplyOrderId);
+      return BaseObject.ParseFull<SupplyOrder>(supplyOrderId);
     }
 
     static public SupplyOrder CreateOrder() {
@@ -560,7 +560,7 @@ namespace Empiria.Trade.Ordering {
       this.status = (OrderStatus) Convert.ToChar(row["SupplyOrderStatus"]);
 
       if (this.Status == OrderStatus.Opened) {
-        this.customer = BaseObject.ParseFromBelow<Contact>((int) row["CustomerId"]);
+        this.customer = BaseObject.ParseFull<Contact>((int) row["CustomerId"]);
       } else {
         this.customer = Contact.Parse((int) row["CustomerId"]);
       }
