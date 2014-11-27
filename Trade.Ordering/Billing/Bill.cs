@@ -372,9 +372,9 @@ namespace Empiria.Trade.Billing {
     public BillIssuerData IssuerData {
       get {
         if (this.NotOrderData == null) {
-          return this.Order.Supplier.GetExtensionData<BillIssuerData>();
+          return this.Order.Supplier.ExtendedData.Get<BillIssuerData>("BillIssuerData");
         } else {
-          return this.IssuedBy.GetExtensionData<BillIssuerData>();
+          return this.IssuedBy.ExtendedData.Get<BillIssuerData>("BillIssuerData");
         }
       }
     }
@@ -520,9 +520,9 @@ namespace Empiria.Trade.Billing {
       return sw.ToString();
     }
 
-    public void SendToCustomer(System.IO.FileInfo pdfFile) {
-      System.IO.FileInfo xmlfile = new System.IO.FileInfo(GetXmlFileNameFull());
-      System.IO.FileInfo[] files = new System.IO.FileInfo[2];
+    public void SendToCustomer(FileInfo pdfFile) {
+      FileInfo xmlfile = new FileInfo(GetXmlFileNameFull());
+      FileInfo[] files = new FileInfo[2];
       files[0] = pdfFile;
       files[1] = xmlfile;
 
@@ -535,8 +535,8 @@ namespace Empiria.Trade.Billing {
     }
 
     public void SendToCustomer(string eMail, System.IO.FileInfo pdfFile) {
-      System.IO.FileInfo xmlfile = new System.IO.FileInfo(GetXmlFileNameFull());
-      System.IO.FileInfo[] files = new System.IO.FileInfo[2];
+      FileInfo xmlfile = new FileInfo(GetXmlFileNameFull());
+      FileInfo[] files = new FileInfo[2];
       files[0] = pdfFile;
       files[1] = xmlfile;
 
@@ -632,7 +632,7 @@ namespace Empiria.Trade.Billing {
         supplier = this.IssuedBy;
       }
 
-      string temp = GetDigitalStringItem(supplier.FormattedTaxTag); //  "ARP9706105W2" "TUMG620310R95"
+      string temp = GetDigitalStringItem(supplier.FormattedTaxIDNumber); //  "ARP9706105W2" "TUMG620310R95"
       temp += GetDigitalStringItem(supplier.FullName);              //  "AUTO REFACCIONES PINEDA, S.A. de C.V."
       temp += GetDigitalStringItem(supplier.Address.Street);        //  "Avenida Instituto Politécnico Nacional")
       temp += GetDigitalStringItem(supplier.Address.ExtNumber);     //  "5015"
@@ -663,7 +663,7 @@ namespace Empiria.Trade.Billing {
     private string GetReceptorDigitalStringPart() {
       Contact customer = this.Order.Customer;
 
-      string temp = GetDigitalStringItem(customer.FormattedTaxTag);
+      string temp = GetDigitalStringItem(customer.FormattedTaxIDNumber);
       temp += GetDigitalStringItem(customer.FullName);
       temp += GetDigitalStringItem(customer.Address.Street);
       temp += GetDigitalStringItem(customer.Address.ExtNumber);
@@ -785,7 +785,7 @@ namespace Empiria.Trade.Billing {
               System.Environment.NewLine + System.Environment.NewLine;
 
       body += "Razón social: " + this.Order.Customer.FullName + System.Environment.NewLine;
-      body += "RFC: " + this.Order.Customer.FormattedTaxTag + System.Environment.NewLine;
+      body += "RFC: " + this.Order.Customer.FormattedTaxIDNumber + System.Environment.NewLine;
       body += System.Environment.NewLine;
       body += "Pedido: " + this.Order.ExternalOrderId + System.Environment.NewLine;
       body += "Importe: " + this.Order.Items.Total.ToString("C2") + System.Environment.NewLine;

@@ -41,8 +41,10 @@ namespace Empiria.Products {
 
     #region Fields
 
+    [DataField(GeneralObject.ExtensionDataFieldName + ".LegacyId")]
     public int LegacyId {
-      get { return int.Parse(base.Description); }
+      get;
+      private set;
     }
 
     public string UniqueCode {

@@ -109,24 +109,30 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public SupplyOrder CreateOrder() {
-      EmpiriaUser.Current.Settings.SetValue<int>(myCurrentOrderUserSetting, -1);  
+      throw new NotImplementedException();
+
+      //EmpiriaUser.Current.Settings.SetValue<int>(myCurrentOrderUserSetting, -1);
       
-      return new SupplyOrder();
+      //return new SupplyOrder();
     }
 
     static public SupplyOrder MyCurrentOrder() {
-      int orderId = EmpiriaUser.Current.Settings.GetValue<int>(myCurrentOrderUserSetting, -1);
+      throw new NotImplementedException();
 
-      if (orderId != -1) {
-        return SupplyOrder.Parse(orderId);
-      } else {
-        return new SupplyOrder();
-      }
+      //int orderId = EmpiriaUser.Current.Settings.GetValue<int>(myCurrentOrderUserSetting, -1);
+
+      //if (orderId != -1) {
+      //  return SupplyOrder.Parse(orderId);
+      //} else {
+      //  return new SupplyOrder();
+      //}
     }
 
     static public FixedList<SupplyOrder> MyOrders(string filter = "", string sort = "") {
-      return SupplyOrdersData.GetMyOrders(EmpiriaUser.Current.Organization, 
-                                          EmpiriaUser.Current.Contact, filter, sort);
+      throw new NotImplementedException();
+
+      //return SupplyOrdersData.GetMyOrders(EmpiriaUser.Current.Current.Organization,
+      //                                    EmpiriaUser.Current.Contact, filter, sort);
     }
 
     #endregion Constructors and parsers
@@ -570,17 +576,18 @@ namespace Empiria.Trade.Ordering {
       PrepareForSave();
       SupplyOrdersData.WriteSupplyOrder(this);
       this.Reset();
-      EmpiriaUser.Current.Settings.SetValue<int>(myCurrentOrderUserSetting, this.Id);  //OOJJOO
+
+      throw new NotImplementedException();
+      //EmpiriaUser.Current.Settings.SetValue<int>(myCurrentOrderUserSetting, this.Id);  //OOJJOO
     }
 
     internal void PrepareForSave() {
       if (this.IsNew) {      // IsNew
         this.postingTime = DateTime.Now;
-        this.postedBy = EmpiriaUser.Current.Contact;
+        this.postedBy = Contact.Parse(ExecutionServer.CurrentUserId);
         this.number = SupplyOrdersData.GenerateOrderNumber();
         if (this.CustomerContact.IsEmptyInstance && this.SupplierContact.IsEmptyInstance) {
-          this.Customer = EmpiriaUser.Current.Organization;
-          this.CustomerContact = (Person) EmpiriaUser.Current.Contact;
+          throw new NotImplementedException();
         }
       }
       this.keywords = EmpiriaString.BuildKeywords(this.number, this.concept, this.customer.Keywords);
@@ -599,7 +606,7 @@ namespace Empiria.Trade.Ordering {
       document.Replace("<@CUSTOMER_NAME_4@>", vector.Length > 3 ? vector[3] : String.Empty);
       document.Replace("<@CUSTOMER_NAME_5@>", vector.Length > 4 ? vector[4] : String.Empty);
       document.Replace("<@CUSTOMER_NUMBER@>", this.Customer.Nickname.ToString());
-      document.Replace("<@CUSTOMER_RFC@>", this.Customer.FormattedTaxTag);
+      document.Replace("<@CUSTOMER_RFC@>", this.Customer.FormattedTaxIDNumber);
       document.Replace("<@SELLER_NAME@>", this.SupplierContact.FullName);
       document.Replace("<@ORDER_NUMBER@>", this.ExternalOrderId.ToString("00000000"));
       document.Replace("<@ACCOUNT@>", this.Customer.Nickname);

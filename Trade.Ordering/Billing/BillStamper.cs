@@ -64,9 +64,9 @@ namespace Empiria.Trade.Billing {
       var request = new WSConecFM.requestCancelarCFDI();
 
       if (bill.NotOrderData == null) {
-        request.emisorRFC = bill.Order.Supplier.FormattedTaxTag;
+        request.emisorRFC = bill.Order.Supplier.FormattedTaxIDNumber;
       } else {
-        request.emisorRFC = bill.IssuedBy.FormattedTaxTag;
+        request.emisorRFC = bill.IssuedBy.FormattedTaxIDNumber;
       }
       request.urlCancelado = BillStamper.WSConnectUrl;
       request.UserID = BillStamper.WSConnectUserID;
@@ -80,9 +80,9 @@ namespace Empiria.Trade.Billing {
       var request = new WSConecFM.requestTimbrarCFDI();
 
       if (bill.NotOrderData == null) {
-        request.emisorRFC = bill.Order.Supplier.FormattedTaxTag;
+        request.emisorRFC = bill.Order.Supplier.FormattedTaxIDNumber;
       } else {
-        request.emisorRFC = bill.IssuedBy.FormattedTaxTag;
+        request.emisorRFC = bill.IssuedBy.FormattedTaxIDNumber;
       }
       request.generarCBB = true;
       request.generarPDF = false;

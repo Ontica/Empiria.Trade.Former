@@ -143,7 +143,7 @@ namespace Empiria.Trade.Billing {
       node = xml.CreateNode(XmlNodeType.Element, "Emisor", String.Empty);
       xml.DocumentElement.AppendChild(node);
 
-      AppendXmlAttribute(xml, node, "rfc", supplier.FormattedTaxTag);                 //  "ARP9706105W2" "TUMG620310R95"
+      AppendXmlAttribute(xml, node, "rfc", supplier.FormattedTaxIDNumber);                 //  "ARP9706105W2" "TUMG620310R95"
       AppendXmlAttribute(xml, node, "nombre", supplier.FullName);                     //  "AUTO REFACCIONES PINEDA, S.A. de C.V."
 
       XmlNode address = xml.CreateNode(XmlNodeType.Element, "DomicilioFiscal", String.Empty);
@@ -170,7 +170,7 @@ namespace Empiria.Trade.Billing {
       node = xml.CreateNode(XmlNodeType.Element, "Receptor", String.Empty);
       xml.DocumentElement.AppendChild(node);
 
-      AppendXmlAttribute(xml, node, "rfc", customer.FormattedTaxTag);
+      AppendXmlAttribute(xml, node, "rfc", customer.FormattedTaxIDNumber);
       AppendXmlAttribute(xml, node, "nombre", customer.FullName);
 
       XmlNode address = xml.CreateNode(XmlNodeType.Element, "Domicilio", String.Empty);

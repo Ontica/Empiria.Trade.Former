@@ -83,11 +83,11 @@ namespace Empiria.Trade.Billing {
     }
  
     static internal BillStamp Parse(string json) {
-      return Empiria.Data.JsonConverter.ToObject<BillStamp>(json);
+      return Empiria.Json.JsonConverter.ToObject<BillStamp>(json);
     }
 
     public string ToJson() {
-      return Empiria.Data.JsonConverter.ToJson(this);
+      return Empiria.Json.JsonConverter.ToJson(this);
     }
     
     #endregion Methods

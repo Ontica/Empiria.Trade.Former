@@ -55,22 +55,22 @@ namespace Empiria.Industries.Retail.Presentation {
 
     #region Protected methods
 
-    protected void LoadProductApplianceCombo(HtmlSelect comboControl,
-                                             string emptyListItemName, string firstListItemName) {
-      comboControl.Items.Clear();
-      if (this.WebStoreSession.ProductAppliances.Count == 0) {
-        comboControl.Items.Add(emptyListItemName);
-        return;
-      }
-      foreach (KeyValuePair<string, Empiria.Products.IProductAppliance> kvp in this.WebStoreSession.ProductAppliances) {
-        var item = new System.Web.UI.WebControls.ListItem(kvp.Value.Name, kvp.Value.Id.ToString());
-        comboControl.Items.Add(item);
-      }
-      comboControl.Items.Insert(0, new System.Web.UI.WebControls.ListItem(firstListItemName, String.Empty));
-      if (this.WebStoreSession.SelectedProductAppliance != null) {
-        comboControl.Value = this.WebStoreSession.SelectedProductAppliance.Id.ToString();
-      }
-    }
+    //protected void LoadProductApplianceCombo(HtmlSelect comboControl,
+    //                                         string emptyListItemName, string firstListItemName) {
+    //  comboControl.Items.Clear();
+    //  if (this.WebStoreSession.ProductAppliances.Count == 0) {
+    //    comboControl.Items.Add(emptyListItemName);
+    //    return;
+    //  }
+    //  foreach (KeyValuePair<string, Empiria.Products.IProductAppliance> kvp in this.WebStoreSession.ProductAppliances) {
+    //    var item = new System.Web.UI.WebControls.ListItem(kvp.Value.Name, kvp.Value.Id.ToString());
+    //    comboControl.Items.Add(item);
+    //  }
+    //  comboControl.Items.Insert(0, new System.Web.UI.WebControls.ListItem(firstListItemName, String.Empty));
+    //  if (this.WebStoreSession.SelectedProductAppliance != null) {
+    //    comboControl.Value = this.WebStoreSession.SelectedProductAppliance.Id.ToString();
+    //  }
+    //}
 
     #endregion Protected methods
 
