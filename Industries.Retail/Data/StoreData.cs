@@ -1,13 +1,13 @@
-﻿/* Empiria Industries Framework 2014 *************************************************************************
+﻿/* Empiria Industries Framework 2015 *************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria Industries Framework                     System   : Retail Industry Components        *
 *  Namespace : Empiria.Industries.Retail.Data                   Assembly : Empiria.Industries.Retail.dll     *
 *  Type      : StoreData                                        Pattern  : Data Services Static Class        *
-*  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 6.0        Date: 04/Jan/2015                     License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Provides data read methods for retail store data.                                             *
 *                                                                                                            *
-********************************* Copyright (c) 2008-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2008-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 

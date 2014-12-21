@@ -1,13 +1,13 @@
-﻿/* Empiria Business Framework 2014 ***************************************************************************
+﻿/* Empiria Business Framework 2015 ***************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria Business Framework                       System   : Treasury Management System        *
 *  Namespace : Empiria.Treasury                                 Assembly : Empiria.Treasury.dll              *
 *  Type      : InstrumentType                                   Pattern  : Ontology Object Type              *
-*  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 6.0        Date: 04/Jan/2015                     License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Represents a financial instrument type.                                                       *
 *                                                                                                            *
-********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 
 namespace Empiria.Treasury {

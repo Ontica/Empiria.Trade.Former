@@ -1,13 +1,13 @@
-﻿/* Empiria Customers Components 2014 *************************************************************************
+﻿/* Empiria Customers Components 2015 *************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria Industries Framework                     System   : Automotive Industry Components    *
 *  Namespace : Empiria.Customers.Pineda                         Assembly : Empiria.Customers.Pineda.dll      *
 *  Type      : FacturaXmlSAT                                    Pattern  : Storage Item                      *
-*  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 6.0        Date: 04/Jan/2015                     License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Describes a Xml bill.                                                                         *
 *                                                                                                            *
-********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 using System.Xml;

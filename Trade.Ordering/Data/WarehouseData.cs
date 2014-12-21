@@ -1,13 +1,13 @@
-﻿/* Empiria Trade 2014 ****************************************************************************************
+﻿/* Empiria Trade 2015 ****************************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria Trade                                    System   : Ordering System                   *
 *  Namespace : Empiria.Trade.Data                               Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : WarehouseData                                    Pattern  : Data Services Static Class        *
-*  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 6.0        Date: 04/Jan/2015                     License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Database read and write methods for warehousing management services.                          *
 *                                                                                                            *
-********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 

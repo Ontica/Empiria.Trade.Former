@@ -1,13 +1,13 @@
-﻿/* Empiria Business Framework 2014 ***************************************************************************
+﻿/* Empiria Business Framework 2015 ***************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria Business Framework                     System   : Product Data Management             *
 *  Namespace : Empiria.Products                               Assembly : Empiria.Products.dll                *
 *  Type      : Product                                        Pattern  : Partitioned type                    *
-*  Version   : 6.0        Date: 23/Oct/2014                   License  : GNU AGPLv3  (See license.txt)       *
+*  Version   : 6.0        Date: 04/Jan/2015                   License  : Please read license.txt file        *
 *                                                                                                            *
 *  Summary   : Abstract partitioned type that represents a physical good or service.                         *
 *                                                                                                            *
-********************************* Copyright (c) 2002-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 

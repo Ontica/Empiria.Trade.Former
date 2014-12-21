@@ -1,14 +1,14 @@
-﻿/* Empiria Industries Framework 2014 *************************************************************************
+﻿/* Empiria Industries Framework 2015 *************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria Industries Framework                     System   : Retail Industry Components        *
 *  Namespace : Empiria.Industries.Retail.Presentation           Assembly : Empiria.Industries.Retail.dll     *
 *  Type      : WebStoreMasterPage                               Pattern  : Model View Controller             *
-*  Version   : 6.0        Date: 23/Oct/2014                     License  : GNU AGPLv3  (See license.txt)     *
+*  Version   : 6.0        Date: 04/Jan/2015                     License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Abstract type that represents a master page that serves as template and container             *
 *              for web store pages.                                                                          *
 *                                                                                                            *
-********************************* Copyright (c) 2008-2014. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2008-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Collections.Generic;
 using System.Web.UI.HtmlControls;
