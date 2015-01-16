@@ -41,7 +41,7 @@ namespace Empiria.Trade.Billing {
       set;
     }
 
-    public byte[] QRCode { 
+    public byte[] QRCode {
       get;
       set;
     }
@@ -67,7 +67,7 @@ namespace Empiria.Trade.Billing {
     internal BillStamp(WSConecFM.Resultados stampResult) {
       Assertion.AssertObject(stampResult, "stampResult");
       Assertion.Assert(stampResult.status,
-                        "Bill stamp external web service call return an error status " + 
+                        "Bill stamp external web service call return an error status " +
                         stampResult.code);
       this.QRCode = System.Convert.FromBase64String(stampResult.cbbBase64);
       this.xmlDocument = new System.Xml.XmlDocument();
@@ -78,10 +78,10 @@ namespace Empiria.Trade.Billing {
       this.AuthorityCertificateNumber = item.GetAttribute("noCertificadoSAT");
       this.AuthorityStamp = item.GetAttribute("selloSAT");
       this.IssuerStamp = item.GetAttribute("selloCFD");
-      this.Timestamp = XmlConvert.ToDateTime(item.GetAttribute("FechaTimbrado"), 
+      this.Timestamp = XmlConvert.ToDateTime(item.GetAttribute("FechaTimbrado"),
                                              XmlDateTimeSerializationMode.Utc);
     }
- 
+
     static internal BillStamp Parse(string json) {
       return Empiria.Json.JsonConverter.ToObject<BillStamp>(json);
     }
@@ -89,7 +89,7 @@ namespace Empiria.Trade.Billing {
     public string ToJson() {
       return Empiria.Json.JsonConverter.ToJson(this);
     }
-    
+
     #endregion Methods
 
   }   //internal class BillStamp

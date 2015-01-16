@@ -69,7 +69,7 @@ namespace Empiria.Treasury {
 
     public CRTransaction(CRTransactionType transactionType,
                          BaseObject reference, DateTime transactionDate,
-                         DateTime dueDate, decimal inputAmount, decimal outputAmount, 
+                         DateTime dueDate, decimal inputAmount, decimal outputAmount,
                          string summary, string notes) {
       this.transactionType = transactionType;
       this.baseInstrumentType = InstrumentType.Empty;

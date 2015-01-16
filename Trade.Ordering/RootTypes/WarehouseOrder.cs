@@ -290,7 +290,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     protected override void OnSave() {
-      this.keywords = EmpiriaString.BuildKeywords(number, concept, operation.Name, 
+      this.keywords = EmpiriaString.BuildKeywords(number, concept, operation.Name,
                                                   storageUnit.FullCode, storageUnit.Description);
       WarehouseData.WriteWarehouseOrder(this);
       this.Reset();

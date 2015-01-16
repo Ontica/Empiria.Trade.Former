@@ -56,7 +56,7 @@ namespace Empiria.Trade.Billing {
       o.SubTotal = o.Total - o.Taxes;
       o.TicketNumbers = o.TicketNumbers.Trim(' ');
       o.TicketNumbers = o.TicketNumbers.Trim(',');
-      return o; 
+      return o;
     }
   }
 
@@ -64,7 +64,7 @@ namespace Empiria.Trade.Billing {
   public class Bill : BaseObject {
 
     #region Fields
-    
+
     static private readonly string BillCertificatesFolder = ConfigurationData.GetString("BillCertificatesFolder");
     static public readonly string BillHtmlFilesFolder = ConfigurationData.GetString("BillHtmlFilesFolder");
     static public readonly string BillPDFFilesFolder = ConfigurationData.GetString("BillPDFFilesFolder");
@@ -495,7 +495,7 @@ namespace Empiria.Trade.Billing {
     }
 
     private string FullOldNumber {
-      get { 
+      get {
         return this.SerialNumber + int.Parse(this.Number).ToString("000000");
       }
     }
@@ -548,7 +548,7 @@ namespace Empiria.Trade.Billing {
     }
 
     public bool HasStamp {
-      get { return hasStamp && stamp != null; } 
+      get { return hasStamp && stamp != null; }
     }
 
     public BillStamp Stamp {
@@ -767,7 +767,7 @@ namespace Empiria.Trade.Billing {
       XmlBill facturaXml = XmlBill.Parse(this);
       this.xml = facturaXml.CreateDocument();
       this.xml.Save(this.GetXmlFileNameFull());
-      
+
       if (this.IssuedTime.Year >= 2014) {
         this.stamp = BillStamper.Stamp(this);
         this.hasStamp = true;

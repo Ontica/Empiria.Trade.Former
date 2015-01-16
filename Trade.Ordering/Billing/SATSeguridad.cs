@@ -21,7 +21,7 @@ namespace Empiria.Trade.Billing {
     //------- Parses binary asn.1 EncryptedPrivateKeyInfo; returns RSACryptoServiceProvider ---
     static public RSACryptoServiceProvider DecodeEncryptedPrivateKeyInfo(byte[] encpkcs8, SecureString secpswd) {
       // encoded OID sequence for  PKCS #1 rsaEncryption szOID_RSA_RSA = "1.2.840.113549.1.1.1"
-      // this byte[] includes the sequence byte and terminal encoded null 
+      // this byte[] includes the sequence byte and terminal encoded null
       byte[] OIDpkcs5PBES2 = { 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0D };
       byte[] OIDpkcs5PBKDF2 = { 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0C };
       byte[] OIDdesEDE3CBC = { 0x06, 0x08, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x03, 0x07 };
@@ -141,7 +141,7 @@ namespace Empiria.Trade.Billing {
 
 
         //SecureString  = GetSecPswd();
-        
+
         pkcs8 = DecryptPBDK2(encryptedpkcs8, salt, IV, secpswd, iterations);
         if (pkcs8 == null)  // probably a bad pswd entered.
           return null;
@@ -200,7 +200,7 @@ namespace Empiria.Trade.Billing {
     //------- Parses binary asn.1 PKCS #8 PrivateKeyInfo; returns RSACryptoServiceProvider ---
     static public RSACryptoServiceProvider DecodePrivateKeyInfo(byte[] pkcs8) {
       // encoded OID sequence for  PKCS #1 rsaEncryption szOID_RSA_RSA = "1.2.840.113549.1.1.1"
-      // this byte[] includes the sequence byte and terminal encoded null 
+      // this byte[] includes the sequence byte and terminal encoded null
       byte[] SeqOID = { 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01, 0x05, 0x00 };
       byte[] seq = new byte[15];
       // ---------  Set up stream to read the asn.1 encoded SubjectPublicKeyInfo blob  ------
@@ -235,7 +235,7 @@ namespace Empiria.Trade.Billing {
           return null;
 
         bt = binr.ReadByte();
-        if (bt != 0x04)  //expect an Octet string 
+        if (bt != 0x04)  //expect an Octet string
           return null;
 
         bt = binr.ReadByte();    //read next byte, or next 2 bytes is  0x81 or 0x82; otherwise bt is the byte count

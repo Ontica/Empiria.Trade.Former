@@ -282,7 +282,7 @@ namespace Empiria.FinancialServices {
 
     //private CRTransaction DoCreditAccountPayment(AccountTransaction transaction, CRDocument document,
     //                                             string summary, string notes) {
-    //  CRTransaction crt = new CRTransaction(CRTransactionType.Parse("Input.CreditPayment"), 
+    //  CRTransaction crt = new CRTransaction(CRTransactionType.Parse("Input.CreditPayment"),
     //                                        CashRegister.MyCashRegister(), transaction);
 
     //  crt.DueDate = document.DueDate;
@@ -409,7 +409,7 @@ namespace Empiria.FinancialServices {
       }
       //ThreadStart job = new ThreadStart(RebuildAllCreditBalancesJob);
       //Thread thread = new Thread(job);
-      //thread.Start(); 
+      //thread.Start();
     }
 
     #endregion Public methods

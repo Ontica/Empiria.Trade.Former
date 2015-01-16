@@ -43,7 +43,7 @@ namespace Empiria.Products.Data {
       }
       sql += " ORDER BY ProductGroupName";
 
-      return DataReader.GetList<ProductGroup>(DataOperation.Parse(sql), 
+      return DataReader.GetList<ProductGroup>(DataOperation.Parse(sql),
                                               (x) => BaseObject.ParseList<ProductGroup>(x)).ToFixedList();
     }
 

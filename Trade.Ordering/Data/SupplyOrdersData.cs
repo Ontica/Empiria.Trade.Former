@@ -25,7 +25,7 @@ namespace Empiria.Trade.Data {
     static public int CreateSupplyOrderFromColdFusion(int coldFusionOrderId) {
       Empiria.Customers.Pineda.PedidoPineda.Update(coldFusionOrderId);
 
-      DataOperation dataOperation = DataOperation.Parse("SELECT SupplyOrderId FROM SNMSupplyOrders WHERE ExternalOrderId = " + 
+      DataOperation dataOperation = DataOperation.Parse("SELECT SupplyOrderId FROM SNMSupplyOrders WHERE ExternalOrderId = " +
                                                         coldFusionOrderId.ToString());
 
       int supplyOrderId = DataReader.GetScalar<int>(dataOperation);
@@ -63,9 +63,9 @@ namespace Empiria.Trade.Data {
       return DataReader.GetDataView(dataOperation, filter);
     }
 
-    static public DataView GetSuplierCustomerOrders(Contact supplier, Contact customer, 
+    static public DataView GetSuplierCustomerOrders(Contact supplier, Contact customer,
                                                     DateTime fromDate, DateTime toDate, string filter) {
-      var dataOperation = DataOperation.Parse("qrySNMSupplierCustomerOrders", 
+      var dataOperation = DataOperation.Parse("qrySNMSupplierCustomerOrders",
                                               supplier.Id, customer.Id, fromDate, toDate);
 
       return DataReader.GetDataView(dataOperation, filter);
@@ -78,16 +78,16 @@ namespace Empiria.Trade.Data {
       return DataReader.GetDataView(DataOperation.Parse(sql));
     }
 
-    static public DataView GetSupplierOrders(Contact supplier, DateTime fromDate, 
+    static public DataView GetSupplierOrders(Contact supplier, DateTime fromDate,
                                              DateTime toDate, string filter) {
-      var dataOperation = DataOperation.Parse("qrySNMSupplierOrders", 
+      var dataOperation = DataOperation.Parse("qrySNMSupplierOrders",
                                               supplier.Id, fromDate, toDate);
 
       return DataReader.GetDataView(dataOperation, filter);
     }
 
     static public DataView GetSalesInventory() {
-      string sql = "SELECT * FROM vwARPArticulosConInventarioBajo " + 
+      string sql = "SELECT * FROM vwARPArticulosConInventarioBajo " +
                    "ORDER BY MarcaArticulo, NomArt, cveArticulo";
 
       return DataReader.GetDataView(DataOperation.Parse(sql));
@@ -123,20 +123,20 @@ namespace Empiria.Trade.Data {
       var op = DataOperation.Parse("writeSNMSupplyOrder", o.Id, o.GetEmpiriaType().Id,
                                    o.Number, o.CustomerOrderNumber, o.DutyEntryTag, o.Concept, o.SupplyChannel.Id,
                                    o.SupplyPoint.Id, o.Supplier.Id, o.SupplierContact.Id, o.Customer.Id, o.CustomerContact.Id,
-                                   o.DeliveryMode.Id, o.DeliveryTo.Id, o.DeliveryPoint.Id, o.DeliveryContact.Id, 
-                                   o.DeliveryTime, o.DeliveryNotes, o.AuthorizationId, o.Currency.Id, o.OrderingTime, 
-                                   o.ClosedBy.Id, o.ClosingTime, o.CanceledBy.Id, o.CancelationTime, o.Keywords, 
-                                   o.Payment.Id, o.Bill.Id, o.ExternalOrderId, o.Parent.Id, 
+                                   o.DeliveryMode.Id, o.DeliveryTo.Id, o.DeliveryPoint.Id, o.DeliveryContact.Id,
+                                   o.DeliveryTime, o.DeliveryNotes, o.AuthorizationId, o.Currency.Id, o.OrderingTime,
+                                   o.ClosedBy.Id, o.ClosingTime, o.CanceledBy.Id, o.CancelationTime, o.Keywords,
+                                   o.Payment.Id, o.Bill.Id, o.ExternalOrderId, o.Parent.Id,
                                    o.PostedBy.Id, o.PostingTime, (char) o.Status);
       return DataWriter.Execute(op);
     }
 
     static internal int WriteSupplyOrderItem(SupplyOrderItem o) {
       var op = DataOperation.Parse("writeSNMSupplyOrderItem", o.Id, o.Order.Id,
-                                   o.OrderItemTypeId, o.SupplyPoint.Id, o.Concept, o.ApplicationItemTypeId, 
+                                   o.OrderItemTypeId, o.SupplyPoint.Id, o.Concept, o.ApplicationItemTypeId,
                                    o.ApplicationItemId, o.Commissioner.Id, o.RequestedDate, o.PromisedDate,
                                    o.DeliveryTime, o.Product.Id, o.Quantity, o.PresentationUnit.Id, o.IdentificationTag,
-                                   o.DutyEntryTag, o.ExpirationDate, o.PriceRuleId, (char) o.PriceType, 
+                                   o.DutyEntryTag, o.ExpirationDate, o.PriceRuleId, (char) o.PriceType,
                                    o.DiscountRuleId, (char) o.DiscountType, o.RepositionValue, o.ProductUnitPrice,
                                    o.Order.Currency.Id, o.ProductSubTotalInBaseCurrency, o.ProductSubTotal,
                                    o.ProductDiscount, o.ProductTaxes, o.ProductTotal, o.ShippingSubTotal,

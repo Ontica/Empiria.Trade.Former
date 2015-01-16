@@ -32,7 +32,7 @@ namespace Empiria.Trade.Billing {
       var ws = new WSConecFM.Timbrado();
       var request = BillStamper.GetStampRequest(bill);
 
-      WSConecFM.Resultados stampResult = ws.Timbrar(bill.GetXmlFileNameFull(), request); 
+      WSConecFM.Resultados stampResult = ws.Timbrar(bill.GetXmlFileNameFull(), request);
       if (stampResult.status) {
         return new BillStamp(stampResult);
       } else {

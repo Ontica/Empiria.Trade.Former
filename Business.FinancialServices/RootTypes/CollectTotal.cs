@@ -226,8 +226,7 @@ namespace Empiria.FinancialServices {
     //  transaction.Save();
 
     //  return transaction;
-    //}  
-
+    //}
     private AccountTransaction[] GetItems(int collectTotalId) {
       var list = BaseObject.ParseList<AccountTransaction>(collectTotalItemsTable);
 
