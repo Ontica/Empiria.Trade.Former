@@ -3,7 +3,7 @@
 *  Solution  : Empiria Trade                                    System   : Ordering System                   *
 *  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : SupplyOrderItemList                              Pattern  : Empiria List Class                *
-*  Version   : 6.0        Date: 04/Jan/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Represents a list of BaseObject instances.                                                    *
 *                                                                                                            *

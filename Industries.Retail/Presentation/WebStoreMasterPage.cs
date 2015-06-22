@@ -3,7 +3,7 @@
 *  Solution  : Empiria Industries Framework                     System   : Retail Industry Components        *
 *  Namespace : Empiria.Industries.Retail.Presentation           Assembly : Empiria.Industries.Retail.dll     *
 *  Type      : WebStoreMasterPage                               Pattern  : Model View Controller             *
-*  Version   : 6.0        Date: 04/Jan/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Abstract type that represents a master page that serves as template and container             *
 *              for web store pages.                                                                          *

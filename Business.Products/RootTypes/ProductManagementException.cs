@@ -2,8 +2,8 @@
 *                                                                                                            *
 *  Solution  : Empiria Business Framework                       System   : Product Data Management           *
 *  Namespace : Empiria.Products                                 Assembly : Empiria.Products.dll              *
-*  Type      : ProductManagementException                       Pattern  : Empiria Exception Class           *
-*  Version   : 6.0        Date: 04/Jan/2015                     License  : Please read license.txt file      *
+*  Type      : ProductManagementException                       Pattern  : Exception Class                   *
+*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : The exception that is thrown when a problem occurs in the product management system.          *
 *                                                                                                            *

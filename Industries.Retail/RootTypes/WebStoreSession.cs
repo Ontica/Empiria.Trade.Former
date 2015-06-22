@@ -3,7 +3,7 @@
 *  Solution  : Empiria Industries Framework                     System   : Retail Industry Components        *
 *  Namespace : Empiria.Industries.Retail                        Assembly : Empiria.Industries.Retail.dll     *
 *  Type      : WebStoreSession                                  Pattern  : Standard Class                    *
-*  Version   : 6.0        Date: 04/Jan/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Abstract type that represents a web page for online stores.                                   *
 *                                                                                                            *

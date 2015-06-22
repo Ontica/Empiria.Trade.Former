@@ -167,7 +167,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="RootTypes\TradeOrderingExceptionMsg.resx" />
+    <EmbeddedResource Include="RootTypes\TradeOrderingExceptionMsg.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\core\Data\Empiria.Data.csproj">

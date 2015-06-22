@@ -3,7 +3,7 @@
 *  Solution  : Empiria Business Framework                       System   : Product Data Management           *
 *  Namespace : Empiria.Products                                 Assembly : Empiria.Products.dll              *
 *  Type      : IProductAppliance                                Pattern  : Loose coupling interface          *
-*  Version   : 6.0        Date: 04/Jan/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Interface that represents a product appliance.                                                *
 *                                                                                                            *

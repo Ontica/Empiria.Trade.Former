@@ -2,8 +2,8 @@
 *                                                                                                            *
 *  Solution  : Empiria Business Framework                       System   : Financial Services Management     *
 *  Namespace : Empiria.FinancialServices                        Assembly : Empiria.FinancialServices.dll     *
-*  Type      : FinancialServicesException                       Pattern  : Empiria Exception Class           *
-*  Version   : 6.0        Date: 04/Jan/2015                     License  : Please read license.txt file      *
+*  Type      : FinancialServicesException                       Pattern  : Exception Class                   *
+*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : The exception that is thrown when a problem occurs in Empiria Financial Services.             *
 *                                                                                                            *

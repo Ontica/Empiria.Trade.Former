@@ -2,8 +2,8 @@
 *                                                                                                            *
 *  Solution  : Empiria Trade                                    System   : Ordering System                   *
 *  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
-*  Type      : TradeOrderingException                           Pattern  : Empiria Exception Class           *
-*  Version   : 6.0        Date: 04/Jan/2015                     License  : Please read license.txt file      *
+*  Type      : TradeOrderingException                           Pattern  : Exception Class                   *
+*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : The exception that is thrown when a problem occurs in Empiria Trade Ordering System.          *
 *                                                                                                            *

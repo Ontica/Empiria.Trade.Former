@@ -3,7 +3,7 @@
 *  Solution  : Empiria Business Framework                       System   : Financial Services Management     *
 *  Namespace : Empiria.FinancialServices.Data                   Assembly : Empiria.FinancialServices.dll     *
 *  Type      : CollectData                                      Pattern  : Data Services Static Class        *
-*  Version   : 6.0        Date: 04/Jan/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Contains data methods for financial services collect activities.                              *
 *                                                                                                            *

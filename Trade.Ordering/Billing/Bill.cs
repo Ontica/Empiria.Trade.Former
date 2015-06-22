@@ -3,7 +3,7 @@
 *  Solution  : Empiria Industries Framework                     System   : Automotive Industry Components    *
 *  Namespace : Empiria.Customers.Pineda                         Assembly : Empiria.Customers.Pineda.dll      *
 *  Type      : Recording                                        Pattern  : Empiria Object Type               *
-*  Version   : 6.0        Date: 04/Jan/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Represents a bill.                                                                            *
 *                                                                                                            *
