@@ -528,9 +528,11 @@ namespace Empiria.Trade.Billing {
 
       string eMail = this.Order.Customer.EMail;
       if (!SendBillOnlyToDefaultEmail) {
-        Empiria.Messaging.EMail.Send(eMail, GetMailSubject(), GetMailBody(), files);
+        Empiria.Messaging.EMail.Send(eMail, GetMailSubject(),
+                                     GetMailBody(), attachments: files);
       } else {
-        Empiria.Messaging.EMail.Send("jmcota@ontica.org", GetMailSubject(), GetMailBody(), files);
+        Empiria.Messaging.EMail.Send("jmcota@ontica.org", GetMailSubject(),
+                                     GetMailBody(), attachments: files);
       }
     }
 
@@ -541,9 +543,11 @@ namespace Empiria.Trade.Billing {
       files[1] = xmlfile;
 
       if (!SendBillOnlyToDefaultEmail) {
-        Empiria.Messaging.EMail.Send(eMail, GetMailSubject(), GetMailBody(), files);
+        Empiria.Messaging.EMail.Send(eMail, GetMailSubject(),
+                                     GetMailBody(), attachments: files);
       } else {
-        Empiria.Messaging.EMail.Send("jmcota@ontica.org", GetMailSubject(), GetMailBody(), files);
+        Empiria.Messaging.EMail.Send("jmcota@ontica.org", GetMailSubject(),
+                                     GetMailBody(), attachments: files);
       }
     }
 

@@ -196,10 +196,6 @@
       <Project>{2bd53d27-bd61-49fe-afe1-d68e21f58e9a}</Project>
       <Name>Empiria.Documents</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\extended\Messaging\Empiria.Messaging.csproj">
-      <Project>{c653959d-e6f2-40c6-bf0d-a05bed14df17}</Project>
-      <Name>Empiria.Messaging</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Business.FinancialServices\Empiria.FinancialServices.csproj">
       <Project>{4dc06d3e-7442-40f0-9b3a-a87ec3a6cebb}</Project>
       <Name>Empiria.FinancialServices</Name>

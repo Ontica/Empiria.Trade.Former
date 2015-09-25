@@ -214,9 +214,11 @@ namespace Empiria.FinancialServices {
 
       string eMail = this.Customer.EMail;
       if (!SendFilesOnlyToDefaultEmail) {
-        Empiria.Messaging.EMail.Send(eMail, GetMailSubject(), GetMailBody(fromDate, toDate), files);
+        Empiria.Messaging.EMail.Send(eMail, GetMailSubject(),
+                                     GetMailBody(fromDate, toDate), attachments : files);
       } else {
-        Empiria.Messaging.EMail.Send("jmcota@ontica.org", GetMailSubject(), GetMailBody(fromDate, toDate), files);
+        Empiria.Messaging.EMail.Send("jmcota@ontica.org", GetMailSubject(),
+                                     GetMailBody(fromDate, toDate), attachments: files);
       }
     }
 
