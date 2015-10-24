@@ -122,7 +122,7 @@
   <ItemGroup>
     <Compile Include="Billing\BillStamp.cs" />
     <Compile Include="Billing\BillStamper.cs" />
-    <Compile Include="Data\BillingData.cs" />
+    <Compile Include="Billing\BillingDS.cs" />
     <Compile Include="Data\SupplyOrdersData.cs" />
     <Compile Include="Data\WarehouseData.cs" />
     <Compile Include="Empiria.Trade.Ordering.AssemblyInfo.cs" />
@@ -188,11 +188,11 @@
       <Project>{41e9e90e-8f71-4b39-b478-56c0d1d71057}</Project>
       <Name>Empiria.Customers.Pineda</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\extended\Data.Converter\Empiria.Data.Convertion.csproj">
+    <ProjectReference Include="..\..\extensions\Data.Converter\Empiria.Data.Convertion.csproj">
       <Project>{72057702-c138-444b-8074-fbf7215a3d3a}</Project>
       <Name>Empiria.Data.Convertion</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\extended\Documents\Empiria.Documents.csproj">
+    <ProjectReference Include="..\..\extensions\Documents\Empiria.Documents.csproj">
       <Project>{2bd53d27-bd61-49fe-afe1-d68e21f58e9a}</Project>
       <Name>Empiria.Documents</Name>
     </ProjectReference>

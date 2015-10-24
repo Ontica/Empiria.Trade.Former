@@ -1,13 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security;
+﻿/* Empiria Trade *********************************************************************************************
+*                                                                                                            *
+*  Solution  : Empiria Trade                                    System   : Billing System                    *
+*  Namespace : Empiria.Trade.Billing                            Assembly : Empiria.Trade.Ordering.dll        *
+*  Type      : BillStamp                                        Pattern  : Information holder                *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
+*                                                                                                            *
+*  Summary   : Represents a bill fiscal stamp.                                                               *
+*                                                                                                            *
+********************************* Copyright (c) 2013-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
+using System;
 using System.Xml;
 
 namespace Empiria.Trade.Billing {
 
+  /// <summary>Represents a bill fiscal stamp.</summary>
   public class BillStamp {
 
     private XmlDocument xmlDocument = new System.Xml.XmlDocument();

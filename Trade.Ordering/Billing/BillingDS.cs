@@ -1,24 +1,23 @@
-﻿/* Empiria Trade 2015 ****************************************************************************************
+﻿/* Empiria Trade *********************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria Trade                                    System   : Ordering System                   *
+*  Solution  : Empiria Trade                                    System   : Billing System                    *
 *  Namespace : Empiria.Trade.Data                               Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : BillingData                                      Pattern  : Data Services Static Class        *
-*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
 *                                                                                                            *
-*  Summary   : Database read and write methods for billing services data.                                    *
+*  Summary   : Database read and write methods for billing services.                                         *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 
-using Empiria.Contacts;
 using Empiria.Data;
 using Empiria.Trade.Billing;
 
 namespace Empiria.Trade.Data {
 
-  /// <summary>Database read and write methods for billing services data.</summary>
-  static public class BillingData {
+  /// <summary>Database read and write methods for billing services.</summary>
+  static internal class BillingDS {
 
     #region Public methods
 
@@ -49,6 +48,6 @@ namespace Empiria.Trade.Data {
 
     #endregion Internal methods
 
-  } // class BillingData
+  } // class BillingDS
 
 } // namespace Empiria.Trade.Data

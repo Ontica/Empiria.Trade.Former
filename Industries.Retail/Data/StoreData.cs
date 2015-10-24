@@ -1,9 +1,9 @@
-﻿/* Empiria Industries Framework 2015 *************************************************************************
+﻿/* Empiria Trade *********************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria Industries Framework                     System   : Retail Industry Components        *
-*  Namespace : Empiria.Industries.Retail.Data                   Assembly : Empiria.Industries.Retail.dll     *
+*  Solution  : Empiria Trade                                    System   : Retail Services                   *
+*  Namespace : Empiria.Retail.Data                              Assembly : Empiria.Retail.dll                *
 *  Type      : StoreData                                        Pattern  : Data Services Static Class        *
-*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Provides data read methods for retail store data.                                             *
 *                                                                                                            *

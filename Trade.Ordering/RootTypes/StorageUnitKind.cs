@@ -1,9 +1,9 @@
-﻿/* Empiria Trade 2015 ****************************************************************************************
+﻿/* Empiria Trade *********************************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria Trade                                    System   : Ordering System                   *
 *  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : StorageUnitKind                                  Pattern  : General Object Type               *
-*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Describes a storage unit kind.                                                                *
 *                                                                                                            *
@@ -12,7 +12,7 @@ using System;
 
 namespace Empiria.Trade.Ordering {
 
-  /// <summary>Describes a warehousing operation.</summary>
+  /// <summary>Describes a storage unit kind.</summary>
   public class StorageUnitKind : GeneralObject {
 
     #region Constructors and parsers

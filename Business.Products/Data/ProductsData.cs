@@ -1,15 +1,14 @@
-﻿/* Empiria Extended Framework 2015 ***************************************************************************
+﻿/* Empiria Trade *********************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria Extended Framework                       System   : Document Management Services      *
+*  Solution  : Empiria Trade                                    System   : Product Data Management           *
 *  Namespace : Empiria.Products.Data                            Assembly : Empiria.Documents.dll             *
 *  Type      : ProductsData                                     Pattern  : Data Services Static Class        *
-*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Provides database read and write methods for product data management.                         *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
-using System.Data;
 
 using Empiria.Data;
 

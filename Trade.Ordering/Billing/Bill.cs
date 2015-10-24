@@ -1,11 +1,11 @@
-﻿/* Empiria Customers Components 2015 *************************************************************************
+﻿/* Empiria Trade *********************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria Industries Framework                     System   : Automotive Industry Components    *
-*  Namespace : Empiria.Customers.Pineda                         Assembly : Empiria.Customers.Pineda.dll      *
-*  Type      : Recording                                        Pattern  : Empiria Object Type               *
-*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
+*  Solution  : Empiria Trade                                    System   : Billing System                    *
+*  Namespace : Empiria.Trade.Billing                            Assembly : Empiria.Trade.Ordering.dll        *
+*  Type      : Bill                                             Pattern  : Empiria Object Type               *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
 *                                                                                                            *
-*  Summary   : Represents a bill.                                                                            *
+*  Summary   : Describes and performs operations upon bills.                                                 *
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
@@ -60,7 +60,7 @@ namespace Empiria.Trade.Billing {
     }
   }
 
-  /// <summary>Represents a bill.</summary>
+  /// <summary>Describes and performs operations upon bills.</summary>
   public class Bill : BaseObject {
 
     #region Fields
@@ -125,19 +125,6 @@ namespace Empiria.Trade.Billing {
       get { return BaseObject.ParseEmpty<Bill>(); }
     }
 
-    //static public void Review() {
-    //  DataView view = BillingData.GetBills(DateTime.Parse("01/07/2012"), DateTime.Today, "[ApprovalYear] = 2012");
-
-    //  for (int i = 0; i < view.Count; i++) {
-    //    string ds = (string) view[i]["DigitalString"];
-    //    string temp = CleanDigitalString(ds);
-    //    if (temp != ds) {
-    //      string sql = "UPDATE CRMBills SET BillStatus = 'R' WHERE BillId = " + (int) view[i]["BillId"];
-    //      Empiria.Data.DataWriter.Execute(Empiria.Data.DataOperation.Parse(sql));
-    //    }
-    //  }
-    //}
-
     static private string CleanDigitalString(string digitalString) {
       string temp = digitalString;
       for (int c = 0; c < temp.Length; c++) {
@@ -188,7 +175,7 @@ namespace Empiria.Trade.Billing {
       }
       DateTime dailyBillDate = toDate.AddDays(3) > DateTime.Now ? toDate : DateTime.Now;   // 72 hrs to send to stamp;
 
-      DataView view = BillingData.GetBills(fromDate, toDate, "[BillType] IN ('G', 'L')");
+      DataView view = BillingDS.GetBills(fromDate, toDate, "[BillType] IN ('G', 'L')");
       if (view.Count != 0) { // Global bills already generated
         Empiria.Messaging.Publisher.Publish("Global bills already generated for the selected period");
         return;
@@ -591,7 +578,7 @@ namespace Empiria.Trade.Billing {
         this.digitalSign = this.CreateDigitalSign();
         this.CreateXMLFile();
       }
-      BillingData.WriteBill(this);
+      BillingDS.WriteBill(this);
     }
 
     #endregion Public methods

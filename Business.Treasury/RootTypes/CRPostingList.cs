@@ -1,9 +1,9 @@
-﻿/* Empiria Business Framework 2015 ***************************************************************************
+﻿/* Empiria Trade *********************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria Business Framework                       System   : Treasury Management System        *
+*  Solution  : Empiria Trade                                    System   : Treasury System                   *
 *  Namespace : Empiria.Treasury                                 Assembly : Empiria.Treasury.dll              *
 *  Type      : CRPostingList                                    Pattern  : Empiria List Class                *
-*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : List of CRPosting instances belonging to a cash register trasaction.                          *
 *                                                                                                            *

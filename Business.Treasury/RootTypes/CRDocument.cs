@@ -1,9 +1,9 @@
-﻿/* Empiria Business Framework 2015 ***************************************************************************
+﻿/* Empiria Trade *********************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria Business Framework                       System   : Treasury Management System        *
+*  Solution  : Empiria Trade                                    System   : Treasury System                   *
 *  Namespace : Empiria.Treasury                                 Assembly : Empiria.Treasury.dll              *
 *  Type      : Document                                         Pattern  : Standard Class                    *
-*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Represents a check, credit note, a prepaid slip or IOU (I Owe You) slips.                     *
 *                                                                                                            *

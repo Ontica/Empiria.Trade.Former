@@ -1,19 +1,18 @@
-﻿/* Empiria Customers Components 2015 *************************************************************************
+﻿/* Empiria Trade *********************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria Industries Framework                     System   : Automotive Industry Components    *
-*  Namespace : Empiria.Customers.Pineda                         Assembly : Empiria.Customers.Pineda.dll      *
+*  Solution  : Empiria Trade                                    System   : Billing System                    *
+*  Namespace : Empiria.Trade.Billing                            Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : FacturaXmlSAT                                    Pattern  : Storage Item                      *
-*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Describes a Xml bill.                                                                         *
 *                                                                                                            *
-********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2009-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 using System.Xml;
 
 using Empiria.Contacts;
-
 using Empiria.Trade.Data;
 
 namespace Empiria.Trade.Billing {
@@ -42,22 +41,22 @@ namespace Empiria.Trade.Billing {
     }
 
     static public string CreateReportFile(Contact supplier, DateTime fromDate, DateTime toDate) {
-      DataView view = BillingData.GetBills(fromDate, toDate, "[BillType] IN('B','G') AND [BillStatus] <> 'X' AND " +
+      DataView view = BillingDS.GetBills(fromDate, toDate, "[BillType] IN('B','G') AND [BillStatus] <> 'X' AND " +
                                            "[CancelationTime] > '" + toDate.ToString("yyyy-MM-dd HH:mm:ss") + "'");
 
       string fileContents = GetReportFileSection(view, "1", "I");   // Active bills
 
-      view = BillingData.GetBills(DateTime.Parse("31/12/2011"), fromDate.AddSeconds(-0.5),
+      view = BillingDS.GetBills(DateTime.Parse("31/12/2011"), fromDate.AddSeconds(-0.5),
                                    "[BillType] = 'B' AND [BillStatus] = 'C' AND [CancelationTime] >= '" + fromDate.ToString("yyyy-MM-dd") + "' AND " +
                                    "[CancelationTime] <= '" + toDate.ToString("yyyy-MM-dd HH:mm:ss") + "'");
 
       fileContents += GetReportFileSection(view, "0", "I");         // Canceled bills
 
-      view = BillingData.GetBills(fromDate, toDate, "[BillType] IN ('C','L') AND [BillStatus] = 'A'");
+      view = BillingDS.GetBills(fromDate, toDate, "[BillType] IN ('C','L') AND [BillStatus] = 'A'");
 
       fileContents += GetReportFileSection(view, "1", "E");         // Active credit notes
 
-      view = BillingData.GetBills(DateTime.Parse("31/12/2011"), fromDate.AddSeconds(-0.5),
+      view = BillingDS.GetBills(DateTime.Parse("31/12/2011"), fromDate.AddSeconds(-0.5),
                                   "[BillType] IN ('C','L') AND [BillStatus] = 'C' AND [CancelationTime] >= '" + fromDate.ToString("yyyy-MM-dd") + "' AND " +
                                   "[CancelationTime] <= '" + toDate.ToString("yyyy-MM-dd HH:mm:ss") + "'");
 

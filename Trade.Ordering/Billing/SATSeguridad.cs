@@ -1,13 +1,13 @@
-﻿/* Empiria Customers Components 2015 *************************************************************************
+﻿/* Empiria Trade *********************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria Industries Framework                     System   : Automotive Industry Components    *
-*  Namespace : Empiria.Customers.Pineda                         Assembly : Empiria.Customers.Pineda.dll      *
+*  Solution  : Empiria Trade                                    System   : Billing System                    *
+*  Namespace : Empiria.Trade.Billing                            Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : SATSeguridad                                     Pattern  : Storage Item                      *
-*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Describes an order.                                                                           *
 *                                                                                                            *
-********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2009-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.IO;
 using System.Runtime.InteropServices;

@@ -1,9 +1,9 @@
-﻿/* Empiria Industries Framework 2015 *************************************************************************
+﻿/* Empiria Trade *********************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria Industries Framework                     System   : Retail Industry Components        *
-*  Namespace : Empiria.Industries.Retail.Presentation           Assembly : Empiria.Industries.Retail.dll     *
+*  Solution  : Empiria Trade                                    System   : Retail Services                   *
+*  Namespace : Empiria.Retail.Presentation                      Assembly : Empiria.Retail.dll                *
 *  Type      : WebStoreGlobal                                   Pattern  : Global ASP .NET Class             *
-*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Global.asax page class handler used in Web Store solutions.                                   *
 *                                                                                                            *

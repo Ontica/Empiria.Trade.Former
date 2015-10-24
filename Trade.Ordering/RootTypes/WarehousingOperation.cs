@@ -1,9 +1,9 @@
-﻿/* Empiria Trade 2015 ****************************************************************************************
+﻿/* Empiria Trade *********************************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria Trade                                    System   : Ordering System                   *
 *  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : WarehousingOperation                             Pattern  : General Object Type               *
-*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Describes a warehousing operation.                                                            *
 *                                                                                                            *

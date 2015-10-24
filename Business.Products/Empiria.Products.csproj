@@ -174,7 +174,7 @@
       <Project>{f518e007-2b16-4804-ba45-695ea098e1c0}</Project>
       <Name>Empiria.Kernel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\extended\Geography\Empiria.Geography.csproj">
+    <ProjectReference Include="..\..\extensions\Geography\Empiria.Geography.csproj">
       <Project>{96267945-dbe1-4b2c-88e2-0ecdc5ca7669}</Project>
       <Name>Empiria.Geography</Name>
     </ProjectReference>

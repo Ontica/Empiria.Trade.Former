@@ -1,9 +1,9 @@
-﻿/* Empiria Industries Framework 2015 *************************************************************************
+﻿/* Empiria Trade *********************************************************************************************
 *                                                                                                            *
-*  Solution  : Empiria Industries Framework                     System   : Retail Industry Components        *
-*  Namespace : Empiria.Industries.Retail.Presentation           Assembly : Empiria.Industries.Retail.dll     *
+*  Solution  : Empiria Trade                                    System   : Retail Services                   *
+*  Namespace : Empiria.Retail.Presentation                      Assembly : Empiria.Retail.dll                *
 *  Type      : WebStoreMasterPage                               Pattern  : Model View Controller             *
-*  Version   : 2.0        Date: 25/Jun/2015                     License  : Please read license.txt file      *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Abstract type that represents a master page that serves as template and container             *
 *              for web store pages.                                                                          *
@@ -31,7 +31,7 @@ namespace Empiria.Industries.Retail.Presentation {
     public WebStoreSession WebStoreSession {
       get {
         if (Session["EmpiriaWebStoreSession@" + ExecutionServer.LicenseName] == null) {
-          Session["EmpiriaWebStoreSession@" + ExecutionServer.LicenseName] = new WebStoreSession(Empiria.ExecutionServer.CurrentSessionToken);
+          Session["EmpiriaWebStoreSession@" + ExecutionServer.LicenseName] = new WebStoreSession(ExecutionServer.CurrentSessionToken);
         }
         return (WebStoreSession) Session["EmpiriaWebStoreSession@" + ExecutionServer.LicenseName];
       }

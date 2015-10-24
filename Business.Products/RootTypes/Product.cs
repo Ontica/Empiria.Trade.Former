@@ -1,9 +1,9 @@
-﻿/* Empiria Business Framework 2015 ***************************************************************************
+﻿/* Empiria Trade *********************************************************************************************
 *                                                                                                            *
 *  Solution  : Empiria Business Framework                     System   : Product Data Management             *
 *  Namespace : Empiria.Products                               Assembly : Empiria.Products.dll                *
 *  Type      : Product                                        Pattern  : Partitioned type                    *
-*  Version   : 2.0        Date: 25/Jun/2015                   License  : Please read license.txt file        *
+*  Version   : 2.0                                            License  : Please read license.txt file        *
 *                                                                                                            *
 *  Summary   : Abstract partitioned type that represents a physical good or service.                         *
 *                                                                                                            *

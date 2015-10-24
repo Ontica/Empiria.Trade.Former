@@ -172,11 +172,11 @@
       <Project>{f518e007-2b16-4804-ba45-695ea098e1c0}</Project>
       <Name>Empiria.Kernel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\extended\Presentation.Web\Empiria.Presentation.Web.csproj">
+    <ProjectReference Include="..\..\extensions\Presentation.Web\Empiria.Presentation.Web.csproj">
       <Project>{0aeea12e-b4f7-4e12-a768-99bb82bd3fc9}</Project>
       <Name>Empiria.Presentation.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\extended\Presentation\Empiria.Presentation.csproj">
+    <ProjectReference Include="..\..\extensions\Presentation\Empiria.Presentation.csproj">
       <Project>{2790ad3e-0ae4-4c94-83ba-96bc53185b19}</Project>
       <Name>Empiria.Presentation</Name>
     </ProjectReference>

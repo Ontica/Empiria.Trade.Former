@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security;
+﻿/* Empiria Trade *********************************************************************************************
+*                                                                                                            *
+*  Solution  : Empiria Trade                                    System   : Billing System                    *
+*  Namespace : Empiria.Trade.Billing                            Assembly : Empiria.Trade.Ordering.dll        *
+*  Type      : BillStamper                                      Pattern  : Service provider                  *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
+*                                                                                                            *
+*  Summary   : Provides bill stamping services using a third-party provider.                                 *
+*                                                                                                            *
+********************************* Copyright (c) 2013-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
+using System;
 
 namespace Empiria.Trade.Billing {
 
+  /// <summary>Provides bill stamping services using a third-party provider.</summary>
   static public class BillStamper {
 
     #region Fields
@@ -45,17 +51,17 @@ namespace Empiria.Trade.Billing {
     #region Private methods
 
     static private Exception CancelBillStamperException(Bill bill, WSConecFM.Resultados stampResult) {
-      var e = new Empiria.Trade.Ordering.TradeOrderingException(Ordering.TradeOrderingException.Msg.CancelBillStamperException,
-                                                                bill.Order.Number, bill.Order.Customer.FullName,
-                                                                bill.Stamp.UUID, stampResult.code, stampResult.message);
+      var e = new Ordering.TradeOrderingException(Ordering.TradeOrderingException.Msg.CancelBillStamperException,
+                                                  bill.Order.Number, bill.Order.Customer.FullName,
+                                                  bill.Stamp.UUID, stampResult.code, stampResult.message);
       e.Publish();
       return e;
     }
 
     static private Exception CreateBillStamperException(Bill bill, WSConecFM.Resultados stampResult) {
-      var e = new Empiria.Trade.Ordering.TradeOrderingException(Ordering.TradeOrderingException.Msg.CreateBillStamperException,
-                                                                bill.Order.Number, bill.Order.Customer.FullName,
-                                                                stampResult.code, stampResult.message);
+      var e = new Ordering.TradeOrderingException(Ordering.TradeOrderingException.Msg.CreateBillStamperException,
+                                                  bill.Order.Number, bill.Order.Customer.FullName,
+                                                  stampResult.code, stampResult.message);
       e.Publish();
       return e;
     }

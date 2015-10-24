@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/* Empiria Trade *********************************************************************************************
+*                                                                                                            *
+*  Solution  : Empiria Trade                                    System   : Billing System                    *
+*  Namespace : Empiria.Trade.Billing                            Assembly : Empiria.Trade.Ordering.dll        *
+*  Type      : BillIssuerData                                   Pattern  : Data Transfer Object              *
+*  Version   : 2.0                                              License  : Please read license.txt file      *
+*                                                                                                            *
+*  Summary   : Holds data about a bill issuer.                                                               *
+*                                                                                                            *
+********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System.Security;
 
 namespace Empiria.Trade.Billing {
 
+  /// <summary>Holds data about a bill issuer.</summary>
   public class BillIssuerData {
 
     #region Fields
