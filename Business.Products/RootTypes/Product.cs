@@ -9,7 +9,9 @@
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 using Empiria.Contacts;
 using Empiria.DataTypes;
@@ -309,9 +311,32 @@ namespace Empiria.Products {
       get { return legacyKey; }
     }
 
+    private Lazy<List<Product>> equivalentProducts = null;
+    public FixedList<Product> Equivalents {
+      get {
+        return equivalentProducts.Value.ToFixedList();
+      }
+    }
+
     #endregion Properties
 
     #region Public methods
+
+    public void AddEquivalent(Product equivalentProduct) {
+      Assertion.Assert(!this.IsEmptyInstance, "Base product can't be the empty instance.");
+      Assertion.AssertObject(equivalentProduct, "equivalentProduct");
+      Assertion.Assert(!equivalentProduct.Equals(this),
+                       "Target product should be distinct than the base product.");
+      Assertion.Assert(!equivalentProducts.Value.Exists((x) => x.Id == equivalentProduct.Id),
+                       "Target product was already registered as an equivalent product for the base product.");
+      ProductsData.AddEquivalent(this, equivalentProduct);
+
+      equivalentProducts.Value.Add(equivalentProduct);
+    }
+
+    protected override void OnInitialize() {
+      this.equivalentProducts = new Lazy<List<Product>>(() => ProductsData.GetEquivalentProducts(this));
+    }
 
     protected override void OnLoadObjectData(DataRow row) {
       productTerm = ProductTerm.Parse((int) row["ProductTermId"]);

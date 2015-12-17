@@ -9,6 +9,9 @@
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
+using System.Data;
+
+using Empiria.Data;
 
 namespace Empiria.Products {
 
@@ -41,7 +44,6 @@ namespace Empiria.Products {
 
     #region Fields
 
-    [DataField(GeneralObject.ExtensionDataFieldName + ".LegacyId")]
     public int LegacyId {
       get;
       private set;
@@ -52,6 +54,12 @@ namespace Empiria.Products {
     }
 
     #endregion Fields
+
+    protected override void OnLoadObjectData(DataRow row) {
+      if (!this.IsSpecialCase) {
+        this.LegacyId = Convert.ToInt32((string) row["ObjectDescription"]);
+      }
+    }
 
   } // class Brand
 

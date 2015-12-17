@@ -9,15 +9,60 @@
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
+using System.Collections.Generic;
 
 using Empiria.Data;
+using Empiria.Data.Convertion;
 
 namespace Empiria.Products.Data {
 
   /// <summary>Provides database read and write methods for product data management</summary>
   static public class ProductsData {
 
+    static private bool LegacyAppInstalled = ConfigurationData.GetBoolean("LegacyAppInstalled");
+
     #region Public methods
+
+    static internal void AddEquivalent(Product product, Product equivalentProduct) {
+      int linkId = DataWriter.CreateId("PDMRelations");
+
+      var operation = DataOperation.Parse("writePDMRelation", linkId, 1005, -1, product.Id,
+                                          equivalentProduct.Id, 0, String.Empty, 'A');
+
+      DataWriter.Execute(operation);
+
+      InsertEquivalentProduct(product, equivalentProduct);
+    }
+
+    static private void InsertEquivalentProduct(Product baseProduct, Product equivalent) {
+      if (!LegacyAppInstalled) {
+        return;
+      }
+
+      DataConvertionEngine converter = DataConvertionEngine.GetInstance();
+      converter.Initalize("Empiria", "Autopartes.MySQL");
+
+      string sql1 = "INSERT INTO Equivalentes VALUES " +
+                   "({0}, '{1}', {2}, '{3}', {4}, '', 1.00)";
+
+      int nextID = converter.GetTargetIntegerValue("SELECT MAX(cveEquivalente) FROM Equivalentes");
+      nextID++;
+      sql1 = String.Format(sql1, nextID, baseProduct.PartNumber, baseProduct.Brand.LegacyId,
+                          equivalent.PartNumber, equivalent.Brand.LegacyId);
+
+      string sql2 = "UPDATE Articulos SET equivalente = 1 " +
+                    "WHERE (cveArticulo = '{0}') AND (cveMarcaArticulo = {1})";
+
+      sql2 = String.Format(sql2, equivalent.PartNumber, equivalent.Brand.LegacyId);
+
+      converter.Execute(new string[] { sql1, sql2 });
+    }
+
+    internal static List<Product> GetEquivalentProducts(Product baseProduct) {
+      var operation = DataOperation.Parse("qryPDMEquivalentProducts", baseProduct.Id);
+
+      return DataReader.GetList<Product>(operation, (x) => BaseObject.ParseList<Product>(x));
+    }
 
     static public FixedList<Product> GetActiveProducts(string keywords, string sort) {
       string sql = "SELECT * FROM vwPLMActiveProducts";
