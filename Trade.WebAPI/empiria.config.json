@@ -1,0 +1,17 @@
+﻿{
+  "appName": "Empiria Trade Web API",
+  "version": "0.0",
+  "date": "2015-12-07",
+  "settings": [
+    {
+      "type": "",
+      "key": "License.Name",
+      "value": "Trade"
+    },
+    {
+      "type": "",
+      "key": "License.IsSpecial",
+      "value": false
+    }
+  ]
+}
