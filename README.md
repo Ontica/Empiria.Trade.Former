@@ -1,10 +1,12 @@
 ﻿Empiria Trade
 =============
 
-Empiria Trade includes the following software components:
+Empiria Trade includes the following software systems and components:
 
-* A) Business.FinancialServices
-* B) Business.Products
-* C) Business.Treasury
-* D) Trade.Ordering
-* E) Industries.Retail
+* A) Product Data Managment
+* B) Order Management System
+* C) Treasury Management
+* D) Financial Services
+* E) Retail Industry Services
+* F) Empiria Trade Web API (HTTP/REST)
+* G) Empiria Trade TypeScript Client

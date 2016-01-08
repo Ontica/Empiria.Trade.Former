@@ -1,7 +1,10 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
 [Bb]in/
 [Oo]bj/
-[Oo]bj/
+.vs/
+node_modules/
+assets/
+dist/
 
 # mstest test results
 TestResults
@@ -44,17 +47,36 @@ x64/
 *.vssscc
 .builds
 
-# Visual C++ cache files
-ipch/
-*.aps
-*.ncb
-*.opensdf
-*.sdf
-
 # Visual Studio profiler
 *.psess
 *.vsp
 *.vspx
+
+# TypeScript generated files
+src/*.js
+src/*/*.js
+src/*/*/*.js
+src/*/*/*/*.js
+
+src/*.js.map
+src/*/*.js.map
+src/*/*/*.js.map
+src/*/*/*/*.js.map
+
+# Tests generated files
+tests/*.js
+tests/*/*.js
+tests/*/*/*.js
+tests/*/*/*/*.js
+
+tests/*.js.map
+tests/*/*.js.map
+tests/*/*/*.js.map
+tests/*/*/*/*.js.map
+
+#External libraries folder
+[Ss]cripts/
+[Ll]ib/
 
 # Guidance Automation Toolkit
 *.gpState
@@ -66,7 +88,7 @@ _ReSharper*
 *.ncrunch*
 .*crunch*.local.xml
 
-# Installshield output folder 
+# Installshield output folder
 [Ee]xpress
 
 # DocProject is a documentation generator add-in
@@ -100,7 +122,14 @@ AppPackages/
 [Oo]bj
 sql
 TestResults
+*.html
+*.htm
+*.aspx
+/*.config
+*.csproj
+
 [Tt]est[Rr]esult*
+
 *.Cache
 ClientBin
 [Ss]tyle[Cc]op.*
