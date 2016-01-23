@@ -9,4 +9,3 @@ Empiria Trade includes the following software systems and components:
 * D) Financial Services
 * E) Retail Industry Services
 * F) Empiria Trade Web API (HTTP/REST)
-* G) Empiria Trade TypeScript Client

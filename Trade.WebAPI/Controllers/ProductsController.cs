@@ -22,7 +22,7 @@ namespace Empiria.Trade.WebApi {
 
         var expression = SearchExpression.ParseAndLike("ProductKeywords", searchFor);
 
-        string sql = "SELECT * FROM PDMProducts WHERE " + expression.ToString();
+        string sql = "SELECT * FROM PDMProducts WHERE " + expression.ToString() + " ORDER BY ProductName, PartNumber" ;
 
         var data = DataReader.GetDataTable(DataOperation.Parse(sql));
 
@@ -31,7 +31,6 @@ namespace Empiria.Trade.WebApi {
         var array = new System.Collections.ArrayList(list.Select((x) => GetProductModel(x)).ToArray());
 
         return new PagedCollectionModel(this.Request, array, "Empiria.Trade.Product");
-
       } catch (Exception e) {
         throw base.CreateHttpException(e);
       }
