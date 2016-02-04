@@ -22,7 +22,8 @@ namespace Empiria.Trade.WebApi {
 
         var expression = SearchExpression.ParseAndLike("ProductKeywords", searchFor);
 
-        string sql = "SELECT * FROM PDMProducts WHERE " + expression.ToString() + " ORDER BY ProductName, PartNumber" ;
+        string sql = "SELECT * FROM PDMProducts WHERE " + expression.ToString() +
+                     " ORDER BY ProductName, PartNumber";
 
         var data = DataReader.GetDataTable(DataOperation.Parse(sql));
 
@@ -44,7 +45,8 @@ namespace Empiria.Trade.WebApi {
 
         var product = Product.Parse(productId);
 
-        return new SingleObjectModel(this.Request, GetProductModel(product), "Empiria.Trade.Product");
+        return new SingleObjectModel(this.Request, GetProductModel(product),
+                                     "Empiria.Trade.Product");
 
       } catch (Exception e) {
         throw base.CreateHttpException(e);
@@ -52,8 +54,8 @@ namespace Empiria.Trade.WebApi {
     }
 
     [HttpPost]
-    [Route("v1/products/{baseProductId}/equivalent/{equivalentProductId}")]
-    public SingleObjectModel SetEquivalent([FromUri] int baseProductId,
+    [Route("v1/products/{baseProductId}/equivalents/{equivalentProductId}")]
+    public SingleObjectModel AddEquivalent([FromUri] int baseProductId,
                                            [FromUri] int equivalentProductId) {
       try {
         base.RequireResource(baseProductId, "baseProductId");
@@ -63,6 +65,26 @@ namespace Empiria.Trade.WebApi {
         var equivalentProduct = Product.Parse(equivalentProductId);
 
         baseProduct.AddEquivalent(equivalentProduct);
+
+        return new SingleObjectModel(this.Request, GetProductModel(baseProduct),
+                                     "Empiria.Trade.Product");
+      } catch (Exception e) {
+        throw base.CreateHttpException(e);
+      }
+    }
+
+    [HttpDelete]
+    [Route("v1/products/{baseProductId}/equivalents/{equivalentProductId}")]
+    public SingleObjectModel DeleteEquivalent([FromUri] int baseProductId,
+                                              [FromUri] int equivalentProductId) {
+      try {
+        base.RequireResource(baseProductId, "baseProductId");
+        base.RequireResource(equivalentProductId, "equivalentProductId");
+
+        var baseProduct = Product.Parse(baseProductId);
+        var equivalentProduct = Product.Parse(equivalentProductId);
+
+        baseProduct.RemoveEquivalent(equivalentProduct);
 
         return new SingleObjectModel(this.Request, GetProductModel(baseProduct),
                                      "Empiria.Trade.Product");

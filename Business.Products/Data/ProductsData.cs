@@ -12,14 +12,11 @@ using System;
 using System.Collections.Generic;
 
 using Empiria.Data;
-using Empiria.Data.Convertion;
 
 namespace Empiria.Products.Data {
 
   /// <summary>Provides database read and write methods for product data management</summary>
   static public class ProductsData {
-
-    static private bool LegacyAppInstalled = ConfigurationData.GetBoolean("LegacyAppInstalled");
 
     #region Public methods
 
@@ -28,34 +25,9 @@ namespace Empiria.Products.Data {
 
       var operation = DataOperation.Parse("writePDMRelation", linkId, 1005, -1, product.Id,
                                           equivalentProduct.Id, 0, String.Empty, 'A');
-
       DataWriter.Execute(operation);
 
-      InsertEquivalentProduct(product, equivalentProduct);
-    }
-
-    static private void InsertEquivalentProduct(Product baseProduct, Product equivalent) {
-      if (!LegacyAppInstalled) {
-        return;
-      }
-
-      DataConvertionEngine converter = DataConvertionEngine.GetInstance();
-      converter.Initalize("Empiria", "Autopartes.MySQL");
-
-      string sql1 = "INSERT INTO Equivalentes VALUES " +
-                   "({0}, '{1}', {2}, '{3}', {4}, '', 1.00)";
-
-      int nextID = converter.GetTargetIntegerValue("SELECT MAX(cveEquivalente) FROM Equivalentes");
-      nextID++;
-      sql1 = String.Format(sql1, nextID, baseProduct.PartNumber, baseProduct.Brand.LegacyId,
-                          equivalent.PartNumber, equivalent.Brand.LegacyId);
-
-      string sql2 = "UPDATE Articulos SET equivalente = 1 " +
-                    "WHERE (cveArticulo = '{0}') AND (cveMarcaArticulo = {1})";
-
-      sql2 = String.Format(sql2, equivalent.PartNumber, equivalent.Brand.LegacyId);
-
-      converter.Execute(new string[] { sql1, sql2 });
+      LegacyData.InsertEquivalentProduct(product, equivalentProduct);
     }
 
     internal static List<Product> GetEquivalentProducts(Product baseProduct) {
@@ -119,6 +91,17 @@ namespace Empiria.Products.Data {
       list.Sort((x, y) => x.ProductTerm.Name.CompareTo(y.ProductTerm.Name));
 
       return list.ToFixedList();
+    }
+
+    internal static void RemoveEquivalent(Product product, Product equivalentProduct) {
+      throw new NotImplementedException();
+
+      //var operation = DataOperation.Parse("writePDMRelation", linkId, 1005, -1, product.Id,
+      //                                    equivalentProduct.Id, 0, String.Empty, 'A');
+
+      //DataWriter.Execute(operation);
+
+      //LegacyData.RemoveEquivalentProduct(product, equivalentProduct);
     }
 
     #endregion Public methods

@@ -112,6 +112,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\LegacyData.cs" />
     <Compile Include="Data\ProductsData.cs" />
     <Compile Include="Empiria.Products.AssemblyInfo.cs" />
     <Compile Include="RootTypes\ProductTerm.cs" />

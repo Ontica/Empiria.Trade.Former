@@ -59,6 +59,7 @@ namespace Empiria.Products {
     private string imageFile = String.Empty;
     private string smallImageFile = String.Empty;
     private string searchTags = String.Empty;
+
     private string specification = String.Empty;
     private string notes = String.Empty;
     private string keywords = String.Empty;
@@ -383,6 +384,15 @@ namespace Empiria.Products {
       keywords = "@" + this.PartNumber + "@ " + ((this.BarCodeID.Length != 0) ? "@" + this.BarCodeID + "@ " : String.Empty) +
                  EmpiriaString.BuildKeywords(this.Name, this.Brand.Name, this.Manufacturer.Name, this.Specification);
       ProductsData.WriteProduct(this);
+    }
+
+    public void RemoveEquivalent(Product equivalentProduct) {
+      Assertion.Assert(equivalentProducts.Value.Exists((x) => x.Id == equivalentProduct.Id),
+                       "Target product is not an equivalent product for the base product.");
+
+      ProductsData.RemoveEquivalent(this, equivalentProduct);
+
+      equivalentProducts.Value.Remove(equivalentProduct);
     }
 
     protected void SetPartNumberAndBrand(string newPartNumber, Products.Brand newBrand) {
