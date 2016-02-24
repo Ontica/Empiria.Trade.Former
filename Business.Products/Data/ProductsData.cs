@@ -94,14 +94,11 @@ namespace Empiria.Products.Data {
     }
 
     internal static void RemoveEquivalent(Product product, Product equivalentProduct) {
-      throw new NotImplementedException();
+      var operation = DataOperation.Parse("delPDMRelation", 1005, product.Id, equivalentProduct.Id);
 
-      //var operation = DataOperation.Parse("writePDMRelation", linkId, 1005, -1, product.Id,
-      //                                    equivalentProduct.Id, 0, String.Empty, 'A');
+      DataWriter.Execute(operation);
 
-      //DataWriter.Execute(operation);
-
-      //LegacyData.RemoveEquivalentProduct(product, equivalentProduct);
+      LegacyData.RemoveEquivalentProduct(product, equivalentProduct);
     }
 
     #endregion Public methods

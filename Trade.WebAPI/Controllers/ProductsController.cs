@@ -97,7 +97,7 @@ namespace Empiria.Trade.WebApi {
 
     #region Private methods
 
-    private object GetProductModel(Product o, object equivalents = null) {
+    private object GetProductModel(Product o, bool includeEquivalents = true) {
       return new {
         id = o.Id,
         partNumber = o.PartNumber,
@@ -108,7 +108,8 @@ namespace Empiria.Trade.WebApi {
         name = o.Name,
         specification = o.Specification,
         presentationUnit = o.PresentationUnit.Name,
-        equivalents = o.Equivalents.Select((x) => GetProductModel(x)),
+        equivalents = includeEquivalents ? o.Equivalents.Select((x) => GetProductModel(x))
+                                         : new Array[0]
       };
     }
 

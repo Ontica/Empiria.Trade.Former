@@ -33,7 +33,6 @@ namespace Empiria.FinancialServices {
     /// <param name="args">An optional array of items to format into the exception message.</param>
     public FinancialServicesException(Msg message, params object[] args)
       : base(message.ToString(), GetMessage(message, args)) {
-      //base.Publish();
     }
 
     /// <summary>Initializes a new instance of FinancialServicesException class with a specified error
