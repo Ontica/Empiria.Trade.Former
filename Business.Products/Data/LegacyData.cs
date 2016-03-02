@@ -30,7 +30,7 @@ namespace Empiria.Products.Data {
       converter.Initalize("Empiria", "Autopartes.MySQL");
 
       string sql1 = "INSERT INTO Equivalentes VALUES " +
-                   "({0}, '{1}', {2}, '{3}', {4}, '', 1.00)";
+                    "({0}, '{1}', {2}, '{3}', {4}, '', 1.00)";
 
       int nextID = converter.GetTargetIntegerValue("SELECT MAX(cveEquivalente) FROM Equivalentes");
       nextID++;
@@ -52,7 +52,7 @@ namespace Empiria.Products.Data {
       }
       string sql = "DELETE FROM Equivalentes WHERE " +
                    "(cveArticulo = '{0}' AND cveMarcaArticulo = {1} AND " +
-                   "cveArticuloEquiv = '{2}' AND cveMarcaArticuloEquiv = {3})";
+                   "cveArticuloEquiv = '{2}' AND cveMarcaArticuloEq = {3})";
       sql = String.Format(sql, product.PartNumber, product.Brand.LegacyId,
                           equivalent.PartNumber, equivalent.Brand.LegacyId);
 
@@ -61,7 +61,9 @@ namespace Empiria.Products.Data {
       converter.ExecuteOne(sql);
 
       // Update the has equivalents flag if needed
-      sql = "SELECT COUNT(*) FROM Equivalentes WHERE (cveArticulo = '{0}' AND cveMarcaArticulo = {1})";
+      sql = "SELECT COUNT(*) FROM Equivalentes " + 
+            "WHERE (cveArticulo = '{0}' AND cveMarcaArticulo = {1})";
+      sql = String.Format(sql, product.PartNumber, product.Brand.LegacyId);
 
       if (converter.GetSourceIntegerValue(sql) == 0) {
         sql = "UPDATE Articulos SET equivalente = 0 " +
