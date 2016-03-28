@@ -2,11 +2,11 @@
 *                                                                                                            *
 *  Solution  : Empiria Trade                                    System   : Product Data Management           *
 *  Assembly  : Empiria.Products.dll                             Pattern  : Assembly Attributes File          *
-*  Version   : 2.0                                              License  : Please read license.txt file      *
+*  Version   : 2.1                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Empiria Product Management.                                                                   *
 *                                                                                                            *
-********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -16,11 +16,11 @@ using System.Runtime.InteropServices;
 *************************************************************************************************************/
 [assembly: AssemblyTitle("Empiria.Products")]
 [assembly: AssemblyDescription("Empiria Product Management")]
-[assembly: AssemblyVersion("2.0.1023.0")]
-[assembly: AssemblyFileVersion("2.0.1023")]
+[assembly: AssemblyVersion("2.1.0308.0")]
+[assembly: AssemblyFileVersion("2.1.0308")]
 [assembly: AssemblyCompany("Ontica")]
-[assembly: AssemblyProduct("Empiria Business Framework 2015")]
-[assembly: AssemblyCopyright("(c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.")]
+[assembly: AssemblyProduct("Empiria Business Framework 2016")]
+[assembly: AssemblyCopyright("(c) 2002-2016. La Vía Óntica SC, Ontica LLC and contributors.")]
 [assembly: AssemblyTrademark("Empiria and Ontica are either trademarks of La Vía Óntica SC or Ontica LLC.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCulture("")]

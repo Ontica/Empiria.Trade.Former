@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                    System   : Billing System                    *
 *  Namespace : Empiria.Trade.Data                               Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : BillingData                                      Pattern  : Data Services Static Class        *
-*  Version   : 2.0                                              License  : Please read license.txt file      *
+*  Version   : 2.1                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Database read and write methods for billing services.                                         *
 *                                                                                                            *
-********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 

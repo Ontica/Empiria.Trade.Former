@@ -1,4 +1,14 @@
-﻿using System;
+﻿/* Empiria Trade *********************************************************************************************
+*                                                                                                            *
+*  Solution  : Empiria Trade                                    System   : Trade Web API                     *
+*  Namespace : Empiria.Trade.WebApi                             Assembly : Empiria.Trade.WebApi.dll          *
+*  Type      : DataController                                   Pattern  : Web API                           *
+*  Version   : 2.1                                              License  : Please read license.txt file      *
+*                                                                                                            *
+*  Summary   : Provisional service to get and set data stored in customer MySQL legacy database.             *
+*                                                                                                            *
+********************************* Copyright (c) 2014-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
+using System;
 using System.Data;
 using System.Web.Http;
 
@@ -8,6 +18,7 @@ using Empiria.WebApi.Models;
 
 namespace Empiria.Trade.WebApi {
 
+  /// <summary>Provisional service to get and set data stored in customer MySQL legacy database.</summary>
   public class DataController : WebApiController {
 
     #region Public APIs
@@ -50,4 +61,4 @@ namespace Empiria.Trade.WebApi {
 
   }  // class PropertyController
 
-}  // namespace Empiria.Land.WebApi
+}  // namespace Empiria.Trade.WebApi

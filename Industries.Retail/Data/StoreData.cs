@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                    System   : Retail Services                   *
 *  Namespace : Empiria.Retail.Data                              Assembly : Empiria.Retail.dll                *
 *  Type      : StoreData                                        Pattern  : Data Services Static Class        *
-*  Version   : 2.0                                              License  : Please read license.txt file      *
+*  Version   : 2.1                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Provides data read methods for retail store data.                                             *
 *                                                                                                            *
-********************************* Copyright (c) 2008-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2008-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 

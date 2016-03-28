@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                    System   : Financial Services                *
 *  Namespace : Empiria.FinancialServices.Data                   Assembly : Empiria.FinancialServices.dll     *
 *  Type      : FinancialAccountData                             Pattern  : Data Services Static Class        *
-*  Version   : 2.0                                              License  : Please read license.txt file      *
+*  Version   : 2.1                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Provides data methods for Financial Services Accounts.                                        *
 *                                                                                                            *
-********************************* Copyright (c) 2003-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2003-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Data;
 

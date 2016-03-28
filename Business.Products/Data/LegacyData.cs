@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                    System   : Product Data Management           *
 *  Namespace : Empiria.Products.Data                            Assembly : Empiria.Documents.dll             *
 *  Type      : LegacyData                                       Pattern  : Data Services Static Class        *
-*  Version   : 2.0                                              License  : Please read license.txt file      *
+*  Version   : 2.1                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Provides database read and write methods for product legacy data.                             *
 *                                                                                                            *
-********************************* Copyright (c) 2002-2015. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 
 using Empiria.Data.Convertion;
@@ -61,7 +61,7 @@ namespace Empiria.Products.Data {
       converter.ExecuteOne(sql);
 
       // Update the has equivalents flag if needed
-      sql = "SELECT COUNT(*) FROM Equivalentes " + 
+      sql = "SELECT COUNT(*) FROM Equivalentes " +
             "WHERE (cveArticulo = '{0}' AND cveMarcaArticulo = {1})";
       sql = String.Format(sql, product.PartNumber, product.Brand.LegacyId);
 
