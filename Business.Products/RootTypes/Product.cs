@@ -11,7 +11,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 
 using Empiria.Contacts;
 using Empiria.DataTypes;
@@ -22,7 +21,7 @@ using Empiria.Products.Data;
 namespace Empiria.Products {
 
   public enum PackagingType {
-    Undefined = 'U',        // Undefined
+    Empty = 'U',            // Undefined
     Bulk = 'K',             // Bulk (like screws or nails)
     Item = 'I',             // Primary (Item)
     Box = 'B',              // Secondary (Box)
@@ -31,7 +30,7 @@ namespace Empiria.Products {
   }
 
   public enum IdentificationLevelType {
-    Undefined = 'U',        // Undefined
+    Empty = 'U',            // Undefined
     SKU = 'K',              // Using SKU or UPC - barcode
     BatchNumber = 'B',      // (Per lot number)
     SerialNumber = 'S',     // Serial number. (Per each or per item).
@@ -41,50 +40,6 @@ namespace Empiria.Products {
   /// <summary>Abstract partitioned type that represents a physical good or service.</summary>
   [PartitionedType(typeof(ProductType))]
   public class Product : BaseObject {
-
-    #region Fields
-
-    private ProductTerm productTerm = ProductTerm.Empty;
-    private Contact manager = Person.Empty;
-    private bool isService = false;
-    private bool isCompound = false;
-    private bool isCustomizable = false;
-    private bool needsReview = false;
-    private Manufacturer manufacturer = Manufacturer.Empty;
-    private Brand brand = Brand.Empty;
-    private GeographicRegion originCountry = GeographicRegion.Empty;
-    private string model = String.Empty;
-    private string partNumber = String.Empty;
-    private string name = String.Empty;
-    private string imageFile = String.Empty;
-    private string smallImageFile = String.Empty;
-    private string searchTags = String.Empty;
-
-    private string specification = String.Empty;
-    private string notes = String.Empty;
-    private string keywords = String.Empty;
-    private PresentationUnit presentationUnit = PresentationUnit.Empty;
-    private decimal contentsQty = decimal.Zero;
-    private Unit contentsUnit = Unit.Empty;
-    private PackagingType packagingType = PackagingType.Item;
-    private IdentificationLevelType identificationLevel = IdentificationLevelType.SKU;
-    private string barCodeID = String.Empty;
-    private string radioFrequenceID = String.Empty;
-    private decimal lengthSize = decimal.Zero;
-    private decimal widthSize = decimal.Zero;
-    private decimal heightSize = decimal.Zero;
-    private Unit sizeUnit = Unit.Empty;
-    private decimal weight = decimal.Zero;
-    private Unit weightUnit = Unit.Empty;
-    private Contact reviewedBy = Person.Empty;
-    private Contact postedBy = Person.Empty;
-    private int replacedById = 0;
-    private GeneralObjectStatus status = GeneralObjectStatus.Active;
-    private DateTime startDate = DateTime.Today;
-    private DateTime endDate = ExecutionServer.DateMaxValue;
-    private string legacyKey = String.Empty;
-
-    #endregion Fields
 
     #region Constructors and parsers
 
@@ -114,202 +69,171 @@ namespace Empiria.Products {
       }
     }
 
+    [DataField("ProductTermId")]
     public ProductTerm ProductTerm {
-      get { return productTerm; }
-      set { productTerm = value; }
+      get;
+      private set;
     }
 
+    [DataField("ProductManagerId")]
     public Contact Manager {
-      get { return manager; }
-      set { manager = value; }
+      get;
+      set;
     }
 
+    [DataField("IsService")]
     public bool IsService {
-      get { return isService; }
-      set { isService = value; }
+      get;
+      private set;
     }
 
+    [DataField("IsCompound")]
     public bool IsCompound {
-      get { return isCompound; }
-      set { isCompound = value; }
+      get;
+      private set;
     }
 
+    [DataField("IsCustomizable")]
     public bool IsCustomizable {
-      get { return isCustomizable; }
-      set { isCustomizable = value; }
+      get;
+      private set;
     }
 
-    public bool NeedsReview {
-      get { return needsReview; }
-      set { needsReview = value; }
+    [DataField("BaseProductId")]
+    private LazyInstance<Product> _baseProduct = LazyInstance<Product>.Empty;
+    public Product BaseProduct {
+      get {
+        return _baseProduct.Value;
+      }
+      private set {
+        _baseProduct = LazyInstance<Product>.Parse(value);
+      }
     }
 
+    public bool IsEquivalent {
+      get {
+        return !_baseProduct.IsEmptyInstance;
+      }
+    }
+
+    [DataField("ManufacturerId")]
     public Manufacturer Manufacturer {
-      get { return manufacturer; }
-      set { manufacturer = value; }
+      get;
+      set;
     }
 
+    [DataField("BrandId")]
     public Brand Brand {
-      get { return brand; }
-      set {
-        if (base.IsNew) {
-          this.brand = value;
-          this.legacyKey = partNumber + "@" + brand.LegacyId.ToString();
-        }
-      }
+      get;
+      private set;
     }
 
-    public GeographicRegion OriginCountry {
-      get { return originCountry; }
-      set { originCountry = value; }
-    }
-
+    [DataField("Model")]
     public string Model {
-      get { return model; }
-      set { model = value; }
+      get;
+      set;
     }
 
+    [DataField("PartNumber")]
     public string PartNumber {
-      get { return partNumber; }
-      set {
-        if (base.IsNew) {
-          this.partNumber = value;
-          this.legacyKey = partNumber + "@" + brand.LegacyId.ToString();
-        }
-      }
+      get;
+      private set;
     }
 
+    [DataField("ProductName")]
     public string Name {
-      get { return name; }
-      set { name = EmpiriaString.TrimAll(value); }
+      get;
+      private set;
     }
 
-    public string ExtendedName {
-      get { return "[" + PartNumber + "] " + Name + " / " + Brand.Name; }
-    }
-
-    public string ImageFile {
-      get { return imageFile; }
-      set { imageFile = value; }
-    }
-
-    public string SmallImageFile {
-      get { return smallImageFile; }
-      set { smallImageFile = value; }
-    }
-
+    [DataField("SearchTags")]
     public string SearchTags {
-      get { return searchTags; }
-      set { searchTags = EmpiriaString.TrimAll(value); }
+      get;
+      set;
     }
 
-    public string Specification {
-      get { return specification; }
-      set { specification = EmpiriaString.TrimAll(value); }
+    [DataField("Description")]
+    public string Description {
+      get;
+      set;
     }
 
+    [DataField("Notes")]
     public string Notes {
-      get { return notes; }
-      set { notes = EmpiriaString.TrimAll(value); }
+      get;
+      set;
     }
 
+    [DataField("ProductExtData")]
+    public string ExtendedData {
+      get;
+      protected set;
+    }
+
+    [DataField("ProductKeywords")]
     public string Keywords {
-      get { return keywords; }
-      protected set { keywords = value; }
+      get;
+      protected set;
     }
 
+    [DataField("PresentationId")]
     public PresentationUnit PresentationUnit {
-      get { return presentationUnit; }
-      set { presentationUnit = value; }
+      get;
+      set;
     }
 
+    [DataField("ContentsQty")]
     public decimal ContentsQty {
-      get { return contentsQty; }
-      set { contentsQty = value; }
+      get;
+      set;
     }
 
+    [DataField("ContentsUnitId")]
     public Unit ContentsUnit {
-      get { return contentsUnit; }
-      set { contentsUnit = value; }
+      get;
+      set;
     }
 
+    [DataField("PackagingType", Default = PackagingType.Empty)]
     public PackagingType PackagingType {
-      get { return packagingType; }
-      set { packagingType = value; }
-    }
+      get;
+      set;
+    } = PackagingType.Empty;
 
+    [DataField("IdentificationLevel", Default = IdentificationLevelType.Empty)]
     public IdentificationLevelType IdentificationLevel {
-      get { return identificationLevel; }
-      set { identificationLevel = value; }
+      get;
+      set;
     }
 
+    [DataField("BarCodeID")]
     public string BarCodeID {
-      get { return barCodeID; }
-      set { barCodeID = EmpiriaString.TrimAll(value); }
+      get;
+      set;
     }
 
-    public string RadioFrequenceID {
-      get { return radioFrequenceID; }
-      set { radioFrequenceID = EmpiriaString.TrimAll(value); }
-    }
-
-    public decimal LengthSize {
-      get { return lengthSize; }
-      set { lengthSize = value; }
-    }
-
-    public decimal WidthSize {
-      get { return widthSize; }
-      set { widthSize = value; }
-    }
-
-    public decimal HeightSize {
-      get { return heightSize; }
-      set { heightSize = value; }
-    }
-
-    public Unit SizeUnit {
-      get { return sizeUnit; }
-      set { sizeUnit = value; }
-    }
-
-    public decimal Weight {
-      get { return weight; }
-      set { weight = value; }
-    }
-
-    public Unit WeightUnit {
-      get { return weightUnit; }
-      set { weightUnit = value; }
-    }
-
-    public Contact ReviewedBy {
-      get { return reviewedBy; }
-    }
-
-    public Contact PostedBy {
-      get { return postedBy; }
-    }
-
-    public int ReplacedById {
-      get { return replacedById; }
-    }
-
-    public GeneralObjectStatus Status {
-      get { return status; }
-      set { status = value; }
-    }
-
+    [DataField("StartDate")]
     public DateTime StartDate {
-      get { return startDate; }
+      get;
+      private set;
     }
 
-    public DateTime EndDate {
-      get { return endDate; }
+    [DataField("LastUpdated")]
+    public DateTime LastUpdated {
+      get;
+      private set;
+    }
+
+    [DataField("ProductStatus", Default = GeneralObjectStatus.Active)]
+    public GeneralObjectStatus Status {
+      get;
+      private set;
     }
 
     public string LegacyKey {
-      get { return legacyKey; }
+      get {
+        return this.PartNumber + "@" + this.Brand.LegacyId;
+      }
     }
 
     private Lazy<List<Product>> equivalentProducts = null;
@@ -339,50 +263,11 @@ namespace Empiria.Products {
       this.equivalentProducts = new Lazy<List<Product>>(() => ProductsData.GetEquivalentProducts(this));
     }
 
-    protected override void OnLoadObjectData(DataRow row) {
-      productTerm = ProductTerm.Parse((int) row["ProductTermId"]);
-      manager = Contact.Parse((int) row["ProductManagerId"]);
-      isService = (bool) row["IsService"];
-      isCompound = (bool) row["IsCompound"];
-      isCustomizable = (bool) row["IsCustomizable"];
-      needsReview = (bool) row["IsDirty"];
-      manufacturer = Manufacturer.Parse((int) row["ManufacturerId"]);
-      brand = Brand.Parse((int) row["BrandId"]);
-      originCountry = GeographicRegion.Parse((int) row["OriginCountryId"]);
-      model = (string) row["Model"];
-      partNumber = (string) row["PartNumber"];
-      name = (string) row["ProductName"];
-      imageFile = (string) row["ProductImageFile"];
-      smallImageFile = (string) row["ProductSmallImageFile"];
-      searchTags = (string) row["SearchTags"];
-      specification = (string) row["Specification"];
-      notes = (string) row["Notes"];
-      keywords = (string) row["ProductKeywords"];
-      presentationUnit = PresentationUnit.Parse((int) row["PresentationId"]);
-      contentsQty = (decimal) row["ContentsQty"];
-      contentsUnit = Unit.Parse((int) row["ContentsUnitId"]);
-      packagingType = (PackagingType) Convert.ToChar(row["PackagingType"]);
-      identificationLevel = (IdentificationLevelType) Convert.ToChar(row["IdentificationLevel"]);
-      barCodeID = (string) row["BarCodeID"];
-      radioFrequenceID = (string) row["RadioFrequenceID"];
-      lengthSize = (decimal) row["LengthSize"];
-      widthSize = (decimal) row["WidthSize"];
-      heightSize = (decimal) row["HeightSize"];
-      sizeUnit = Unit.Parse((int) row["SizeUnitId"]);
-      weight = (decimal) row["Weight"];
-      weightUnit = Unit.Parse((int) row["WeightUnitId"]);
-      reviewedBy = Contact.Parse((int) row["ReviewedById"]);
-      postedBy = Contact.Parse((int) row["PostedById"]);
-      replacedById = (int) row["ReplacedById"];
-      status = (GeneralObjectStatus) Convert.ToChar(row["ProductStatus"]);
-      startDate = (DateTime) row["StartDate"];
-      endDate = (DateTime) row["EndDate"];
-      legacyKey = (string) row["LegacyKey"];
-    }
-
     protected override void OnSave() {
-      keywords = "@" + this.PartNumber + "@ " + ((this.BarCodeID.Length != 0) ? "@" + this.BarCodeID + "@ " : String.Empty) +
-                 EmpiriaString.BuildKeywords(this.Name, this.Brand.Name, this.Manufacturer.Name, this.Specification);
+      this.Keywords = "@" + this.PartNumber + "@ " +
+                      ((this.BarCodeID.Length != 0) ? "@" + this.BarCodeID + "@ " : String.Empty) +
+                      this.SearchTags +
+                      EmpiriaString.BuildKeywords(this.Name, this.Brand.Name, this.Manufacturer.Name, this.Description);
       ProductsData.WriteProduct(this);
     }
 
@@ -393,12 +278,6 @@ namespace Empiria.Products {
       ProductsData.RemoveEquivalent(this, equivalentProduct);
 
       equivalentProducts.Value.Remove(equivalentProduct);
-    }
-
-    protected void SetPartNumberAndBrand(string newPartNumber, Products.Brand newBrand) {
-      this.partNumber = newPartNumber;
-      this.brand = newBrand;
-      this.legacyKey = partNumber + "@" + brand.LegacyId.ToString();
     }
 
     #endregion Public methods

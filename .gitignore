@@ -20,6 +20,11 @@ TestResults
 *.cd
 ZZ*.*
 
+# Sensitive and application data
+App_Data/
+*.pubxml
+*.pubxml.user
+
 # Build results
 [Dd]ebug/
 [Rr]elease/

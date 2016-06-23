@@ -33,6 +33,10 @@ namespace Empiria.Products {
       get { return BaseObject.ParseUnknown<ProductCategory>(); }
     }
 
+    public static FixedList<ProductCategory> GetList() {
+      return GeneralObject.ParseList<ProductCategory>();
+    }
+
     #endregion Constructors and parsers
 
   } // class ProductCategory

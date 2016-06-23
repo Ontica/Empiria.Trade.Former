@@ -48,6 +48,7 @@ namespace Empiria.Trade.WebApi {
       }
     }
 
+
     [HttpGet]
     [Route("v1/products/{productId}")]
     public SingleObjectModel GetProductById([FromUri] int productId) {
@@ -63,6 +64,7 @@ namespace Empiria.Trade.WebApi {
         throw base.CreateHttpException(e);
       }
     }
+
 
     [HttpPost]
     [Route("v1/products/{baseProductId}/equivalents/{equivalentProductId}")]
@@ -83,6 +85,7 @@ namespace Empiria.Trade.WebApi {
         throw base.CreateHttpException(e);
       }
     }
+
 
     [HttpDelete]
     [Route("v1/products/{baseProductId}/equivalents/{equivalentProductId}")]
@@ -117,7 +120,7 @@ namespace Empiria.Trade.WebApi {
         brandLegacyId = o.Brand.LegacyId,
         productTerm = o.ProductTerm.Name,
         name = o.Name,
-        specification = o.Specification,
+        description = o.Description,
         presentationUnit = o.PresentationUnit.Name,
         equivalents = includeEquivalents ? o.Equivalents.Select((x) => GetProductModel(x))
                                          : new Array[0]

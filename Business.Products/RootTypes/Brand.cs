@@ -57,7 +57,7 @@ namespace Empiria.Products {
 
     protected override void OnLoadObjectData(DataRow row) {
       if (!this.IsSpecialCase) {
-        this.LegacyId = Convert.ToInt32((string) row["ObjectDescription"]);
+        this.LegacyId = Convert.ToInt32((string) row["LegacyKey"]);
       }
     }
 

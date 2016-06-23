@@ -106,16 +106,14 @@ namespace Empiria.Products.Data {
     #region Internal methods
 
     static internal int WriteProduct(Product o) {
-      var operation = DataOperation.Parse("writePLMProduct", o.Id, o.GetEmpiriaType().Id,
-                      o.ProductTerm.Id, -1, -1, o.Manager.Id, o.IsService,
-                      o.IsCompound, o.IsCustomizable, o.NeedsReview,
-                      o.Manufacturer.Id, o.Brand.Id, o.OriginCountry.Id, o.Model, o.PartNumber, o.Name,
-                      o.ImageFile, o.SmallImageFile, o.SearchTags, o.Specification, o.Notes, o.Keywords,
-                      o.PresentationUnit.Id, o.ContentsQty, o.ContentsUnit.Id, (char) o.PackagingType,
-                      (char) o.IdentificationLevel, o.BarCodeID, o.RadioFrequenceID, o.LengthSize,
-                      o.WidthSize, o.HeightSize, o.SizeUnit.Id, o.Weight, o.WeightUnit.Id,
-                      o.ReviewedBy.Id, o.PostedBy.Id, o.ReplacedById, (char) o.Status,
-                      o.StartDate, o.EndDate, o.LegacyKey);
+      var operation = DataOperation.Parse("writePDMProduct", o.Id, o.GetEmpiriaType().Id,
+                      o.ProductTerm.Id, o.Manager.Id, o.IsService, o.IsCompound, o.IsCustomizable,
+                      o.BaseProduct.Id, o.Manufacturer.Id, o.Brand.Id, o.Model,
+                      o.PartNumber, o.Name, o.SearchTags, o.Description, o.Notes, o.ExtendedData,
+                      o.Keywords, o.PresentationUnit.Id, o.ContentsQty, o.ContentsUnit.Id,
+                      (char) o.PackagingType, (char) o.IdentificationLevel, o.BarCodeID,
+                      o.StartDate, o.LastUpdated, (char) o.Status, o.LegacyKey);
+
       return DataWriter.Execute(operation);
     }
 

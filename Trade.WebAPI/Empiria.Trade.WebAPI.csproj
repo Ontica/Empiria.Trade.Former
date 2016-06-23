@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Controllers\ProductDataController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Empiria.Trade.WebApi.AssemblyInfo.cs" />
   </ItemGroup>
@@ -101,6 +102,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="README.md" />
+    <None Include="Properties\PublishProfiles\empiria-trade - FTP.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -110,8 +112,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
+    <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
-    <Folder Include="Properties\" />
+    <Folder Include="Controllers\PDM\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\empiria\core\Data\Empiria.Data.csproj">

@@ -1,7 +1,7 @@
 ﻿{
   "appName": "Empiria Trade Web API",
-  "version": "0.0",
-  "date": "2015-12-07",
+  "version": "0.0.1",
+  "date": "2016-06-20",
   "settings": [
     {
       "type": "",
@@ -12,6 +12,132 @@
       "type": "",
       "key": "License.IsSpecial",
       "value": false
+    },
+    {
+      "type": "",
+      "key": "License.Number",
+      "value": "ZTA9W3MJ-TRA93UX2-NA25M06Q-AX04YW23"
+    },
+    {
+      "type": "",
+      "key": "License.SerialNumber",
+      "value": "TJ3K69ZZIUEJAT2-U6P9Y99OXV699CN-96MXKC6QN9QGYXO-D6RW9T3HU3VKP34"
+    },
+    {
+      "type": "",
+      "key": "Customer.Name",
+      "value": "MasAutopartes"
+    },
+    {
+      "type": "",
+      "key": "Customer.Url",
+      "value": "http://www.masautopartes.com.mx/"
+    },
+    {
+      "type": "",
+      "key": "DateTime.MaxValue",
+      "value": "2078/12/31"
+    },
+    {
+      "type": "",
+      "key": "DateTime.MinValue",
+      "value": "1900/01/01"
+    },
+    {
+      "type": "",
+      "key": "Default.Currency.Id",
+      "value": 600
+    },
+    {
+      "type": "",
+      "key": "IsDevelopmentServer",
+      "value": true
+    },
+    {
+      "type": "",
+      "key": "Organization.Id",
+      "value": 1
+    },
+    {
+      "type": "",
+      "key": "Server.Id",
+      "value": 10
+    },
+    {
+      "type": "",
+      "key": "Server.Name",
+      "value": "MasAutopartes Azure Server"
+    },
+    {
+      "type": "",
+      "key": "Service.Provider",
+      "value": "La Vía Óntica, S.C."
+    },
+    {
+      "type": "",
+      "key": "Support.Url",
+      "value": "http://empiria.ontica.org/support/exceptions.aspx"
+    },
+    {
+      "type": "",
+      "key": "System.Description",
+      "value": "Red de comercio colaborativo para el mercado de autopartes y refacciones automotrices."
+    },
+    {
+      "type": "",
+      "key": "System.Name",
+      "value": "Empiria Trade Alpha 0.1"
+    },
+    {
+      "type": "",
+      "key": "System.Url",
+      "value": "http://www.ontica.org/trade/"
+    },
+    {
+      "type": "Data",
+      "key": "§DataSource.Default",
+      // "value": "JT8UhUwaAfvGDppn6qoDalrflBdQ3Q0/igTMFiHtXaLOslvsKZdj87pbra3LN5yeILiNifz7OYBolz8v2xWc+1JDymHwYI2WlFRcRhBNV6iKaLQmL1GL7TbmwPgs4FxJndrwOTDQg4LKh+jo1kB3f6xXgTg78Hvv9I3WYGNFxFI4chqN9zshX6Tb/lfP4YVss0IOMaYKYBJH3S2+RCr1ob9t3sSzK+5O01zTD52fPc9UW7sNyHXPc0uGzr5L5TnRZxSK9JU0nJbV4J3883H8LQ=="
+      "value": "SzbPiNwPRM0wpPEFiGOsA4kP2d1XTipZAVw1iu6T18+u80NGrytN4tkMRDx8JO/gpVYsgShn4nxZ/VHWOvn63JBM97nG7dzrJ7R22u22TuzseQOJ/GVUxqsr/zZOk0ir"
+    },
+    {
+      "type": "Data",
+      "key": "DataCache.PlaceBackExpirationMinutes",
+      "value": 20
+    },
+    {
+      "type": "Data",
+      "key": "DataIntegration.Execution.Seconds",
+      "value": 180
+    },
+    {
+      "type": "Data",
+      "key": "DataTechnology.Default",
+      "value": 1
+    },
+    {
+      "type": "Ontology",
+      "key": "ObjectCache.Size",
+      "value": 1048576
+    },
+    {
+      "type": "Ontology",
+      "key": "RelationCache.Size",
+      "value": 1048576
+    },
+    {
+      "type": "Security",
+      "key": "IV",
+      "value": "@~App_Data/IV.txt"
+    },
+    {
+      "type": "Security",
+      "key": "Key",
+      "value": "@~App_Data/Key.txt"
+    },
+    {
+      "type": "Security",
+      "key": "LKey",
+      "value": "@~App_Data/LKey.txt"
     }
   ]
 }
