@@ -34,7 +34,7 @@ namespace Empiria.Trade.WebApi {
         var expression = SearchExpression.ParseAndLike("ProductKeywords", searchFor);
 
         string sql = "SELECT * FROM PDMProducts WHERE " + expression.ToString() +
-                     " ORDER BY ProductName, PartNumber";
+                     " ORDER BY ProductName, ProductCode";
 
         var data = DataReader.GetDataTable(DataOperation.Parse(sql));
 
@@ -114,7 +114,7 @@ namespace Empiria.Trade.WebApi {
     private object GetProductModel(Product o, bool includeEquivalents = true) {
       return new {
         id = o.Id,
-        partNumber = o.PartNumber,
+        productCode = o.ProductCode,
         brand = o.Brand.Name,
         brandId = o.Brand.Id,
         brandLegacyId = o.Brand.LegacyId,

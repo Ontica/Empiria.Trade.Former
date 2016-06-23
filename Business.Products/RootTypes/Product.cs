@@ -134,8 +134,8 @@ namespace Empiria.Products {
       set;
     }
 
-    [DataField("PartNumber")]
-    public string PartNumber {
+    [DataField("ProductCode")]
+    public string ProductCode {
       get;
       private set;
     }
@@ -232,7 +232,7 @@ namespace Empiria.Products {
 
     public string LegacyKey {
       get {
-        return this.PartNumber + "@" + this.Brand.LegacyId;
+        return this.ProductCode + "@" + this.Brand.LegacyId;
       }
     }
 
@@ -264,7 +264,7 @@ namespace Empiria.Products {
     }
 
     protected override void OnSave() {
-      this.Keywords = "@" + this.PartNumber + "@ " +
+      this.Keywords = "@" + this.ProductCode + "@ " +
                       ((this.BarCodeID.Length != 0) ? "@" + this.BarCodeID + "@ " : String.Empty) +
                       this.SearchTags +
                       EmpiriaString.BuildKeywords(this.Name, this.Brand.Name, this.Manufacturer.Name, this.Description);

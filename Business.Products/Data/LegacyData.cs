@@ -34,14 +34,14 @@ namespace Empiria.Products.Data {
 
       int nextID = converter.GetTargetIntegerValue("SELECT MAX(cveEquivalente) FROM Equivalentes");
       nextID++;
-      sql1 = String.Format(sql1, nextID, baseProduct.PartNumber, baseProduct.Brand.LegacyId,
-                          equivalent.PartNumber, equivalent.Brand.LegacyId);
+      sql1 = String.Format(sql1, nextID, baseProduct.ProductCode, baseProduct.Brand.LegacyId,
+                          equivalent.ProductCode, equivalent.Brand.LegacyId);
 
       // Update the has equivalents flag
       string sql2 = "UPDATE Articulos SET equivalente = 1 " +
                     "WHERE (cveArticulo = '{0}') AND (cveMarcaArticulo = {1})";
 
-      sql2 = String.Format(sql2, equivalent.PartNumber, equivalent.Brand.LegacyId);
+      sql2 = String.Format(sql2, equivalent.ProductCode, equivalent.Brand.LegacyId);
 
       converter.Execute(new string[] { sql1, sql2 });
     }
@@ -53,8 +53,8 @@ namespace Empiria.Products.Data {
       string sql = "DELETE FROM Equivalentes WHERE " +
                    "(cveArticulo = '{0}' AND cveMarcaArticulo = {1} AND " +
                    "cveArticuloEquiv = '{2}' AND cveMarcaArticuloEq = {3})";
-      sql = String.Format(sql, product.PartNumber, product.Brand.LegacyId,
-                          equivalent.PartNumber, equivalent.Brand.LegacyId);
+      sql = String.Format(sql, product.ProductCode, product.Brand.LegacyId,
+                          equivalent.ProductCode, equivalent.Brand.LegacyId);
 
       var converter = LegacyData.GetConverter();
 
@@ -63,12 +63,12 @@ namespace Empiria.Products.Data {
       // Update the has equivalents flag if needed
       sql = "SELECT COUNT(*) FROM Equivalentes " +
             "WHERE (cveArticulo = '{0}' AND cveMarcaArticulo = {1})";
-      sql = String.Format(sql, product.PartNumber, product.Brand.LegacyId);
+      sql = String.Format(sql, product.ProductCode, product.Brand.LegacyId);
 
       if (converter.GetSourceIntegerValue(sql) == 0) {
         sql = "UPDATE Articulos SET equivalente = 0 " +
               "WHERE (cveArticulo = '{0}') AND (cveMarcaArticulo = {1})";
-        sql = String.Format(sql, product.PartNumber, product.Brand.LegacyId);
+        sql = String.Format(sql, product.ProductCode, product.Brand.LegacyId);
 
         converter.ExecuteOne(sql);
       }
