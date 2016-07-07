@@ -49,11 +49,19 @@ namespace Empiria.Treasury {
 
     #region Properties
 
+    [DataField(GeneralObject.ExtensionDataFieldName + ".TaxFormCode")]
+    public string TaxFormCode {
+      get;
+      private set;
+    }
+
+
     [DataField(GeneralObject.ExtensionDataFieldName + ".TaxFormName")]
     public string TaxFormName {
       get;
       private set;
     }
+
 
     public string UniqueCode {
       get { return base.NamedKey; }

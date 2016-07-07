@@ -129,6 +129,6 @@ namespace Empiria.Trade.WebApi {
 
     #endregion Private methods
 
-  }  // class PropertyController
+  }  // class ProductsController
 
 }  // namespace Empiria.Trade.WebApi

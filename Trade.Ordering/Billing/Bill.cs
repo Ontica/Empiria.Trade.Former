@@ -322,7 +322,7 @@ namespace Empiria.Trade.Billing {
       get {
         if (this.paymentCondition == null) {
           if (this.notOrderData != null) {
-            this.paymentCondition = "No identificado";
+            this.paymentCondition = "99";
             return this.paymentCondition;
           }
           List<Treasury.CRPosting> postings = this.Order.Payment.Postings.FindAll((x) => x.InputAmount > 0m);
@@ -331,10 +331,10 @@ namespace Empiria.Trade.Billing {
             if (i != 0) {
               s += ",";
             }
-            s += postings[i].InstrumentType.TaxFormName;
+            s += postings[i].InstrumentType.TaxFormCode;
           }
           if (s.Length == 0) {
-            s = "No identificado";
+            s = "NA";
           }
           this.paymentCondition = s;
         }

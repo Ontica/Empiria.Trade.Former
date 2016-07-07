@@ -116,8 +116,8 @@ namespace Empiria.Trade.Billing {
       AppendXmlAttribute(xml, node, "fecha", bill.IssuedTime.ToString(@"yyyy-MM-dd\THH:mm:ss"));
       AppendXmlAttribute(xml, node, "subTotal", bill.SubTotal.ToString("0.00"));
       AppendXmlAttribute(xml, node, "total", bill.Total.ToString("0.00"));
-      AppendXmlAttribute(xml, node, "formaDePago", bill.PaymentMode);
-      AppendXmlAttribute(xml, node, "metodoDePago", bill.PaymentCondition);
+      AppendXmlAttribute(xml, node, "formaDePago", bill.PaymentMode);           // una sola exhibición
+      AppendXmlAttribute(xml, node, "metodoDePago", bill.PaymentCondition);     // efectivo, t. débito, cheque, etc.
       AppendXmlAttribute(xml, node, "LugarExpedicion", bill.IssuerData.IssuePlace);
       AppendXmlAttribute(xml, node, "NumCtaPago", bill.PaymentAccount);
       AppendXmlAttribute(xml, node, "tipoDeComprobante", bill.BillTypeFiscalName);
