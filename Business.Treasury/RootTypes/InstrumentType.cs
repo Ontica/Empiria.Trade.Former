@@ -64,12 +64,20 @@ namespace Empiria.Treasury {
 
     #region Properties
 
-    public new string NamedKey {
-      get { return base.NamedKey; }
+    public string TaxFormCode {
+      get {
+        return base.Value;
+      }
     }
 
     public string TaxFormName {
       get { return base.Description; }
+    }
+
+    public string UniqueCode {
+      get {
+        return base.NamedKey;
+      }
     }
 
     #endregion Properties
