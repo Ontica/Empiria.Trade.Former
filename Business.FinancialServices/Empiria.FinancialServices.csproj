@@ -10,9 +10,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Empiria.FinancialServices</RootNamespace>
     <AssemblyName>Empiria.FinancialServices</AssemblyName>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>empiria.strong.name.public.key.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>true</DelaySign>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -59,34 +60,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Empiria.Data, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\Empiria.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Data.Convertion, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\Empiria.Data.Convertion.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Documents, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\Empiria.Documents.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Foundation, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\Empiria.Foundation.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Kernel, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\Empiria.Kernel.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Messaging, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\Empiria.Messaging.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Treasury, Version=5.5.725.0, Culture=neutral, PublicKeyToken=8b7fe9c60c0f43bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\Empiria.Treasury.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -139,7 +112,26 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="empiria.strong.name.public.key.snk" />
+    <ProjectReference Include="..\..\core\Data\Empiria.Data.csproj">
+      <Project>{20c01648-86cc-4e9e-ad71-ba7aa8e44dbc}</Project>
+      <Name>Empiria.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\core\Foundation\Empiria.Foundation.csproj">
+      <Project>{73ea993b-576b-4a5b-acc5-117dad0254ee}</Project>
+      <Name>Empiria.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\core\Kernel\Empiria.Kernel.csproj">
+      <Project>{f518e007-2b16-4804-ba45-695ea098e1c0}</Project>
+      <Name>Empiria.Kernel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\core\Messaging\Empiria.Messaging.csproj">
+      <Project>{c653959d-e6f2-40c6-bf0d-a05bed14df17}</Project>
+      <Name>Empiria.Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Business.Treasury\Empiria.Treasury.csproj">
+      <Project>{b98b6e7e-fd01-4d54-85af-98fb8bb5f80b}</Project>
+      <Name>Empiria.Treasury</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
