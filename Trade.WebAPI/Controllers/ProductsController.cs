@@ -65,48 +65,6 @@ namespace Empiria.Trade.WebApi {
       }
     }
 
-
-    [HttpPost]
-    [Route("v1/products/{baseProductId}/equivalents/{equivalentProductId}")]
-    public SingleObjectModel AddEquivalent([FromUri] int baseProductId,
-                                           [FromUri] int equivalentProductId) {
-      try {
-        base.RequireResource(baseProductId, "baseProductId");
-        base.RequireResource(equivalentProductId, "equivalentProductId");
-
-        var baseProduct = Product.Parse(baseProductId);
-        var equivalentProduct = Product.Parse(equivalentProductId);
-
-        baseProduct.AddEquivalent(equivalentProduct);
-
-        return new SingleObjectModel(this.Request, GetProductModel(baseProduct),
-                                     "Empiria.Trade.Product");
-      } catch (Exception e) {
-        throw base.CreateHttpException(e);
-      }
-    }
-
-
-    [HttpDelete]
-    [Route("v1/products/{baseProductId}/equivalents/{equivalentProductId}")]
-    public SingleObjectModel DeleteEquivalent([FromUri] int baseProductId,
-                                              [FromUri] int equivalentProductId) {
-      try {
-        base.RequireResource(baseProductId, "baseProductId");
-        base.RequireResource(equivalentProductId, "equivalentProductId");
-
-        var baseProduct = Product.Parse(baseProductId);
-        var equivalentProduct = Product.Parse(equivalentProductId);
-
-        baseProduct.RemoveEquivalent(equivalentProduct);
-
-        return new SingleObjectModel(this.Request, GetProductModel(baseProduct),
-                                     "Empiria.Trade.Product");
-      } catch (Exception e) {
-        throw base.CreateHttpException(e);
-      }
-    }
-
     #endregion Public APIs
 
     #region Private methods
@@ -115,15 +73,13 @@ namespace Empiria.Trade.WebApi {
       return new {
         id = o.Id,
         productCode = o.ProductCode,
-        brand = o.Brand.Name,
-        brandId = o.Brand.Id,
-        brandLegacyId = o.Brand.LegacyId,
+        brand = o.Brand,
+        manufacturer = o.Manufacturer,
         productTerm = o.ProductTerm.Name,
         name = o.Name,
         description = o.Description,
         presentationUnit = o.PresentationUnit.Name,
-        equivalents = includeEquivalents ? o.Equivalents.Select((x) => GetProductModel(x))
-                                         : new Array[0]
+        baseProductId = o.BaseProduct.Id
       };
     }
 

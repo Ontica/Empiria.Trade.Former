@@ -236,32 +236,9 @@ namespace Empiria.Products {
       }
     }
 
-    private Lazy<List<Product>> equivalentProducts = null;
-    public FixedList<Product> Equivalents {
-      get {
-        return equivalentProducts.Value.ToFixedList();
-      }
-    }
-
     #endregion Properties
 
     #region Public methods
-
-    public void AddEquivalent(Product equivalentProduct) {
-      Assertion.Assert(!this.IsEmptyInstance, "Base product can't be the empty instance.");
-      Assertion.AssertObject(equivalentProduct, "equivalentProduct");
-      Assertion.Assert(!equivalentProduct.Equals(this),
-                       "Target product should be distinct than the base product.");
-      Assertion.Assert(!equivalentProducts.Value.Exists((x) => x.Id == equivalentProduct.Id),
-                       "Target product was already registered as an equivalent product for the base product.");
-      ProductsData.AddEquivalent(this, equivalentProduct);
-
-      equivalentProducts.Value.Add(equivalentProduct);
-    }
-
-    protected override void OnInitialize() {
-      this.equivalentProducts = new Lazy<List<Product>>(() => ProductsData.GetEquivalentProducts(this));
-    }
 
     protected override void OnSave() {
       this.Keywords = "@" + this.ProductCode + "@ " +
@@ -271,14 +248,6 @@ namespace Empiria.Products {
       ProductsData.WriteProduct(this);
     }
 
-    public void RemoveEquivalent(Product equivalentProduct) {
-      Assertion.Assert(equivalentProducts.Value.Exists((x) => x.Id == equivalentProduct.Id),
-                       "Target product is not an equivalent product for the base product.");
-
-      ProductsData.RemoveEquivalent(this, equivalentProduct);
-
-      equivalentProducts.Value.Remove(equivalentProduct);
-    }
 
     #endregion Public methods
 
