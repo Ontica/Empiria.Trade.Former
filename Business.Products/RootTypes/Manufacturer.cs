@@ -39,6 +39,18 @@ namespace Empiria.Products {
 
     #endregion Constructors and parsers
 
+
+    #region Constructors and parsers
+
+    public new string Name {
+      get {
+        return base.Name;
+      }
+    }
+
+    #endregion Constructors and parsers
+
+
   } // class Manufacturer
 
 } // namespace Empiria.Products

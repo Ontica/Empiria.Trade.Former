@@ -39,6 +39,15 @@ namespace Empiria.Products {
 
     #endregion Constructors and parsers
 
+
+    #region Methods
+
+    public FixedList<ProductCategory> Subcategories() {
+      throw new NotImplementedException();
+    }
+
+    #endregion Methods
+
   } // class ProductCategory
 
 } // namespace Empiria.Products

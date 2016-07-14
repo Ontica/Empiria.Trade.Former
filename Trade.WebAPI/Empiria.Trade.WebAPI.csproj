@@ -44,8 +44,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.8.0.1-beta3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
@@ -93,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DataController.cs" />
-    <Compile Include="Controllers\ProductDataController.cs" />
+    <Compile Include="Controllers\PDM\CataloguesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Empiria.Trade.WebApi.AssemblyInfo.cs" />
   </ItemGroup>
@@ -114,7 +114,6 @@
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
-    <Folder Include="Controllers\PDM\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\empiria\core\Data\Empiria.Data.csproj">

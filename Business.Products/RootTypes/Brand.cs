@@ -44,6 +44,14 @@ namespace Empiria.Products {
 
     #region Fields
 
+
+    public new string Name {
+      get {
+        return base.Name;
+      }
+    }
+
+    [Newtonsoft.Json.JsonIgnore]
     public int LegacyId {
       get;
       private set;
