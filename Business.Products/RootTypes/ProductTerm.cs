@@ -29,15 +29,49 @@ namespace Empiria.Products {
       get { return BaseObject.ParseEmpty<ProductTerm>(); }
     }
 
-    static public ProductTerm Unknown {
-      get { return BaseObject.ParseUnknown<ProductTerm>(); }
-    }
+    static public FixedList<ProductTerm> GetList(string searchFor) {
+      var filter = SearchExpression.ParseAndLike("ObjectKeywords", searchFor);
 
-    static public FixedList<ProductTerm> GetList() {
-      return GeneralObject.ParseList<ProductTerm>();
+      return GeneralObject.ParseList<ProductTerm>(filter);
     }
 
     #endregion Constructors and parsers
+
+
+    #region Properties
+
+    public new string Name {
+      get {
+        return base.Name;
+      }
+    }
+
+    [Newtonsoft.Json.JsonIgnore]
+    public ProductCategory Category {
+      get {
+        return this.Subcategory.Category;
+      }
+    }
+
+    Lazy<ProductSubcategory> _subcategory = new Lazy<ProductSubcategory>();
+    [Newtonsoft.Json.JsonIgnore]
+    public ProductSubcategory Subcategory {
+      get {
+        return _subcategory.Value;
+      }
+    }
+
+
+    #endregion Properties
+
+    #region Methods
+
+    protected override void OnInitialize() {
+      base.OnInitialize();
+      _subcategory = new Lazy<ProductSubcategory>(() => base.GetInverseLink<ProductSubcategory>("Subcategory-ProductTerms"));
+    }
+
+    #endregion Methods
 
   } // class ProductTerm
 

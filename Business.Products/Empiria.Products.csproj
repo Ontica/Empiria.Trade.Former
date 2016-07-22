@@ -119,6 +119,7 @@
     <Compile Include="Data\LegacyData.cs" />
     <Compile Include="Data\ProductsData.cs" />
     <Compile Include="Empiria.Products.AssemblyInfo.cs" />
+    <Compile Include="RootTypes\ProductSubcategory.cs" />
     <Compile Include="RootTypes\ProductTerm.cs" />
     <Compile Include="RootTypes\ProductClass.cs" />
     <Compile Include="RootTypes\Brand.cs" />

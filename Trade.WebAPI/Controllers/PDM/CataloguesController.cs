@@ -9,6 +9,8 @@
 *                                                                                                            *
 ********************************* Copyright (c) 2014-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
+using System.Collections;
+using System.Linq;
 using System.Web.Http;
 
 using Empiria.WebApi;
@@ -25,7 +27,7 @@ namespace Empiria.Trade.PDM.WebApi {
 
     [HttpGet]
     [Route("v1/product-data/brands")]
-    public CollectionModel GetBrandList([FromUri] string search = "") {
+    public CollectionModel GetBrandList([FromUri] string searchFor = "") {
       try {
         var list = Brand.GetList();
 
@@ -51,7 +53,7 @@ namespace Empiria.Trade.PDM.WebApi {
 
     [HttpGet]
     [Route("v1/product-data/manufacturers")]
-    public CollectionModel GetManufacturerList([FromUri] string search = "") {
+    public CollectionModel GetManufacturerList([FromUri] string searchFor = "") {
       try {
         var list = Manufacturer.GetList();
 
@@ -81,7 +83,7 @@ namespace Empiria.Trade.PDM.WebApi {
 
     [HttpGet]
     [Route("v1/product-data/product-categories")]
-    public CollectionModel GetProductCategories([FromUri] string search = "") {
+    public CollectionModel GetProductCategories() {
       try {
         var list = ProductCategory.GetList();
 
@@ -94,7 +96,7 @@ namespace Empiria.Trade.PDM.WebApi {
 
     [HttpGet]
     [Route("v1/product-data/product-categories/{categoryId}/sub-categories")]
-    public CollectionModel GetProductSubCategories([FromUri] int categoryId, [FromUri] string search = "") {
+    public CollectionModel GetProductSubcategories([FromUri] int categoryId) {
       try {
         var category = ProductCategory.Parse(categoryId);
 
@@ -108,15 +110,43 @@ namespace Empiria.Trade.PDM.WebApi {
 
 
     [HttpGet]
-    [Route("v1/product-data/product-terms")]
-    public CollectionModel GetProductTerm([FromUri] string search = "") {
+    [Route("v1/product-data/product-sub-categories/{subcategoryId}/product-terms")]
+    public CollectionModel GetSubcategoryProductTerms([FromUri] int subcategoryId) {
       try {
-        var list = ProductTerm.GetList();
+        var subcategory = ProductSubcategory.Parse(subcategoryId);
+
+        var list = subcategory.ProductTerms();
 
         return new CollectionModel(this.Request, list);
       } catch (Exception e) {
         throw base.CreateHttpException(e);
       }
+    }
+
+
+    [HttpGet]
+    [Route("v1/product-data/product-terms")]
+    public CollectionModel GetProductTerm([FromUri] string searchFor = "") {
+      try {
+        var list = ProductTerm.GetList(searchFor);
+
+        return new CollectionModel(this.Request, this.ToProductTermModel(list), typeof(ProductTerm).FullName);
+      } catch (Exception e) {
+        throw base.CreateHttpException(e);
+      }
+    }
+
+    private ArrayList ToProductTermModel(FixedList<ProductTerm> list) {
+      return new ArrayList(list.Select((x) => ToProductTermModel(x)).ToArray());
+    }
+
+    private object ToProductTermModel(ProductTerm o) {
+      return new {
+        id = o.Id,
+        name = o.Name,
+        subcategoryId = o.Subcategory.Id,
+        categoryId = o.Category.Id,
+      };
     }
 
     #endregion Product classification
