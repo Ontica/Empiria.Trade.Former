@@ -161,7 +161,7 @@ namespace Empiria.Trade.PDM.WebApi {
       try {
         var presentationUnit = PresentationUnit.Parse(presentationUnitId);
 
-        var list = presentationUnit.GetContentsUnits();
+        var list = presentationUnit.ContentsUnits();
 
         return new CollectionModel(this.Request, list);
       } catch (Exception e) {

@@ -25,8 +25,8 @@ namespace Empiria.Products {
       return BaseObject.ParseId<PresentationUnit>(id);
     }
 
-    static public new PresentationUnit Parse(string presentationUnitNamedKey) {
-      return BaseObject.ParseKey<PresentationUnit>(presentationUnitNamedKey);
+    static public new PresentationUnit Parse(string namedKey) {
+      return BaseObject.ParseKey<PresentationUnit>(namedKey);
     }
 
     static public new PresentationUnit Empty {
@@ -41,12 +41,20 @@ namespace Empiria.Products {
 
     #region Properties
 
-    public FixedList<Unit> GetContentsUnits() {
-      FixedList<Unit> list = base.GetLinks<Unit>("PresentationUnit_ContentsUnits");
+    [DataField(ExtensionDataFieldName + ".IsBulkUnit", IsOptional = true, Default = false)]
+    public bool IsBulkUnit {
+      get;
+      private set;
+    }
 
-      list.Sort((x, y) => x.Name.CompareTo(y.Name));
-
-      return list;
+    FixedList<Unit> _contentUnitsList = null;
+    public FixedList<Unit> ContentsUnits() {
+      if (_contentUnitsList == null) {
+        var list = base.ExtendedDataField.GetList<Unit>("ContentUnits");
+        list.Sort((x, y) => x.Name.CompareTo(y.Name));
+        _contentUnitsList = list.ToFixedList();
+      }
+      return _contentUnitsList;
     }
 
     #endregion Properties
