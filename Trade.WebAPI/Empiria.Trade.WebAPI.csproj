@@ -94,7 +94,7 @@
   <ItemGroup>
     <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\PDM\CataloguesController.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\PDM\ProductsController.cs" />
     <Compile Include="Empiria.Trade.WebApi.AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

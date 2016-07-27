@@ -26,7 +26,7 @@ namespace Empiria.Trade.WebApi {
     #region Public APIs
 
     [HttpGet]
-    [Route("v1/products")]
+    [Route("v1/product-data/products")]
     public PagedCollectionModel GetProducts([FromUri] string searchFor) {
       try {
         base.RequireResource(searchFor, "searchFor");
@@ -50,7 +50,7 @@ namespace Empiria.Trade.WebApi {
 
 
     [HttpGet]
-    [Route("v1/products/{productId}")]
+    [Route("v1/product-data/products/{productId}")]
     public SingleObjectModel GetProductById([FromUri] int productId) {
       try {
         base.RequireResource(productId, "productId");
