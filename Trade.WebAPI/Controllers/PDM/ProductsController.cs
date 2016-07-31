@@ -72,13 +72,21 @@ namespace Empiria.Trade.WebApi {
     private object GetProductModel(Product o, bool includeEquivalents = true) {
       return new {
         id = o.Id,
-        productCode = o.ProductCode,
-        brand = o.Brand,
-        manufacturer = o.Manufacturer,
-        productTerm = o.ProductTerm.Name,
+        productTerm = o.ProductTerm,
         name = o.Name,
+        manufacturer = o.Manufacturer,
+        brand = o.Brand,
+        partNumber = o.ProductCode,
+        specification = o.Description,
         description = o.Description,
-        presentationUnit = o.PresentationUnit.Name,
+        notes = o.Notes,
+        presentationUnit = o.PresentationUnit,
+        contentsQty = o.ContentsQty,
+        contentsUnit = o.ContentsUnit,
+        searchTags = o.SearchTags,
+        startDate = o.StartDate,
+        lastUpdated = o.LastUpdated,
+        manager = o.ProductManager,
         baseProductId = o.BaseProduct.Id
       };
     }

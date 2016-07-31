@@ -76,7 +76,7 @@ namespace Empiria.Products {
     }
 
     [DataField("ProductManagerId")]
-    public Contact Manager {
+    public Contact ProductManager {
       get;
       set;
     }
@@ -228,12 +228,6 @@ namespace Empiria.Products {
     public GeneralObjectStatus Status {
       get;
       private set;
-    }
-
-    public string LegacyKey {
-      get {
-        return this.ProductCode + "@" + this.Brand.LegacyId;
-      }
     }
 
     #endregion Properties

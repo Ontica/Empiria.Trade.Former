@@ -107,12 +107,12 @@ namespace Empiria.Products.Data {
 
     static internal int WriteProduct(Product o) {
       var operation = DataOperation.Parse("writePDMProduct", o.Id, o.GetEmpiriaType().Id,
-                      o.ProductTerm.Id, o.Manager.Id, o.IsService, o.IsCompound, o.IsCustomizable,
+                      o.ProductTerm.Id, o.ProductManager.Id, o.IsService, o.IsCompound, o.IsCustomizable,
                       o.BaseProduct.Id, o.Manufacturer.Id, o.Brand.Id, o.Model,
                       o.ProductCode, o.Name, o.SearchTags, o.Description, o.Notes, o.ExtendedData,
                       o.Keywords, o.PresentationUnit.Id, o.ContentsQty, o.ContentsUnit.Id,
                       (char) o.PackagingType, (char) o.IdentificationLevel, o.BarCodeID,
-                      o.StartDate, o.LastUpdated, (char) o.Status, o.LegacyKey);
+                      o.StartDate, o.LastUpdated, (char) o.Status);
 
       return DataWriter.Execute(operation);
     }
