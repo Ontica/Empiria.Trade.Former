@@ -302,7 +302,7 @@ namespace Empiria.Trade.Billing {
             this.paymentAccount = String.Empty;
             return this.paymentAccount;
           }
-          List<Treasury.CRPosting> postings =
+          var postings =
                     this.Order.Payment.Postings.FindAll((x) => x.InputAmount > 0m && !x.Document.IsEmptyInstance);
           string s = String.Empty;
           for (int i = 0; i < postings.Count; i++) {
@@ -325,7 +325,7 @@ namespace Empiria.Trade.Billing {
             this.paymentCondition = "99";
             return this.paymentCondition;
           }
-          List<Treasury.CRPosting> postings = this.Order.Payment.Postings.FindAll((x) => x.InputAmount > 0m);
+          var postings = this.Order.Payment.Postings.FindAll((x) => x.InputAmount > 0m);
           string s = String.Empty;
           for (int i = 0; i < postings.Count; i++) {
             if (i != 0) {

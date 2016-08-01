@@ -82,7 +82,7 @@ namespace Empiria.Treasury {
       return base.Find(match);
     }
 
-    public new List<CRPosting> FindAll(Predicate<CRPosting> match) {
+    public new FixedList<CRPosting> FindAll(Predicate<CRPosting> match) {
       return base.FindAll(match);
     }
 

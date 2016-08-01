@@ -392,7 +392,7 @@ namespace Empiria.Trade.Ordering {
       Save();
       CRTransaction tr = this.CreateCancelPayment(notes);
 
-      List<CRPosting> postings = this.Payment.Postings.FindAll((x) => (x.InstrumentId > 0));
+      var postings = this.Payment.Postings.FindAll((x) => (x.InstrumentId > 0));
       decimal canceledAmount = decimal.Zero;
       for (int i = 0; i < postings.Count; i++) {
         FinancialAccount account = FinancialAccount.Parse(postings[i].InstrumentId);
@@ -436,7 +436,7 @@ namespace Empiria.Trade.Ordering {
 
       using (DataWriterContext context = DataWriter.CreateContext("OnCreateFSMTransaction")) {
         ITransaction transaction = context.BeginTransaction();
-        List<CRPosting> postings = this.Payment.Postings.FindAll((x) => (x.InstrumentId > 0));
+        var postings = this.Payment.Postings.FindAll((x) => (x.InstrumentId > 0));
         for (int i = 0; i < postings.Count; i++) {
           FinancialAccount account = FinancialAccount.Parse(postings[i].InstrumentId);
           account.CreateConcept(FinancialConcept.Parse("FSB002"), postings[i].Transaction.CashRegister, DateTime.Now,

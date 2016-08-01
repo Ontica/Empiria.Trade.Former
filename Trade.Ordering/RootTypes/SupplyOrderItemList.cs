@@ -146,7 +146,7 @@ namespace Empiria.Trade.Ordering {
       return base.Find(match);
     }
 
-    public new List<SupplyOrderItem> FindAll(Predicate<SupplyOrderItem> match) {
+    public new FixedList<SupplyOrderItem> FindAll(Predicate<SupplyOrderItem> match) {
       return base.FindAll(match);
     }
 
