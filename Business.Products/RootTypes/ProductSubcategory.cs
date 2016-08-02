@@ -50,10 +50,11 @@ namespace Empiria.Products {
 
     #region Methods
 
+    Lazy<ProductCategory> _category = new Lazy<ProductCategory>();
     [Newtonsoft.Json.JsonIgnore]
     public ProductCategory Category {
       get {
-        return base.GetInverseLink<ProductCategory>("Category-Subcategories");
+        return _category.Value;
       }
     }
 
@@ -65,6 +66,14 @@ namespace Empiria.Products {
 
     public FixedList<ProductTerm> ProductTerms() {
       return base.GetLinks<ProductTerm>("Subcategory-ProductTerms");
+    }
+
+    protected override void OnInitialize() {
+      base.OnInitialize();
+
+      _category = new Lazy<ProductCategory>(() =>
+                   !this.IsEmptyInstance ? base.GetInverseLink<ProductCategory>("Category-Subcategories") :
+                                           ProductCategory.Parse(-1));
     }
 
     #endregion Methods

@@ -68,7 +68,9 @@ namespace Empiria.Products {
 
     protected override void OnInitialize() {
       base.OnInitialize();
-      _subcategory = new Lazy<ProductSubcategory>(() => base.GetInverseLink<ProductSubcategory>("Subcategory-ProductTerms"));
+      _subcategory = new Lazy<ProductSubcategory>( () =>
+                          !this.IsEmptyInstance ? base.GetInverseLink<ProductSubcategory>("Subcategory-ProductTerms") :
+                                                  ProductSubcategory.Parse(-1));
     }
 
     #endregion Methods
