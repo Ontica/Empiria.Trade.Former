@@ -242,7 +242,6 @@ namespace Empiria.Products {
       ProductsData.WriteProduct(this);
     }
 
-
     #endregion Public methods
 
   } // class Product

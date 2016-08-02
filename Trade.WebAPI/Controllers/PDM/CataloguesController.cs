@@ -83,7 +83,7 @@ namespace Empiria.Trade.PDM.WebApi {
 
     [HttpGet]
     [Route("v1/product-data/product-categories")]
-    public CollectionModel GetProductCategories() {
+    public CollectionModel GetProductCategoriesList() {
       try {
         var list = ProductCategory.GetList();
 
@@ -95,8 +95,21 @@ namespace Empiria.Trade.PDM.WebApi {
 
 
     [HttpGet]
+    [Route("v1/product-data/product-categories/{categoryId}")]
+    public SingleObjectModel GetProductCategory([FromUri] int categoryId) {
+      try {
+        var category = ProductCategory.Parse(categoryId);
+
+        return new SingleObjectModel(this.Request, category);
+      } catch (Exception e) {
+        throw base.CreateHttpException(e);
+      }
+    }
+
+
+    [HttpGet]
     [Route("v1/product-data/product-categories/{categoryId}/sub-categories")]
-    public CollectionModel GetProductSubcategories([FromUri] int categoryId) {
+    public CollectionModel GetProductSubcategoriesList([FromUri] int categoryId) {
       try {
         var category = ProductCategory.Parse(categoryId);
 
@@ -108,10 +121,21 @@ namespace Empiria.Trade.PDM.WebApi {
       }
     }
 
+    [HttpGet]
+    [Route("v1/product-data/product-sub-categories/{subcategoryId}")]
+    public SingleObjectModel GetProductSubcategory([FromUri] int subcategoryId) {
+      try {
+        var subcategory = ProductSubcategory.Parse(subcategoryId);
+
+        return new SingleObjectModel(this.Request, subcategory);
+      } catch (Exception e) {
+        throw base.CreateHttpException(e);
+      }
+    }
 
     [HttpGet]
     [Route("v1/product-data/product-sub-categories/{subcategoryId}/product-terms")]
-    public CollectionModel GetSubcategoryProductTerms([FromUri] int subcategoryId) {
+    public CollectionModel GetSubcategoryProductTermsList([FromUri] int subcategoryId) {
       try {
         var subcategory = ProductSubcategory.Parse(subcategoryId);
 
@@ -126,11 +150,23 @@ namespace Empiria.Trade.PDM.WebApi {
 
     [HttpGet]
     [Route("v1/product-data/product-terms")]
-    public CollectionModel GetProductTerm([FromUri] string searchFor = "") {
+    public CollectionModel GetProductTermsList([FromUri] string searchFor = "") {
       try {
         var list = ProductTerm.GetList(searchFor);
 
         return new CollectionModel(this.Request, this.ToProductTermModel(list), typeof(ProductTerm).FullName);
+      } catch (Exception e) {
+        throw base.CreateHttpException(e);
+      }
+    }
+
+    [HttpGet]
+    [Route("v1/product-data/product-terms/{productTermId}")]
+    public SingleObjectModel GetProductTerm([FromUri] int productTermId) {
+      try {
+        var productTerm = ProductTerm.Parse(productTermId);
+
+        return new SingleObjectModel(this.Request, productTerm);
       } catch (Exception e) {
         throw base.CreateHttpException(e);
       }
@@ -156,8 +192,34 @@ namespace Empiria.Trade.PDM.WebApi {
 
 
     [HttpGet]
+    [Route("v1/product-data/presentation-units")]
+    public CollectionModel GetPresentationUnitsList() {
+      try {
+        var list = PresentationUnit.GetList();
+
+        return new CollectionModel(this.Request, list);
+      } catch (Exception e) {
+        throw base.CreateHttpException(e);
+      }
+    }
+
+
+    [HttpGet]
+    [Route("v1/product-data/presentation-units/{presentationUnitId}")]
+    public SingleObjectModel GetPresentationUnit([FromUri] int presentationUnitId) {
+      try {
+        var presentationUnit = PresentationUnit.Parse(presentationUnitId);
+
+        return new SingleObjectModel(this.Request, presentationUnit);
+      } catch (Exception e) {
+        throw base.CreateHttpException(e);
+      }
+    }
+
+
+    [HttpGet]
     [Route("v1/product-data/presentation-units/{presentationUnitId}/content-units")]
-    public CollectionModel GetContentsUnits([FromUri] int presentationUnitId) {
+    public CollectionModel GetPresentationContentsUnitsList([FromUri] int presentationUnitId) {
       try {
         var presentationUnit = PresentationUnit.Parse(presentationUnitId);
 
@@ -171,19 +233,48 @@ namespace Empiria.Trade.PDM.WebApi {
 
 
     [HttpGet]
-    [Route("v1/product-data/presentation-units")]
-    public CollectionModel GetPresentationUnits() {
+    [Route("v1/product-data/content-units/{contentUnitId}")]
+    public SingleObjectModel GetContentUnit([FromUri] int contentUnitId) {
       try {
-        var list = PresentationUnit.GetList();
+        var contentUnit = Empiria.DataTypes.Unit.Parse(contentUnitId);
 
-        return new CollectionModel(this.Request, list);
+        return new SingleObjectModel(this.Request, contentUnit);
       } catch (Exception e) {
         throw base.CreateHttpException(e);
       }
     }
 
-
     #endregion Presentation and Units
+
+
+    #region Product Manager
+
+    //[HttpGet]
+    //[Route("v1/product-data/product-managers")]
+    //public CollectionModel GetProductManagerList() {
+    //  try {
+    //    var list = Manufacturer.GetList();
+
+    //    return new CollectionModel(this.Request, list);
+    //  } catch (Exception e) {
+    //    throw base.CreateHttpException(e);
+    //  }
+    //}
+
+
+    //[HttpGet]
+    //[Route("v1/product-data/product-managers/{productManagerId}")]
+    //public SingleObjectModel GetProductManager([FromUri] int productManagerId) {
+    //  try {
+    //    var productManager = Manufacturer.Parse(productManagerId);
+
+    //    return new SingleObjectModel(this.Request, productManager);
+    //  } catch (Exception e) {
+    //    throw base.CreateHttpException(e);
+    //  }
+    //}
+
+    #endregion Product Manager
 
   }  // class CataloguesController
 
