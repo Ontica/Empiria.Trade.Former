@@ -110,7 +110,7 @@ namespace Empiria.Products.Data {
                       o.ProductTerm.Id, o.ProductManager.Id, o.IsService, o.IsCompound, o.IsCustomizable,
                       o.BaseProduct.Id, o.Manufacturer.Id, o.Brand.Id, o.Model,
                       o.ProductCode, o.Name, o.SearchTags, o.Description, o.Notes, o.ExtendedData,
-                      o.Keywords, o.PresentationUnit.Id, o.ContentsQty, o.ContentsUnit.Id,
+                      o.Keywords, o.PresentationUnit.Id, o.ContentQty, o.ContentUnit.Id,
                       (char) o.PackagingType, (char) o.IdentificationLevel, o.BarCodeID,
                       o.StartDate, o.LastUpdated, (char) o.Status);
 

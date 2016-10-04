@@ -183,13 +183,13 @@ namespace Empiria.Products {
     }
 
     [DataField("ContentsQty")]
-    public decimal ContentsQty {
+    public decimal ContentQty {
       get;
       set;
     }
 
     [DataField("ContentsUnitId")]
-    public Unit ContentsUnit {
+    public Unit ContentUnit {
       get;
       set;
     }
@@ -234,13 +234,39 @@ namespace Empiria.Products {
 
     #region Public methods
 
-    protected override void OnSave() {
-      this.Keywords = "@" + this.ProductCode + "@ " +
-                      ((this.BarCodeID.Length != 0) ? "@" + this.BarCodeID + "@ " : String.Empty) +
-                      this.SearchTags +
-                      EmpiriaString.BuildKeywords(this.Name, this.Brand.Name, this.Manufacturer.Name, this.Description);
-      ProductsData.WriteProduct(this);
-    }
+
+    //public void Validate(Product changes) {
+    //  if (DateTime.Now.Hour > 20) {
+    //    Assertion.AssertFail("Las actualizaciones sólo están disponibles antes de las 21:00 hrs.");
+    //  }
+    //  if (this.ProductTerm.Status == GeneralObjectStatus.Obsolete) {
+    //    Assertion.AssertObject(changes.ProductCode, "El tipo de producto ya está obsoleto.");
+    //  }
+    //}
+
+    //public void Update(Product changes) {
+    //  Assertion.AssertObject(changes.ProductTerm, "ProductTerm has not a value.");
+    //  Assertion.AssertObject(changes.ProductCode, "ProductCode has not a value.");
+
+    //  if (this.ProductTerm.Status == GeneralObjectStatus.Obsolete) {
+    //    Assertion.AssertObject(changes.ProductCode, "ProductTerm has not a value.");
+    //  }
+    //  this.ProductManager = changes.ProductManager;
+    //  this.ProductCode = changes.ProductCode;
+    //  this.ProductTerm = changes.ProductTerm;
+
+    //  this.Save();
+
+    //}
+
+
+    //protected override void OnSave() {
+    //  this.Keywords = "@" + this.ProductCode + "@ " +
+    //                  ((this.BarCodeID.Length != 0) ? "@" + this.BarCodeID + "@ " : String.Empty) +
+    //                  this.SearchTags +
+    //                  EmpiriaString.BuildKeywords(this.Name, this.Brand.Name, this.Manufacturer.Name, this.Description);
+    //  ProductsData.WriteProduct(this);
+    //}
 
     #endregion Public methods
 

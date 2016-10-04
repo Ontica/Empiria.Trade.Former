@@ -65,6 +65,23 @@ namespace Empiria.Trade.WebApi {
       }
     }
 
+    [HttpPost]
+    [Route("v1/product-data/products/{productId}")]
+    public SingleObjectModel UpdateProduct([FromUri] int productId, [FromBody] Product changes) {
+      try {
+        base.RequireResource(productId, "productId");
+        base.RequireBody(changes);
+
+        var product = Product.Parse(productId);
+        //product.Update(changes);
+
+        return new SingleObjectModel(this.Request, GetProductModel(product), "Empiria.Trade.Product");
+
+      } catch (Exception e) {
+        throw base.CreateHttpException(e);
+      }
+    }
+
     #endregion Public APIs
 
     #region Private methods
@@ -82,9 +99,10 @@ namespace Empiria.Trade.WebApi {
         searchTags = o.SearchTags,
         description = o.Description,
         notes = o.Notes,
+
         presentationUnit = o.PresentationUnit,
-        contentsQty = o.ContentsQty,
-        contentsUnit = o.ContentsUnit,
+        contentQty = o.ContentQty,
+        contentUnit = o.ContentUnit,
 
         startDate = o.StartDate,
         lastUpdated = o.LastUpdated,
