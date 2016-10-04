@@ -85,7 +85,7 @@ namespace Empiria.Products.Data {
       var operation = DataOperation.Parse("writePLMProduct", o.Id, o.ObjectTypeInfo.Id,
                       o.ProductTerm.Id, -1, -1, o.Manager.Id, o.IsService,
                       o.IsCompound, o.IsCustomizable, o.NeedsReview,
-                      o.Manufacturer.Id, o.Brand.Id, o.OriginCountry.Id, o.Model, o.PartNumber, o.Name,
+                      o.Manufacturer.Id, o.Brand.Id, o.OriginCountry.Id, o.Model, o.ProductCode, o.Name,
                       o.ImageFile, o.SmallImageFile, o.SearchTags, o.Specification, o.Notes, o.Keywords,
                       o.PresentationUnit.Id, o.ContentsQty, o.ContentsUnit.Id, (char) o.PackagingType,
                       (char) o.IdentificationLevel, o.BarCodeID, o.RadioFrequenceID, o.LengthSize,

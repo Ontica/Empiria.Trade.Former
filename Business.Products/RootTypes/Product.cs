@@ -53,7 +53,7 @@ namespace Empiria.Products {
     private Brand brand = Brand.Empty;
     private GeographicRegionItem originCountry = GeographicRegionItem.Empty;
     private string model = String.Empty;
-    private string partNumber = String.Empty;
+    private string productCode = String.Empty;
     private string name = String.Empty;
     private string imageFile = String.Empty;
     private string smallImageFile = String.Empty;
@@ -162,7 +162,7 @@ namespace Empiria.Products {
       set {
         if (base.IsNew) {
           this.brand = value;
-          this.legacyKey = partNumber + "@" + brand.LegacyId.ToString();
+          this.legacyKey = productCode + "@" + brand.LegacyId.ToString();
         }
       }
     }
@@ -177,12 +177,12 @@ namespace Empiria.Products {
       set { model = value; }
     }
 
-    public string PartNumber {
-      get { return partNumber; }
+    public string ProductCode {
+      get { return productCode; }
       set {
         if (base.IsNew) {
-          this.partNumber = value;
-          this.legacyKey = partNumber + "@" + brand.LegacyId.ToString();
+          this.productCode = value;
+          this.legacyKey = productCode + "@" + brand.LegacyId.ToString();
         }
       }
     }
@@ -193,7 +193,7 @@ namespace Empiria.Products {
     }
 
     public string ExtendedName {
-      get { return "[" + PartNumber + "] " + Name + " / " + Brand.Name; }
+      get { return "[" + ProductCode + "] " + Name + " / " + Brand.Name; }
     }
 
     public string ImageFile {
@@ -335,7 +335,7 @@ namespace Empiria.Products {
       brand = Brand.Parse((int) row["BrandId"]);
       originCountry = GeographicRegionItem.Parse((int) row["OriginCountryId"]);
       model = (string) row["Model"];
-      partNumber = (string) row["PartNumber"];
+      productCode = (string) row["PartNumber"];
       name = (string) row["ProductName"];
       imageFile = (string) row["ProductImageFile"];
       smallImageFile = (string) row["ProductSmallImageFile"];
@@ -366,15 +366,15 @@ namespace Empiria.Products {
     }
 
     protected override void ImplementsSave() {
-      keywords = "@" + this.PartNumber + "@ " + ((this.BarCodeID.Length != 0) ? "@" + this.BarCodeID + "@ " : String.Empty) +
+      keywords = "@" + this.ProductCode + "@ " + ((this.BarCodeID.Length != 0) ? "@" + this.BarCodeID + "@ " : String.Empty) +
                  EmpiriaString.BuildKeywords(this.Name, this.Brand.Name, this.Manufacturer.Name, this.Specification);
       ProductsData.WriteProduct(this);
     }
 
     protected void SetPartNumberAndBrand(string newPartNumber, Products.Brand newBrand) {
-      this.partNumber = newPartNumber;
+      this.productCode = newPartNumber;
       this.brand = newBrand;
-      this.legacyKey = partNumber + "@" + brand.LegacyId.ToString();
+      this.legacyKey = productCode + "@" + brand.LegacyId.ToString();
     }
 
     #endregion Public methods
