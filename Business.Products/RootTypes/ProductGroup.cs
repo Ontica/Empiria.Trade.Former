@@ -32,7 +32,7 @@ namespace Empiria.Products {
     private Contact manager = Person.Empty;
     private Contact modifiedBy = Person.Empty;
     private int parentId = -1;
-    // use null initalization instead ProductGroup.Empty because is a fractal object and Empty instance 
+    // use null initalization instead ProductGroup.Empty because is a fractal object and Empty instance
     // parsing throws an infinite loop
     private ProductGroup parent = null;
     private GeneralObjectStatus status = GeneralObjectStatus.Pending;

@@ -23,7 +23,7 @@ namespace Empiria.FinancialServices.Data {
 
     #region Public methods
 
-    static public DataRow GetBalance(int accountId, DateTime fromDate, DateTime toDate) {      
+    static public DataRow GetBalance(int accountId, DateTime fromDate, DateTime toDate) {
       var op = DataOperation.Parse("qryFSMAccountBalance", accountId, fromDate, toDate);
 
       return DataReader.GetDataRow(op);

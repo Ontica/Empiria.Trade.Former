@@ -353,9 +353,9 @@ namespace Empiria.Trade.Ordering {
       //  this.postingTime = DateTime.Now;
       //  this.postedBy = Contact.Parse(ExecutionServer.CurrentUserId);
       //}
-      //this.keywords = EmpiriaString.BuildKeywords(this.Key, this.ReceiptNumber, this.DocumentNumber, this.ReturnDocumentNumber, 
-      //                                            this.RequestedBy, this.Gestor.FullName, this.receiptTotal.ToString("N2"), this.requestNotes, 
-      //                                            this.TransactionType.Name, this.RecorderOffice.Alias, this.PropertyDescription, 
+      //this.keywords = EmpiriaString.BuildKeywords(this.Key, this.ReceiptNumber, this.DocumentNumber, this.ReturnDocumentNumber,
+      //                                            this.RequestedBy, this.Gestor.FullName, this.receiptTotal.ToString("N2"), this.requestNotes,
+      //                                            this.TransactionType.Name, this.RecorderOffice.Alias, this.PropertyDescription,
       //                                            this.OfficeNotes);
 
       //TransactionData.WriteTransaction(this);

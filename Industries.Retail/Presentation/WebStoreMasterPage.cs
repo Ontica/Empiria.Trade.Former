@@ -18,7 +18,7 @@ using Empiria.Presentation.Web;
 
 namespace Empiria.Industries.Retail.Presentation {
 
-  /// <summary>Abstract type that represents a master page that serves as template and container for 
+  /// <summary>Abstract type that represents a master page that serves as template and container for
   /// web store pages.</summary>
   public abstract class WebStoreMasterPage : MasterWebPage {
 

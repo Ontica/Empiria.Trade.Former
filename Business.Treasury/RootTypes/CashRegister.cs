@@ -25,7 +25,7 @@ namespace Empiria.Treasury {
     }
 
     static public bool IAmCashier {
-      get { 
+      get {
         return EmpiriaUser.Current.CanExecute("CashRegister");
       }
     }
@@ -73,7 +73,7 @@ namespace Empiria.Treasury {
 //  if (documents.Length != 0) {
 //    crt.BaseInstrumentType = InstrumentType.Parse("multiple");
 //  } else {
-//    crt.BaseInstrumentType = InstrumentType.Parse("cash");      
+//    crt.BaseInstrumentType = InstrumentType.Parse("cash");
 //  }
 //  crt.BaseDocument = Document.NullInstance;
 //  crt.CurrencyAmount = totalAmount;
@@ -123,14 +123,14 @@ namespace Empiria.Treasury {
 //  return document;
 //}
 
-//public CRTransaction DoOrderPayment(int gasSaleTotalId, int gasSaleId, int collectorId, int creditAccountId, DateTime transactionDate, 
+//public CRTransaction DoOrderPayment(int gasSaleTotalId, int gasSaleId, int collectorId, int creditAccountId, DateTime transactionDate,
 //                                    decimal total, string summary, string notes) {
 //  CRTransaction crt = new CRTransaction(CRTransactionType.Parse("Input.OrderPayment"), this);
 
 //  crt.FinancialAccountId = creditAccountId;
 //  crt.ReferenceParentId = gasSaleTotalId;
 //  crt.ReferenceId = gasSaleId;
-//  crt.CollectorId = collectorId;      
+//  crt.CollectorId = collectorId;
 //  crt.TransactionDate = transactionDate;
 //  crt.DueDate = transactionDate;
 //  crt.BaseInstrumentType = InstrumentType.Parse("credit");
@@ -161,7 +161,7 @@ namespace Empiria.Treasury {
 
 //  crt.ReferenceParentId = gasSaleTotalId;
 //  crt.ReferenceId = gasSaleId;
-//  crt.CollectorId = collectorId;      
+//  crt.CollectorId = collectorId;
 //  crt.TransactionDate = transactionDate;
 //  crt.DueDate = transactionDate;
 //  if (cashPayment <= decimal.Zero) {
@@ -170,7 +170,7 @@ namespace Empiria.Treasury {
 //    crt.BaseInstrumentType = InstrumentType.Parse("multiple");
 //  }
 
-//  crt.BaseDocument = Document.NullInstance;      
+//  crt.BaseDocument = Document.NullInstance;
 //  crt.Amount = total + cashPayment;
 //  crt.CurrencyAmount = total + cashPayment;
 //  crt.Description = summary;
@@ -206,7 +206,7 @@ namespace Empiria.Treasury {
 //  return crt;
 //}
 
-//public CRTransaction DoOrderPayment(Document document, decimal cashPayment, int gasSaleTotalId, int gasSaleId, 
+//public CRTransaction DoOrderPayment(Document document, decimal cashPayment, int gasSaleTotalId, int gasSaleId,
 //                                      int collectorId, DateTime transactionDate, string summary,  string notes) {
 //  CRTransaction crt = new CRTransaction(CRTransactionType.Parse("Input.OrderPayment"), this);
 
@@ -258,7 +258,7 @@ namespace Empiria.Treasury {
 //  return crt;
 //}
 
-//public int DoSlipPayment(CRTransactionType exchangeTransactionType, int referenceId, int documentId, 
+//public int DoSlipPayment(CRTransactionType exchangeTransactionType, int referenceId, int documentId,
 //                         DateTime transactionDate, string notes) {
 //  Document document = Document.Parse(documentId);
 

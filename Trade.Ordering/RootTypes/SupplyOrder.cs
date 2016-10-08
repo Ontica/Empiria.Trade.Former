@@ -121,7 +121,7 @@ namespace Empiria.Trade.Ordering {
 
     static public SupplyOrder CreateOrder() {
       EmpiriaUser.Current.Settings.SetValue<int>(myCurrentOrderUserSetting, -1);
-      
+
       return new SupplyOrder();
     }
 
@@ -136,7 +136,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public FixedList<SupplyOrder> MyOrders(string filter = "", string sort = "") {
-      return SupplyOrdersData.GetMyOrders(EmpiriaUser.Current.Organization, 
+      return SupplyOrdersData.GetMyOrders(EmpiriaUser.Current.Organization,
                                           EmpiriaUser.Current.Contact, filter, sort);
     }
 
@@ -231,7 +231,7 @@ namespace Empiria.Trade.Ordering {
 
     public AccountStatement CustomerCreditAccountStatement {
       get {
-        return new AccountStatement(this.CustomerFinancialAccount, 
+        return new AccountStatement(this.CustomerFinancialAccount,
                                     DateTime.Today.AddDays(-30), DateTime.Now);
       }
     }
@@ -353,14 +353,14 @@ namespace Empiria.Trade.Ordering {
       if (this.IsNew) {
         this.Save();
       }
-      var orderItem = this.Items.Contains(product) ? 
+      var orderItem = this.Items.Contains(product) ?
                       this.Items.Find(product) : new SupplyOrderItem(this);
       orderItem.Product = product;
       orderItem.Quantity += quantity;
       orderItem.Save();
 
       this.Reset();
-     
+
       return orderItem;
     }
 
@@ -370,7 +370,7 @@ namespace Empiria.Trade.Ordering {
 
     public void Cancel() {
       if (!this.Payment.IsEmptyInstance) {
-        throw new NotImplementedException("I can't cancel this supply order using this method because " + 
+        throw new NotImplementedException("I can't cancel this supply order using this method because " +
                                           "their payment information is not empty. " +
                                           "Please use order.Cancel(InstrumentType, string) method instead.");
       }
@@ -383,7 +383,7 @@ namespace Empiria.Trade.Ordering {
 
     public void Cancel(InstrumentType instrumentType, string notes) {
       if (this.Payment.IsEmptyInstance) {
-        throw new NotImplementedException("I can't cancel this supply order using this method because " + 
+        throw new NotImplementedException("I can't cancel this supply order using this method because " +
                                           "their payment information is empty. " +
                                           "Please use order.Cancel() method instead.");
       }
@@ -592,7 +592,7 @@ namespace Empiria.Trade.Ordering {
         }
       }
       //if (String.IsNullOrWhiteSpace(this.documentKey)) {
-      //  
+      //
       //}
       this.keywords = EmpiriaString.BuildKeywords(this.number, this.concept, this.customer.Keywords);
 
@@ -626,7 +626,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     public void PrintCreditVoucher() {
-      Empiria.Documents.Printing.Document document = new 
+      Empiria.Documents.Printing.Document document = new
                     Empiria.Documents.Printing.Document(TicketDefaultFontName, TicketDefaultFontSize);
 
       document.LoadTemplate(ReportsTemplatesPath + "credit.voucher.ert");
