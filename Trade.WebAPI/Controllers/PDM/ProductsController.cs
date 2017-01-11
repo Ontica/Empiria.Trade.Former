@@ -17,6 +17,7 @@ using Empiria.WebApi;
 using Empiria.WebApi.Models;
 
 using Empiria.Products;
+using Empiria.Trade.WebApi.Models;
 
 namespace Empiria.Trade.WebApi {
 
@@ -40,7 +41,7 @@ namespace Empiria.Trade.WebApi {
 
         var list = Product.ParseList<Product>(data);
 
-        var array = new System.Collections.ArrayList(list.Select((x) => GetProductModel(x)).ToArray());
+        var array = new System.Collections.ArrayList(list.Select((x) => PDMModels.GetProductModel(x)).ToArray());
 
         return new PagedCollectionModel(this.Request, array, "Empiria.Trade.Product");
       } catch (Exception e) {
@@ -57,7 +58,7 @@ namespace Empiria.Trade.WebApi {
 
         var product = Product.Parse(productId);
 
-        return new SingleObjectModel(this.Request, GetProductModel(product),
+        return new SingleObjectModel(this.Request, PDMModels.GetProductModel(product),
                                      "Empiria.Trade.Product");
 
       } catch (Exception e) {
@@ -75,7 +76,7 @@ namespace Empiria.Trade.WebApi {
         var product = Product.Parse(productId);
         //product.Update(changes);
 
-        return new SingleObjectModel(this.Request, GetProductModel(product), "Empiria.Trade.Product");
+        return new SingleObjectModel(this.Request, PDMModels.GetProductModel(product), "Empiria.Trade.Product");
 
       } catch (Exception e) {
         throw base.CreateHttpException(e);
@@ -83,35 +84,6 @@ namespace Empiria.Trade.WebApi {
     }
 
     #endregion Public APIs
-
-    #region Private methods
-
-    private object GetProductModel(Product o, bool includeEquivalents = true) {
-      return new {
-        id = o.Id,
-        category = o.ProductTerm.Category,
-        subcategory = o.ProductTerm.Subcategory,
-        productTerm = o.ProductTerm,
-        manufacturer = o.Manufacturer,
-        brand = o.Brand,
-        partNumber = o.ProductCode,
-        name = o.Name,
-        searchTags = o.SearchTags,
-        description = o.Description,
-        notes = o.Notes,
-
-        presentationUnit = o.PresentationUnit,
-        contentQty = o.ContentQty,
-        contentUnit = o.ContentUnit,
-
-        startDate = o.StartDate,
-        lastUpdated = o.LastUpdated,
-        manager = o.ProductManager,
-        baseProductId = o.BaseProduct.Id
-      };
-    }
-
-    #endregion Private methods
 
   }  // class ProductsController
 

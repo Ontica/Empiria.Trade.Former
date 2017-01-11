@@ -30,10 +30,11 @@ namespace Empiria.Products.Data {
       LegacyData.InsertEquivalentProduct(product, equivalentProduct);
     }
 
-    internal static List<Product> GetEquivalentProducts(Product baseProduct) {
+    internal static FixedList<Product> GetEquivalentProducts(Product baseProduct) {
       var operation = DataOperation.Parse("qryPDMEquivalentProducts", baseProduct.Id);
 
-      return DataReader.GetList<Product>(operation, (x) => BaseObject.ParseList<Product>(x));
+      return DataReader.GetList<Product>(operation, (x) => BaseObject.ParseList<Product>(x))
+                       .ToFixedList();
     }
 
     static public FixedList<Product> GetActiveProducts(string keywords, string sort) {

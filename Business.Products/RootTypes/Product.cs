@@ -234,6 +234,9 @@ namespace Empiria.Products {
 
     #region Public methods
 
+    public FixedList<Product> GetEquivalents() {
+      return ProductsData.GetEquivalentProducts(this);
+    }
 
     //public void Validate(Product changes) {
     //  if (DateTime.Now.Hour > 20) {
