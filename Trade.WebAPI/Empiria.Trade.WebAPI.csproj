@@ -92,11 +92,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Automotive\VehicleModelSearchController.cs" />
     <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\PDM\CataloguesController.cs" />
     <Compile Include="Controllers\PDM\EquivalentProductsController.cs" />
     <Compile Include="Controllers\PDM\ProductsController.cs" />
     <Compile Include="Empiria.Trade.WebApi.AssemblyInfo.cs" />
+    <Compile Include="Models\AISModels.cs" />
     <Compile Include="Models\PDMModels.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -138,9 +140,17 @@
       <Project>{72057702-c138-444b-8074-fbf7215a3d3a}</Project>
       <Name>Empiria.Data.Convertion</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Automotive\Empiria.Automotive.csproj">
+      <Project>{081423ff-7074-48f4-aee3-c01610e70f45}</Project>
+      <Name>Empiria.Automotive</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Business.Products\Empiria.Products.csproj">
       <Project>{21365aa8-67f7-4418-8ea1-c7fc0d5eea47}</Project>
       <Name>Empiria.Products</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Industries.Retail\Empiria.Industries.Retail.csproj">
+      <Project>{0db1865f-fabc-4ca0-b751-d53e0b54b7ac}</Project>
+      <Name>Empiria.Industries.Retail</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
