@@ -25,8 +25,8 @@ namespace Empiria.Automotive {
       return BaseObject.ParseId<Make>(id);
     }
 
-    static public Make Parse(string key) {
-      return BaseObject.ParseKey<Make>(key);
+    static public Make Parse(string name) {
+      return BaseObject.ParseKey<Make>(name);
     }
 
     static public Make Empty {
@@ -42,19 +42,6 @@ namespace Empiria.Automotive {
     }
 
     #endregion Constructors and parsers
-
-    #region Properties
-
-    public string Key {
-      get {
-        return base.NamedKey;
-      }
-      private set {
-        base.NamedKey = value;
-      }
-    }
-
-    #endregion Properties
 
   } // class Make
 

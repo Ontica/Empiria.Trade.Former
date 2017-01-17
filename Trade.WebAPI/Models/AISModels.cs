@@ -24,11 +24,17 @@ namespace Empiria.Automotive.WebApi.Models {
       };
     }
 
-
-    static internal object GetMake(Make o) {
+    internal static object GetVehicleModel(VehicleModel o) {
       return new {
-        key = o.Key,
-        name = o.Name
+        id = o.Id,
+        fromYear = o.FromYear,
+        toYear = o.ToYear,
+        make = o.Make.Name,
+        model = o.Model,
+        engine = o.Engine,
+        asText = o.AsText,
+        notes = o.Notes,
+        description = o.Description
       };
     }
 

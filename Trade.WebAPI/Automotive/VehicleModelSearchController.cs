@@ -9,6 +9,7 @@
 *                                                                                                            *
 ********************************* Copyright (c) 2014-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
+using System.Collections;
 using System.Linq;
 using System.Web.Http;
 
@@ -49,7 +50,7 @@ namespace Empiria.Automotive.WebApi {
 
         var makes = VehicleModelSearcher.GetMakesInYear(year);
 
-        var array = new System.Collections.ArrayList(makes.Select((x) => AISModels.GetMake(x)).ToArray());
+        var array = new ArrayList(makes.Select((x) => x.Name).ToArray());
 
         return new CollectionModel(this.Request, array, "Empiria.Automotive.Make");
 
@@ -60,17 +61,19 @@ namespace Empiria.Automotive.WebApi {
 
 
     [HttpGet]
-    [Route("v1/automotive/years/{year}/makes/{makeKey}/models")]
-    public CollectionModel GetYearMakeModels(int year, string makeKey) {
+    [Route("v1/automotive/years/{year}/makes/{makeName}/models")]
+    public CollectionModel GetYearMakeModels(int year, string makeName) {
       try {
         base.RequireResource(year, "year");
-        base.RequireResource(makeKey, "makeKey");
+        base.RequireResource(makeName, "makeName");
 
-        var make = Make.Parse(makeKey);
+        makeName = EmpiriaString.DecodeUrlIdentifier(makeName);
+
+        var make = Make.Parse(makeName);
 
         var models = VehicleModelSearcher.GetModelsInYear(year, make);
 
-        return new CollectionModel(this.Request, models);
+        return new CollectionModel(this.Request, models, "Empiria.Automotive.Model");
 
       } catch (Exception e) {
         throw base.CreateHttpException(e);
@@ -79,18 +82,21 @@ namespace Empiria.Automotive.WebApi {
 
 
     [HttpGet]
-    [Route("v1/automotive/years/{year}/makes/{makeKey}/models/{modelName}/engines")]
-    public CollectionModel GetYearMakeModelEngines(int year, string makeKey, string modelName) {
+    [Route("v1/automotive/years/{year}/makes/{makeName}/models/{modelName}/engines")]
+    public CollectionModel GetYearMakeModelEngines(int year, string makeName, string modelName) {
       try {
         base.RequireResource(year, "year");
-        base.RequireResource(makeKey, "makeKey");
+        base.RequireResource(makeName, "makeName");
         base.RequireResource(modelName, "modelName");
 
-        var make = Make.Parse(makeKey);
+        makeName = EmpiriaString.DecodeUrlIdentifier(makeName);
+        modelName = EmpiriaString.DecodeUrlIdentifier(modelName);
+
+        var make = Make.Parse(makeName);
 
         var engines = VehicleModelSearcher.GetModelEnginesInYear(year, make, modelName);
 
-        var array = new System.Collections.ArrayList(engines.Select((x) => AISModels.GetEngineType(x)).ToArray());
+        var array = new ArrayList(engines.Select((x) => AISModels.GetEngineType(x)).ToArray());
 
         return new CollectionModel(this.Request, array, "Empiria.Automotive.EngineType");
 
@@ -108,55 +114,14 @@ namespace Empiria.Automotive.WebApi {
 
         var vehicleModel = VehicleModel.Parse(vehicleModelId);
 
-        return new SingleObjectModel(this.Request, vehicleModel);
+        return new SingleObjectModel(this.Request,
+                                     AISModels.GetVehicleModel(vehicleModel),
+                                    "Empiria.Automotive.VehicleModel");
 
       } catch (Exception e) {
         throw base.CreateHttpException(e);
       }
     }
-
-
-    //[HttpGet]
-    //[Route("v1/automotive/years/{year}/makes/{makeId}/models/{model}/trim-levels")]
-    //public CollectionModel GetYearMakeModelTrimLevels(int year, int makeId, string model) {
-    //  try {
-    //    base.RequireResource(year, "year");
-    //    base.RequireResource(makeId, "makeId");
-    //    base.RequireResource(model, "model");
-
-    //    var make = Make.Parse(makeId);
-
-    //    FixedList<string> trimLevels = make.GetTrimLevels(year, model);
-
-    //    return new CollectionModel(this.Request, trimLevels);
-
-    //  } catch (Exception e) {
-    //      throw base.CreateHttpException(e);
-    //  }
-    //}
-
-
-    //[HttpGet]
-    //[Route("v1/automotive/years/{year}/makes/{makeId}/models/{model}/trim-levels/{trimLevel}/engines")]
-    //public CollectionModel GetYearMakeModelTrimLevelEngines(int year, int makeId,
-    //                                                        string model, string trimLevel) {
-    //  try {
-    //    base.RequireResource(year, "year");
-    //    base.RequireResource(makeId, "makeId");
-    //    base.RequireResource(model, "model");
-    //    base.RequireResource(trimLevel, "trimLevel");
-
-    //    var make = Make.Parse(makeId);
-
-    //    FixedList<string> engines = make.GetEngines(year, model, trimLevel);
-
-    //    return new CollectionModel(this.Request, engines);
-
-    //  } catch (Exception e) {
-    //    throw base.CreateHttpException(e);
-    //  }
-    //}
-
 
     #endregion Public APIs
 
