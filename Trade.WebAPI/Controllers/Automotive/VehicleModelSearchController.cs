@@ -29,7 +29,6 @@ namespace Empiria.Automotive.WebApi {
     [Route("v1/automotive/years")]
     public CollectionModel GetYears() {
       try {
-
         var years = VehicleModelSearcher.GetYears();
 
         years.Reverse();
