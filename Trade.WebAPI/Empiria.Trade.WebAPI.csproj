@@ -92,12 +92,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Automotive\VehicleModelSearchController.cs" />
+    <Compile Include="Controllers\Automotive\VehicleModelSearchController.cs" />
     <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\PDM\CataloguesController.cs" />
     <Compile Include="Controllers\PDM\EquivalentProductsController.cs" />
+    <Compile Include="Controllers\Trading\TradersController.cs" />
     <Compile Include="Controllers\PDM\ProductsController.cs" />
     <Compile Include="Empiria.Trade.WebApi.AssemblyInfo.cs" />
+    <Compile Include="Models\TradingModels.cs" />
     <Compile Include="Models\AISModels.cs" />
     <Compile Include="Models\PDMModels.cs" />
   </ItemGroup>
@@ -151,6 +153,10 @@
     <ProjectReference Include="..\Industries.Retail\Empiria.Industries.Retail.csproj">
       <Project>{0db1865f-fabc-4ca0-b751-d53e0b54b7ac}</Project>
       <Name>Empiria.Industries.Retail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trade.Ordering\Empiria.Trade.Ordering.csproj">
+      <Project>{d0f0b709-11a0-4c79-b761-a13ea0647c62}</Project>
+      <Name>Empiria.Trade.Ordering</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

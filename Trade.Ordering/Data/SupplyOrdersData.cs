@@ -39,6 +39,14 @@ namespace Empiria.Trade.Data {
       return supplyOrderId;
     }
 
+    static public FixedList<Contact> GetSuppliers() {
+      var dataOperation = DataOperation.Parse("qryTRDSuppliers");
+
+      var list = DataReader.GetList<Contact>(dataOperation, (x) => BaseObject.ParseList<Contact>(x));
+
+      return list.ToFixedList();
+    }
+
     static public DataView GetSupplyOrdersItemsARPCrossed(SupplyOrder order) {
       return DataReader.GetDataView(DataOperation.Parse("qryARPSupplyOrderItemsARPCrossed", order.Id));
     }
@@ -63,7 +71,7 @@ namespace Empiria.Trade.Data {
       return DataReader.GetDataView(dataOperation, filter);
     }
 
-    static public DataView GetSuplierCustomerOrders(Contact supplier, Contact customer,
+    static public DataView GetSupplierCustomerOrders(Contact supplier, Contact customer,
                                                     DateTime fromDate, DateTime toDate, string filter) {
       var dataOperation = DataOperation.Parse("qrySNMSupplierCustomerOrders",
                                               supplier.Id, customer.Id, fromDate, toDate);
