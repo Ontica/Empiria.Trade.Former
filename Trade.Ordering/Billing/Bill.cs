@@ -177,7 +177,7 @@ namespace Empiria.Trade.Billing {
 
       DataView view = BillingDS.GetBills(fromDate, toDate, "[BillType] IN ('G', 'L')");
       if (view.Count != 0) { // Global bills already generated
-        Empiria.Messaging.Publisher.Publish("Global bills already generated for the selected period");
+        EmpiriaLog.Info("Global bills already generated for the selected period.");
         return;
       }
 

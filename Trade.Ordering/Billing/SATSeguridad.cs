@@ -152,7 +152,7 @@ namespace Empiria.Trade.Billing {
         RSACryptoServiceProvider rsa = DecodePrivateKeyInfo(pkcs8);
         return rsa;
       } catch (Exception e) {
-        Empiria.Messaging.Publisher.Publish(e);
+        EmpiriaLog.Critical(e);
         return null;
       } finally { binr.Close(); }
 

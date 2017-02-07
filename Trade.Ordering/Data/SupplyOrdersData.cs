@@ -108,7 +108,7 @@ namespace Empiria.Trade.Data {
                                                        string filter, string sort) {
       string sql = String.Format("SELECT * FROM tabSNMMyOrders({0},{1})", org.Id, contact.Id) +
                     GeneralDataOperations.GetFilterSortSqlString(filter, sort);
-      Empiria.Messaging.Publisher.Publish(sql);
+
       var view = DataReader.GetDataView(DataOperation.Parse(sql));
 
       return DataReader.GetList<SupplyOrder>(DataOperation.Parse(sql),

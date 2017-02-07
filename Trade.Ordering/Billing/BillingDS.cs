@@ -27,7 +27,7 @@ namespace Empiria.Trade.Data {
         dataOperation.ExecutionTimeout = 500;
         return DataReader.GetDataView(dataOperation, filter);
       } catch {
-        Empiria.Messaging.Publisher.Publish("BillingData.GetBills ERROR : filter = " + filter);
+        EmpiriaLog.Error("BillingData.GetBills. Filter Error: filter = " + filter);
         throw;
       }
     }
