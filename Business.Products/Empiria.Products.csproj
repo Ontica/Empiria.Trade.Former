@@ -166,17 +166,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\core\Data\Empiria.Data.csproj">
-      <Project>{20c01648-86cc-4e9e-ad71-ba7aa8e44dbc}</Project>
-      <Name>Empiria.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\core\Foundation\Empiria.Foundation.csproj">
       <Project>{73ea993b-576b-4a5b-acc5-117dad0254ee}</Project>
       <Name>Empiria.Foundation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\core\Kernel\Empiria.Kernel.csproj">
-      <Project>{f518e007-2b16-4804-ba45-695ea098e1c0}</Project>
-      <Name>Empiria.Kernel</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\extensions\Data.Converter\Empiria.Data.Convertion.csproj">
       <Project>{72057702-c138-444b-8074-fbf7215a3d3a}</Project>

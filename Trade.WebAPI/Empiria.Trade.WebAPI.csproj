@@ -122,17 +122,9 @@
     <Folder Include="App_Start\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\empiria\core\Data\Empiria.Data.csproj">
-      <Project>{20c01648-86cc-4e9e-ad71-ba7aa8e44dbc}</Project>
-      <Name>Empiria.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\empiria\core\Foundation\Empiria.Foundation.csproj">
       <Project>{73ea993b-576b-4a5b-acc5-117dad0254ee}</Project>
       <Name>Empiria.Foundation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\empiria\core\Kernel\Empiria.Kernel.csproj">
-      <Project>{f518e007-2b16-4804-ba45-695ea098e1c0}</Project>
-      <Name>Empiria.Kernel</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\empiria\extensions\WebApi\Empiria.WebApi.csproj">
       <Project>{42b7d25b-356f-4e93-9f17-a2f9422c368d}</Project>

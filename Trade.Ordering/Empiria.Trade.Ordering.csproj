@@ -172,17 +172,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\core\Data\Empiria.Data.csproj">
-      <Project>{20c01648-86cc-4e9e-ad71-ba7aa8e44dbc}</Project>
-      <Name>Empiria.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\core\Foundation\Empiria.Foundation.csproj">
       <Project>{73ea993b-576b-4a5b-acc5-117dad0254ee}</Project>
       <Name>Empiria.Foundation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\core\Kernel\Empiria.Kernel.csproj">
-      <Project>{f518e007-2b16-4804-ba45-695ea098e1c0}</Project>
-      <Name>Empiria.Kernel</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\customers\pineda\Empiria.Customers.Pineda.csproj">
       <Project>{41e9e90e-8f71-4b39-b478-56c0d1d71057}</Project>
@@ -195,6 +187,10 @@
     <ProjectReference Include="..\..\extensions\Documents\Empiria.Documents.csproj">
       <Project>{2bd53d27-bd61-49fe-afe1-d68e21f58e9a}</Project>
       <Name>Empiria.Documents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\extensions\Messaging\Empiria.Messaging.csproj">
+      <Project>{f645ad11-f071-46c4-99e0-8419e6a291d1}</Project>
+      <Name>Empiria.Messaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Business.FinancialServices\Empiria.FinancialServices.csproj">
       <Project>{4dc06d3e-7442-40f0-9b3a-a87ec3a6cebb}</Project>
