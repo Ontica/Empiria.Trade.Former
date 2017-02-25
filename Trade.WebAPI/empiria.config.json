@@ -5,6 +5,11 @@
   "settings": [
     {
       "type": "",
+      "key": "ApplicationKey",
+      "value": "5xPpkR9dK6ufcrMsImlVZ7HqFWN&jt^xU2PoH9l?xL%eCrd?sS5Xi$3272s6uDC1"
+    },
+    {
+      "type": "",
       "key": "License.Name",
       "value": "Trade"
     },
@@ -138,6 +143,21 @@
       "type": "Security",
       "key": "LKey",
       "value": "@~App_Data/LKey.txt"
+    },
+    {
+      "type": "WebApi.Client",
+      "key": "Default.WebApiServer",
+      "value": "Microservices"
+    },
+    {
+      "type": "WebApi.Client",
+      "key": "WebApiServer.Microservices",
+      "value": "http://empiria.microservices"
+    },
+    {
+      "type": "WebApi.Client",
+      "key": "ServiceDirectory.Path",
+      "value": "v1/system/service-directory"
     }
   ]
 }
