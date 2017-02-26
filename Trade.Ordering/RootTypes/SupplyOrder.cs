@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                    System   : Ordering System                   *
 *  Namespace : Empiria.Trade.Ordering                           Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : SupplyOrder                                      Pattern  : Empiria Object Type               *
-*  Version   : 2.1                                              License  : Please read license.txt file      *
+*  Version   : 2.2                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Represents a supplier-customer order in Empiria Trade Ordering System.                        *
 *                                                                                                            *
-********************************* Copyright (c) 2002-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Collections.Generic;
 using System.Data;

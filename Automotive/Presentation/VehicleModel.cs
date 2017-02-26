@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                  System   : Automotive Industry Services        *
 *  Namespace : Empiria.Automotive                             Assembly : Empiria.Automotive.dll              *
 *  Type      : VehicleModel                                   Pattern  : Empiria Object Type                 *
-*  Version   : 2.1                                            License  : Please read license.txt file        *
+*  Version   : 2.2                                            License  : Please read license.txt file        *
 *                                                                                                            *
 *  Summary   : Represents a vehicle model, with trim level and engine.                                       *
 *                                                                                                            *
-********************************* Copyright (c) 2008-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2008-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 
 namespace Empiria.Automotive {

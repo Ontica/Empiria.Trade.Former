@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                    System   : Billing System                    *
 *  Namespace : Empiria.Trade.Billing                            Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : BillIssuerData                                   Pattern  : Data Transfer Object              *
-*  Version   : 2.1                                              License  : Please read license.txt file      *
+*  Version   : 2.2                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Holds data about a bill issuer.                                                               *
 *                                                                                                            *
-********************************* Copyright (c) 2002-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2002-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System.Security;
 
 namespace Empiria.Trade.Billing {

@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                    System   : Retail Services                   *
 *  Namespace : Empiria.Retail.Presentation                      Assembly : Empiria.Retail.dll                *
 *  Type      : WebStorePage                                     Pattern  : Model View Controller             *
-*  Version   : 2.1                                              License  : Please read license.txt file      *
+*  Version   : 2.2                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Abstract type that represents a web page for online stores.                                   *
 *                                                                                                            *
-********************************* Copyright (c) 2008-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2008-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 
 using Empiria.Presentation.Web;

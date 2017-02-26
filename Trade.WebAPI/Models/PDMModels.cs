@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                  System   : Trade Web API                       *
 *  Namespace : Empiria.Trade.WebApi                           Assembly : Empiria.Trade.WebApi.dll            *
 *  Type      : PDMModels                                      Pattern  : Static class                        *
-*  Version   : 2.1                                            License  : Please read license.txt file        *
+*  Version   : 2.2                                            License  : Please read license.txt file        *
 *                                                                                                            *
 *  Summary   : Static type that provides product data management object models for web API consumption.      *
 *                                                                                                            *
-********************************* Copyright (c) 2009-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2009-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 
 using Empiria.Products;

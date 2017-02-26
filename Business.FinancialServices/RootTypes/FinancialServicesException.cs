@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                    System   : Financial Services                *
 *  Namespace : Empiria.FinancialServices                        Assembly : Empiria.FinancialServices.dll     *
 *  Type      : FinancialServicesException                       Pattern  : Exception Class                   *
-*  Version   : 2.1                                              License  : Please read license.txt file      *
+*  Version   : 2.2                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : The exception that is thrown when a problem occurs in Empiria Financial Services.             *
 *                                                                                                            *
-********************************* Copyright (c) 2003-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2003-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Reflection;
 

@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                    System   : Trade Web API                     *
 *  Namespace : Empiria.Trade.WebApi                             Assembly : Empiria.Trade.WebApi.dll          *
 *  Type      : TradersController                                Pattern  : Web API                           *
-*  Version   : 2.1                                              License  : Please read license.txt file      *
+*  Version   : 2.2                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Service to retrive and manage traders of goods and services.                                  *
 *                                                                                                            *
-********************************* Copyright (c) 2014-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2014-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Linq;
 using System.Web.Http;

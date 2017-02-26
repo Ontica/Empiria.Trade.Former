@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                  System   : Automotive Industry Services        *
 *  Namespace : Empiria.Trade.WebApi                           Assembly : Empiria.Trade.WebApi.dll            *
 *  Type      : VehicleModelSearchController                   Pattern  : Web API                             *
-*  Version   : 2.1                                            License  : Please read license.txt file        *
+*  Version   : 2.2                                            License  : Please read license.txt file        *
 *                                                                                                            *
 *  Summary   : Web API that provides services to get vehicle model information.                              *
 *                                                                                                            *
-********************************* Copyright (c) 2014-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2014-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 using System.Collections;
 using System.Linq;

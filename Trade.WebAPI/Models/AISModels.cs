@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                  System   : Automotive Industry Services        *
 *  Namespace : Empiria.Automotive.WebApi.Models               Assembly : Empiria.Trade.WebApi.dll            *
 *  Type      : AISModels                                      Pattern  : Static class                        *
-*  Version   : 2.1                                            License  : Please read license.txt file        *
+*  Version   : 2.2                                            License  : Please read license.txt file        *
 *                                                                                                            *
 *  Summary   : Static type that provides automotive industry object models for API consumption.              *
 *                                                                                                            *
-********************************* Copyright (c) 2009-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2009-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 
 namespace Empiria.Automotive.WebApi.Models {

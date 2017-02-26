@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                    System   : Financial Services                *
 *  Namespace : Empiria.FinancialServices.Data                   Assembly : Empiria.FinancialServices.dll     *
 *  Type      : CollectData                                      Pattern  : Data Services Static Class        *
-*  Version   : 2.1                                              License  : Please read license.txt file      *
+*  Version   : 2.2                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Contains data methods for financial services collect activities.                              *
 *                                                                                                            *
-********************************* Copyright (c) 2003-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2003-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System.Data;
 
 using Empiria.Data;

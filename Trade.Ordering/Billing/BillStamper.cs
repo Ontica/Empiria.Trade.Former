@@ -3,11 +3,11 @@
 *  Solution  : Empiria Trade                                    System   : Billing System                    *
 *  Namespace : Empiria.Trade.Billing                            Assembly : Empiria.Trade.Ordering.dll        *
 *  Type      : BillStamper                                      Pattern  : Service provider                  *
-*  Version   : 2.1                                              License  : Please read license.txt file      *
+*  Version   : 2.2                                              License  : Please read license.txt file      *
 *                                                                                                            *
 *  Summary   : Provides bill stamping services using a third-party provider.                                 *
 *                                                                                                            *
-********************************* Copyright (c) 2013-2016. La Vía Óntica SC, Ontica LLC and contributors.  **/
+********************************* Copyright (c) 2013-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 
 namespace Empiria.Trade.Billing {
