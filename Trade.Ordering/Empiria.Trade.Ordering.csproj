@@ -98,9 +98,29 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PDFTechLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\PDFTechLib.dll</HintPath>
+    <Reference Include="Empiria.Data.Convertion, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.Data.Convertion.6.8.328\lib\net46\Empiria.Data.Convertion.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Documents, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.Documents.6.8.328\lib\net46\Empiria.Documents.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Foundation, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.Foundation.6.8.328\lib\net46\Empiria.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Messaging, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.Messaging.6.8.328\lib\net46\Empiria.Messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=3.2.2.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.3.2.2\lib\net451\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="PDFTechLib">
+      <HintPath>..\libs\PDFTechLib.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -111,12 +131,14 @@
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <Reference Include="WSConecFM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\empiria.assemblies\WSConecFM.dll</HintPath>
+    <Reference Include="WSConecFM">
+      <HintPath>..\libs\WSConecFM.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -172,25 +194,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\core\Foundation\Empiria.Foundation.csproj">
-      <Project>{73ea993b-576b-4a5b-acc5-117dad0254ee}</Project>
-      <Name>Empiria.Foundation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\customers\pineda\Empiria.Customers.Pineda.csproj">
       <Project>{41e9e90e-8f71-4b39-b478-56c0d1d71057}</Project>
       <Name>Empiria.Customers.Pineda</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\extensions\Data.Converter\Empiria.Data.Convertion.csproj">
-      <Project>{72057702-c138-444b-8074-fbf7215a3d3a}</Project>
-      <Name>Empiria.Data.Convertion</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\extensions\Documents\Empiria.Documents.csproj">
-      <Project>{2bd53d27-bd61-49fe-afe1-d68e21f58e9a}</Project>
-      <Name>Empiria.Documents</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\extensions\Messaging\Empiria.Messaging.csproj">
-      <Project>{f645ad11-f071-46c4-99e0-8419e6a291d1}</Project>
-      <Name>Empiria.Messaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Business.FinancialServices\Empiria.FinancialServices.csproj">
       <Project>{4dc06d3e-7442-40f0-9b3a-a87ec3a6cebb}</Project>
@@ -209,6 +215,8 @@
     <Content Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
