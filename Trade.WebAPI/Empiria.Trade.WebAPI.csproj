@@ -84,11 +84,35 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Empiria.Automotive, Version=2.2.308.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.Automotive.2.2.308\lib\net46\Empiria.Automotive.dll</HintPath>
+    </Reference>
     <Reference Include="Empiria.Data.Convertion, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Empiria.Data.Convertion.6.8.328\lib\net46\Empiria.Data.Convertion.dll</HintPath>
     </Reference>
+    <Reference Include="Empiria.Documents, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.Documents.6.8.328\lib\net46\Empiria.Documents.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.FinancialServices, Version=2.2.308.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.FinancialServices.2.2.308\lib\net46\Empiria.FinancialServices.dll</HintPath>
+    </Reference>
     <Reference Include="Empiria.Foundation, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Empiria.Foundation.6.8.328\lib\net46\Empiria.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Geography, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.Geography.6.8.328\lib\net46\Empiria.Geography.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Messaging, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.Messaging.6.8.328\lib\net46\Empiria.Messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Products, Version=2.2.308.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.Products.2.2.308\lib\net46\Empiria.Products.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Trade.Ordering, Version=2.2.308.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.Trade.Ordering.2.2.308\lib\net46\Empiria.Trade.Ordering.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Treasury, Version=2.2.308.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.Treasury.2.2.308\lib\net46\Empiria.Treasury.dll</HintPath>
     </Reference>
     <Reference Include="Empiria.WebApi, Version=1.2.328.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Empiria.WebApi.1.2.328\lib\net46\Empiria.WebApi.dll</HintPath>
@@ -123,20 +147,6 @@
     <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Automotive\Empiria.Automotive.csproj">
-      <Project>{081423ff-7074-48f4-aee3-c01610e70f45}</Project>
-      <Name>Empiria.Automotive</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Business.Products\Empiria.Products.csproj">
-      <Project>{21365aa8-67f7-4418-8ea1-c7fc0d5eea47}</Project>
-      <Name>Empiria.Products</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Trade.Ordering\Empiria.Trade.Ordering.csproj">
-      <Project>{d0f0b709-11a0-4c79-b761-a13ea0647c62}</Project>
-      <Name>Empiria.Trade.Ordering</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

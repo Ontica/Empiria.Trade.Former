@@ -98,14 +98,23 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Empiria.Data.Convertion, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.Data.Convertion.6.8.328\lib\net46\Empiria.Data.Convertion.dll</HintPath>
+    </Reference>
     <Reference Include="Empiria.Foundation, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Empiria.Foundation.6.8.328\lib\net46\Empiria.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Geography, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.Geography.6.8.328\lib\net46\Empiria.Geography.dll</HintPath>
     </Reference>
     <Reference Include="Empiria.Presentation, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Empiria.Presentation.6.8.328\lib\net46\Empiria.Presentation.dll</HintPath>
     </Reference>
     <Reference Include="Empiria.Presentation.Web, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Empiria.Presentation.Web.6.8.328\lib\net46\Empiria.Presentation.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Empiria.Products, Version=2.2.308.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Empiria.Products.2.2.308\lib\net46\Empiria.Products.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
@@ -174,12 +183,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Business.Products\Empiria.Products.csproj">
-      <Project>{21365aa8-67f7-4418-8ea1-c7fc0d5eea47}</Project>
-      <Name>Empiria.Products</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENSE.txt" />
