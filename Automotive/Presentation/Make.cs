@@ -34,7 +34,7 @@ namespace Empiria.Automotive {
     }
 
     static public FixedList<Make> GetList() {
-      var list = GeneralObject.ParseList<Make>();
+      var list = GeneralObject.GetList<Make>();
 
       list.Sort((x, y) => x.Name.CompareTo(y.Name));
 

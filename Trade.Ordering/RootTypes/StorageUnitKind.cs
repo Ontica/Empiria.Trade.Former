@@ -30,7 +30,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public FixedList<StorageUnitKind> GetList() {
-      return GeneralObject.ParseList<StorageUnitKind>();
+      return GeneralObject.GetList<StorageUnitKind>();
     }
 
     #endregion Constructors and parsers

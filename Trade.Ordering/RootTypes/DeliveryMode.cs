@@ -30,7 +30,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public FixedList<DeliveryMode> GetList() {
-      return GeneralObject.ParseList<DeliveryMode>();
+      return GeneralObject.GetList<DeliveryMode>();
     }
 
     #endregion Constructors and parsers

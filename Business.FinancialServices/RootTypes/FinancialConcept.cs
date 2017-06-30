@@ -34,7 +34,7 @@ namespace Empiria.FinancialServices {
     }
 
     static public FixedList<FinancialConcept> GetList() {
-      return GeneralObject.ParseList<FinancialConcept>();
+      return GeneralObject.GetList<FinancialConcept>();
     }
 
     #endregion Constructors and parsers

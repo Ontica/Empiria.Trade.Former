@@ -32,7 +32,7 @@ namespace Empiria.Products {
     static public FixedList<ProductTerm> GetList(string searchFor) {
       var filter = SearchExpression.ParseAndLike("ObjectKeywords", searchFor);
 
-      return GeneralObject.ParseList<ProductTerm>(filter);
+      return GeneralObject.GetList<ProductTerm>(filter);
     }
 
     #endregion Constructors and parsers

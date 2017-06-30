@@ -34,7 +34,7 @@ namespace Empiria.Products {
     }
 
     static public FixedList<PresentationUnit> GetList() {
-      return GeneralObject.ParseList<PresentationUnit>();
+      return GeneralObject.GetList<PresentationUnit>();
     }
 
     #endregion Constructors and parsers

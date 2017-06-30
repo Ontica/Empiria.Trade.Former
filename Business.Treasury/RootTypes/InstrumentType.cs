@@ -42,7 +42,7 @@ namespace Empiria.Treasury {
     }
 
     static public FixedList<InstrumentType> GetList() {
-      return GeneralObject.ParseList<InstrumentType>();
+      return GeneralObject.GetList<InstrumentType>();
     }
 
     #endregion Constructors and parsers

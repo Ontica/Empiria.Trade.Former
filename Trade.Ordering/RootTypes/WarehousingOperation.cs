@@ -30,7 +30,7 @@ namespace Empiria.Trade.Ordering {
     }
 
     static public FixedList<WarehousingOperation> GetList() {
-      return GeneralObject.ParseList<WarehousingOperation>();
+      return GeneralObject.GetList<WarehousingOperation>();
     }
 
     public FixedList<WarehousingOperation> GetDocumentTypes() {

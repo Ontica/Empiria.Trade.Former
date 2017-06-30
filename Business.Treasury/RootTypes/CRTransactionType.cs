@@ -38,7 +38,7 @@ namespace Empiria.Treasury {
     }
 
     static public FixedList<CRTransactionType> GetList() {
-      return GeneralObject.ParseList<CRTransactionType>();
+      return GeneralObject.GetList<CRTransactionType>();
     }
 
     #endregion Constructors and parsers
