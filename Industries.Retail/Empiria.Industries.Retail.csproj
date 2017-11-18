@@ -113,9 +113,6 @@
     <Reference Include="Empiria.Presentation.Web, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Empiria.Presentation.Web.6.8.328\lib\net46\Empiria.Presentation.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Empiria.Products, Version=2.2.308.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Empiria.Products.2.2.308\lib\net46\Empiria.Products.dll</HintPath>
-    </Reference>
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
     </Reference>
@@ -185,12 +182,20 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENSE.txt" />
+    <None Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business.Products\Empiria.Products.csproj">
+      <Project>{21365aa8-67f7-4418-8ea1-c7fc0d5eea47}</Project>
+      <Name>Empiria.Products</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

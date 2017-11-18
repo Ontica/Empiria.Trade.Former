@@ -67,9 +67,6 @@
     <Reference Include="Empiria.Messaging, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Empiria.Messaging.6.8.328\lib\net46\Empiria.Messaging.dll</HintPath>
     </Reference>
-    <Reference Include="Empiria.Treasury, Version=2.2.308.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Empiria.Treasury.2.2.308\lib\net46\Empiria.Treasury.dll</HintPath>
-    </Reference>
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
     </Reference>
@@ -132,12 +129,18 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENSE.txt" />
+    <None Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business.Treasury\Empiria.Treasury.csproj">
+      <Project>{b98b6e7e-fd01-4d54-85af-98fb8bb5f80b}</Project>
+      <Name>Empiria.Treasury</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
