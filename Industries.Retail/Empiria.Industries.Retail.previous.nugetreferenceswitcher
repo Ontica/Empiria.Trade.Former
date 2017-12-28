@@ -1,0 +1,6 @@
+Empiria.Data.Convertion	../../extensions/Data.Converter/Empiria.Data.Convertion.csproj	../../packages/Empiria.Data.Convertion.6.8.328/lib/net46/Empiria.Data.Convertion.dll
+Empiria.Foundation	../../core/Foundation/Empiria.Foundation.csproj	../../packages/Empiria.Foundation.6.8.328/lib/net46/Empiria.Foundation.dll
+Empiria.Geography	../../extensions/Geography/Empiria.Geography.csproj	../../packages/Empiria.Geography.6.8.328/lib/net46/Empiria.Geography.dll
+Empiria.Presentation	../../extensions/Presentation/Empiria.Presentation.csproj	../../packages/Empiria.Presentation.6.8.328/lib/net46/Empiria.Presentation.dll
+Empiria.Presentation.Web	../../extensions/Presentation.Web/Empiria.Presentation.Web.csproj	../../packages/Empiria.Presentation.Web.6.8.328/lib/net46/Empiria.Presentation.Web.dll
+Empiria.Products	../Business.Products/Empiria.Products.csproj	../../packages/Empiria.Products.2.2.308/lib/net46/Empiria.Products.dll

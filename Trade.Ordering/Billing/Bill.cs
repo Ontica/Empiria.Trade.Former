@@ -65,7 +65,8 @@ namespace Empiria.Trade.Billing {
 
     #region Fields
 
-    private static readonly string BillCertificatesFolder = ConfigurationData.GetString("BillCertificatesFolder");
+    internal static readonly string BillCertificatesFolder = ConfigurationData.GetString("BillCertificatesFolder");
+    public static readonly string BillXmlFilesFolder = ConfigurationData.GetString("BillXmlFilesFolder");
     public static readonly string BillHtmlFilesFolder = ConfigurationData.GetString("BillHtmlFilesFolder");
     public static readonly string BillPDFFilesFolder = ConfigurationData.GetString("BillPDFFilesFolder");
     public static readonly string BillUrlHtmlFilesFolder = ConfigurationData.GetString("BillUrlHtmlFilesFolder");
@@ -78,6 +79,7 @@ namespace Empiria.Trade.Billing {
     private SupplyOrder supplyOrder = null;
     private Contact issuedBy = Contact.Parse(ExecutionServer.CurrentUserId);
     private DateTime issuedTime = DateTime.Now;
+    private string certificateContent = String.Empty;
     private string certificateNumber = String.Empty;
     private string serialNumber = String.Empty;
     private string number = String.Empty;
@@ -136,21 +138,9 @@ namespace Empiria.Trade.Billing {
       get { return BaseObject.ParseEmpty<Bill>(thisTypeName); }
     }
 
-    //static public void Review() {
-    //  DataView view = BillingData.GetBills(DateTime.Parse("01/07/2012"), DateTime.Today, "[ApprovalYear] = 2012");
-
-    //  for (int i = 0; i < view.Count; i++) {
-    //    string ds = (string) view[i]["DigitalString"];
-    //    string temp = CleanDigitalString(ds);
-    //    if (temp != ds) {
-    //      string sql = "UPDATE CRMBills SET BillStatus = 'R' WHERE BillId = " + (int) view[i]["BillId"];
-    //      Empiria.Data.DataWriter.Execute(Empiria.Data.DataOperation.Parse(sql));
-    //    }
-    //  }
-    //}
-
     static private string CleanDigitalString(string digitalString) {
       string temp = digitalString;
+
       for (int c = 0; c < temp.Length; c++) {
         if (Char.IsControl(temp[c])) {
           temp = temp.Replace(temp[c].ToString(), String.Empty);
@@ -159,8 +149,8 @@ namespace Empiria.Trade.Billing {
           temp = temp.Replace(temp[c].ToString(), String.Empty);
         }
       }
-      temp = EmpiriaString.TrimAll(temp);
-      return temp;
+
+      return EmpiriaString.TrimAll(temp);
     }
 
     static private string GetDigitalStringItem(string digitalStringItem) {
@@ -183,6 +173,7 @@ namespace Empiria.Trade.Billing {
 
     static internal string CleanXmlBillItem(string digitalStringItem) {
       string temp = digitalStringItem;
+
       temp = CleanBillItem(temp);
       temp = temp.Replace("&", "&amp;");
       temp = temp.Replace("\"", " &quot");
@@ -201,7 +192,7 @@ namespace Empiria.Trade.Billing {
 
       DataView view = BillingData.GetBills(fromDate, toDate, "[BillType] IN ('G', 'L')");
       if (view.Count != 0) { // Global bills already generated
-        Empiria.Messaging.Publisher.Publish("Global bills already generated for the selected period");
+        Empiria.Messaging.Publisher.Publish("Global bills were already generated for the selected period.");
         return;
       }
 
@@ -273,12 +264,12 @@ namespace Empiria.Trade.Billing {
           case BillType.Bill:
           case BillType.GlobalBill:
           case BillType.DebitNote:
-            return "ingreso";
+            return "I";
           case BillType.CreditNote:
           case BillType.GlobalCreditNote:
-            return "egreso";
+            return "E";
           case BillType.Transfer:
-            return "traslado";
+            return "T";
           default:
             throw new TradeOrderingException(TradeOrderingException.Msg.UnrecognizedBillType, billType);
         }
@@ -344,30 +335,36 @@ namespace Empiria.Trade.Billing {
 
     public string PaymentCondition {
       get {
-        if (this.paymentCondition == null) {
-          if (this.notOrderData != null) {
-            this.paymentCondition = "99";
-            return this.paymentCondition;
-          }
-          List<Treasury.CRPosting> postings = this.Order.Payment.Postings.FindAll((x) => x.InputAmount > 0m);
-          string s = String.Empty;
-          for (int i = 0; i < postings.Count; i++) {
-            if (i != 0) {
-              s += ",";
-            }
-            s += postings[i].InstrumentType.TaxFormCode;
-          }
-          if (s.Length == 0) {
-            s = "NA";
-          }
-          this.paymentCondition = s;
-        }
+        this.paymentCondition = "01";
+
         return this.paymentCondition;
       }
+
+      //get {
+      //  if (this.paymentCondition == null) {
+      //    if (this.notOrderData != null) {
+      //      this.paymentCondition = "99";
+      //      return this.paymentCondition;
+      //    }
+      //    List<Treasury.CRPosting> postings = this.Order.Payment.Postings.FindAll((x) => x.InputAmount > 0m);
+      //    string s = String.Empty;
+      //    for (int i = 0; i < postings.Count; i++) {
+      //      if (i != 0) {
+      //        s += ",";
+      //      }
+      //      s += postings[i].InstrumentType.TaxFormCode;
+      //    }
+      //    if (s.Length == 0) {
+      //      s = "NA";
+      //    }
+      //    this.paymentCondition = s;
+      //  }
+      //  return this.paymentCondition;
+      //}
     }
 
-    public string PaymentMode {
-      get { return "Pago en una sola exhibición"; }
+    public string PaymentMethod {
+      get { return "PUE"; }
     }
 
     public Contact IssuedBy {
@@ -400,6 +397,11 @@ namespace Empiria.Trade.Billing {
       set { cancelationTime = value; }
     }
 
+    public string CertificateContent {
+      get { return certificateContent; }
+      set { certificateContent = value; }
+    }
+
     public string CertificateNumber {
       get { return certificateNumber; }
       set { certificateNumber = value; }
@@ -426,14 +428,15 @@ namespace Empiria.Trade.Billing {
     }
 
     public string DigitalString {
-      get { return digitalString; }
-      private set {
-        digitalString = CleanDigitalString(value);
+      get {
+        return String.Empty;
       }
     }
 
     public string DigitalSign {
-      get { return digitalSign; }
+      get {
+        return String.Empty;
+      }
     }
 
     public decimal SubTotal {
@@ -462,7 +465,7 @@ namespace Empiria.Trade.Billing {
     }
 
     public string Version {
-      get { return "2.2"; }
+      get { return "3.3"; }
     }
 
     public System.Xml.XmlDocument XmlDocument {
@@ -473,27 +476,11 @@ namespace Empiria.Trade.Billing {
 
     #region Public methods
 
-    public string CreateHashCode() {
-      byte[] data = null;
-      if (this.issuedTime < DateTime.Parse("01/01/2011")) {
-        MD5 md5Hasher = MD5.Create();
-        data = md5Hasher.ComputeHash(Encoding.UTF8.GetBytes(this.DigitalString));
-      } else {
-        SHA1 sha1 = SHA1.Create();
-        data = sha1.ComputeHash(Encoding.UTF8.GetBytes(this.DigitalString));
-      }
-      StringBuilder sBuilder = new StringBuilder();
-
-      for (int i = 0; i < data.Length; i++) {
-        sBuilder.AppendFormat("{0:x2}", data[i]);
-      }
-      return sBuilder.ToString();
-    }
-
     public string GetXmlFileName() {
       string fileName = "P" + this.Order.ExternalOrderId.ToString("0000000");
       fileName += "." + this.FullNumber;
       fileName += "." + this.IssuedTime.ToString("yyyyMMddHHmmss");
+
       return fileName + ".xml";
     }
 
@@ -512,11 +499,12 @@ namespace Empiria.Trade.Billing {
     }
 
     public string GetXmlFileNameFull() {
-      string fileName = @"D:\facturas\" + GetXmlFileOldName();
+      string fileName = Bill.BillXmlFilesFolder + GetXmlFileOldName();
+
       if (File.Exists(fileName)) {
         return fileName;    // Always retrive XML files with old naming convention when them exist
       } else {
-        return @"D:\facturas\" + GetXmlFileName();
+        return Bill.BillXmlFilesFolder + GetXmlFileName();
       }
     }
 
@@ -594,8 +582,6 @@ namespace Empiria.Trade.Billing {
     protected override void ImplementsSave() {
       if (String.IsNullOrWhiteSpace(this.number)) {
         this.number = this.Id.ToString();
-        this.DigitalString = this.CreateDigitalString();
-        this.digitalSign = this.CreateDigitalSign();
         this.CreateXMLFile();
       }
       BillingData.WriteBill(this);
@@ -607,6 +593,8 @@ namespace Empiria.Trade.Billing {
 
     private void Create() {
       Assertion.AssertObject(this.Order, "Empiria.Trade.Billing.Bill.Order");
+
+      this.certificateContent = GetCertificateContent();
       this.certificateNumber = GetCertificateSerialNumber();
       this.serialNumber = this.IssuerData.BillSerialNo;
       this.approvalYear = this.IssuerData.BillApprovalYear;
@@ -659,7 +647,8 @@ namespace Empiria.Trade.Billing {
 
     private string GetOrderTotalsDigitalStringPart() {
       string temp = GetDigitalStringItem(this.BillTypeFiscalName);
-      temp += GetDigitalStringItem(this.PaymentMode);
+
+      temp += GetDigitalStringItem(this.PaymentMethod);
       //ds += this.Order.CondPagoPedido + delimiter;
       temp += GetDigitalStringItem(this.SubTotal.ToString("0.00"));
       //ds += this.Order.Descuento.ToString("0.00") + delimiter;
@@ -748,8 +737,18 @@ namespace Empiria.Trade.Billing {
       return ds;
     }
 
+    private string GetCertificateContent() {
+      string certificatePath = Bill.BillCertificatesFolder + this.IssuerData.CertificateFileName;
+
+      X509Certificate2 certificate = new X509Certificate2(certificatePath, this.IssuerData.GetCertificatePassword());
+      byte[] array = certificate.GetRawCertData();
+
+      return Convert.ToBase64String(array);
+    }
+
     private string GetCertificateSerialNumber() {
       string certificatePath = Bill.BillCertificatesFolder + this.IssuerData.CertificateFileName;
+
       X509Certificate2 certificate = new X509Certificate2(certificatePath, this.IssuerData.GetCertificatePassword());
       byte[] array = certificate.GetSerialNumber();
 
@@ -758,21 +757,22 @@ namespace Empiria.Trade.Billing {
       return ASCIIEncoding.ASCII.GetString(array);
     }
 
-    private string CreateDigitalSign() {
-      //string privateKeyFileName = ConfigurationData.GetString("Empiria.Security", "§RSACryptoFile");
-      string privateKeyFileName = Bill.BillCertificatesFolder + this.IssuerData.PrivateKeyFile;
-      Byte[] pLlavePrivadaenBytes = System.IO.File.ReadAllBytes(privateKeyFileName);
-      RSACryptoServiceProvider rsa = SATSeguridad.DecodeEncryptedPrivateKeyInfo(pLlavePrivadaenBytes, this.IssuerData.GetCertificatePassword());
-      byte[] array = null;
-      if (this.issuedTime < DateTime.Parse("01/01/2011")) {
-        MD5CryptoServiceProvider hasher = new MD5CryptoServiceProvider();
-        array = rsa.SignData(Encoding.UTF8.GetBytes(this.DigitalString), hasher);
-      } else {
-        SHA1CryptoServiceProvider hasher = new SHA1CryptoServiceProvider();
-        array = rsa.SignData(Encoding.UTF8.GetBytes(this.DigitalString), hasher);
-      }
-      return Convert.ToBase64String(array);
-    }
+    //private string CreateHashCode() {
+    //  byte[] data = null;
+    //  if (this.issuedTime < DateTime.Parse("01/01/2011")) {
+    //    MD5 md5Hasher = MD5.Create();
+    //    data = md5Hasher.ComputeHash(Encoding.UTF8.GetBytes(this.DigitalString));
+    //  } else {
+    //    var sha = SHA256.Create();
+    //    data = sha.ComputeHash(Encoding.UTF8.GetBytes(this.DigitalString));
+    //  }
+    //  StringBuilder sBuilder = new StringBuilder();
+
+    //  for (int i = 0; i < data.Length; i++) {
+    //    sBuilder.AppendFormat("{0:x2}", data[i]);
+    //  }
+    //  return sBuilder.ToString();
+    //}
 
     private void CreateXMLFile() {
       XmlBill facturaXml = XmlBill.Parse(this);

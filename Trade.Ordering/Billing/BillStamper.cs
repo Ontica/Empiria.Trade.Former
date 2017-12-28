@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security;
 
 namespace Empiria.Trade.Billing {
 
@@ -22,6 +17,7 @@ namespace Empiria.Trade.Billing {
     static public void CancelStamp(Bill bill) {
       var ws = new WSConecFM.Cancelado();
       var request = BillStamper.GetCancelStampRequest(bill);
+
       WSConecFM.Resultados stampResult = ws.Cancelar(request, bill.Stamp.UUID);
       if (!stampResult.status) {
         throw CancelBillStamperException(bill, stampResult);

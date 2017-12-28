@@ -126,6 +126,7 @@
   <ItemGroup>
     <Compile Include="Billing\BillStamp.cs" />
     <Compile Include="Billing\BillStamper.cs" />
+    <Compile Include="Billing\BillSeal.cs" />
     <Compile Include="Data\BillingData.cs" />
     <Compile Include="Data\SupplyOrdersData.cs" />
     <Compile Include="Data\WarehouseData.cs" />
@@ -197,10 +198,6 @@
     <ProjectReference Include="..\..\extensions\Data.Converter\Empiria.Data.Convertion.csproj">
       <Project>{72057702-c138-444b-8074-fbf7215a3d3a}</Project>
       <Name>Empiria.Data.Convertion</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\extensions\Documents\Empiria.Documents.csproj">
-      <Project>{2bd53d27-bd61-49fe-afe1-d68e21f58e9a}</Project>
-      <Name>Empiria.Documents</Name>
     </ProjectReference>
     <ProjectReference Include="..\Business.Products\Empiria.Products.csproj">
       <Project>{21365aa8-67f7-4418-8ea1-c7fc0d5eea47}</Project>

@@ -1,0 +1,3 @@
+Empiria.Foundation	../../core/Foundation/Empiria.Foundation.csproj	../../packages/Empiria.Foundation.6.8.328/lib/net46/Empiria.Foundation.dll
+Empiria.Messaging	../../extensions/Messaging/Empiria.Messaging.csproj	../../packages/Empiria.Messaging.6.8.328/lib/net46/Empiria.Messaging.dll
+Empiria.Treasury	../Business.Treasury/Empiria.Treasury.csproj	../../packages/Empiria.Treasury.2.2.308/lib/net46/Empiria.Treasury.dll
