@@ -57,6 +57,11 @@ namespace Empiria.Products {
 
     #region Properties
 
+    public string TaxAuthCode {
+      get {
+        return base.Value;
+      }
+    }
     public FixedList<Unit> GetContentsUnits() {
       FixedList<Unit> list = base.GetLinks<Unit>("PresentationUnit_ContentsUnits");
 

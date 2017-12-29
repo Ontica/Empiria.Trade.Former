@@ -12,7 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml;
@@ -191,7 +190,7 @@ namespace Empiria.Trade.Billing {
       DateTime dailyBillDate = toDate.AddDays(3) > DateTime.Now ? DateTime.Now : toDate;   // 72 hrs to send to stamp;
 
       DataView view = BillingData.GetBills(fromDate, toDate, "[BillType] IN ('G', 'L')");
-      if (view.Count != 0) { // Global bills already generated
+      if (view.Count != 0) {
         Empiria.Messaging.Publisher.Publish("Global bills were already generated for the selected period.");
         return;
       }
@@ -314,11 +313,15 @@ namespace Empiria.Trade.Billing {
       get {
         if (this.paymentAccount == null) {
           if (this.notOrderData != null) {
+
             this.paymentAccount = String.Empty;
+
             return this.paymentAccount;
           }
+
           List<Treasury.CRPosting> postings =
                     this.Order.Payment.Postings.FindAll((x) => x.InputAmount > 0m && !x.Document.IsEmptyInstance);
+
           string s = String.Empty;
           for (int i = 0; i < postings.Count; i++) {
             if (i != 0) {
@@ -335,36 +338,35 @@ namespace Empiria.Trade.Billing {
 
     public string PaymentCondition {
       get {
-        this.paymentCondition = "01";
+        if (this.paymentCondition == null) {
+          if (this.notOrderData != null) {
+            this.paymentCondition = "99";
 
+            return this.paymentCondition;
+          }
+
+          List<Treasury.CRPosting> postings = this.Order.Payment.Postings.FindAll((x) => x.InputAmount > 0m);
+
+          if (postings.Count != 0) {
+            postings.Sort((x, y) => x.InputAmount.CompareTo(y.InputAmount));
+
+            this.paymentCondition = postings[postings.Count - 1].InstrumentType.TaxFormCode;
+          } else {
+            this.paymentCondition = "99";
+          }
+        }
         return this.paymentCondition;
       }
-
-      //get {
-      //  if (this.paymentCondition == null) {
-      //    if (this.notOrderData != null) {
-      //      this.paymentCondition = "99";
-      //      return this.paymentCondition;
-      //    }
-      //    List<Treasury.CRPosting> postings = this.Order.Payment.Postings.FindAll((x) => x.InputAmount > 0m);
-      //    string s = String.Empty;
-      //    for (int i = 0; i < postings.Count; i++) {
-      //      if (i != 0) {
-      //        s += ",";
-      //      }
-      //      s += postings[i].InstrumentType.TaxFormCode;
-      //    }
-      //    if (s.Length == 0) {
-      //      s = "NA";
-      //    }
-      //    this.paymentCondition = s;
-      //  }
-      //  return this.paymentCondition;
-      //}
     }
 
     public string PaymentMethod {
-      get { return "PUE"; }
+      get {
+        if (this.PaymentCondition == "99") {
+          return "PPD";
+        } else {
+          return "PUE";
+        }
+      }
     }
 
     public Contact IssuedBy {
@@ -468,7 +470,7 @@ namespace Empiria.Trade.Billing {
       get { return "3.3"; }
     }
 
-    public System.Xml.XmlDocument XmlDocument {
+    public XmlDocument XmlDocument {
       get { return xml; }
     }
 
@@ -603,140 +605,6 @@ namespace Empiria.Trade.Billing {
       this.Save();
     }
 
-    private string CreateDigitalString() {
-      const string mainDelimiter = "||";
-
-      string ds = GetDigitalStringItem(this.Version);
-      ds += GetDigitalStringItem(this.SerialNumber);
-      ds += GetDigitalStringItem(this.Number);
-      ds += GetDigitalStringItem(this.IssuedTime.ToString(@"yyyy-MM-dd\THH:mm:ss"));
-      ds += GetDigitalStringItem(this.ApprovalNumber);
-      ds += GetDigitalStringItem(this.ApprovalYear.ToString());
-
-      ds += GetOrderTotalsDigitalStringPart();
-      ds += GetEmisorDigitalStringPart();
-      ds += GetReceptorDigitalStringPart();
-      ds += GetOrderItemsDigitalStringPart();
-      ds += GetOrderTaxesDigitalStringPart();
-
-      return mainDelimiter + ds.Replace("||", "|").Trim('|') + mainDelimiter;
-    }
-
-    private string GetEmisorDigitalStringPart() {
-      Contact supplier = null;
-
-      if (this.NotOrderData == null) {
-        supplier = this.Order.Supplier;
-      } else {
-        supplier = this.IssuedBy;
-      }
-
-      string temp = GetDigitalStringItem(supplier.FormattedTaxTag); //  "ARP9706105W2" "TUMG620310R95"
-      temp += GetDigitalStringItem(supplier.FullName);              //  "AUTO REFACCIONES PINEDA, S.A. de C.V."
-      temp += GetDigitalStringItem(supplier.Address.Street);        //  "Avenida Instituto Politécnico Nacional")
-      temp += GetDigitalStringItem(supplier.Address.ExtNumber);     //  "5015"
-      temp += GetDigitalStringItem(supplier.Address.Borough);       //  "Capultitlán"
-      temp += GetDigitalStringItem(supplier.Address.Municipality);  //  "Gustavo A. Madero"
-      temp += GetDigitalStringItem(supplier.Address.State);         //  "D.F."
-      temp += GetDigitalStringItem("México");
-      temp += GetDigitalStringItem(supplier.Address.ZipCode);       //  "07370"
-      temp += GetDigitalStringItem(this.IssuerData.FiscalRegimen);
-
-      return temp;
-    }
-
-    private string GetOrderTotalsDigitalStringPart() {
-      string temp = GetDigitalStringItem(this.BillTypeFiscalName);
-
-      temp += GetDigitalStringItem(this.PaymentMethod);
-      //ds += this.Order.CondPagoPedido + delimiter;
-      temp += GetDigitalStringItem(this.SubTotal.ToString("0.00"));
-      //ds += this.Order.Descuento.ToString("0.00") + delimiter;
-      temp += GetDigitalStringItem(this.Total.ToString("0.00"));
-      temp += GetDigitalStringItem(this.PaymentCondition);
-      temp += GetDigitalStringItem(this.IssuerData.IssuePlace);
-      temp += GetDigitalStringItem(this.PaymentAccount);
-
-      return temp;
-    }
-
-    private string GetReceptorDigitalStringPart() {
-      Contact customer = this.Order.Customer;
-
-      string temp = GetDigitalStringItem(customer.FormattedTaxTag);
-      temp += GetDigitalStringItem(customer.FullName);
-      temp += GetDigitalStringItem(customer.Address.Street);
-      temp += GetDigitalStringItem(customer.Address.ExtNumber);
-      temp += GetDigitalStringItem(customer.Address.IntNumber);
-      temp += GetDigitalStringItem(customer.Address.Borough);
-      temp += GetDigitalStringItem(customer.Address.Municipality);
-      temp += GetDigitalStringItem(customer.Address.State);
-      temp += GetDigitalStringItem("México");
-      temp += GetDigitalStringItem(customer.Address.ZipCode);
-
-      return temp;
-    }
-
-    private string GetOrderItemsDigitalStringPart() {
-      string ds = String.Empty;
-
-      if (this.notOrderData != null) {
-        ds = GetDigitalStringItem("1.0");
-        ds += GetDigitalStringItem("No identificado");
-        if (billType == BillType.GlobalBill) {
-          ds += GetDigitalStringItem("Factura global mensual. Folios: " + NotOrderData.TicketNumbers);
-        } else if (billType == BillType.GlobalCreditNote) {
-          ds += GetDigitalStringItem("Factura global mensual. Devoluciones de los folios: " + NotOrderData.TicketNumbers);
-        }
-        ds += GetDigitalStringItem(NotOrderData.SubTotal.ToString("0.00"));
-        ds += GetDigitalStringItem(NotOrderData.SubTotal.ToString("0.00"));
-
-        return ds;
-      }
-
-      SupplyOrderItemList items = this.Order.Items;
-
-      foreach (SupplyOrderItem item in items) {
-        string temp = GetDigitalStringItem(item.Quantity.ToString("0.0"));
-        temp += GetDigitalStringItem(item.PresentationUnit.Name);
-        if (item.Concept.Length != 0) {
-          temp += GetDigitalStringItem(item.Concept);
-        } else {
-          temp += GetDigitalStringItem(item.Product.Name);
-        }
-        temp += GetDigitalStringItem(item.ProductDiscountUnitPrice.ToString("0.00"));
-        temp += GetDigitalStringItem(item.ProductSubTotalBeforeTaxes.ToString("0.00"));
-
-        ds += temp;
-      }
-      return ds;
-    }
-
-    private string GetOrderTaxesDigitalStringPart() {
-      string ds = String.Empty;
-
-      if (this.notOrderData != null) {
-        ds = GetDigitalStringItem("IVA");
-        ds += GetDigitalStringItem("16.00");
-        ds += GetDigitalStringItem(NotOrderData.Taxes.ToString("0.00"));
-        ds += GetDigitalStringItem(NotOrderData.Taxes.ToString("0.00"));
-
-        return ds;
-      }
-
-      SupplyOrderItemList items = this.Order.Items;
-
-      foreach (SupplyOrderItem item in items) {
-        string temp = GetDigitalStringItem("IVA");
-        temp += GetDigitalStringItem("16.00");
-        temp += GetDigitalStringItem(item.Taxes.ToString("0.00"));
-        ds += temp;
-      }
-      ds += GetDigitalStringItem(this.Order.Items.TaxesTotal.ToString("0.00"));
-
-      return ds;
-    }
-
     private string GetCertificateContent() {
       string certificatePath = Bill.BillCertificatesFolder + this.IssuerData.CertificateFileName;
 
@@ -756,23 +624,6 @@ namespace Empiria.Trade.Billing {
 
       return ASCIIEncoding.ASCII.GetString(array);
     }
-
-    //private string CreateHashCode() {
-    //  byte[] data = null;
-    //  if (this.issuedTime < DateTime.Parse("01/01/2011")) {
-    //    MD5 md5Hasher = MD5.Create();
-    //    data = md5Hasher.ComputeHash(Encoding.UTF8.GetBytes(this.DigitalString));
-    //  } else {
-    //    var sha = SHA256.Create();
-    //    data = sha.ComputeHash(Encoding.UTF8.GetBytes(this.DigitalString));
-    //  }
-    //  StringBuilder sBuilder = new StringBuilder();
-
-    //  for (int i = 0; i < data.Length; i++) {
-    //    sBuilder.AppendFormat("{0:x2}", data[i]);
-    //  }
-    //  return sBuilder.ToString();
-    //}
 
     private void CreateXMLFile() {
       XmlBill facturaXml = XmlBill.Parse(this);

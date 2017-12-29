@@ -26,7 +26,7 @@ namespace Empiria.Trade.Billing {
     #region Fields
 
     private static readonly string BillSealXsltFilePath = ConfigurationData.GetString("BillSealXsltFilePath");
-   
+
     private XmlDocument xmlDocument = null;
     private string result = null;
 

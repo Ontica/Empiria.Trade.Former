@@ -123,10 +123,9 @@ namespace Empiria.Trade.Billing {
       AppendXmlAttribute(xml, node, "Moneda", "MXN");
       AppendXmlAttribute(xml, node, "SubTotal", bill.SubTotal.ToString("0.00"));
       AppendXmlAttribute(xml, node, "Total", bill.Total.ToString("0.00"));
-      AppendXmlAttribute(xml, node, "MetodoPago", bill.PaymentMethod);           // una sola exhibición
-      AppendXmlAttribute(xml, node, "FormaPago", bill.PaymentCondition == "NA" ? "" : bill.PaymentCondition);     // efectivo, t. débito, cheque, etc.
+      AppendXmlAttribute(xml, node, "MetodoPago", bill.PaymentMethod);          // una sola exhibición
+      AppendXmlAttribute(xml, node, "FormaPago", bill.PaymentCondition);        // efectivo, t. débito, cheque, etc.
       AppendXmlAttribute(xml, node, "LugarExpedicion", bill.IssuerData.IssuePlace);
-      AppendXmlAttribute(xml, node, "NumCtaPago", bill.PaymentAccount);
       AppendXmlAttribute(xml, node, "TipoDeComprobante", bill.BillTypeFiscalName);
       AppendXmlAttribute(xml, node, "xmlns:cfdi", namespaceURI);
       AppendXmlAttribute(xml, node, "xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
@@ -200,9 +199,9 @@ namespace Empiria.Trade.Billing {
         node.AppendChild(itemNode);
 
         AppendXmlAttribute(xml, itemNode, "Cantidad", item.Quantity.ToString("0.0"));
-        AppendXmlAttribute(xml, itemNode, "NoIdentificacion", "A-3452");    // Pineda product code
-        AppendXmlAttribute(xml, itemNode, "ClaveProdServ", "93131607");     // From Catálogo SAT
-        AppendXmlAttribute(xml, itemNode, "ClaveUnidad", "H87");            // H87 == PIEZA
+        AppendXmlAttribute(xml, itemNode, "NoIdentificacion", item.Product.ProductCode);              // Pineda product code
+        AppendXmlAttribute(xml, itemNode, "ClaveProdServ", item.Product.ProductTerm.TaxAuthCode);     // From Catálogo SAT
+        AppendXmlAttribute(xml, itemNode, "ClaveUnidad", item.PresentationUnit.TaxAuthCode);          // H87 == PIEZA
         AppendXmlAttribute(xml, itemNode, "Unidad", item.PresentationUnit.Name);
         if (!String.IsNullOrWhiteSpace(item.Concept)) {
           AppendXmlAttribute(xml, itemNode, "Descripcion", item.Concept);
@@ -221,7 +220,7 @@ namespace Empiria.Trade.Billing {
         XmlNode taxNode = xml.CreateNode(XmlNodeType.Element, "cfdi", "Traslado", namespaceURI);
         trasladosNode.AppendChild(taxNode);
 
-        AppendXmlAttribute(xml, taxNode, "Impuesto", "002");   // 002 == IVA        
+        AppendXmlAttribute(xml, taxNode, "Impuesto", "002");   // 002 == IVA
         AppendXmlAttribute(xml, taxNode, "TipoFactor", "Tasa");
         AppendXmlAttribute(xml, taxNode, "TasaOCuota", "0.160000");
         AppendXmlAttribute(xml, taxNode, "Base", item.ProductSubTotalBeforeTaxes.ToString("0.00"));
@@ -247,7 +246,7 @@ namespace Empiria.Trade.Billing {
 
         taxes.AppendChild(itemNode);
 
-        AppendXmlAttribute(xml, itemNode, "Impuesto", "002");   // 002 == IVA        
+        AppendXmlAttribute(xml, itemNode, "Impuesto", "002");   // 002 == IVA
         AppendXmlAttribute(xml, itemNode, "TipoFactor", "Tasa");
         AppendXmlAttribute(xml, itemNode, "TasaOCuota", "0.160000");
         AppendXmlAttribute(xml, itemNode, "Importe", (bill.Total - bill.SubTotal).ToString("0.00"));

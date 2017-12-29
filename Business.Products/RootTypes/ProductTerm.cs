@@ -54,6 +54,16 @@ namespace Empiria.Products {
 
     #endregion Constructors and parsers
 
+    #region Properties
+
+    public string TaxAuthCode {
+      get {
+        return base.Value;
+      }
+    }
+
+    #endregion Properties
+
   } // class ProductTerm
 
 } // namespace Empiria.Products
