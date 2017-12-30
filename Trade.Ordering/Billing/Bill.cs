@@ -359,12 +359,47 @@ namespace Empiria.Trade.Billing {
       }
     }
 
+    public string PaymentConditionDescription {
+      get {
+        switch (this.PaymentCondition) {
+          case "01":
+            return "Efectivo";
+          case "02":
+            return "Cheque nominativo";
+          case "03":
+            return "Transferencia electrónica de fondos";
+          case "04":
+            return "Tarjeta de crédito";
+          case "05":
+            return "Monedero electrónico";
+          case "08":
+            return "Vales de despensa";
+          case "28":
+            return "Tarjeta de débito";
+          case "99":
+            return "Por definir";
+          default:
+            return "Por definir";
+        }
+      }
+    }
+
     public string PaymentMethod {
       get {
         if (this.PaymentCondition == "99") {
           return "PPD";
         } else {
           return "PUE";
+        }
+      }
+    }
+
+    public string PaymentMethodDescription {
+      get {
+        if (this.PaymentMethod == "PPD") {
+          return "Pago en parcialidades o diferido";
+        } else {
+          return "Pago en una sola exhibición";
         }
       }
     }
