@@ -251,11 +251,10 @@ namespace Empiria.Trade.Billing {
         AppendXmlAttribute(xml, itemNode, "TasaOCuota", "0.160000");
         AppendXmlAttribute(xml, itemNode, "Importe", (bill.Total - bill.SubTotal).ToString("0.00"));
 
-        return;
-      }
+      } else {
 
-      var orderItems = bill.Order.Items;
-      foreach (var item in orderItems) {
+        var orderItems = bill.Order.Items;
+
         XmlNode itemNode = xml.CreateNode(XmlNodeType.Element, "cfdi", "Traslado", namespaceURI);
 
         taxes.AppendChild(itemNode);
@@ -263,8 +262,22 @@ namespace Empiria.Trade.Billing {
         AppendXmlAttribute(xml, itemNode, "Impuesto", "002");
         AppendXmlAttribute(xml, itemNode, "TipoFactor", "Tasa");
         AppendXmlAttribute(xml, itemNode, "TasaOCuota", "0.160000");
-        AppendXmlAttribute(xml, itemNode, "Importe", item.Taxes.ToString("0.00"));
+        AppendXmlAttribute(xml, itemNode, "Importe", orderItems.TaxesTotal.ToString("0.00"));
+
       }
+
+
+
+      //foreach (var item in orderItems) {
+      //  XmlNode itemNode = xml.CreateNode(XmlNodeType.Element, "cfdi", "Traslado", namespaceURI);
+
+      //  taxes.AppendChild(itemNode);
+
+      //  AppendXmlAttribute(xml, itemNode, "Impuesto", "002");
+      //  AppendXmlAttribute(xml, itemNode, "TipoFactor", "Tasa");
+      //  AppendXmlAttribute(xml, itemNode, "TasaOCuota", "0.160000");
+      //  AppendXmlAttribute(xml, itemNode, "Importe", item.Taxes.ToString("0.00"));
+      //}
     }
 
     private void AddSealAttibute(XmlDocument xml) {
