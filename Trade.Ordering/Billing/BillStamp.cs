@@ -17,24 +17,40 @@ namespace Empiria.Trade.Billing {
     public string AuthorityCertificateNumber {
       get;
       set;
-    }
+    } = String.Empty;
 
     public string AuthorityDigitalString {
       get {
-        return "||1.0|" + this.UUID + "|" + this.Timestamp.ToString(@"yyyy-MM-dd\THH:mm:ss") + "|" +
-               this.AuthorityStamp + "|" + this.AuthorityCertificateNumber + "||";
+        if (this.Version == String.Empty || this.Version == "1.0") {
+          return "||1.0|" + this.UUID + "|" +
+                 this.Timestamp.ToString(@"yyyy-MM-dd\THH:mm:ss") + "|" +
+                 this.AuthorityStamp + "|" +
+                 this.AuthorityCertificateNumber + "||";
+        } else {
+          return "||1.1|" + this.UUID + "|" +
+                 this.Timestamp.ToString(@"yyyy-MM-dd\THH:mm:ss") + "|" +
+                 this.AuthorityTaxID + "|" +
+                 this.IssuerStamp + "|" + this.AuthorityCertificateNumber + "||";
+        }
       }
     }
 
     public string AuthorityStamp {
       get;
       set;
-    }
+    } = String.Empty;
+
+
+    public string AuthorityTaxID {
+      get;
+      set;
+    } = String.Empty;
+
 
     public string IssuerStamp {
       get;
       set;
-    }
+    } = String.Empty;
 
     public byte[] QRCode {
       get;
@@ -49,7 +65,13 @@ namespace Empiria.Trade.Billing {
     public string UUID {
       get;
       set;
-    }
+    } = String.Empty;
+
+
+    public string Version {
+      get;
+      set;
+    } = String.Empty;
 
     #endregion Properties
 
@@ -75,10 +97,12 @@ namespace Empiria.Trade.Billing {
 
       XmlElement item = (XmlElement) this.xmlDocument.GetElementsByTagName("tfd:TimbreFiscalDigital").Item(0);
 
+      this.Version = item.GetAttribute("Version");
       this.UUID = item.GetAttribute("UUID");
-      this.AuthorityCertificateNumber = item.GetAttribute("noCertificadoSAT");
-      this.AuthorityStamp = item.GetAttribute("selloSAT");
-      this.IssuerStamp = item.GetAttribute("selloCFD");
+      this.AuthorityTaxID = item.GetAttribute("RfcProvCertif");
+      this.AuthorityCertificateNumber = item.GetAttribute("NoCertificadoSAT");
+      this.AuthorityStamp = item.GetAttribute("SelloSAT");
+      this.IssuerStamp = item.GetAttribute("SelloCFD");
       this.Timestamp = XmlConvert.ToDateTime(item.GetAttribute("FechaTimbrado"),
                                              XmlDateTimeSerializationMode.Utc);
     }
