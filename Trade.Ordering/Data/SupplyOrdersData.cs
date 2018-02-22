@@ -127,7 +127,7 @@ namespace Empiria.Trade.Data {
       }
     }
 
-    static internal int WriteSupplyOrder(SupplyOrder o) {
+    static internal void WriteSupplyOrder(SupplyOrder o) {
       var op = DataOperation.Parse("writeSNMSupplyOrder", o.Id, o.GetEmpiriaType().Id,
                                    o.Number, o.CustomerOrderNumber, o.DutyEntryTag, o.Concept, o.SupplyChannel.Id,
                                    o.SupplyPoint.Id, o.Supplier.Id, o.SupplierContact.Id, o.Customer.Id, o.CustomerContact.Id,
@@ -136,10 +136,10 @@ namespace Empiria.Trade.Data {
                                    o.ClosedBy.Id, o.ClosingTime, o.CanceledBy.Id, o.CancelationTime, o.Keywords,
                                    o.Payment.Id, o.Bill.Id, o.ExternalOrderId, o.Parent.Id,
                                    o.PostedBy.Id, o.PostingTime, (char) o.Status);
-      return DataWriter.Execute(op);
+      DataWriter.Execute(op);
     }
 
-    static internal int WriteSupplyOrderItem(SupplyOrderItem o) {
+    static internal void WriteSupplyOrderItem(SupplyOrderItem o) {
       var op = DataOperation.Parse("writeSNMSupplyOrderItem", o.Id, o.Order.Id,
                                    o.OrderItemTypeId, o.SupplyPoint.Id, o.Concept, o.ApplicationItemTypeId,
                                    o.ApplicationItemId, o.Commissioner.Id, o.RequestedDate, o.PromisedDate,
@@ -150,7 +150,7 @@ namespace Empiria.Trade.Data {
                                    o.ProductDiscount, o.ProductTaxes, o.ProductTotal, o.ShippingSubTotal,
                                    o.ShippingDiscount, o.ShippingTaxes, o.ShippingTotal, o.PriceAuthorizationId,
                                   o.Keywords, o.ParentItem.Id, o.PostedBy.Id, o.PostingTime, (char) o.Status);
-      return DataWriter.Execute(op);
+      DataWriter.Execute(op);
     }
 
     #endregion Internal methods

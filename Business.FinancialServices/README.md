@@ -1,7 +1,11 @@
-﻿Empiria Financial Services
-==========================
+﻿# Empiria Financial Services
 
-Empiria Financial Services provides the following:
+Financial services management components.
 
+# License
 
-Empiria Financial Services is part of Empiria Trade software product line.
+This system is distributed by the GNU AFFERO GENERAL PUBLIC LICENSE.
+
+# Copyright
+
+Copyright © 2002-2018. La Vía Óntica SC, Ontica LLC and colaborators.

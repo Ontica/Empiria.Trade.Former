@@ -53,14 +53,14 @@ namespace Empiria.FinancialServices.Data {
       return DataOperation.Parse("setFSMCollectTotalStatus", collectTotalId, newStatus);
     }
 
-    static internal int WriteCollectTotal(CollectTotal o) {
+    static internal void WriteCollectTotal(CollectTotal o) {
       var operation = DataOperation.Parse("writeFSMCollectTotal", o.Id, o.OrganizationId,
                                           o.CollectorId, o.CashierId, o.CollectDate, o.Notes,
                                           o.CashTotal, o.ChecksTotal, o.PrePaidCardTotal,
                                           o.EPaymentTotal, o.BankDepositTotal, o.CreditsRewardsTotal,
                                           o.PostingTime, o.PostedById, o.Status);
 
-      return DataWriter.Execute(operation);
+      DataWriter.Execute(operation);
     }
 
     #endregion Internal methods

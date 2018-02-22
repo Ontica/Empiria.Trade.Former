@@ -1,7 +1,11 @@
-﻿Empiria Treasury
-================
+﻿# Empiria Treasury
 
-Empiria Treasury provides the following:
+Treasury and cashflow management components.
 
+# License
 
-Empiria Treasury is part of Empiria Trade software product line.
+This system is distributed by the GNU AFFERO GENERAL PUBLIC LICENSE.
+
+# Copyright
+
+Copyright © 2002-2018. La Vía Óntica SC, Ontica LLC and colaborators.

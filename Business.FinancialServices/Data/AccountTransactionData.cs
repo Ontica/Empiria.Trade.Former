@@ -66,7 +66,7 @@ namespace Empiria.FinancialServices.Data {
                                 o.CreditBalance, o.CRTransactionId, o.Status);
     }
 
-    static internal int WriteAccountTransaction(AccountTransaction o) {
+    static internal void WriteAccountTransaction(AccountTransaction o) {
       DataOperation operation = DataOperation.Parse("writeFSMTransaction", o.Id,
                                 o.Account.Id, o.FinancialConcept.Id, o.Organization.Id, o.AppliedToId,
                                 o.CollectedBy.Id, o.PostedBy.Id, o.ReferenceId, o.Summary, o.Notes, o.AuthorizationId,
@@ -74,11 +74,9 @@ namespace Empiria.FinancialServices.Data {
                                 o.CurrencyId, o.Amount, 0.16m, o.Taxes, o.Credit, o.Debit,
                                 o.CreditBalance, o.CRTransactionId, o.Status);
 
-      int i = DataWriter.Execute(operation);
+      DataWriter.Execute(operation);
 
       FinancialAccountData.UpdateAccountsTable(o.Account.Id);
-
-      return i;
     }
 
     #endregion Internal methods

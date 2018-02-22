@@ -106,7 +106,7 @@ namespace Empiria.Products.Data {
 
     #region Internal methods
 
-    static internal int WriteProduct(Product o) {
+    static internal void WriteProduct(Product o) {
       var operation = DataOperation.Parse("writePDMProduct", o.Id, o.GetEmpiriaType().Id,
                       o.ProductTerm.Id, o.ProductManager.Id, o.IsService, o.IsCompound, o.IsCustomizable,
                       o.BaseProduct.Id, o.Manufacturer.Id, o.Brand.Id, o.Model,
@@ -115,21 +115,21 @@ namespace Empiria.Products.Data {
                       (char) o.PackagingType, (char) o.IdentificationLevel, o.BarCodeID,
                       o.StartDate, o.LastUpdated, (char) o.Status);
 
-      return DataWriter.Execute(operation);
+      DataWriter.Execute(operation);
     }
 
-    static internal int WriteProductGroup(ProductGroup o) {
+    static internal void WriteProductGroup(ProductGroup o) {
       DataOperation dataOperation = DataOperation.Parse("writePLMProductGroup", o.Id, 1,
                             o.Number, o.Name, o.EnglishName, o.Description, o.Tags, o.Keywords,
                             o.Manager.Id, o.ModifiedBy.Id, o.Parent.Id, (char) o.Status);
-      return DataWriter.Execute(dataOperation);
+      DataWriter.Execute(dataOperation);
     }
 
-    static internal int WriteProductGroupRule(ProductGroupRule o) {
+    static internal void WriteProductGroupRule(ProductGroupRule o) {
       DataOperation dataOperation = DataOperation.Parse("writePLMProductGroupRule", o.Id, 1,
                                                         o.Group.Id, o.ProductTerm.Id, o.ProductPosition.Id,
                                                         o.PostedBy.Id, (char) o.Status);
-      return DataWriter.Execute(dataOperation);
+      DataWriter.Execute(dataOperation);
     }
 
     #endregion Internal methods

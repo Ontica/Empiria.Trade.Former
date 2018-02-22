@@ -1,10 +1,11 @@
-﻿Empiria Trade Web Api
-=====================
+﻿# Empiria Trade Web Api
 
-Provides HTTP/REST based web services for:
+Empiria Trade Http/Json web services interface.
 
-* Product Data Management
+# License
 
-Empiria Trade Web Api is part of the Empiria Trade software product line.
+This system is distributed by the GNU AFFERO GENERAL PUBLIC LICENSE.
 
-Empiria Trade version 0
+# Copyright
+
+Copyright © 2002-2018. La Vía Óntica SC, Ontica LLC and colaborators.

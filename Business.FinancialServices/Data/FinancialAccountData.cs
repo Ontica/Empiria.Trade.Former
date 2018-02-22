@@ -68,7 +68,7 @@ namespace Empiria.FinancialServices.Data {
 
     #region Internal methods
 
-    static internal int WriteFinancialAccount(FinancialAccount o) {
+    static internal void WriteFinancialAccount(FinancialAccount o) {
       DataOperation operation = DataOperation.Parse("writeFSMFinancialAccount", o.Id,
                               o.FinancialProduct.Id, o.Institution.Id, o.Customer.Id, o.SellerId,
                               o.SalesChannelId, o.AuthorizedById, o.ManagerId, o.ExecutiveId,
@@ -81,13 +81,11 @@ namespace Empiria.FinancialServices.Data {
                               o.ClosingDate, o.PostedById, o.ReplacedById, o.Status, o.StartDate, o.EndDate);
 
 
-      int i = DataWriter.Execute(operation);
+      DataWriter.Execute(operation);
 
       //GasFacilityData.ChangeCreditAccountStatus(o.CustomerId, o.Status);
 
       UpdateAccountsTable(o.Id);
-
-      return i;
     }
 
     //static internal int GetNextFinancialAccountId() {

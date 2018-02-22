@@ -35,14 +35,14 @@ namespace Empiria.FinancialServices.Data {
       return DataWriter.CreateId("FSMCollectEvents");
     }
 
-    static internal int WriteCollectEvent(CollectEvent o) {
+    static internal void WriteCollectEvent(CollectEvent o) {
       DataOperation operation = DataOperation.Parse("writeFSMCollectEvent", o.Id, o.EventTypeId,
                                                     o.FinancialAccountId, o.EventTime, o.OnEventBalance,
                                                     o.PromisedAmount, o.PromisedDate, o.EventNotes,
                                                     o.CollectorId, o.ResolutionTypeId, o.ResolutionDate, o.ResolutionNotes,
                                                     o.AccountOldStatus, o.AccountNewStatus, o.ClosedById,
                                                     o.PostingTime, o.PostedById, o.Status);
-      return DataWriter.Execute(operation);
+      DataWriter.Execute(operation);
     }
 
     #endregion Internal methods

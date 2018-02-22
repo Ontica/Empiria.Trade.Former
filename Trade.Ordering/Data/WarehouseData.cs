@@ -55,20 +55,20 @@ namespace Empiria.Trade.Data {
 
     #region Internal methods
 
-    static internal int UpdateExpectedQuantitiesWithARPStock(WarehouseOrder order) {
-      return DataWriter.Execute(DataOperation.Parse("doUpdateCountingWithARPStock", order.Id));
+    static internal void UpdateExpectedQuantitiesWithARPStock(WarehouseOrder order) {
+      DataWriter.Execute(DataOperation.Parse("doUpdateCountingWithARPStock", order.Id));
     }
 
-    static internal int WriteWarehouseOrder(WarehouseOrder o) {
+    static internal void WriteWarehouseOrder(WarehouseOrder o) {
       var operation = DataOperation.Parse("writeSNMWarehouseOrder", o.Id, o.GetEmpiriaType().Id,
                                           o.Operation.Id, o.Number, o.Concept, o.SupplyPoint.Id, o.StorageUnit.Id,
                                           o.RequestedBy.Id, o.Responsible.Id, o.Supervisor.Id, o.OrderAuthorizationId,
                                           o.OrderingTime, o.ClosingTime, o.Keywords, o.BaseSupplyOrder.Id, o.ParentWarehouseOrder.Id,
                                           o.PostedBy.Id, o.PostingTime, (char) o.Status);
-      return DataWriter.Execute(operation);
+      DataWriter.Execute(operation);
     }
 
-    static internal int WriteWarehouseOrderItem(WarehouseOrderItem o) {
+    static internal void WriteWarehouseOrderItem(WarehouseOrderItem o) {
       var operation = DataOperation.Parse("writeSNMWarehouseOrderItem", o.Id, o.Order.Id,
                                           o.OrderItemTypeId, o.Concept, -1, o.ApplicationItemId,
                                           o.RequestedDate, o.PromisedDate, o.DeliveryTime, o.Product.Id,
@@ -77,7 +77,7 @@ namespace Empiria.Trade.Data {
                                           o.IdentificationTag, o.DutyEntryTag, o.ExpirationDate, o.RepositionValue,
                                           o.BinCube, o.Responsible.Id, o.AuthorizationId, o.Keywords, o.ParentWarehouseOrderItem.Id,
                                           o.SupplyOrderItem.Id, o.PostedBy.Id, o.PostingTime, (char) o.Status);
-      return DataWriter.Execute(operation);
+      DataWriter.Execute(operation);
     }
 
     #endregion Internal methods

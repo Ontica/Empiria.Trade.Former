@@ -88,9 +88,8 @@ namespace Empiria.FinancialServices.Data {
       return DataReader.GetDataTable(DataOperation.Parse("qryFSMDirtyBalancesAccounts"));
     }
 
-
-    static internal int DeleteAccountPaymentDistribution(int accountId) {
-      return DataWriter.Execute(DataOperation.Parse("delFSMAccountPaymentDistribution", accountId));
+    static internal void DeleteAccountPaymentDistribution(int accountId) {
+      DataWriter.Execute(DataOperation.Parse("delFSMAccountPaymentDistribution", accountId));
     }
 
     static internal DataOperation SetCreditBalance(int transactionId, decimal creditBalance) {

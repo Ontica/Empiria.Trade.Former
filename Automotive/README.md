@@ -1,6 +1,11 @@
-﻿Empiria Automotive
-==================
+﻿# Empiria Automotive
 
-Empiria Automotive provides business components for the automotive industry.
+Product data management for the automotive industry.
 
-Empiria Automotive is a subset of Empiria Trade software product line.
+# License
+
+This system is distributed by the GNU AFFERO GENERAL PUBLIC LICENSE.
+
+# Copyright
+
+Copyright © 2007-2018. La Vía Óntica SC, Ontica LLC and colaborators.

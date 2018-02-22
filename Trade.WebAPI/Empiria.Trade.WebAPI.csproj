@@ -1,200 +1,67 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D60471B6-4616-4D40-8697-6E310BCF3AC4}</ProjectGuid>
-    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Empiria.Trade.WebApi</RootNamespace>
-    <AssemblyName>Empiria.Trade.WebApi</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <Company>Ontica</Company>
+    <Product>Empiria Trade Web Api</Product>
+    <Description>Empiria Trade Http/Json web services interface.</Description>
+    <Copyright>(c) 2002-2018. La Vía Óntica SC, Ontica LLC and contributors.</Copyright>
+    <Version>2.4.0</Version>
+    <AssemblyVersion>2.4.0</AssemblyVersion>
+    <FileVersion>2.4.0.0</FileVersion>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/Ontica/Empiria.Trade/blob/master/Trade.WebAPI/LICENSE.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Ontica/Empiria.Trade/tree/master/Trade.WebAPI</PackageProjectUrl>
+    <PackageIconUrl>http://www.ontica.org/land/empiria-trade.logo.png</PackageIconUrl>
+    <PackageTags>supply chain management, cadena suministro, inventario, erp, comercio colaborativo, collaborative e-commerce system, red de comercio</PackageTags>
+    <RepositoryUrl>https://github.com/Ontica/Empiria.trade</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Authors>Ontica</Authors>
+    <TargetFramework>net46</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <NeutralLanguage></NeutralLanguage>
+    <Configurations>Debug;Release;Multisolutions</Configurations>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' Or '$(Configuration)|$(Platform)' == 'Multisolutions|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <NoWarn />
+    <WarningsAsErrors />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <NoWarn />
+    <WarningsAsErrors />
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="docs\MySqlCommand.xml" />
-    <Content Include="docs\MySqlCommandBuilder.xml" />
-    <Content Include="docs\MySqlConnection.xml" />
-    <Content Include="docs\MySqlConnectionStringBuilder.xml" />
-    <Content Include="docs\MySqlDataAdapter.xml" />
-    <Content Include="docs\MySqlDataReader.xml" />
-    <Content Include="docs\MySqlException.xml" />
-    <Content Include="docs\MySqlHelper.xml" />
-    <Content Include="docs\MySqlParameter.xml" />
-    <Content Include="docs\MySqlParameterCollection.xml" />
-    <Content Include="docs\MySqlTransaction.xml" />
-    <Content Include="Global.asax" />
-    <None Include="LICENSE.txt" />
-    <None Include="empiria.config.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <ProjectReference Include="..\Automotive\Empiria.Automotive.csproj" />
+    <ProjectReference Include="..\Trade.Ordering\Empiria.Trade.Ordering.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Automotive\VehicleModelSearchController.cs" />
-    <Compile Include="Controllers\DataController.cs" />
-    <Compile Include="Controllers\PDM\CataloguesController.cs" />
-    <Compile Include="Controllers\PDM\EquivalentProductsController.cs" />
-    <Compile Include="Controllers\Trading\TradersController.cs" />
-    <Compile Include="Controllers\PDM\ProductsController.cs" />
-    <Compile Include="Empiria.Trade.WebApi.AssemblyInfo.cs" />
-    <Compile Include="Models\TradingModels.cs" />
-    <Compile Include="Models\AISModels.cs" />
-    <Compile Include="Models\PDMModels.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="README.md" />
-    <Content Include="packages.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <None Include="Properties\PublishProfiles\empiria-trade - FTP.pubxml" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Code\" />
-    <Folder Include="App_Data\" />
-    <Folder Include="App_Start\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Empiria.Data.Convertion, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Empiria.Data.Convertion.6.8.328\lib\net46\Empiria.Data.Convertion.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Documents, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Empiria.Documents.6.8.328\lib\net46\Empiria.Documents.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Foundation, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Empiria.Foundation.6.8.328\lib\net46\Empiria.Foundation.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Geography, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Empiria.Geography.6.8.328\lib\net46\Empiria.Geography.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.Messaging, Version=6.8.328.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Empiria.Messaging.6.8.328\lib\net46\Empiria.Messaging.dll</HintPath>
-    </Reference>
-    <Reference Include="Empiria.WebApi, Version=1.2.328.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Empiria.WebApi.1.2.328\lib\net46\Empiria.WebApi.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data, Version=6.10.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MySql.Data.6.10.4\lib\net452\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Npgsql, Version=3.2.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Npgsql.3.2.5\lib\net451\Npgsql.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.4.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
-    </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Automotive\Empiria.Automotive.csproj">
-      <Project>{081423ff-7074-48f4-aee3-c01610e70f45}</Project>
-      <Name>Empiria.Automotive</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Business.FinancialServices\Empiria.FinancialServices.csproj">
-      <Project>{4dc06d3e-7442-40f0-9b3a-a87ec3a6cebb}</Project>
-      <Name>Empiria.FinancialServices</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Business.Products\Empiria.Products.csproj">
-      <Project>{21365aa8-67f7-4418-8ea1-c7fc0d5eea47}</Project>
-      <Name>Empiria.Products</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Business.Treasury\Empiria.Treasury.csproj">
-      <Project>{b98b6e7e-fd01-4d54-85af-98fb8bb5f80b}</Project>
-      <Name>Empiria.Treasury</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Trade.Ordering\Empiria.Trade.Ordering.csproj">
-      <Project>{d0f0b709-11a0-4c79-b761-a13ea0647c62}</Project>
-      <Name>Empiria.Trade.Ordering</Name>
-    </ProjectReference>
+  <ItemGroup Condition=" '$(Configuration)' != 'Multisolutions' ">
+    <PackageReference Include="Empiria.WebApi" Version="2.0.0" />
   </ItemGroup>
-  <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <DelaySign>true</DelaySign>
-  </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
-  <ProjectExtensions>
-    <VisualStudio>
-      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
-        <WebProjectProperties>
-          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
-        </WebProjectProperties>
-      </FlavorProperties>
-    </VisualStudio>
-  </ProjectExtensions>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup Condition=" '$(Configuration)' == 'Multisolutions' ">
+    <ProjectReference Include="..\..\extensions\WebApi\Empiria.WebApi.csproj" />
+  </ItemGroup>
 </Project>
