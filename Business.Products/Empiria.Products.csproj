@@ -53,12 +53,10 @@
   </PropertyGroup>
   <ItemGroup Condition=" '$(Configuration)' != 'Multisolutions' ">
     <PackageReference Include="Empiria.Data.Convertion" Version="7.0.0" />
-    <PackageReference Include="Empiria.Foundation" Version="7.0.0" />
     <PackageReference Include="Empiria.Geography" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'Multisolutions' ">
     <ProjectReference Include="..\..\extensions\Data.Converter\Empiria.Data.Convertion.csproj" />
-    <ProjectReference Include="..\..\core\Foundation\Empiria.Foundation.csproj" />
     <ProjectReference Include="..\..\extensions\Geography\Empiria.Geography.csproj" />
   </ItemGroup>
 </Project>
