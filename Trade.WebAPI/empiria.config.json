@@ -143,21 +143,6 @@
       "type": "Security",
       "key": "LKey",
       "value": "@~App_Data/LKey.txt"
-    },
-    {
-      "type": "WebApi.Client",
-      "key": "Default.WebApiServer",
-      "value": "Microservices"
-    },
-    {
-      "type": "WebApi.Client",
-      "key": "WebApiServer.Microservices",
-      "value": "http://empiria.microservices"
-    },
-    {
-      "type": "WebApi.Client",
-      "key": "ServiceDirectory.Path",
-      "value": "v1/system/service-directory"
     }
   ]
 }
