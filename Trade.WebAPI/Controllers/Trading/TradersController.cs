@@ -13,7 +13,6 @@ using System.Linq;
 using System.Web.Http;
 
 using Empiria.WebApi;
-using Empiria.WebApi.Models;
 
 using Empiria.Trade.Data;
 using Empiria.Trade.WebApi.Models;

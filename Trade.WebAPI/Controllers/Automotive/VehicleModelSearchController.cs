@@ -14,7 +14,6 @@ using System.Linq;
 using System.Web.Http;
 
 using Empiria.WebApi;
-using Empiria.WebApi.Models;
 
 using Empiria.Automotive.WebApi.Models;
 

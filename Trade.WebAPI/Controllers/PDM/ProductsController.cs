@@ -14,7 +14,6 @@ using System.Web.Http;
 
 using Empiria.Data;
 using Empiria.WebApi;
-using Empiria.WebApi.Models;
 
 using Empiria.Products;
 using Empiria.Trade.WebApi.Models;

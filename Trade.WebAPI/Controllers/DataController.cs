@@ -14,7 +14,6 @@ using System.Web.Http;
 
 using Empiria.Data.Convertion;
 using Empiria.WebApi;
-using Empiria.WebApi.Models;
 
 namespace Empiria.Trade.WebApi {
 
