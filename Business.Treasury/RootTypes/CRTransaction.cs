@@ -14,6 +14,7 @@ using System.Data;
 using Empiria.Contacts;
 using Empiria.Data;
 using Empiria.DataTypes;
+using Empiria.Security;
 
 using Empiria.Treasury.Data;
 
@@ -265,7 +266,7 @@ namespace Empiria.Treasury {
     public string GetDigitalSign() {
       string s = GetDigitalString();
 
-      return Empiria.Security.Cryptographer.CreateDigitalSign(s);
+      return FormerCryptographer.SignTextWithSystemCredentials(s);
     }
 
     public string GetDigitalString() {
