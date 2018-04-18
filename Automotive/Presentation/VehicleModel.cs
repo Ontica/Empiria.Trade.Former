@@ -10,6 +10,8 @@
 ********************************* Copyright (c) 2008-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 
+using Empiria.StateEnums;
+
 namespace Empiria.Automotive {
 
   /// <summary>Represents a vehicle model, with trim level and engine.</summary>
@@ -114,8 +116,8 @@ namespace Empiria.Automotive {
     }
 
 
-    [DataField("Status", Default = ObjectStatus.Active)]
-    public ObjectStatus Status {
+    [DataField("Status", Default = EntityStatus.Active)]
+    public EntityStatus Status {
       get;
       private set;
     }

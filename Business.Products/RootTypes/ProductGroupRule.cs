@@ -12,6 +12,8 @@ using System;
 using System.Data;
 
 using Empiria.Contacts;
+using Empiria.StateEnums;
+
 using Empiria.Products.Data;
 
 namespace Empiria.Products {
@@ -25,7 +27,7 @@ namespace Empiria.Products {
     private ProductClass productTerm = ProductClass.Empty;
     private ProductClass productPosition = ProductClass.Empty;
     private Contact postedBy = Person.Empty;
-    private GeneralObjectStatus status = GeneralObjectStatus.Pending;
+    private EntityStatus status = EntityStatus.Pending;
 
     #endregion Fields
 
@@ -70,7 +72,7 @@ namespace Empiria.Products {
       get { return group; }
     }
 
-    public GeneralObjectStatus Status {
+    public EntityStatus Status {
       get { return status; }
       set { status = value; }
     }
@@ -78,13 +80,13 @@ namespace Empiria.Products {
     public string StatusName {
       get {
         switch (status) {
-          case GeneralObjectStatus.Pending:
+          case EntityStatus.Pending:
             return "Pendiente";
-          case GeneralObjectStatus.Active:
+          case EntityStatus.Active:
             return "Activa";
-          case GeneralObjectStatus.Suspended:
+          case EntityStatus.Suspended:
             return "Suspendida";
-          case GeneralObjectStatus.Deleted:
+          case EntityStatus.Deleted:
             return "Eliminada";
           default:
             return "No determinado";
@@ -105,7 +107,7 @@ namespace Empiria.Products {
       this.productTerm = ProductClass.Parse((int) row["ProductTypeId"]);
       this.productPosition = ProductClass.Parse((int) row["ProductPositionId"]);
       this.postedBy = Contact.Parse((int) row["PostedById"]);
-      this.status = (GeneralObjectStatus) Convert.ToChar(row["ProductGroupRuleStatus"]);
+      this.status = (EntityStatus) Convert.ToChar(row["ProductGroupRuleStatus"]);
     }
 
     protected override void OnSave() {

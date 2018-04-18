@@ -13,6 +13,8 @@ using System.Data;
 
 using Empiria.Contacts;
 using Empiria.DataTypes;
+using Empiria.StateEnums;
+
 using Empiria.Products;
 
 namespace Empiria.Trade.Ordering {
@@ -70,7 +72,7 @@ namespace Empiria.Trade.Ordering {
     private StorageUnit parent = null;
     private Contact postedBy = Person.Empty;
     private DateTime postingTime = DateTime.Now;
-    private GeneralObjectStatus status = GeneralObjectStatus.Active;
+    private EntityStatus status = EntityStatus.Active;
 
     #endregion Fields
 
@@ -294,7 +296,7 @@ namespace Empiria.Trade.Ordering {
       set { postedBy = value; }
     }
 
-    public GeneralObjectStatus Status {
+    public EntityStatus Status {
       get { return status; }
       set { status = value; }
     }
@@ -330,7 +332,7 @@ namespace Empiria.Trade.Ordering {
       parentId = (int) row["ParentStorageUnitId"];
       postedBy = Contact.Parse((int) row["PostedById"]);
       postingTime = (DateTime) row["PostingTime"];
-      status = (GeneralObjectStatus) Convert.ToChar(row["StorageUnitStatus"]);
+      status = (EntityStatus) Convert.ToChar(row["StorageUnitStatus"]);
     }
 
     #endregion Public methods

@@ -10,6 +10,8 @@
 ********************************* Copyright (c) 2008-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
 
+using Empiria.StateEnums;
+
 namespace Empiria.Automotive {
 
   /// <summary>Represents a vehicle engine type.</summary>
@@ -44,8 +46,8 @@ namespace Empiria.Automotive {
     } = String.Empty;
 
 
-    [DataField("Status", Default = ObjectStatus.Active)]
-    public ObjectStatus Status {
+    [DataField("Status", Default = EntityStatus.Active)]
+    public EntityStatus Status {
       get;
       set;
     }

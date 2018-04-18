@@ -9,9 +9,9 @@
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
-using System.Data;
 
 using Empiria.Contacts;
+using Empiria.StateEnums;
 
 namespace Empiria.Products {
 
@@ -31,7 +31,7 @@ namespace Empiria.Products {
     private Contact manager = Contact.Parse(ExecutionServer.OrganizationId);
     private Contact modifiedBy = Contact.Parse(ExecutionServer.OrganizationId);
     private DateTime modificationDate = DateTime.Today;
-    private GeneralObjectStatus status = GeneralObjectStatus.Suspended;
+    private EntityStatus status = EntityStatus.Suspended;
 
     #endregion Fields
 
@@ -103,7 +103,7 @@ namespace Empiria.Products {
       set { manager = value; }
     }
 
-    public GeneralObjectStatus Status {
+    public EntityStatus Status {
       get { return status; }
       set { status = value; }
     }

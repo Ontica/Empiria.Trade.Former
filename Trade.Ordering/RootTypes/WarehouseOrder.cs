@@ -13,6 +13,7 @@ using System.Data;
 
 using Empiria.Contacts;
 using Empiria.Data.Convertion;
+using Empiria.StateEnums;
 
 using Empiria.Trade.Data;
 
@@ -45,7 +46,7 @@ namespace Empiria.Trade.Ordering {
     private WarehouseOrder parentWarehouseOrder = null;
     private Contact postedBy = Person.Empty;
     private DateTime postingTime = DateTime.Now;
-    private GeneralActivityStatus status = GeneralActivityStatus.Inactive;
+    private ActivityStatus status = ActivityStatus.Pending;
 
     private FixedList<WarehouseOrderItem> items = null;
 
@@ -165,7 +166,7 @@ namespace Empiria.Trade.Ordering {
       set { postedBy = value; }
     }
 
-    public GeneralActivityStatus Status {
+    public ActivityStatus Status {
       get { return status; }
       set { status = value; }
     }
@@ -199,7 +200,7 @@ namespace Empiria.Trade.Ordering {
       } else {
         UpdateExpectedQuantities();
       }
-      this.Status = GeneralActivityStatus.Completed;
+      this.Status = ActivityStatus.Completed;
       this.closingTime = DateTime.Now;
       this.Save();
     }
@@ -208,14 +209,14 @@ namespace Empiria.Trade.Ordering {
       if (this.Operation.Id != 851 && this.Operation.Id != 852) {
         return;
       }
-      if ((this.Status == GeneralActivityStatus.Deleted) || (this.Status == GeneralActivityStatus.Completed)) {
+      if ((this.Status == ActivityStatus.Deleted) || (this.Status == ActivityStatus.Completed)) {
         return;
       }
       if (this.Operation.Id == 851) {
         GetColdFusionProducts();
       }
       UpdateExpectedQuantities();
-      this.Status = GeneralActivityStatus.Deleted;
+      this.Status = ActivityStatus.Deleted;
       this.closingTime = DateTime.Now;
       this.Save();
     }
@@ -286,7 +287,7 @@ namespace Empiria.Trade.Ordering {
       this.parentWarehouseOrderId = (int) row["ParentWarehouseOrderId"];
       this.postedBy = Contact.Parse((int) row["PostedById"]);
       this.postingTime = (DateTime) row["PostingTime"];
-      this.status = (GeneralActivityStatus) Convert.ToChar(row["WarehouseOrderStatus"]);
+      this.status = (ActivityStatus) Convert.ToChar(row["WarehouseOrderStatus"]);
     }
 
     protected override void OnSave() {

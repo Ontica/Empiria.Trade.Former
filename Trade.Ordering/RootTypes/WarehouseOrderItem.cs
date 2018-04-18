@@ -12,8 +12,9 @@ using System;
 using System.Data;
 
 using Empiria.Contacts;
-using Empiria.Products;
+using Empiria.StateEnums;
 
+using Empiria.Products;
 using Empiria.Trade.Data;
 
 namespace Empiria.Trade.Ordering {
@@ -54,7 +55,7 @@ namespace Empiria.Trade.Ordering {
     private WarehouseOrderItem supplyOrderItem = null;
     private Contact postedBy = Person.Empty;
     private DateTime postingTime = DateTime.Now;
-    private GeneralObjectStatus status = GeneralObjectStatus.Pending;
+    private EntityStatus status = EntityStatus.Pending;
 
     #endregion Fields
 
@@ -232,7 +233,7 @@ namespace Empiria.Trade.Ordering {
       get { return postingTime; }
     }
 
-    public GeneralObjectStatus Status {
+    public EntityStatus Status {
       get { return status; }
       set { status = value; }
     }
@@ -271,7 +272,7 @@ namespace Empiria.Trade.Ordering {
       this.supplyOrderItemId = (int) row["SupplyOrderItemId"];
       this.postedBy = Contact.Parse((int) row["PostedById"]);
       this.postingTime = (DateTime) row["PostingTime"];
-      this.status = (GeneralObjectStatus) Convert.ToChar(row["WarehouseOrderItemStatus"]);
+      this.status = (EntityStatus) Convert.ToChar(row["WarehouseOrderItemStatus"]);
     }
 
     protected override void OnSave() {

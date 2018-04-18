@@ -9,13 +9,12 @@
 *                                                                                                            *
 ********************************* Copyright (c) 2002-2017. La Vía Óntica SC, Ontica LLC and contributors.  **/
 using System;
-using System.Collections.Generic;
-using System.Data;
 
 using Empiria.Contacts;
 using Empiria.DataTypes;
-using Empiria.Geography;
 using Empiria.Ontology;
+using Empiria.StateEnums;
+
 using Empiria.Products.Data;
 
 namespace Empiria.Products {
@@ -224,8 +223,8 @@ namespace Empiria.Products {
       private set;
     }
 
-    [DataField("ProductStatus", Default = GeneralObjectStatus.Active)]
-    public GeneralObjectStatus Status {
+    [DataField("ProductStatus", Default = EntityStatus.Active)]
+    public EntityStatus Status {
       get;
       private set;
     }

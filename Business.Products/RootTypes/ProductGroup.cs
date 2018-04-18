@@ -12,6 +12,8 @@ using System;
 using System.Data;
 
 using Empiria.Contacts;
+using Empiria.StateEnums;
+
 using Empiria.Products.Data;
 
 namespace Empiria.Products {
@@ -33,7 +35,7 @@ namespace Empiria.Products {
     // use null initalization instead ProductGroup.Empty because is a fractal object and Empty instance
     // parsing throws an infinite loop
     private ProductGroup parent = null;
-    private GeneralObjectStatus status = GeneralObjectStatus.Pending;
+    private EntityStatus status = EntityStatus.Pending;
 
     private string breadcrumb = null;
 
@@ -132,7 +134,7 @@ namespace Empiria.Products {
       }
     }
 
-    public GeneralObjectStatus Status {
+    public EntityStatus Status {
       get { return status; }
       set { status = value; }
     }
@@ -140,13 +142,13 @@ namespace Empiria.Products {
     public string StatusName {
       get {
         switch (status) {
-          case GeneralObjectStatus.Pending:
+          case EntityStatus.Pending:
             return "Pendiente";
-          case GeneralObjectStatus.Suspended:
+          case EntityStatus.Suspended:
             return "Suspendida";
-          case GeneralObjectStatus.Active:
+          case EntityStatus.Active:
             return "Activa";
-          case GeneralObjectStatus.Deleted:
+          case EntityStatus.Deleted:
             return "Eliminada";
           default:
             return "No determinado";
@@ -173,14 +175,14 @@ namespace Empiria.Products {
     public void RemoveChild(ProductGroup child) {
       ProductGroup readedChild = this.GetChild(child);
 
-      readedChild.Status = GeneralObjectStatus.Deleted;
+      readedChild.Status = EntityStatus.Deleted;
       readedChild.Save();
     }
 
     public void RemoveRule(ProductGroupRule rule) {
       ProductGroupRule readedRule = this.GetRule(rule);
 
-      readedRule.Status = GeneralObjectStatus.Deleted;
+      readedRule.Status = EntityStatus.Deleted;
       readedRule.Save();
     }
 
@@ -230,7 +232,7 @@ namespace Empiria.Products {
       this.manager = Contact.Parse((int) row["ManagerId"]);
       this.modifiedBy = Contact.Parse((int) row["ModifiedById"]);
       this.parentId = (int) row["ParentProductGroupId"];
-      this.status = (GeneralObjectStatus) Convert.ToChar(row["ProductGroupStatus"]);
+      this.status = (EntityStatus) Convert.ToChar(row["ProductGroupStatus"]);
     }
 
     protected override void OnSave() {
