@@ -200,6 +200,7 @@ namespace Empiria.FinancialServices {
         crTransaction.Close();
         accountTransaction.CRTransactionId = crTransaction.Id;
         context.Add(AccountTransactionData.GetWriteAccountTransaction(accountTransaction));
+
         context.Update();
         transaction.Commit();
       }

@@ -105,7 +105,7 @@ namespace Empiria.Trade.Ordering {
     static public SupplyOrder CreateFromCF(int cfOrderID) {
       int supplyOrderId = SupplyOrdersData.CreateSupplyOrderFromColdFusion(cfOrderID);
 
-      return BaseObject.ParseFull<SupplyOrder>(supplyOrderId);
+      return BaseObject.ParseId<SupplyOrder>(supplyOrderId, true);
     }
 
     static public SupplyOrder CreateOrder() {
@@ -566,7 +566,7 @@ namespace Empiria.Trade.Ordering {
       this.status = (OrderStatus) Convert.ToChar(row["SupplyOrderStatus"]);
 
       if (this.Status == OrderStatus.Opened) {
-        this.customer = BaseObject.ParseFull<Contact>((int) row["CustomerId"]);
+        this.customer = BaseObject.ParseId<Contact>((int) row["CustomerId"], true);
       } else {
         this.customer = Contact.Parse((int) row["CustomerId"]);
       }

@@ -329,7 +329,7 @@ namespace Empiria.Trade.Ordering {
       this.promisedDate = (DateTime) row["PromisedDate"];
       this.deliveryTime = (DateTime) row["DeliveryTime"];
       if (this.order.Status == OrderStatus.Opened) {
-        this.product = BaseObject.ParseFull<Product>((int) row["ProductId"]);
+        this.product = BaseObject.ParseId<Product>((int) row["ProductId"], true);
       } else {
         this.product = Product.Parse((int) row["ProductId"]);
       }

@@ -266,7 +266,7 @@ namespace Empiria.Treasury {
     public string GetDigitalSign() {
       string s = GetDigitalString();
 
-      return FormerCryptographer.SignTextWithSystemCredentials(s);
+      return Cryptographer.SignTextWithSystemCredentials(s);
     }
 
     public string GetDigitalString() {
